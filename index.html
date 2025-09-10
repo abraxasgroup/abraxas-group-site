@@ -1,64 +1,278 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abraxas Group</title>
-  <meta name="description" content="Abraxas Group: Oil & Gas, Comercio Exterior y Soluciones. Negociación, desarrollo de negocios y consultoría.">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="img/abraxas.png">
+  <meta charset="utf-8" />
+  <title>Abraxas Group — WeTrade • WeConnect • WeWork</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Abraxas Group: asesoría estratégica en Comercio Exterior, Oil & Gas y Minería. Seriedad, eficiencia y calidad para cerrar negocios de alto impacto.">
+  <link rel="icon" href="img/logo-abraxas.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Merriweather:wght@300;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-  <!-- Logo -->
-  <header>
-    <img class="logo" src="img/abraxas.png" alt="Logo Abraxas Group">
-    <h1>ABRAXAS</h1>
-    <p>WeTrade · WeConnect · WeWork</p>
+  <!-- NAV -->
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#inicio" class="brand">
+        <img src="img/logo-abraxas.png" alt="Abraxas Group" class="brand-logo">
+        <span class="brand-text">ABRAXAS GROUP</span>
+      </a>
+      <nav class="menu">
+        <a href="#servicios">Servicios</a>
+        <a href="#libros">Libros</a>
+        <a href="#pago">Pagos</a>
+        <a href="#about">Acerca de</a>
+        <a href="#contacto" class="btn btn-outline">Contacto</a>
+      </nav>
+      <button class="hamb" aria-label="Abrir menú" onclick="document.body.classList.toggle('open')">☰</button>
+    </div>
   </header>
 
-  <!-- Sobre mí -->
-  <section class="about">
-    <img class="profile" src="img/mi-foto.png" alt="Oscar Esteban Chinchilla">
-    <h2>Oscar Esteban Chinchilla</h2>
-    <p>CEO de Abraxas Group · Escritor y Asesor en Minería y Oil & Gas</p>
-  </section>
-
-  <!-- Libros -->
-  <section class="books">
-    <h2>Mis Libros</h2>
-    <div class="book-list">
-
-      <!-- Libro minería (inglés) -->
-      <a class="book" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">
-        <img src="img/book-mining-en.jpg" alt="How to be an Intermediary in the Mining Business">
-        <span>Minería (EN)</span>
-      </a>
-
-      <!-- Libro minería (español) -->
-      <a class="book" href="https://www.amazon.es/dp/B0FQ7W6DJC" target="_blank" rel="noopener">
-        <img src="img/book-mining-es.jpg" alt="Cómo ser un Intermediario en el Negocio Minero">
-        <span>Minería (ES)</span>
-      </a>
-
-      <!-- Libro Oil & Gas (español) -->
-      <a class="book" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">
-        <img src="img/book-oilgas.jpg" alt="La Biblia del Oil & Gas">
-        <span>Oil & Gas (ES)</span>
-      </a>
-
+  <!-- HERO -->
+  <section id="inicio" class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1>Seriedad, eficiencia y calidad para cerrar negocios reales</h1>
+        <p class="lead">Asesoría estratégica en <strong>Comercio Exterior</strong> (aceites &amp; granos), <strong>Oil &amp; Gas</strong> y <strong>Minería</strong> (minerales &amp; concesiones). De la oportunidad al contrato firmado.</p>
+        <div class="cta-row">
+          <a href="#servicios" class="btn btn-gold">Ver servicios</a>
+          <a href="#contacto" class="btn btn-ghost">Escríbenos</a>
+        </div>
+        <p class="slogan">WeTrade · WeConnect · WeWork</p>
+      </div>
+      <div class="hero-media">
+        <img src="img/oscar-chinchilla.png" alt="Oscar Esteban Chinchilla — CEO Abraxas Group">
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>© <span id="year"></span> Abraxas Group — WeTrade · WeConnect · WeWork</p>
+  <!-- SERVICIOS -->
+  <section id="servicios" class="section">
+    <div class="container">
+      <h2 class="section-title">Servicios de asesoría</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Comercio Exterior — Aceites &amp; Granos</h3>
+          <ul class="check">
+            <li>Prospección de compradores/proveedores confiables.</li>
+            <li>Estructuración: Incoterms, logística, seguros, pagos.</li>
+            <li>Due diligence y verificación documental.</li>
+            <li>Negociación y <em>term sheets</em> orientados a cierre.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Aceite de soja</span><span class="chip">Girasol</span><span class="chip">Maíz</span><span class="chip">Trigo</span>
+          </div>
+          <a href="#pago" class="btn btn-gold">Reservar mentoría</a>
+        </article>
+
+        <article class="card">
+          <h3>Oil &amp; Gas — Combustibles &amp; Derivados</h3>
+          <ul class="check">
+            <li>Rutas claras y anti-fraude (diésel, gasolina, Jet A1, GLP).</li>
+            <li>Validación POP/POF, KYC y compliance.</li>
+            <li>Contratos (SPA/TA) y <em>lifting schedules</em>.</li>
+            <li>Coordinación con traders, refinerías y terminales.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Diesel EN590</span><span class="chip">Jet A1</span><span class="chip">Gasolina</span><span class="chip">GLP</span>
+          </div>
+          <a href="#pago" class="btn btn-gold">Reservar mentoría</a>
+        </article>
+
+        <article class="card">
+          <h3>Minería — Minerales &amp; Concesiones</h3>
+          <ul class="check">
+            <li>Origen y trazabilidad (oro, plata, cobre, litio, polimetálicos).</li>
+            <li>Estándares (NI 43-101, JORC) y contratos.</li>
+            <li>Modelo, riesgos y alineación con inversores.</li>
+            <li>Negociación y estructuración de <em>offtakes</em>.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Oro/Plata</span><span class="chip">Cobre</span><span class="chip">Litio</span><span class="chip">Polimetálicos</span>
+          </div>
+          <a href="#pago" class="btn btn-gold">Reservar mentoría</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIBROS -->
+  <section id="libros" class="section alt">
+    <div class="container">
+      <h2 class="section-title">Libros</h2>
+      <div class="book-grid">
+        <div class="book-card">
+          <div class="book-frame">
+            <img src="img/book-mining-en.png" alt="How to be an Intermediary in the Mining Business">
+          </div>
+          <p class="book-title"><strong>How to be an Intermediary in the Mining Business</strong> (EN)</p>
+          <a href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" class="btn btn-gold">Comprar en Amazon</a>
+        </div>
+        <div class="book-card">
+          <div class="book-frame">
+            <img src="img/book-mining-es.png" alt="Cómo ser Intermediario en el Negocio de la Minería">
+          </div>
+          <p class="book-title"><strong>Cómo ser Intermediario en el Negocio de la Minería</strong> (ES)</p>
+          <a href="https://www.amazon.es/dp/B0FQ7W6DJC" target="_blank" class="btn btn-gold">Comprar en Amazon</a>
+        </div>
+        <div class="book-card">
+          <div class="book-frame">
+            <img src="img/book-oilgas-es.png" alt="La Biblia del Oil & Gas">
+          </div>
+          <p class="book-title"><strong>La Biblia del Oil &amp; Gas</strong> (ES)</p>
+          <a href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" class="btn btn-gold">Comprar en Amazon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGOS -->
+  <section id="pago" class="section">
+    <div class="container">
+      <h2 class="section-title">Reservar mentoría / <span class="muted">Book mentorship</span></h2>
+
+      <!-- Paquetes -->
+      <div class="cards pricing">
+        <article class="card price">
+          <h3>Exploratory Call</h3>
+          <p class="price-tag">USD 200 <span class="muted">/ 30 min</span></p>
+          <ul class="check">
+            <li>Diagnóstico inicial (objetivos + factibilidad).</li>
+            <li>Recomendaciones inmediatas y próximos pasos.</li>
+          </ul>
+          <a href="#formas-pago" class="btn btn-gold">Pagar ahora</a>
+        </article>
+
+        <article class="card price">
+          <h3>Mentoría Estratégica</h3>
+          <p class="price-tag">USD 1.000 <span class="muted">/ 2 h</span></p>
+          <ul class="check">
+            <li>Análisis de documentos + propuesta de estructura.</li>
+            <li>Entrega de plan de acción y roadmap.</li>
+          </ul>
+          <a href="#formas-pago" class="btn btn-gold">Pagar ahora</a>
+        </article>
+
+        <article class="card price">
+          <h3>Retainer Mensual</h3>
+          <p class="price-tag">USD 5.000–10.000 <span class="muted">/ mes</span></p>
+          <ul class="check">
+            <li>Acompañamiento continuo en operaciones.</li>
+            <li>Prioridad y disponibilidad extendida.</li>
+          </ul>
+          <a href="#formas-pago" class="btn btn-gold">Consultar</a>
+        </article>
+      </div>
+
+      <!-- Formas de pago -->
+      <h3 id="formas-pago" class="mt-32">Formas de pago / <span class="muted">Payment methods</span></h3>
+      <div class="cards pay">
+        <!-- USDT -->
+        <article class="card pay-card">
+          <h4>USDT (Crypto)</h4>
+          <p class="muted small">Preferido para pagos internacionales.</p>
+          <div class="kv">
+            <div><strong>ERC20:</strong></div>
+            <div><code id="erc20">0xbc268ec3181501997365889aaf6beba71b1366ef</code> <button class="copy" data-copy="#erc20">Copiar</button></div>
+          </div>
+          <div class="kv">
+            <div><strong>TRC20:</strong></div>
+            <div><code id="trc20">TJUfT3C7muDnfvBbhPCzh3tro7uD2c6Tf8</code> <button class="copy" data-copy="#trc20">Copiar</button></div>
+          </div>
+          <p class="muted tiny">USDT wallet (ERC20 / TRC20). Adjuntar TXID en el mensaje al agendar.</p>
+        </article>
+
+        <!-- Payoneer (Citibank) -->
+        <article class="card pay-card">
+          <h4>Payoneer (USD)</h4>
+          <p class="muted small">Transferencia bancaria (Citibank, local transfer).</p>
+          <div class="kv"><div><strong>Bank:</strong></div><div>Citibank</div></div>
+          <div class="kv"><div><strong>Address:</strong></div><div>111 Wall Street, New York, NY 10043 (USA)</div></div>
+          <div class="kv"><div><strong>Routing (ABA):</strong></div><div><code id="aba">031100209</code> <button class="copy" data-copy="#aba">Copiar</button></div></div>
+          <div class="kv"><div><strong>SWIFT:</strong></div><div><code id="swift">CITIUS33</code> <button class="copy" data-copy="#swift">Copiar</button></div></div>
+          <div class="kv"><div><strong>Account #:</strong></div><div><code id="acct">70580380002006071</code> <button class="copy" data-copy="#acct">Copiar</button></div></div>
+          <div class="kv"><div><strong>Type:</strong></div><div>Checking</div></div>
+          <div class="kv"><div><strong>Beneficiary:</strong></div><div>Oscar Esteban Chinchilla</div></div>
+        </article>
+
+        <!-- Mercado Pago -->
+        <article class="card pay-card">
+          <h4>Mercado Pago (ARS)</h4>
+          <p class="muted small">Transferencia en pesos argentinos.</p>
+          <div class="kv">
+            <div><strong>CVU:</strong></div>
+            <div><code id="cvu">0000003100033441065967</code> <button class="copy" data-copy="#cvu">Copiar</button></div>
+          </div>
+          <p class="muted tiny">Enviar comprobante para validar y agendar la sesión.</p>
+        </article>
+      </div>
+
+      <div class="after-pay">
+        <h4>Agendar sesión / <span class="muted">Schedule your session</span></h4>
+        <p>Una vez realizado el pago, enviá el comprobante y agenda por WhatsApp. Luego coordinamos videollamada.</p>
+        <a class="btn btn-gold" href="https://wa.me/5493510000000?text=Hola%20Abraxas%2C%20ya%20realic%C3%A9%20el%20pago%20para%20la%20mentor%C3%ADa.%20Adjunto%20comprobante%20y%20propongo%20horarios." target="_blank" rel="noopener">WhatsApp para agenda</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container about">
+      <img src="img/oscar-chinchilla.png" alt="Oscar Esteban Chinchilla" class="about-photo">
+      <div>
+        <h2 class="section-title">Acerca de Oscar Esteban Chinchilla</h2>
+        <p>CEO de Abraxas Group, escritor y asesor en minería y energía. Más de 15 años cerrando operaciones complejas con enfoque en resultados, compliance y mitigación de riesgos.</p>
+        <p class="slogan s2">WeTrade · WeConnect · WeWork</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section contact">
+    <div class="container">
+      <h2 class="section-title">Contacto</h2>
+      <div class="contact-cards">
+        <a class="contact-card" href="mailto:info@abraxas-group.lat">
+          <span class="cc-title">Consultas generales</span>
+          <span class="cc-mail">info@abraxas-group.lat</span>
+        </a>
+        <a class="contact-card" href="mailto:energy@abraxas-group.lat">
+          <span class="cc-title">Oil &amp; Gas</span>
+          <span class="cc-mail">energy@abraxas-group.lat</span>
+        </a>
+      </div>
+      <p class="small center">Disponible por LinkedIn y videollamada bajo agenda.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="y"></span> Abraxas Group. Todos los derechos reservados.</p>
+      <p class="muted">Sitio estático hospedado en GitHub Pages.</p>
+    </div>
   </footer>
 
   <script>
-    // Año automático en footer
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+    // Año
+    document.getElementById('y').textContent = new Date().getFullYear();
 
+    // Copiar
+    document.querySelectorAll('.copy').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sel = btn.getAttribute('data-copy');
+        const el = document.querySelector(sel);
+        if (!el) return;
+        const text = el.textContent.trim();
+        navigator.clipboard.writeText(text).then(()=>{
+          btn.textContent = 'Copiado';
+          setTimeout(()=>btn.textContent='Copiar',1500);
+        });
+      });
+    });
+
+    // Cerrar menú móvil al navegar
+    document.querySelectorAll('.menu a').forEach(a => a.addEventListener('click', ()=>document.body.classList.remove('open')));
+  </script>
 </body>
 </html>
