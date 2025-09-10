@@ -70,12 +70,51 @@ h3{font-size:clamp(16px,4.5vw,20px)}
 }
 .book img{width:90px;border-radius:10px; border:1px solid var(--stroke)}
 
+/* ===== LOGOS / TRUST ===== */
+.logos{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:10px;
+}
+@media (min-width:560px){ .logos{ grid-template-columns:repeat(3,1fr); } }
+@media (min-width:768px){ .logos{ grid-template-columns:repeat(5,1fr); } }
+
+.logo{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  background:var(--card);border:1px solid var(--stroke);border-radius:14px;
+  padding:10px 8px;text-align:center
+}
+.logo svg{width:40px;height:40px;display:block;filter:drop-shadow(0 6px 16px rgba(255,215,122,.18))}
+.logo span{font-weight:700;font-size:.95rem;opacity:.95}
+
+/* ===== TESTIMONIOS ===== */
+.tcard{
+  background:var(--card);
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  padding:14px;
+  min-height:120px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.tquote{font-size:1rem;line-height:1.45}
+.tauthor{display:flex;align-items:center;gap:10px;margin-top:10px}
+.tauthor span{
+  display:inline-grid;place-items:center;
+  width:34px;height:34px;border-radius:999px;
+  background:linear-gradient(135deg,var(--gold2),var(--gold1) 55%,var(--gold3));
+  color:#111;font-weight:800;
+}
+.tauthor small{color:var(--muted)}
+
+/* PAGOS */
 .pay{background:var(--card);border:1px solid var(--stroke);border-radius:14px;margin:10px 0}
 .pay > summary{cursor:pointer;padding:12px 14px;font-weight:700;list-style:none}
 .pay[open] > summary{background:#14161b;border-bottom:1px solid var(--stroke);border-top-left-radius:14px;border-top-right-radius:14px}
 .pay__grid{display:grid;gap:8px;padding:12px 14px}
 code{background:#0f1014;border:1px solid var(--stroke);padding:4px 6px;border-radius:8px;display:inline-block;word-break:break-all}
 
+/* CONTACTO */
 .contact{display:flex;gap:14px;align-items:center}
 .avatar{width:72px;height:72px;border-radius:16px;object-fit:cover;border:1px solid var(--stroke)}
 
@@ -88,6 +127,7 @@ code{background:#0f1014;border:1px solid var(--stroke);padding:4px 6px;border-ra
 
 .foot{position:relative;text-align:center;color:var(--muted);padding:40px 16px}
 .note{color:var(--muted);font-size:.95em;margin-top:10px}
+
 @media (min-width:768px){
   .hscroller{grid-auto-columns:48%}
 }
