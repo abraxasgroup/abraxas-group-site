@@ -4,20 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Abraxas Group</title>
+  <meta name="description" content="Abraxas Group: Oil & Gas, Comercio Exterior y Soluciones. Negociación, desarrollo de negocios y consultoría.">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/abraxas.png">
 </head>
 <body>
 
   <!-- Logo -->
   <header>
-    <img class="logo" src="abraxas.png" alt="Logo Abraxas Group">
+    <img class="logo" src="img/abraxas.png" alt="Logo Abraxas Group">
     <h1>ABRAXAS</h1>
     <p>WeTrade · WeConnect · WeWork</p>
   </header>
 
   <!-- Sobre mí -->
   <section class="about">
-    <img class="profile" src="mi-foto.png" alt="Oscar Esteban Chinchilla">
+    <img class="profile" src="img/mi-foto.png" alt="Oscar Esteban Chinchilla">
     <h2>Oscar Esteban Chinchilla</h2>
     <p>CEO de Abraxas Group · Escritor y Asesor en Minería y Oil & Gas</p>
   </section>
@@ -27,23 +29,36 @@
     <h2>Mis Libros</h2>
     <div class="book-list">
 
+      <!-- Libro minería (inglés) -->
       <a class="book" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">
-        <img src="book-mining-en.jpg" alt="How to be an Intermediary in the Mining Business">
+        <img src="img/book-mining-en.jpg" alt="How to be an Intermediary in the Mining Business">
         <span>Minería (EN)</span>
       </a>
 
+      <!-- Libro minería (español) -->
       <a class="book" href="https://www.amazon.es/dp/B0FQ7W6DJC" target="_blank" rel="noopener">
-        <img src="book-mining-es.jpg" alt="Cómo ser un Intermediario en el Negocio Minero">
+        <img src="img/book-mining-es.jpg" alt="Cómo ser un Intermediario en el Negocio Minero">
         <span>Minería (ES)</span>
       </a>
 
+      <!-- Libro Oil & Gas (español) -->
       <a class="book" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">
-        <img src="book-oilgas.jpg" alt="La Biblia del Oil & Gas">
+        <img src="img/book-oilgas.jpg" alt="La Biblia del Oil & Gas">
         <span>Oil & Gas (ES)</span>
       </a>
 
     </div>
   </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© <span id="year"></span> Abraxas Group — WeTrade · WeConnect · WeWork</p>
+  </footer>
+
+  <script>
+    // Año automático en footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
