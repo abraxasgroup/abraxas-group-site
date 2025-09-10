@@ -1,96 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Abraxas Group — Energía · Comercio Exterior · Soluciones</title>
-  <meta name="description" content="Abraxas Group: Energía (Oil & Gas), Comercio Exterior y Soluciones tecnológicas. WeTrade · WeConnect · WeWork." />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="favicon.ico" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abraxas Group</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="container">
-    <div class="brand">
-      <div class="logo">A</div>
-      <div class="brand-text">
-        <h1 data-es="Abraxas Group" data-en="Abraxas Group">Abraxas Group</h1>
-        <p class="tag" data-es="WeTrade · WeConnect · WeWork" data-en="WeTrade · WeConnect · WeWork">WeTrade · WeConnect · WeWork</p>
-      </div>
-    </div>
-    <nav>
-      <a href="#energia" data-es="Energía" data-en="Energy">Energía</a>
-      <a href="#comex" data-es="Comercio Exterior" data-en="Trade">Comercio Exterior</a>
-      <a href="#soluciones" data-es="Soluciones" data-en="Solutions">Soluciones</a>
-      <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
-      <button id="langToggle" aria-label="Change language">EN</button>
-    </nav>
+
+  <!-- Logo -->
+  <header>
+    <img class="logo" src="abraxas.png" alt="Logo Abraxas Group">
+    <h1>ABRAXAS</h1>
+    <p>WeTrade · WeConnect · WeWork</p>
   </header>
 
-  <section class="hero container">
-    <h2 data-es="Negocios reales, resultados medibles." data-en="Real deals, measurable results.">Negocios reales, resultados medibles.</h2>
-    <p data-es="Alianzas directas con refinerías, traders y productores. Operamos con procesos claros, trazabilidad y cumplimiento."
-       data-en="Direct alliances with refineries, traders and producers. We operate with clear processes, traceability and compliance.">
-      Alianzas directas con refinerías, traders y productores. Operamos con procesos claros, trazabilidad y cumplimiento.
-    </p>
-    <a class="cta" href="#contacto" data-es="Empezar" data-en="Get started">Empezar</a>
+  <!-- Sobre mí -->
+  <section class="about">
+    <img class="profile" src="mi-foto.png" alt="Oscar Esteban Chinchilla">
+    <h2>Oscar Esteban Chinchilla</h2>
+    <p>CEO de Abraxas Group · Escritor y Asesor en Minería y Oil & Gas</p>
   </section>
 
-  <section id="energia" class="section container">
-    <h3 data-es="Energía (Oil & Gas)" data-en="Energy (Oil & Gas)">Energía (Oil & Gas)</h3>
-    <p data-es="Suministro y estructuración de operaciones: EN590, Jet A-1, D6, crudo y derivados. Filtros de due diligence, deals de prueba y escalado."
-       data-en="Supply and structuring of operations: EN590, Jet A-1, D6, crude and derivatives. Due diligence filters, trial deals and scale-up.">
-       Suministro y estructuración de operaciones: EN590, Jet A-1, D6, crudo y derivados. Filtros de due diligence, deals de prueba y escalado.
-    </p>
-    <ul class="bullets">
-      <li data-es="Mandatos directos y ventanas de operación." data-en="Direct mandates and window companies.">Mandatos directos y ventanas de operación.</li>
-      <li data-es="Operativa escalable: spot → contratos." data-en="Scalable ops: spot → contracts.">Operativa escalable: spot → contratos.</li>
-      <li data-es="Cumplimiento KYC/AML." data-en="KYC/AML compliance.">Cumplimiento KYC/AML.</li>
-    </ul>
-  </section>
+  <!-- Libros -->
+  <section class="books">
+    <h2>Mis Libros</h2>
+    <div class="book-list">
 
-  <section id="comex" class="section container">
-    <h3 data-es="Comercio Exterior" data-en="International Trade">Comercio Exterior</h3>
-    <p data-es="Minería y commodities industriales. Due diligence de origen, logística y documentación; foco en cierres reales."
-       data-en="Mining and industrial commodities. Origin DD, logistics and documentation; focused on real closings.">
-       Minería y commodities industriales. Due diligence de origen, logística y documentación; foco en cierres reales.
-    </p>
-    <ul class="bullets">
-      <li data-es="Minerales, acero y agroindustria." data-en="Minerals, steel and agri.">Minerales, acero y agroindustria.</li>
-      <li data-es="LOI/ICPO trazables y verificables." data-en="Traceable, verifiable LOI/ICPO.">LOI/ICPO trazables y verificables.</li>
-      <li data-es="Red internacional de compradores/vendedores." data-en="Global buyer/seller network.">Red internacional de compradores/vendedores.</li>
-    </ul>
-  </section>
+      <a class="book" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">
+        <img src="book-mining-en.jpg" alt="How to be an Intermediary in the Mining Business">
+        <span>Minería (EN)</span>
+      </a>
 
-  <section id="soluciones" class="section container">
-    <h3 data-es="Soluciones" data-en="Solutions">Soluciones</h3>
-    <p data-es="Desarrollo de herramientas comerciales: páginas web livianas, funnels y automatizaciones con IA."
-       data-en="Commercial tools: lightweight websites, funnels and AI automations.">
-       Desarrollo de herramientas comerciales: páginas web livianas, funnels y automatizaciones con IA.
-    </p>
-    <ul class="bullets">
-      <li data-es="Landing pages optimizadas para inversión." data-en="Investor-ready landing pages.">Landing pages optimizadas para inversión.</li>
-      <li data-es="Integración de formularios y CRM." data-en="Forms & CRM integration.">Integración de formularios y CRM.</li>
-      <li data-es="Infraestructura simple: GitHub Pages + dominio propio." data-en="Simple infra: GitHub Pages + custom domain.">Infraestructura simple: GitHub Pages + dominio propio.</li>
-    </ul>
-  </section>
+      <a class="book" href="https://www.amazon.es/dp/B0FQ7W6DJC" target="_blank" rel="noopener">
+        <img src="book-mining-es.jpg" alt="Cómo ser un Intermediario en el Negocio Minero">
+        <span>Minería (ES)</span>
+      </a>
 
-  <section id="contacto" class="section container contact">
-    <h3 data-es="Contacto" data-en="Contact">Contacto</h3>
-    <p data-es="Escribinos para coordinar una llamada o reunión."
-       data-en="Reach out to schedule a call or meeting.">Escribinos para coordinar una llamada o reunión.</p>
-    <ul class="contact-list">
-      <li>✉️ <a href="mailto:info@abraxas-group.lat">info@abraxas-group.lat</a></li>
-      <li>🔗 <a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
-    </ul>
-  </section>
+      <a class="book" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">
+        <img src="book-oilgas.jpg" alt="La Biblia del Oil & Gas">
+        <span>Oil & Gas (ES)</span>
+      </a>
 
-  <footer>
-    <div class="container">
-      <small data-es="© 2025 Abraxas Group. Todos los derechos reservados."
-             data-en="© 2025 Abraxas Group. All rights reserved.">© 2025 Abraxas Group. Todos los derechos reservados.</small>
     </div>
-  </footer>
+  </section>
 
-  <script src="main.js"></script>
 </body>
 </html>
