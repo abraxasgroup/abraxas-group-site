@@ -1,247 +1,40 @@
-<header class="hero">
-  <div class="overlay">
-    <img src="img/logo-abraxas.png" alt="Abraxas Group Logo" class="hero-logo">
-    <h1>ABRAXAS GROUP</h1>
-    <p class="tagline">WeTrade • WeConnect • WeWork</p>
-    <p class="intro">
-      ES: Abraxas nace de la dualidad, del equilibrio entre riesgo y oportunidad.  
-      Somos mandatarios en Oil & Gas, exportación de granos y minerales, y asesores estratégicos para deals internacionales.  
-      <br><br>
-      EN: Abraxas was born from duality, from the balance between risk and opportunity.  
-      We are mandates in Oil & Gas, grain exports, and mining concessions, offering strategic advisory for global deals.
-    </p>
-    <a href="#mentorship" class="cta-btn">Reservar Mentoría / Book Mentorship</a>
-  </div>
-</header>
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ABRAXAS GROUP — WeTrade · WeConnect · WeWork</title>
-  <meta name="description" content="Abraxas Group: Comercio exterior, Oil & Gas y Minería. Mentoría ejecutiva y ejecución end-to-end." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="favicon.ico">
-</head>
-<body>
-<header class="topbar">
-  <a class="brand" href="#home">
-    <img src="img/logo-abraxas.png" alt="Abraxas Group" class="brand__logo" />
-    <span class="brand__name">ABRAXAS GROUP</span>
+<header class="site-header" role="banner">
+  <a href="#top" class="brand" aria-label="Abraxas inicio">
+    <img src="assets/logo-abraxas.svg" alt="Abraxas" class="brand__logo" />
   </a>
-  <nav class="nav">
-    <button class="lang" id="langES" aria-pressed="true">ES</button>
-    <button class="lang" id="langEN">EN</button>
-    <button class="nav__menu" id="menuBtn" aria-label="Menu">☰</button>
+  <nav class="nav" role="navigation" aria-label="Principal">
+    <button id="navToggle" class="nav__toggle" aria-expanded="false" aria-controls="menu">☰</button>
+    <ul id="menu" class="nav__menu">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#casos">Casos</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#recursos">Recursos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a class="btn btn--primary" href="#agenda" data-track="clic_cta_menu">Agendar</a></li>
+    </ul>
   </nav>
 </header>
 
-<main id="home">
-  <!-- HERO -->
-  <section class="hero">
-    <h1 data-es="Ejecución seria en mercados reales"
-        data-en="Serious execution in real markets"></h1>
-    <p class="sub" data-es="Comercio exterior · Oil &amp; Gas · Minería"
-       data-en="Foreign trade · Oil &amp; Gas · Mining"></p>
-    <a class="cta" href="#mentoria" data-es="Reservar mentoría" data-en="Book mentorship"></a>
-  </section>
+<!-- Variantes de HERO: el JS activa una al azar -->
+<section class="hero" data-variant="1" aria-labelledby="heroTitle1">…</section>
+<section class="hero" data-variant="2" aria-labelledby="heroTitle2">…</section>
+<section class="hero" data-variant="3" aria-labelledby="heroTitle3">…</section>
 
-  <!-- SERVICIOS: carrusel horizontal -->
-  <section class="block" id="servicios">
-    <h2 data-es="Servicios" data-en="Services"></h2>
-    <div class="hscroller">
-      <article class="card">
-        <h3 data-es="Comercio Exterior" data-en="Foreign Trade"></h3>
-        <p data-es="Aceites y granos: due diligence, contratos, logística, cobros."
-           data-en="Oils & grains: due diligence, contracts, logistics, collections."></p>
-      </article>
-      <article class="card">
-        <h3 data-es="Oil &amp; Gas" data-en="Oil &amp; Gas"></h3>
-        <p data-es="Mandatos, compliance, SPA/ICPO, verificación y cierre."
-           data-en="Mandates, compliance, SPA/ICPO, verification & close."></p>
-      </article>
-      <article class="card">
-        <h3 data-es="Minería" data-en="Mining"></h3>
-        <p data-es="Minerales y concesiones: evaluación técnica-comercial y acceso a capital."
-           data-en="Minerals & concessions: tech-commercial assessment & access to capital."></p>
-      </article>
-    </div>
-  </section>
+<section id="recursos" class="section">
+  <h2>Checklist gratuito</h2>
+  <form id="leadForm" class="form" aria-labelledby="recursos">
+    <label for="name">Nombre</label>
+    <input id="name" name="name" type="text" autocomplete="name" required />
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" required />
+    <button class="btn btn--primary" type="submit" data-track="enviar_form">Recibir checklist</button>
+    <p id="formMsg" class="form__msg" role="status" aria-live="polite"></p>
+  </form>
+</section>
 
-  <!-- LOGOS / TRUST -->
-  <section class="block" id="trust">
-    <h2 data-es="Confían en nuestro enfoque" data-en="Trusted by leaders"></h2>
-    <div class="logos">
-      <div class="logo">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#ffd77a"/><stop offset="1" stop-color="#bd8d2e"/></linearGradient></defs>
-          <path fill="url(#g1)" d="M32 6c6 10 14 18 14 26a14 14 0 1 1-28 0c0-8 8-16 14-26z"/>
-        </svg>
-        <span>PetroBridge</span>
-      </div>
-      <div class="logo">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#ffd77a"/><stop offset="1" stop-color="#bd8d2e"/></linearGradient></defs>
-          <path fill="url(#g2)" d="M20 50c10-2 18-10 24-26 4 8 8 14 14 18-8 8-20 12-38 8z"/>
-        </svg>
-        <span>AgriVector</span>
-      </div>
-      <div class="logo">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#ffd77a"/><stop offset="1" stop-color="#bd8d2e"/></linearGradient></defs>
-          <path fill="url(#g3)" d="M8 46l12-22 10 10 8-14 18 26H8z"/>
-        </svg>
-        <span>OreAxis</span>
-      </div>
-      <div class="logo">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#ffd77a"/><stop offset="1" stop-color="#bd8d2e"/></linearGradient></defs>
-          <path fill="url(#g4)" d="M10 40h44l-6 8H16l-6-8zm8-8h28l-4-8H22l-4 8z"/>
-        </svg>
-        <span>PortLine</span>
-      </div>
-      <div class="logo">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#ffd77a"/><stop offset="1" stop-color="#bd8d2e"/></linearGradient></defs>
-          <path fill="url(#g5)" d="M10 46h44v4H10v-4zm4-4h8V18h-8v24zm14 0h8V10h-8v32zm14 0h8V26h-8v16z"/>
-        </svg>
-        <span>CapTrust</span>
-      </div>
-    </div>
-    <p class="note" data-es="*Nombres ilustrativos para resguardar acuerdos de confidencialidad."
-       data-en="*Illustrative names to preserve NDAs."></p>
-  </section>
-
-  <!-- LIBROS: carrusel -->
-  <section class="block" id="libros">
-    <h2 data-es="Libros" data-en="Books"></h2>
-    <div class="hscroller">
-      <a class="book" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">
-        <img src="img/book-mining-en.png" alt="Mining book EN" loading="lazy">
-        <span data-es="Cómo ser Intermediario (EN)" data-en="How to be an Intermediary (EN)"></span>
-      </a>
-      <a class="book" href="https://www.amazon.es/dp/B0FQ7W6DJC" target="_blank" rel="noopener">
-        <img src="img/book-mining-es.png" alt="Libro minería ES" loading="lazy">
-        <span data-es="Cómo ser Intermediario (ES)" data-en="Cómo ser Intermediario (ES)"></span>
-      </a>
-      <a class="book" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">
-        <img src="img/book-oilgas-es.png" alt="La Biblia del Oil & Gas" loading="lazy">
-        <span data-es="La Biblia del Oil &amp; Gas (ES)" data-en="Oil &amp; Gas Bible (ES)"></span>
-      </a>
-    </div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section class="block" id="testimonials">
-    <h2 data-es="Lo que dicen" data-en="What clients say"></h2>
-    <div class="hscroller">
-      <article class="tcard">
-        <p class="tquote" data-es="“Nos ordenaron el deal de Jet A1 en 48 horas: documentos, KYC y ruta. Sin promesas vacías.”"
-           data-en="“They organized our Jet A1 deal in 48 hours: docs, KYC and route. No empty promises.”"></p>
-        <div class="tauthor"><span>R.M.</span><small>Trader — 🇦🇪</small></div>
-      </article>
-      <article class="tcard">
-        <p class="tquote" data-es="“Validaron proveedor de aceite de girasol y destrabaron el pago con LC. Cierre impecable.”"
-           data-en="“They validated a sunflower oil supplier and unlocked LC payment. Clean closing.”"></p>
-        <div class="tauthor"><span>L.G.</span><small>Exportador — 🇦🇷</small></div>
-      </article>
-      <article class="tcard">
-        <p class="tquote" data-es="“La revisión técnica bajo JORC nos ahorró un viaje y un mal acuerdo.”"
-           data-en="“The JORC-based technical review saved us a trip and a bad deal.”"></p>
-        <div class="tauthor"><span>C.P.</span><small>Family Office — 🇪🇸</small></div>
-      </article>
-    </div>
-  </section>
-
-  <!-- EPICA ABRAXAS -->
-  <section class="block" id="about">
-    <h2 data-es="Abraxas: dualidad que ejecuta" data-en="Abraxas: duality that executes"></h2>
-    <p data-es="Abraxas simboliza la tensión entre visión y riesgo. En los negocios reales, esa dualidad se resuelve con método, reputación y cierre. Por eso existimos: unir oportunidades con ejecución responsable."
-       data-en="Abraxas symbolizes the tension between vision and risk. In real markets, duality is resolved with method, reputation and close. We exist to connect opportunities with responsible execution."></p>
-  </section>
-
-  <!-- MENTORÍA + PAGOS -->
-  <section class="block" id="mentoria">
-    <h2 data-es="Reservar mentoría" data-en="Book mentorship"></h2>
-
-    <details class="pay">
-      <summary>USDT (ERC20 / TRC20)</summary>
-      <div class="pay__grid">
-        <div><strong>ERC20</strong><code>0xbc268ec3181501997365889aaf6beba71b1366ef</code></div>
-        <div><strong>TRC20</strong><code>TJUfT3C7muDnfvBbhPCzh3tro7uD2c6Tf8</code></div>
-      </div>
-    </details>
-
-    <details class="pay">
-      <summary>Payoneer (USD domestic)</summary>
-      <div class="pay__grid">
-        <div><strong>Bank</strong> Citibank (111 Wall St, NY)</div>
-        <div><strong>Routing (ABA)</strong> 031100209</div>
-        <div><strong>SWIFT</strong> CITIUS33</div>
-        <div><strong>Account</strong> 70580380002006071 — CHECKING</div>
-        <div><strong>Beneficiary</strong> Oscar Esteban Chinchilla</div>
-      </div>
-    </details>
-
-    <details class="pay">
-      <summary>CVU Mercado Pago</summary>
-      <div class="pay__grid">
-        <div><strong>CVU</strong> 0000003100033441065967</div>
-      </div>
-    </details>
-
-    <a class="cta" id="ctaWhatsapp" href="https://wa.me/5493417400299" target="_blank" rel="noopener"
-       data-es="Confirmé el pago — Agendar llamada"
-       data-en="Payment sent — Schedule call"></a>
-    <p class="note" data-es="Envíanos el comprobante por WhatsApp y coordinamos la llamada."
-       data-en="Send the receipt via WhatsApp and we schedule the call."></p>
-  </section>
-
-  <!-- CONTACTO -->
-  <section class="block contact" id="contacto">
-    <img class="avatar" src="img/oscar-chinchilla.png" alt="Oscar Esteban Chinchilla" loading="lazy">
-    <div>
-      <h3>Oscar Esteban Chinchilla — CEO</h3>
-      <p><a href="mailto:o.chinchilla@abraxas-group.lat">o.chinchilla@abraxas-group.lat</a> · <a href="https://www.abraxas-group.lat">www.abraxas-group.lat</a></p>
-    </div>
-  </section>
-</main>
-
-<!-- BOTÓN WHATSAPP STICKY -->
-<a class="whatsapp" href="https://wa.me/5493417400299" aria-label="WhatsApp">WhatsApp</a>
-
-<footer class="foot">
-  <small>© <span id="y"></span> Abraxas Group — WeTrade · WeConnect · WeWork</small>
-</footer>
-
-<script>
-  // Año
-  document.getElementById('y').textContent = new Date().getFullYear();
-
-  // i18n básico
-  const esBtn = document.getElementById('langES');
-  const enBtn = document.getElementById('langEN');
-  const swap = lang => {
-    document.querySelectorAll('[data-es]').forEach(el=>{
-      el.textContent = el.getAttribute(lang==='es'?'data-es':'data-en');
-    });
-    esBtn.setAttribute('aria-pressed', lang==='es');
-    enBtn.setAttribute('aria-pressed', lang==='en');
-    document.documentElement.lang = lang;
-  };
-  esBtn.onclick = ()=>swap('es');
-  enBtn.onclick = ()=>swap('en');
-  swap('es'); // por defecto español
-
-  // menú (si luego agregamos lateral)
-  document.getElementById('menuBtn').onclick = ()=>document.body.classList.toggle('nav-open');
-</script>
-</body>
-</html>
+<section id="agenda" class="section section--cta" aria-labelledby="agendaTitle">
+  <h2 id="agendaTitle">Convertí incertidumbre en claridad</h2>
+  <p>Quedan <span id="cupos">5</span> cupos esta semana.</p>
+  <!-- Reemplazá este href con tu link real -->
+  <a class="btn btn--gold btn--xl" href="https://wa.me/1234567890?text=Hola%20Abraxas%2C%20quiero%20agendar%20una%20llamada%20estrat%C3%A9gica" data-track="abrir_agenda">Agendar llamada estratégica</a>
+</section>
