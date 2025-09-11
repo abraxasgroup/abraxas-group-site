@@ -4,23 +4,83 @@
   </a>
   <nav class="nav" role="navigation" aria-label="Principal">
     <button id="navToggle" class="nav__toggle" aria-expanded="false" aria-controls="menu">☰</button>
-    <ul id="menu" class="nav__menu">
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#casos">Casos</a></li>
-      <li><a href="#proceso">Proceso</a></li>
-      <li><a href="#recursos">Recursos</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a class="btn btn--primary" href="#agenda" data-track="clic_cta_menu">Agendar</a></li>
-    </ul>
-  </nav>
-</header>
-
+   <ul id="menu" class="nav__menu">
+  <li><a href="#servicios" data-i18n="nav.services">Servicios</a></li>
+  <li><a href="#casos" data-i18n="nav.cases">Casos</a></li>
+  <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
+  <li><a href="#libros" data-i18n="nav.books">Libros</a></li>
+  <li><a href="#proceso" data-i18n="nav.process">Proceso</a></li>
+  <li><a href="#recursos" data-i18n="nav.resources">Recursos</a></li>
+  <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+  <li><a class="btn btn--primary" href="#agenda" data-track="clic_cta_menu" data-i18n="nav.book">Agendar</a></li>
+  <li class="lang-switch">
+    <button id="langES" class="btn btn--ghost" aria-pressed="true">ES</button>
+    <button id="langEN" class="btn btn--ghost" aria-pressed="false">EN</button>
+  </li>
+</ul>
 <!-- Variantes de HERO: el JS activa una al azar -->
 <section class="hero" data-variant="1" aria-labelledby="heroTitle1">…</section>
 <section class="hero" data-variant="2" aria-labelledby="heroTitle2">…</section>
 <section class="hero" data-variant="3" aria-labelledby="heroTitle3">…</section>
 
 <section id="recursos" class="section">
+  <section id="sobre-mi" class="section section--light">
+  <h2 data-i18n="about.title">Sobre mí</h2>
+    <section id="libros" class="section">
+  <h2 data-i18n="books.title">Libros</h2>
+  <p data-i18n="books.intro">
+    Te comparto mis publicaciones y lecturas recomendadas. Si sos nuevo en Oil & Gas, empezá por la “Biblia de Oil & Gas”.
+  </p>
+  <ul class="books">
+    <!-- Reemplazá los href por tus enlaces reales de Amazon -->
+    <li>
+      <a href="https://www.amazon.com/dp/TU_ID_1" target="_blank" rel="noopener" data-track="click_book_1" data-i18n="books.b1">
+        Libro 1 — Título en Amazon
+      </a>
+    </li>
+    <li>
+      <a href="https://www.amazon.com/dp/TU_ID_2" target="_blank" rel="noopener" data-track="click_book_2" data-i18n="books.b2">
+        Libro 2 — Título en Amazon
+      </a>
+    </li>
+    <li>
+      <a href="https://www.amazon.com/dp/TU_ID_3" target="_blank" rel="noopener" data-track="click_book_3" data-i18n="books.b3">
+        Libro 3 — Título en Amazon
+      </a>
+    </li>
+  </ul>
+</section>
+
+  <div class="about">
+    <div class="about__text">
+      <h3 class="about__headline glow" data-i18n="about.headline">
+        Abraxas: la dualidad que convierte el riesgo en oportunidad
+      </h3>
+      <p data-i18n="about.p1">
+        Soy Oscar Esteban Chinchilla. En Abraxas operamos donde otros dudan: en la línea fina entre lo técnico y lo comercial, entre la mina y el mercado, entre la tradición y el futuro. Esa <strong>dualidad</strong> no es un dilema: es nuestra ventaja.
+      </p>
+      <p data-i18n="about.p2">
+        He trabajado con proyectos reales de litio, cobre, acero y combustibles. Entiendo el lenguaje del geólogo y el del CFO; el de la perforación y el del contrato. <em>De eso se trata Abraxas</em>: traducir dos mundos para cerrar negocios claros y rentables.
+      </p>
+      <ul class="about__duo">
+        <li data-i18n="about.d1"><span class="glow">Legal</span> + Comercial</li>
+        <li data-i18n="about.d2"><span class="glow">Activo</span> + Demanda</li>
+        <li data-i18n="about.d3"><span class="glow">Riesgo</span> + Control</li>
+        <li data-i18n="about.d4"><span class="glow">LatAm</span> + Global</li>
+      </ul>
+      <p class="about__closing" data-i18n="about.p3">
+        Si buscás acceso serio a oportunidades en minería y commodities, hablemos. Te muestro la otra cara del mercado.
+      </p>
+      <div class="about__cta">
+        <a class="btn btn--gold" href="#agenda" data-track="clic_cta_about" data-i18n="about.cta">Agendar llamada estratégica</a>
+      </div>
+    </div>
+    <div class="about__media">
+      <div class="about__badge">ABRAXAS</div>
+    </div>
+  </div>
+</section>
+
   <h2>Checklist gratuito</h2>
   <form id="leadForm" class="form" aria-labelledby="recursos">
     <label for="name">Nombre</label>
@@ -30,6 +90,21 @@
     <button class="btn btn--primary" type="submit" data-track="enviar_form">Recibir checklist</button>
     <p id="formMsg" class="form__msg" role="status" aria-live="polite"></p>
   </form>
+</section>
+<section id="promo-oil" class="section section--light">
+  <h2 class="glow" data-i18n="promo.title">BONO 7 DÍAS — Oil & Gas</h2>
+  <p data-i18n="promo.copy">
+    Agenda una llamada por Oil & Gas y recibí <strong>gratis</strong> la <em>Biblia de Oil & Gas</em> (ebook).
+  </p>
+  <p><span data-i18n="promo.ends_in">Termina en</span> <strong id="promoCountdown">00:00:00</strong></p>
+  <!-- REEMPLAZÁ TU LINK DE AGENDA REAL -->
+  <a id="ctaOil" class="btn btn--gold" href="https://calendly.com/TU_LINK_AGENDA"
+     data-track="promo_oil_click" data-i18n="promo.cta">
+     Agendar Oil & Gas ahora
+  </a>
+  <p class="micro" data-i18n="promo.note">
+    Mostrá el código <strong>OILBIBLE</strong> al confirmar.
+  </p>
 </section>
 
 <section id="agenda" class="section section--cta" aria-labelledby="agendaTitle">
