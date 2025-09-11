@@ -7,21 +7,22 @@
   <meta name="description" content="Consultoría en minería, oil & gas y comercio exterior. Acceso real, validación y deals seguros." />
   <meta name="theme-color" content="#0b0b0f" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preload" as="image" href="img/logo-abraxas.png?v=7" />
-  <link rel="preload" as="image" href="img/book-mining-es.png?v=7" />
-  <link rel="preload" as="image" href="img/book-mining-en.png?v=7" />
-  <link rel="preload" as="image" href="img/book-oilgas-es.png?v=7" />
+  <!-- Preload imágenes (cache-bust con ?v=9) -->
+  <link rel="preload" as="image" href="img/logo-abraxas.png?v=9" />
+  <link rel="preload" as="image" href="img/book-mining-es.png?v=9" />
+  <link rel="preload" as="image" href="img/book-mining-en.png?v=9" />
+  <link rel="preload" as="image" href="img/book-oilgas-es.png?v=9" />
 </head>
 <body>
 
-  <!-- Fondo dorado sutil -->
+  <!-- Fondo “polvo dorado” sutil -->
   <div class="gold-dust" aria-hidden="true"></div>
 
   <!-- HEADER -->
   <header class="site-header">
     <div class="container header__row">
       <a class="brand" href="#hero" aria-label="Abraxas">
-        <img src="img/logo-abraxas.png?v=7" alt="Abraxas — WeTrade · WeConnect · WeWork" class="brand__logo" width="150" height="36" />
+        <img src="img/logo-abraxas.png?v=9" alt="Abraxas — WeTrade · WeConnect · WeWork" class="brand__logo" width="150" height="36" />
       </a>
       <nav class="nav">
         <a href="#pricing" data-lang="es" class="nav--maybe-hide">Plan 10 días</a>
@@ -50,10 +51,22 @@
       </h1>
       <p class="hero__subtitle" data-lang="es">Minería y commodities con <b class="glow">transparencia</b> y <b class="glow">rentabilidad</b>.</p>
       <p class="hero__subtitle" data-lang="en">Mining & commodities with <b class="glow">transparency</b> and <b class="glow">profitability</b>.</p>
+
+      <!-- SPARKLES dorado estilo Aceternity (sin React) -->
+      <div class="sparkles-wrap" aria-hidden="true">
+        <div class="sparkline sparkline--1"></div>
+        <div class="sparkline sparkline--2"></div>
+        <div class="sparkline sparkline--3"></div>
+        <div class="sparkline sparkline--4"></div>
+        <canvas id="sparklesCanvas"></canvas>
+        <div class="spark-mask"></div>
+      </div>
+
       <div class="hero__cta">
         <a class="btn btn--gold btn--xl" href="#agenda" data-lang="es">Agendar llamada estratégica</a>
         <a class="btn btn--gold btn--xl" href="#agenda" data-lang="en">Book a strategic call</a>
       </div>
+
       <ul class="badges">
         <li>Houston · Rotterdam · Dubái</li>
         <li>20+ proyectos LATAM</li>
@@ -113,7 +126,7 @@
           <h3 data-lang="en">Mining — Where value is created</h3>
           <ul data-lang="en">
             <li>Direct access to producers & regulated brokers</li>
-            <li>Owners of concessions for sale</li>
+            <li>Concession owners selling</li>
             <li>Joint venture & funding opportunities</li>
             <li>Lithium, gold, copper & rare earths</li>
           </ul>
@@ -145,17 +158,17 @@
       <h2 class="section-title">Libros / Books</h2>
       <div class="books__grid">
         <div class="book">
-          <img src="img/book-mining-es.png?v=7" alt="Libro minería ES" class="book__img" width="640" height="900">
+          <img src="img/book-mining-es.png?v=9" alt="Libro minería ES" class="book__img" width="640" height="900">
           <h3>Cómo ser un intermediario en minería</h3>
           <a class="btn btn--gold" href="https://www.amazon.com.mx/dp/B0FQ7W6DJC" target="_blank" rel="noopener">Amazon</a>
         </div>
         <div class="book">
-          <img src="img/book-mining-en.png?v=7" alt="Book mining EN" class="book__img" width="640" height="900">
+          <img src="img/book-mining-en.png?v=9" alt="Book mining EN" class="book__img" width="640" height="900">
           <h3>How to be an Intermediary in the Mining Business</h3>
           <a class="btn btn--gold" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">Amazon</a>
         </div>
         <div class="book">
-          <img src="img/book-oilgas-es.png?v=7" alt="Libro Oil & Gas" class="book__img" width="640" height="900">
+          <img src="img/book-oilgas-es.png?v=9" alt="Libro Oil & Gas" class="book__img" width="640" height="900">
           <h3>La Biblia del Oil & Gas</h3>
           <a class="btn btn--gold" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">Amazon</a>
         </div>
@@ -163,7 +176,7 @@
     </div>
   </section>
 
-  <!-- TESTIMONIOS (una tarjeta visible) -->
+  <!-- TESTIMONIOS (sin fotos gigantes) -->
   <section id="testimonios" class="testis">
     <div class="container">
       <div class="sparkles-bar" aria-hidden="true"></div>
