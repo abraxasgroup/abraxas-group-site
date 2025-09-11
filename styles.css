@@ -1,4 +1,4 @@
-/* ===== Abraxas Duality Theme ===== */
+/* ===== Abraxas Duality Theme (Bilingual + Glowing) ===== */
 :root{
   --bg-dark:#0b0b0f; --bg-light:#0f1217;
   --gold:#c8a34a; --gold-2:#e0c06b;
@@ -29,11 +29,13 @@ a{color:var(--gold)} img{max-width:100%;height:auto}
 .hero__cta{display:flex;gap:12px;flex-wrap:wrap}
 .badges{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 0 0;padding:0;list-style:none;color:#c5ceda}
 .duality{height:100%;min-height:320px;background:linear-gradient(90deg,#121622 50%, #0a0c11 50%);position:relative}
-.duality__left{position:absolute;left:0;top:0;bottom:0;width:50%;background:radial-gradient(600px 300px at 30% 50%, #20314a 0%, #0d141f 70%)}
-.duality__right{position:absolute;right:0;top:0;bottom:0;width:50%;background:radial-gradient(600px 300px at 70% 50%, #1e1a0d 0%, #0f0b07 70%)}
 .duality--yin{background:conic-gradient(from 0deg,#0d1118, #171e2a 50%, #0d1118)}
 .duality--grid{background-image:linear-gradient(#171b26 1px,transparent 1px),linear-gradient(90deg,#171b26 1px,transparent 1px);background-size:32px 32px}
-@media(min-width:980px){ .hero{grid-template-columns:1.2fr 1fr} .hero__split--right{display:block} }
+
+@media(min-width:980px){
+  .hero{grid-template-columns:1.2fr 1fr}
+  .hero__split--right{display:block}
+}
 
 /* Secciones */
 .section{padding:clamp(36px,6vw,72px) 16px;border-top:1px solid #151823}
@@ -66,7 +68,7 @@ h2{font-size:clamp(22px,3vw,34px);margin:0 0 18px}
 .site-footer{display:flex;flex-direction:column;gap:8px;align-items:center;padding:24px;border-top:1px solid #151823;color:#aeb6c3}
 .site-footer nav a{color:#98a4b7}
 
-/* ===== Glow ===== */
+/* ===== Glowing effect ===== */
 @keyframes lampPulse {
   0%, 100% { text-shadow: 0 0 6px #c8a34a, 0 0 14px #e0c06b, 0 0 24px #ffdf7f; }
   50% { text-shadow: 0 0 14px #ffd966, 0 0 28px #ffe680, 0 0 50px #fff0b3; }
@@ -92,15 +94,16 @@ h2{font-size:clamp(22px,3vw,34px);margin:0 0 18px}
   width:220px;height:220px;object-fit:cover;border-radius:999px;
   border:1px solid #2a3347; box-shadow:0 0 24px rgba(200,163,74,.25);
 }
-@media(min-width:980px){ .about__photo{ width:260px;height:260px } }
+@media(min-width:980px){.about{grid-template-columns:1.3fr .7fr} .about__photo{width:260px;height:260px}}
 
-/* ===== Vortex (Libros) ===== */
+/* ===== VORTEX de fondo (dorados) ===== */
 .section--vortex{position:relative; overflow:hidden}
 .vortex-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0}
 
 /* ===== Books 3D Cards ===== */
 .books-3d{position:relative; z-index:1; display:grid; gap:16px; grid-template-columns:1fr}
 @media(min-width:900px){ .books-3d{grid-template-columns:repeat(3,1fr)} }
+
 .threed-card{ perspective: 1000px; border-radius:16px; }
 .threed-card__body{
   position:relative;
@@ -123,8 +126,9 @@ h2{font-size:clamp(22px,3vw,34px);margin:0 0 18px}
 /* ===== Testimonios (animados) ===== */
 .testis{position:relative; z-index:1; display:grid; gap:24px; grid-template-columns:1fr}
 @media(min-width:980px){ .testis{grid-template-columns:1fr 1fr; align-items:center} }
+
 .t-stack{position:relative; height:320px; border-radius:16px; overflow:hidden; border:1px solid #171d2a; background:#0f131b}
-.t-stack__img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:16px; transform-origin:bottom; opacity:.7; scale:.95; filter:contrast(1.05); transition:opacity .4s ease, scale .4s ease, transform .4s ease}
+.t-stack__img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:16px; transform-origin:bottom; opacity:.7; scale:.95; filter:contrast(1.05)}
 .t-stack__img.is-active{opacity:1; scale:1}
 .t-text h3{margin:0 0 4px; font-size:1.25rem}
 .t-text p.role{margin:0; color:#9fb0c9}
