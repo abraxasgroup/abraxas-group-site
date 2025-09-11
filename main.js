@@ -114,14 +114,14 @@ document.getElementById('year')?.append(new Date().getFullYear());
 
 /* ===== Testimonios (autoplay + palabra a palabra + pausa al interactuar) ===== */
 (function testimonials(){
-  const imgs = Array.from(document.querySelectorAll('.t-img'));
+  const imgEls = Array.from(document.querySelectorAll('.t-img'));
   const nameEl = document.getElementById('tName');
   const roleEl = document.getElementById('tRole');
   const quoteEl = document.getElementById('tQuote');
   const prevBtn = document.getElementById('tPrev');
   const nextBtn = document.getElementById('tNext');
 
-  if (!imgs.length || !nameEl || !roleEl || !quoteEl) return;
+  if (!imgEls.length || !nameEl || !roleEl || !quoteEl) return;
 
   const data = [
     {
@@ -164,7 +164,7 @@ document.getElementById('year')?.append(new Date().getFullYear());
     active = (i + data.length) % data.length;
 
     // fotos
-    imgs.forEach((img, idx)=>{
+    imgEls.forEach((img, idx)=>{
       img.classList.toggle('is-active', idx === data[active].idx);
       img.style.zIndex = idx === data[active].idx ? 40 : (10 + idx);
     });
@@ -181,7 +181,7 @@ document.getElementById('year')?.append(new Date().getFullYear());
     parts.forEach((word, i)=>{
       const span = document.createElement('span');
       span.className = 'word';
-      span.innerHTML = word + '&nbsp;';  // evita colapso de espacios en Safari
+      span.innerHTML = word + '&nbsp;'; // evita colapso de espacios en Safari
       quoteEl.appendChild(span);
       setTimeout(()=>{ span.classList.add('in'); }, 20 * i);
     });
@@ -211,4 +211,17 @@ document.getElementById('year')?.append(new Date().getFullYear());
   // init
   setActive(0);
   restart();
+})();
+
+/* === Fallback de imágenes: si /img/... falla, intenta /assets/images/... === */
+(function imageFallback(){
+  const imgs = document.querySelectorAll('img[data-fallback]');
+  imgs.forEach(img=>{
+    img.addEventListener('error', ()=>{
+      if (img.dataset.tried === '1') return; // evita loop
+      img.dataset.tried = '1';
+      const altSrc = img.getAttribute('data-fallback');
+      if (altSrc) img.src = altSrc;
+    }, { once:true });
+  });
 })();
