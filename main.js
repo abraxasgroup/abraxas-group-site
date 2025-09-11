@@ -23,53 +23,23 @@ document.getElementById('year')?.append(new Date().getFullYear());
 (function(){
   const canvas=document.getElementById('wavyHero'); if(!canvas) return;
   const ctx=canvas.getContext('2d'); let W=0,H=0, raf, last=0;
-  const MAX_FPS = 60;
-  const GOLD1='rgba(200,163,74,.85)', GOLD2='rgba(224,192,107,.55)', GOLD3='rgba(255,223,127,.20)';
-
+  const MAX_FPS=60, GOLD1='rgba(200,163,74,.85)', GOLD2='rgba(224,192,107,.55)', GOLD3='rgba(255,223,127,.20)';
   function resize(){
-    const dpr=Math.max(1, window.devicePixelRatio||1);
+    const dpr=Math.max(1,window.devicePixelRatio||1);
     const w=canvas.clientWidth, h=canvas.clientHeight;
-    canvas.width=Math.max(1, w*dpr); canvas.height=Math.max(1, h*dpr);
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    W=w; H=h;
+    canvas.width=Math.max(1,w*dpr); canvas.height=Math.max(1,h*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0); W=w; H=h;
   }
-
-  function wave(y,amp,freq,speed,t,phase){
-    ctx.beginPath();
-    for(let x=0;x<=W;x+=2){
-      const yv = y + Math.sin((x*freq)+(t*speed)+phase)*amp
-                   + Math.sin((x*freq*0.5)+(t*speed*1.3)-phase)*(amp*0.5);
-      if(x===0) ctx.moveTo(x,yv); else ctx.lineTo(x,yv);
-    }
-  }
-
-  function draw(t){
-    if(t-last < 1000/MAX_FPS){ raf=requestAnimationFrame(draw); return; }
-    last=t;
-    ctx.clearRect(0,0,W,H);
-
-    const time=performance.now()/1000;
-
+  function wave(y,a,f,s,t,p){ ctx.beginPath();
+    for(let x=0;x<=W;x+=2){ const yv=y+Math.sin((x*f)+(t*s)+p)*a+Math.sin((x*f*.5)+(t*s*1.3)-p)*(a*.5); x===0?ctx.moveTo(x,yv):ctx.lineTo(x,yv); } }
+  function draw(t){ if(t-last<1000/MAX_FPS){ raf=requestAnimationFrame(draw); return; } last=t; ctx.clearRect(0,0,W,H); const time=performance.now()/1000;
     ctx.save(); ctx.globalCompositeOperation='lighter'; ctx.strokeStyle=GOLD3; ctx.lineWidth=14;
-    wave(H*0.62,22,0.012,1.2,time,0.4); ctx.stroke();
-    wave(H*0.66,26,0.010,1.05,time,1.1); ctx.stroke(); ctx.restore();
-
-    ctx.save(); ctx.globalCompositeOperation='lighter'; ctx.strokeStyle=GOLD2; ctx.lineWidth=3;
-    wave(H*0.64,18,0.014,1.25,time,0.8); ctx.stroke(); ctx.restore();
-
-    ctx.save(); ctx.shadowColor='rgba(255,236,170,0.65)'; ctx.shadowBlur=18; ctx.strokeStyle=GOLD1; ctx.lineWidth=2;
-    wave(H*0.64,20,0.016,1.35,time,0.2); ctx.stroke(); ctx.restore();
-
-    raf=requestAnimationFrame(draw);
-  }
-
-  const ro=new ResizeObserver(resize); ro.observe(canvas);
-  resize(); cancelAnimationFrame(raf); draw(0);
-
-  window.addEventListener('visibilitychange',()=>{
-    if(document.hidden) cancelAnimationFrame(raf);
-    else { last=0; raf=requestAnimationFrame(draw); }
-  });
+    wave(H*0.62,22,.012,1.2,time,.4); ctx.stroke(); wave(H*0.66,26,.010,1.05,time,1.1); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.globalCompositeOperation='lighter'; ctx.strokeStyle=GOLD2; ctx.lineWidth=3; wave(H*0.64,18,.014,1.25,time,.8); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.shadowColor='rgba(255,236,170,.65)'; ctx.shadowBlur=18; ctx.strokeStyle=GOLD1; ctx.lineWidth=2; wave(H*0.64,20,.016,1.35,time,.2); ctx.stroke(); ctx.restore();
+    raf=requestAnimationFrame(draw); }
+  const ro=new ResizeObserver(resize); ro.observe(canvas); resize(); cancelAnimationFrame(raf); draw(0);
+  window.addEventListener('visibilitychange',()=>{ if(document.hidden) cancelAnimationFrame(raf); else { last=0; raf=requestAnimationFrame(draw); }});
 })();
 
 /* Books: tilt suave (mouse + touch) */
@@ -78,12 +48,9 @@ document.getElementById('year')?.append(new Date().getFullYear());
   const maxTilt=8;
   cards.forEach(card=>{
     const inner=card.querySelector('.card3d-inner');
-    function move(x,y){
-      const r=card.getBoundingClientRect();
-      const rx=((y-r.top)/r.height-.5)*-2*maxTilt;
-      const ry=((x-r.left)/r.width-.5)* 2*maxTilt;
-      inner.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
-    }
+    function move(x,y){ const r=card.getBoundingClientRect();
+      const rx=((y-r.top)/r.height-.5)*-2*maxTilt; const ry=((x-r.left)/r.width-.5)*2*maxTilt;
+      inner.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`; }
     function reset(){ inner.style.transform='rotateX(0) rotateY(0)'; }
     card.addEventListener('mousemove', e=>move(e.clientX,e.clientY));
     card.addEventListener('mouseenter', ()=> inner.style.transition='transform .08s linear');
@@ -94,46 +61,40 @@ document.getElementById('year')?.append(new Date().getFullYear());
   });
 })();
 
-/* Testimonials: SOLO una imagen visible, autoplay + botones */
+/* Testimonials: carrusel SOLO-TEXTO (sin imágenes) */
 (function(){
-  const imgs=[...document.querySelectorAll('.t-img')];
-  const nameEl=document.getElementById('tName');
-  const roleEl=document.getElementById('tRole');
-  const quoteEl=document.getElementById('tQuote');
+  const cards=[...document.querySelectorAll('.t-card')];
+  if(cards.length<=1) return;
   const prev=document.getElementById('tPrev');
   const next=document.getElementById('tNext');
-  if(!imgs.length||!nameEl||!roleEl||!quoteEl) return;
+  const dotsWrap=document.getElementById('tDots');
+  let i=0, timer=null, AUTOPLAY=5500;
 
-  const data=[
-    {n:"María Fernanda",r:"Gerente de Abastecimiento · Monterrey",q:"Con Abraxas pasamos de promesas a contratos reales. Claridad legal y velocidad."},
-    {n:"James Carter",r:"Procurement Lead · Houston",q:"They speak both the engineer’s and the CFO’s language. That duality gets deals done."},
-    {n:"Lucía Romero",r:"Legal Counsel · Madrid",q:"KYC/AML impecable y contratos limpios. Menos riesgo, más velocidad."},
-    {n:"Ahmed Khan",r:"Trading Partner · Dubái",q:"From brief to match to call in days. Clear validation and a low-risk pilot deal."},
-    {n:"Carlos Reyes",r:"Operaciones · Santiago",q:"Un deal ‘de escritorio’ que corta el humo del mercado. Menos fricción, más resultados."}
-  ];
-  let i=0, timer=null, AUTOPLAY=5000;
-
-  function setActive(k){
-    i=(k+data.length)%data.length;
-    imgs.forEach((img,idx)=>{
-      if(idx===i){ img.classList.add('is-active'); }
-      else{ img.classList.remove('is-active'); }
-    });
-    nameEl.textContent=data[i].n;
-    roleEl.textContent=data[i].r;
-    quoteEl.textContent=data[i].q;
+  // inicia: solo muestra el primero
+  function show(k){
+    i=(k+cards.length)%cards.length;
+    cards.forEach((c,idx)=> c.style.display = (idx===i?'block':'none'));
+    [...dotsWrap.children].forEach((d,idx)=> d.classList.toggle('is-active', idx===i));
   }
-  function play(){ stop(); timer=setInterval(()=> setActive(i+1), AUTOPLAY); }
+
+  // dots
+  cards.forEach((_,idx)=>{
+    const b=document.createElement('button');
+    b.addEventListener('click', ()=>{ show(idx); play(); });
+    dotsWrap.appendChild(b);
+  });
+
+  function play(){ stop(); timer=setInterval(()=> show(i+1), AUTOPLAY); }
   function stop(){ if(timer) clearInterval(timer); }
 
-  prev?.addEventListener('click',()=>{ setActive(i-1); play(); });
-  next?.addEventListener('click',()=>{ setActive(i+1); play(); });
+  prev?.addEventListener('click',()=>{ show(i-1); play(); });
+  next?.addEventListener('click',()=>{ show(i+1); play(); });
 
-  const wrap=document.querySelector('.t-wrap');
-  wrap?.addEventListener('mouseenter', stop);
-  wrap?.addEventListener('mouseleave', play);
-  wrap?.addEventListener('touchstart', stop, {passive:true});
-  wrap?.addEventListener('touchend', play, {passive:true});
+  const cont=document.getElementById('testimonios');
+  cont?.addEventListener('mouseenter', stop);
+  cont?.addEventListener('mouseleave', play);
+  cont?.addEventListener('touchstart', stop, {passive:true});
+  cont?.addEventListener('touchend', play, {passive:true});
 
-  setActive(0); play();
+  show(0); play();
 })();
