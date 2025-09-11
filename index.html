@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Abraxas Group — Donde el Riesgo encuentra la Oportunidad</title>
   <meta name="theme-color" content="#0b0b0f" />
-  <meta name="description" content="Abraxas: negocios claros y rentables en minería y commodities. De la mina a tu bolsillo." />
+  <meta name="description" content="Abraxas: negocios claros y rentables en minería y commodities. WeTrade · WeConnect · WeWork." />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preload" as="image" href="assets/images/book-mining-es.png" />
-  <link rel="preload" as="image" href="assets/images/book-mining-en.png" />
-  <link rel="preload" as="image" href="assets/images/book-oilgas-es.png" />
+
+  <!-- Preload (rutas reales en /img/) -->
+  <link rel="preload" as="image" href="img/logo-abraxas.png?v=1" />
+  <link rel="preload" as="image" href="img/book-mining-es.png?v=1" />
+  <link rel="preload" as="image" href="img/book-mining-en.png?v=1" />
+  <link rel="preload" as="image" href="img/book-oilgas-es.png?v=1" />
 </head>
 <body>
 
@@ -17,7 +20,16 @@
   <header class="site-header">
     <div class="container">
       <a class="brand" href="#">
-        <img src="assets/images/logo-abraxas.png" alt="Abraxas" class="brand__logo" />
+        <picture>
+          <source srcset="img/logo-abraxas.png?v=1" type="image/png">
+          <img
+            src="img/logo-abraxas.png?v=1"
+            data-fallback="assets/images/logo-abraxas.png?v=1"
+            alt="Abraxas — WeTrade · WeConnect · WeWork"
+            width="180" height="36"
+            class="brand__logo"
+            loading="eager" decoding="sync">
+        </picture>
       </a>
       <nav class="nav">
         <a href="#libros">Libros</a>
@@ -36,7 +48,7 @@
       </h1>
       <p class="hero__subtitle">
         Minería y commodities con <strong class="glow">transparencia</strong> y <strong class="glow">rentabilidad</strong>.
-        De la mina a tu bolsillo.
+        WeTrade · WeConnect · WeWork.
       </p>
       <div class="hero__cta">
         <a class="btn btn--gold btn--xl" href="#agenda">Agendar llamada estratégica</a>
@@ -59,7 +71,16 @@
       <!-- Libro ES Minería -->
       <div class="card3d">
         <div class="card3d-inner">
-          <img src="assets/images/book-mining-es.png" alt="Cómo ser un intermediario en el negocio de la minería" class="card3d-img" />
+          <picture>
+            <source srcset="img/book-mining-es.png?v=1" type="image/png">
+            <img
+              src="img/book-mining-es.png?v=1"
+              data-fallback="assets/images/book-mining-es.png?v=1"
+              alt="Libro: Cómo ser un intermediario en el negocio de la minería (ES) — Oscar Esteban Chinchilla"
+              width="640" height="900"
+              class="card3d-img"
+              loading="lazy" decoding="async">
+          </picture>
           <h3 class="card3d-title">Cómo ser un intermediario en el negocio de la minería</h3>
           <p class="card3d-author">Autor: Oscar Esteban Chinchilla</p>
           <a class="btn btn--gold" href="https://www.amazon.com.mx/dp/B0FQ7W6DJC" target="_blank" rel="noopener">Ver en Amazon</a>
@@ -69,7 +90,16 @@
       <!-- Libro EN Minería -->
       <div class="card3d">
         <div class="card3d-inner">
-          <img src="assets/images/book-mining-en.png" alt="How to be an intermediary in the mining business" class="card3d-img" />
+          <picture>
+            <source srcset="img/book-mining-en.png?v=1" type="image/png">
+            <img
+              src="img/book-mining-en.png?v=1"
+              data-fallback="assets/images/book-mining-en.png?v=1"
+              alt="Book: How to be an Intermediary in the Mining Business (EN) — Oscar Esteban Chinchilla"
+              width="640" height="900"
+              class="card3d-img"
+              loading="lazy" decoding="async">
+          </picture>
           <h3 class="card3d-title">How to be an Intermediary in the Mining Business</h3>
           <p class="card3d-author">Author: Oscar Esteban Chinchilla</p>
           <a class="btn btn--gold" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">View on Amazon</a>
@@ -79,7 +109,16 @@
       <!-- Libro Oil & Gas -->
       <div class="card3d">
         <div class="card3d-inner">
-          <img src="assets/images/book-oilgas-es.png" alt="La Biblia del Oil & Gas" class="card3d-img" />
+          <picture>
+            <source srcset="img/book-oilgas-es.png?v=1" type="image/png">
+            <img
+              src="img/book-oilgas-es.png?v=1"
+              data-fallback="assets/images/book-oilgas-es.png?v=1"
+              alt="Libro: La Biblia del Oil & Gas — Oscar Esteban Chinchilla"
+              width="640" height="900"
+              class="card3d-img"
+              loading="lazy" decoding="async">
+          </picture>
           <h3 class="card3d-title">La Biblia del Oil & Gas</h3>
           <p class="card3d-author">Autor: Oscar Esteban Chinchilla</p>
           <a class="btn btn--gold" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">Ver en Amazon</a>
@@ -89,7 +128,7 @@
     </div>
   </section>
 
-  <!-- ===== TESTIMONIOS (Autoplay + palabra a palabra + fotos t1..t5) ===== -->
+  <!-- ===== TESTIMONIOS ===== -->
   <section id="testimonios" class="testis">
     <div class="container">
       <h2 class="section-title">Testimonios</h2>
@@ -97,18 +136,60 @@
       <div class="t-wrap">
         <!-- pila de fotos -->
         <div class="t-stack" aria-hidden="true">
-          <img class="t-img is-active" src="assets/images/t1.jpg" alt="María Fernanda" />
-          <img class="t-img" src="assets/images/t2.jpg" alt="James Carter" />
-          <img class="t-img" src="assets/images/t3.jpg" alt="Lucía Romero" />
-          <img class="t-img" src="assets/images/t4.jpg" alt="Ahmed Khan" />
-          <img class="t-img" src="assets/images/t5.jpg" alt="Carlos Reyes" />
+          <picture>
+            <source srcset="img/t1.jpg?v=1" type="image/jpeg">
+            <img class="t-img is-active"
+                 src="img/t1.jpg?v=1"
+                 data-fallback="assets/images/t1.jpg?v=1"
+                 alt="María Fernanda — Gerente de Abastecimiento"
+                 width="800" height="600"
+                 loading="lazy" decoding="async">
+          </picture>
+          <picture>
+            <source srcset="img/t2.jpg?v=1" type="image/jpeg">
+            <img class="t-img"
+                 src="img/t2.jpg?v=1"
+                 data-fallback="assets/images/t2.jpg?v=1"
+                 alt="James Carter — Procurement Lead"
+                 width="800" height="600"
+                 loading="lazy" decoding="async">
+          </picture>
+          <picture>
+            <source srcset="img/t3.jpg?v=1" type="image/jpeg">
+            <img class="t-img"
+                 src="img/t3.jpg?v=1"
+                 data-fallback="assets/images/t3.jpg?v=1"
+                 alt="Lucía Romero — Legal Counsel"
+                 width="800" height="600"
+                 loading="lazy" decoding="async">
+          </picture>
+          <picture>
+            <source srcset="img/t4.jpg?v=1" type="image/jpeg">
+            <img class="t-img"
+                 src="img/t4.jpg?v=1"
+                 data-fallback="assets/images/t4.jpg?v=1"
+                 alt="Ahmed Khan — Trading Partner"
+                 width="800" height="600"
+                 loading="lazy" decoding="async">
+          </picture>
+          <picture>
+            <source srcset="img/t5.jpg?v=1" type="image/jpeg">
+            <img class="t-img"
+                 src="img/t5.jpg?v=1"
+                 data-fallback="assets/images/t5.jpg?v=1"
+                 alt="Carlos Reyes — Operaciones"
+                 width="800" height="600"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
 
         <!-- texto + controles -->
         <div class="t-copy">
           <h3 id="tName">María Fernanda</h3>
           <p class="t-role" id="tRole">Gerente de Abastecimiento · Monterrey</p>
-          <p class="t-quote" id="tQuote">Con Abraxas logramos pasar de promesas a contratos reales. La claridad legal nos ahorró semanas de ida y vuelta.</p>
+          <p class="t-quote" id="tQuote">
+            Con Abraxas logramos pasar de promesas a contratos reales. La claridad legal nos ahorró semanas de ida y vuelta.
+          </p>
           <div class="t-controls">
             <button class="t-btn" id="tPrev" aria-label="Anterior">‹</button>
             <button class="t-btn" id="tNext" aria-label="Siguiente">›</button>
@@ -129,9 +210,7 @@
 
   <footer class="site-footer">
     <div class="container center">
-<p>© <span id="year"></span> Abraxas — 
-  <span class="glow">WeTrade · WeConnect · WeWork</span>
-</p>
+      <p>© <span id="year"></span> Abraxas — <span class="glow">WeTrade · WeConnect · WeWork</span></p>
     </div>
   </footer>
 
