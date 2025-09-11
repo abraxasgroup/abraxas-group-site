@@ -1,7 +1,7 @@
-/* Footer year */
+/* Año footer */
 document.getElementById('year')?.append(new Date().getFullYear());
 
-/* Language Switch (ES/EN) */
+/* Idioma ES/EN */
 (function(){
   const BTN = document.getElementById('langToggle');
   const saved = localStorage.getItem('abraxas_lang');
@@ -19,7 +19,7 @@ document.getElementById('year')?.append(new Date().getFullYear());
   apply(initial);
 })();
 
-/* Wavy gold background — robust y atrás del contenido */
+/* HERO — ondas doradas */
 (function(){
   const canvas=document.getElementById('wavyHero'); if(!canvas) return;
   const ctx=canvas.getContext('2d'); let W=0,H=0, raf, last=0;
@@ -39,10 +39,70 @@ document.getElementById('year')?.append(new Date().getFullYear());
     ctx.save(); ctx.shadowColor='rgba(255,236,170,.65)'; ctx.shadowBlur=18; ctx.strokeStyle=GOLD1; ctx.lineWidth=2; wave(H*0.64,20,.016,1.35,time,.2); ctx.stroke(); ctx.restore();
     raf=requestAnimationFrame(draw); }
   const ro=new ResizeObserver(resize); ro.observe(canvas); resize(); cancelAnimationFrame(raf); draw(0);
-  window.addEventListener('visibilitychange',()=>{ if(document.hidden) cancelAnimationFrame(raf); else { last=0; raf=requestAnimationFrame(draw); }});
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden) cancelAnimationFrame(raf); else { last=0; raf=requestAnimationFrame(draw); }});
 })();
 
-/* Books: tilt suave (mouse + touch) */
+/* SPARKLES — motor base (oro) */
+function makeSparkles(canvas, opts={}){
+  if(!canvas) return {destroy:()=>{}};
+  const ctx = canvas.getContext('2d');
+  let W=canvas.clientWidth, H=canvas.clientHeight, raf;
+  const DPR = Math.max(1, window.devicePixelRatio||1);
+  function resize(){
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = Math.max(1, W*DPR); canvas.height = Math.max(1, H*DPR);
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  resize();
+  const density = opts.density ?? 220;   // cantidad base
+  const min = opts.min ?? 0.6;           // tamaño mínimo
+  const max = opts.max ?? 1.8;           // tamaño máximo
+  const speed = opts.speed ?? 0.25;      // velocidad base
+  const palette = opts.colors ?? ["#c8a34a","#e0c06b","#f0d283","#ffde96"];
+
+  const COUNT = Math.round((W*H)/8000 * (density/220));
+  const particles = new Array(Math.max(30, COUNT)).fill(0).map(()=>({
+    x: Math.random()*W,
+    y: Math.random()*H,
+    r: min + Math.random()*(max-min),
+    c: palette[(Math.random()*palette.length)|0],
+    vx: (Math.random()*2-1)*speed,
+    vy: (Math.random()*2-1)*speed,
+    a: Math.random()*Math.PI*2, // fase para titilar
+  }));
+
+  function step(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of particles){
+      p.x += p.vx; p.y += p.vy; p.a += 0.04 + Math.random()*0.02;
+      if(p.x< -10) p.x=W+10; if(p.x>W+10) p.x=-10;
+      if(p.y< -10) p.y=H+10; if(p.y>H+10) p.y=-10;
+      const alpha = 0.35 + 0.35*Math.sin(p.a); // titilar
+      ctx.beginPath();
+      ctx.fillStyle = p.c;
+      ctx.globalAlpha = alpha;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    raf = requestAnimationFrame(step);
+  }
+  const ro = new ResizeObserver(()=>{ cancelAnimationFrame(raf); resize(); step(); });
+  ro.observe(canvas);
+  step();
+  return {destroy:()=>{ cancelAnimationFrame(raf); ro.disconnect(); }};
+}
+
+/* Sparkles global (suave) */
+makeSparkles(document.getElementById('sparklesPage'), {density:120, min:.5, max:1.4, speed:.15});
+
+/* Sparkles en Testimonios (intenso + máscara radial) */
+(function(){
+  const c = document.getElementById('sparklesTestis'); if(!c) return;
+  makeSparkles(c, {density:420, min:.6, max:1.8, speed:.25});
+})();
+
+/* Tilt suave para Libros */
 (function(){
   const cards=document.querySelectorAll('.card3d'); if(!cards.length) return;
   const maxTilt=8;
@@ -61,23 +121,21 @@ document.getElementById('year')?.append(new Date().getFullYear());
   });
 })();
 
-/* Testimonials: carrusel SOLO-TEXTO (sin imágenes) */
+/* Carrusel de Testimonios (texto) */
 (function(){
   const cards=[...document.querySelectorAll('.t-card')];
   if(cards.length<=1) return;
   const prev=document.getElementById('tPrev');
   const next=document.getElementById('tNext');
   const dotsWrap=document.getElementById('tDots');
-  let i=0, timer=null, AUTOPLAY=5500;
+  let i=0, timer=null, AUTOPLAY=6000;
 
-  // inicia: solo muestra el primero
   function show(k){
     i=(k+cards.length)%cards.length;
     cards.forEach((c,idx)=> c.style.display = (idx===i?'block':'none'));
     [...dotsWrap.children].forEach((d,idx)=> d.classList.toggle('is-active', idx===i));
   }
 
-  // dots
   cards.forEach((_,idx)=>{
     const b=document.createElement('button');
     b.addEventListener('click', ()=>{ show(idx); play(); });
