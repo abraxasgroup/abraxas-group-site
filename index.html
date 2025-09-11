@@ -7,18 +7,22 @@
   <meta name="theme-color" content="#0b0b0f" />
   <meta name="description" content="Abraxas: consultoría en minería, oil & gas y comercio exterior. Acceso real, validación y deals seguros." />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preload" as="image" href="img/logo-abraxas.png?v=4" />
-  <link rel="preload" as="image" href="img/book-mining-es.png?v=4" />
-  <link rel="preload" as="image" href="img/book-mining-en.png?v=4" />
-  <link rel="preload" as="image" href="img/book-oilgas-es.png?v=4" />
+  <!-- Preload imágenes clave -->
+  <link rel="preload" as="image" href="img/logo-abraxas.png?v=5" />
+  <link rel="preload" as="image" href="img/book-mining-es.png?v=5" />
+  <link rel="preload" as="image" href="img/book-mining-en.png?v=5" />
+  <link rel="preload" as="image" href="img/book-oilgas-es.png?v=5" />
 </head>
 <body>
+
+  <!-- Sparkles global (fijo, muy suave) -->
+  <canvas id="sparklesPage" class="sparkles-fixed" aria-hidden="true"></canvas>
 
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
       <a class="brand" href="#">
-        <img src="img/logo-abraxas.png?v=4" alt="Abraxas — WeTrade · WeConnect · WeWork" width="180" height="36" class="brand__logo" loading="eager" decoding="sync">
+        <img src="img/logo-abraxas.png?v=5" alt="Abraxas — WeTrade · WeConnect · WeWork" width="180" height="36" class="brand__logo" loading="eager" decoding="sync">
       </a>
       <nav class="nav">
         <a href="#pricing" data-lang="es">Plan 10 días</a>
@@ -56,16 +60,12 @@
   </section>
 
   <!-- PRECIO / ANCLA -->
-  <section id="pricing" class="pricing" aria-labelledby="pricingTitle">
+  <section id="pricing" class="pricing">
     <div class="container pricing__box">
-      <h2 id="pricingTitle" data-lang="es">Diagnóstico + Plan (10 días) — <span class="price">USD 1.500</span></h2>
+      <h2 data-lang="es">Diagnóstico + Plan (10 días) — <span class="price">USD 1.500</span></h2>
       <h2 data-lang="en">10-Day Diagnostic + Action Plan — <span class="price">USD 1,500</span></h2>
-      <ul data-lang="es" class="pricing__list">
-        <li>Mapa de riesgos</li><li>Estrategia de abastecimiento</li><li>Guion de validación</li><li>1 intro útil</li>
-      </ul>
-      <ul data-lang="en" class="pricing__list">
-        <li>Risk map</li><li>Sourcing strategy</li><li>Validation script</li><li>1 useful intro</li>
-      </ul>
+      <ul data-lang="es" class="pricing__list"><li>Mapa de riesgos</li><li>Estrategia de abastecimiento</li><li>Guion de validación</li><li>1 intro útil</li></ul>
+      <ul data-lang="en" class="pricing__list"><li>Risk map</li><li>Sourcing strategy</li><li>Validation script</li><li>1 useful intro</li></ul>
       <p class="pricing__note" data-lang="es">Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k).</p>
       <p class="pricing__note" data-lang="en">We work with owners & supply/trading leaders (deal size ≥ USD 500k).</p>
     </div>
@@ -77,7 +77,6 @@
       <h2 class="section-title" data-lang="es">¿Qué ofrecemos?</h2>
       <h2 class="section-title" data-lang="en">What we offer</h2>
       <div class="offer-grid">
-
         <div class="offer-card">
           <h3 data-lang="es">All In Gas — Acceso directo, sin humo</h3>
           <ul data-lang="es">
@@ -128,7 +127,6 @@
             <li>International supplier network</li>
           </ul>
         </div>
-
       </div>
     </div>
   </section>
@@ -138,84 +136,61 @@
     <h2 class="section-title">Libros / Books</h2>
     <div class="libros-grid">
       <div class="card3d"><div class="card3d-inner">
-        <img src="img/book-mining-es.png?v=4" alt="Libro minería ES" width="640" height="900" class="card3d-img">
+        <img src="img/book-mining-es.png?v=5" alt="Libro minería ES" width="640" height="900" class="card3d-img">
         <h3>Cómo ser un intermediario en minería</h3>
         <a class="btn btn--gold" href="https://www.amazon.com.mx/dp/B0FQ7W6DJC" target="_blank" rel="noopener">Amazon</a>
       </div></div>
       <div class="card3d"><div class="card3d-inner">
-        <img src="img/book-mining-en.png?v=4" alt="Book mining EN" width="640" height="900" class="card3d-img">
+        <img src="img/book-mining-en.png?v=5" alt="Book mining EN" width="640" height="900" class="card3d-img">
         <h3>How to be an Intermediary in the Mining Business</h3>
         <a class="btn btn--gold" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">Amazon</a>
       </div></div>
       <div class="card3d"><div class="card3d-inner">
-        <img src="img/book-oilgas-es.png?v=4" alt="Libro Oil & Gas" width="640" height="900" class="card3d-img">
+        <img src="img/book-oilgas-es.png?v=5" alt="Libro Oil & Gas" width="640" height="900" class="card3d-img">
         <h3>La Biblia del Oil & Gas</h3>
         <a class="btn btn--gold" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">Amazon</a>
       </div></div>
     </div>
   </section>
 
-  <!-- TESTIMONIOS (solo texto con avatares iniciales) -->
-  <section id="testimonios" class="testis">
+  <!-- TESTIMONIOS con Sparkles dorados -->
+  <section id="testimonios" class="testis sparkles-section">
+    <!-- canvas local de chispas -->
+    <canvas id="sparklesTestis" class="sparkles-local" aria-hidden="true"></canvas>
+
     <div class="container">
       <h2 class="section-title">Testimonios / Testimonials</h2>
 
       <div class="t-card">
-        <div class="t-head">
-          <div class="t-avatar" data-initials="MF"></div>
-          <div>
-            <h3 class="t-name">María Fernanda</h3>
-            <p class="t-role">Gerente de Abastecimiento · Monterrey</p>
-          </div>
-        </div>
+        <h3 class="t-name">María Fernanda</h3>
+        <p class="t-role">Gerente de Abastecimiento · Monterrey</p>
         <p class="t-quote">Con Abraxas pasamos de promesas a contratos reales. Claridad legal y velocidad.</p>
       </div>
 
       <div class="t-card">
-        <div class="t-head">
-          <div class="t-avatar" data-initials="JC"></div>
-          <div>
-            <h3 class="t-name">James Carter</h3>
-            <p class="t-role">Procurement Lead · Houston</p>
-          </div>
-        </div>
+        <h3 class="t-name">James Carter</h3>
+        <p class="t-role">Procurement Lead · Houston</p>
         <p class="t-quote">They speak both the engineer’s and the CFO’s language. That duality gets deals done.</p>
       </div>
 
       <div class="t-card">
-        <div class="t-head">
-          <div class="t-avatar" data-initials="LR"></div>
-          <div>
-            <h3 class="t-name">Lucía Romero</h3>
-            <p class="t-role">Legal Counsel · Madrid</p>
-          </div>
-        </div>
+        <h3 class="t-name">Lucía Romero</h3>
+        <p class="t-role">Legal Counsel · Madrid</p>
         <p class="t-quote">KYC/AML impecable y contratos limpios. Menos riesgo, más velocidad.</p>
       </div>
 
       <div class="t-card">
-        <div class="t-head">
-          <div class="t-avatar" data-initials="AK"></div>
-          <div>
-            <h3 class="t-name">Ahmed Khan</h3>
-            <p class="t-role">Trading Partner · Dubái</p>
-          </div>
-        </div>
+        <h3 class="t-name">Ahmed Khan</h3>
+        <p class="t-role">Trading Partner · Dubái</p>
         <p class="t-quote">From brief to match to call in days. Clear validation and a low-risk pilot deal.</p>
       </div>
 
       <div class="t-card">
-        <div class="t-head">
-          <div class="t-avatar" data-initials="CR"></div>
-          <div>
-            <h3 class="t-name">Carlos Reyes</h3>
-            <p class="t-role">Operaciones · Santiago</p>
-          </div>
-        </div>
+        <h3 class="t-name">Carlos Reyes</h3>
+        <p class="t-role">Operaciones · Santiago</p>
         <p class="t-quote">Un deal ‘de escritorio’ que corta el humo del mercado. Menos fricción, más resultados.</p>
       </div>
 
-      <!-- Controles del carrusel -->
       <div class="t-controls">
         <button id="tPrev" aria-label="Anterior">‹</button>
         <div id="tDots" class="t-dots"></div>
