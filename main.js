@@ -1,7 +1,7 @@
 /* Año */
 document.getElementById('year')?.append(new Date().getFullYear());
 
-/* Idioma */
+/* Idioma ES/EN */
 (() => {
   const btn = document.getElementById('langToggle');
   const saved = localStorage.getItem('abraxas_lang');
@@ -19,7 +19,7 @@ document.getElementById('year')?.append(new Date().getFullYear());
   apply(initial);
 })();
 
-/* Carrusel Testimonios — táctil + autoplay + botones + bullets */
+/* Carrusel Testimonios — una tarjeta visible + autoplay + swipe + bullets */
 (() => {
   const slider = document.querySelector('.slider');
   if (!slider) return;
@@ -33,29 +33,26 @@ document.getElementById('year')?.append(new Date().getFullYear());
   let autoTimer = null;
   const autoplayMs = Number(slider.getAttribute('data-autoplay') || 6000);
 
-  // Dots
+  // Crear bullets
   for (let k = 0; k < N; k++) {
     const b = document.createElement('button');
-    b.addEventListener('click', () => { i = k; update(true); restart(); });
+    b.addEventListener('click', () => { i = k; show(i); restart(); });
     dotsWrap?.appendChild(b);
   }
 
-  function update(jump=false) {
-    slider.style.setProperty('--i', i);
-    [...(dotsWrap?.children||[])].forEach((d,idx)=> d.classList.toggle('is-active', idx===i));
-    if (jump) slider.scrollTop = slider.scrollTop; // fuerza repaint en iOS
+  function show(idx){
+    i = (idx+N)%N;
+    cards.forEach((c,ix)=> c.classList.toggle('is-active', ix===i));
+    [...(dotsWrap?.children||[])].forEach((d,ix)=> d.classList.toggle('is-active', ix===i));
   }
-  function next(){ i = (i+1)%N; update(); }
-  function prev(){ i = (i-1+N)%N; update(); }
+  function next(){ show(i+1); }
+  function prev(){ show(i-1); }
+  function play(){ autoTimer = setInterval(next, autoplayMs); }
+  function stop(){ if (autoTimer) clearInterval(autoTimer); }
+  function restart(){ stop(); play(); }
 
-  // Autoplay
-  const play = () => autoTimer = setInterval(next, autoplayMs);
-  const stop = () => { if (autoTimer) clearInterval(autoTimer); };
-  const restart = () => { stop(); play(); };
-
-  // Botones
-  btnPrev?.addEventListener('click', () => { prev(); restart(); });
-  btnNext?.addEventListener('click', () => { next(); restart(); });
+  btnPrev?.addEventListener('click', ()=>{ prev(); restart(); });
+  btnNext?.addEventListener('click', ()=>{ next(); restart(); });
 
   // Gestos táctiles
   let x0 = null;
@@ -63,17 +60,13 @@ document.getElementById('year')?.append(new Date().getFullYear());
   slider.addEventListener('touchmove', (e)=>{
     if (x0===null) return;
     const dx = e.touches[0].clientX - x0;
-    if (Math.abs(dx) > 40) {
-      dx > 0 ? prev() : next();
-      x0 = null;
-    }
+    if (Math.abs(dx) > 40) { dx>0 ? prev() : next(); x0=null; }
   }, {passive:true});
   slider.addEventListener('touchend', ()=>{ x0=null; play(); }, {passive:true});
 
-  // Hover pausa (desktop)
+  // Pausa al pasar mouse (desktop)
   slider.addEventListener('mouseenter', stop);
   slider.addEventListener('mouseleave', play);
 
-  update(true);
-  play();
+  show(0); play();
 })();
