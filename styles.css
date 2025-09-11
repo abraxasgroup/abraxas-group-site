@@ -118,3 +118,36 @@ code{background:#161616;border:1px solid #2a2a2a;border-radius:6px;padding:2px 6
   .pricing{grid-template-columns:repeat(2,1fr)}
   .pay-grid{grid-template-columns:repeat(3,1fr)}
 }
+/* ===== Glow base (por si no lo tenés) ===== */
+@keyframes lampPulse {
+  0%, 100% { text-shadow: 0 0 6px #c8a34a, 0 0 14px #e0c06b, 0 0 24px #ffdf7f; }
+  50% { text-shadow: 0 0 14px #ffd966, 0 0 28px #ffe680, 0 0 50px #fff0b3; }
+}
+.hero__title span{
+  color: #c8a34a;
+  text-shadow: 0 0 6px #c8a34a, 0 0 12px #e0c06b, 0 0 20px rgba(255,223,127,.7);
+}
+.hero__title span:nth-of-type(2){ animation: lampPulse 2.2s infinite alternate; }
+.glow{ color:#c8a34a; text-shadow:0 0 6px #c8a34a,0 0 12px #e0c06b,0 0 20px rgba(255,223,127,.7); }
+.glow-pulse{ animation: lampPulse 2.2s infinite alternate; }
+
+/* ===== Sobre mí ===== */
+.about{display:grid;grid-template-columns:1fr;gap:20px;align-items:center}
+.about__text{display:grid;gap:12px}
+.about__headline{font-size:clamp(20px,2.4vw,28px);margin:0 0 8px}
+.about__duo{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.about__duo li{background:#101522;border:1px solid #1a2233;border-radius:10px;padding:10px 12px;width:fit-content}
+.about__closing{color:#cdd2dc}
+.about__cta{margin-top:8px}
+.about__media{display:flex;justify-content:center}
+.about__badge{border:1px dashed #2a3347;border-radius:16px;padding:36px 28px;color:#c8a34a;letter-spacing:3px}
+@media(min-width:980px){.about{grid-template-columns:1.3fr .7fr}}
+
+/* ===== Libros ===== */
+.books{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px}
+.books a{text-decoration:none;border:1px solid #1a2233;border-radius:10px;padding:12px 14px;display:inline-block;background:#0e121a}
+.books a:hover{border-color:#2a3550}
+
+/* ===== Promo Oil & Gas (7 días) ===== */
+#promo-oil{text-align:center}
+#promo-oil #promoCountdown{font-variant-numeric:tabular-nums; letter-spacing:1px}
