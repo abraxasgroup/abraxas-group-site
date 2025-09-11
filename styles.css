@@ -73,3 +73,41 @@ img{max-width:100%;height:auto;display:block}
 
 /* ==== FOOTER ==== */
 .site-footer{border-top:1px solid #151823;padding:20px 0;color:#aeb6c3}
+.offer-blocks {
+  padding: 60px 20px;
+  background: #0e0e12;
+  color: #eef0f2;
+}
+.offer-blocks .section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #f0d283;
+  text-shadow: 0 0 10px rgba(240,210,130,.8);
+}
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+.offer-card {
+  background: #11151c;
+  border: 1px solid #1f2533;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(240,210,130,.1);
+}
+.offer-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #fff;
+}
+.offer-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+.offer-card ul li::before {
+  content: "✔ ";
+  color: #f0d283;
+}
