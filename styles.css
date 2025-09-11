@@ -36,7 +36,8 @@ a{color:#c8a34a;text-decoration:none}
 
 /* ==== LIBROS (cards 3D) ==== */
 .libros{padding:72px 16px;background:#0e0e12;text-align:center;border-top:1px solid #151823;border-bottom:1px solid #151823}
-.section-title{font-size:clamp(26px,3.6vw,40px);margin-bottom:24px}
+.section-title{font-size:clamp(26px,3.6vw,40px);margin-bottom:8px}
+.section-sub{color:#c5ceda;margin-bottom:22px}
 .libros-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;max-width:1200px;margin:0 auto}
 .card3d{perspective:1000px}
 .card3d-inner{background:#11151c;border:1px solid #1f2533;border-radius:14px;padding:18px;transform-style:preserve-3d;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 2px 6px rgba(0,0,0,.4);min-height:100%}
@@ -44,6 +45,22 @@ a{color:#c8a34a;text-decoration:none}
 .card3d-img{width:100%;height:auto;border-radius:10px;margin-bottom:14px;display:block}
 .card3d-title{font-size:1.1rem;color:#fff;margin:0 0 6px}
 .card3d-author{font-size:.9rem;color:#b9c1cc;margin:0 0 12px}
+
+/* ==== TESTIMONIOS ==== */
+.testis{padding:72px 0;background:#0b0b0f;border-top:1px solid #151823;border-bottom:1px solid #151823}
+.t-wrap{display:grid;gap:20px;align-items:center}
+@media(min-width:980px){.t-wrap{grid-template-columns:1fr 1fr}}
+.t-stack{position:relative;height:360px;border-radius:16px;overflow:hidden;border:1px solid #171d2a;background:#0f131b}
+.t-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.65;transform:scale(.95);transition:opacity .35s ease, transform .35s ease;filter:contrast(1.05)}
+.t-img.is-active{opacity:1;transform:scale(1)}
+.t-copy h3{margin:0 0 6px;font-size:1.25rem}
+.t-role{margin:0;color:#9fb0c9}
+.t-quote{margin-top:14px;font-size:1.1rem;color:#cfd7e5;min-height:4lh;word-wrap:break-word;white-space:normal}
+.word{display:inline-block;opacity:0;filter:blur(10px);transform:translateY(6px)}
+.word.in{opacity:1;filter:blur(0);transform:translateY(0);transition:opacity .3s ease, filter .3s ease, transform .3s ease}
+.t-controls{display:flex;gap:10px;padding-top:10px}
+.t-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid #2a3347;background:#0f1218;color:#cfd7e5}
+.t-btn:hover{border-color:#3a4561}
 
 /* ==== AGENDA ==== */
 .agenda{padding:64px 0;background:linear-gradient(180deg,#0d1220,#0b0b0f)}
