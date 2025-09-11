@@ -7,14 +7,13 @@
   <meta name="theme-color" content="#0b0b0f" />
   <meta name="description" content="Abraxas: negocios claros y rentables en minería y commodities. De la mina a tu bolsillo." />
   <link rel="stylesheet" href="styles.css" />
-  <!-- Preload imágenes clave (opcional) -->
   <link rel="preload" as="image" href="assets/images/book-mining-es.png" />
   <link rel="preload" as="image" href="assets/images/book-mining-en.png" />
   <link rel="preload" as="image" href="assets/images/book-oilgas-es.png" />
 </head>
 <body>
 
-  <!-- Header simple (logo opcional) -->
+  <!-- Header -->
   <header class="site-header">
     <div class="container">
       <a class="brand" href="#">
@@ -22,6 +21,7 @@
       </a>
       <nav class="nav">
         <a href="#libros">Libros</a>
+        <a href="#testimonios">Testimonios</a>
         <a class="btn btn--gold" href="#agenda">Agendar</a>
       </nav>
     </div>
@@ -53,6 +53,7 @@
   <!-- ===== SECCIÓN LIBROS (3D tilt) ===== -->
   <section id="libros" class="libros">
     <h2 class="section-title">Libros</h2>
+    <p class="section-sub">Publicaciones de Oscar Esteban Chinchilla</p>
     <div class="libros-grid">
 
       <!-- Libro ES Minería -->
@@ -88,7 +89,36 @@
     </div>
   </section>
 
-  <!-- ===== Agenda (CTA simple) ===== -->
+  <!-- ===== TESTIMONIOS (Autoplay + palabra a palabra + fotos t1..t5) ===== -->
+  <section id="testimonios" class="testis">
+    <div class="container">
+      <h2 class="section-title">Testimonios</h2>
+
+      <div class="t-wrap">
+        <!-- pila de fotos -->
+        <div class="t-stack" aria-hidden="true">
+          <img class="t-img is-active" src="assets/images/t1.jpg" alt="María Fernanda" />
+          <img class="t-img" src="assets/images/t2.jpg" alt="James Carter" />
+          <img class="t-img" src="assets/images/t3.jpg" alt="Lucía Romero" />
+          <img class="t-img" src="assets/images/t4.jpg" alt="Ahmed Khan" />
+          <img class="t-img" src="assets/images/t5.jpg" alt="Carlos Reyes" />
+        </div>
+
+        <!-- texto + controles -->
+        <div class="t-copy">
+          <h3 id="tName">María Fernanda</h3>
+          <p class="t-role" id="tRole">Gerente de Abastecimiento · Monterrey</p>
+          <p class="t-quote" id="tQuote">Con Abraxas logramos pasar de promesas a contratos reales. La claridad legal nos ahorró semanas de ida y vuelta.</p>
+          <div class="t-controls">
+            <button class="t-btn" id="tPrev" aria-label="Anterior">‹</button>
+            <button class="t-btn" id="tNext" aria-label="Siguiente">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Agenda ===== -->
   <section id="agenda" class="agenda">
     <div class="container center">
       <h2>Convertí incertidumbre en claridad</h2>
