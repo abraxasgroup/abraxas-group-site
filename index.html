@@ -4,25 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Abraxas Group — WeTrade · WeConnect · WeWork</title>
+  <meta name="description" content="Consultoría en minería, oil & gas y comercio exterior. Acceso real, validación y deals seguros." />
   <meta name="theme-color" content="#0b0b0f" />
-  <meta name="description" content="Abraxas: consultoría en minería, oil & gas y comercio exterior. Acceso real, validación y deals seguros." />
   <link rel="stylesheet" href="styles.css" />
   <!-- Preload imágenes clave -->
-  <link rel="preload" as="image" href="img/logo-abraxas.png?v=5" />
-  <link rel="preload" as="image" href="img/book-mining-es.png?v=5" />
-  <link rel="preload" as="image" href="img/book-mining-en.png?v=5" />
-  <link rel="preload" as="image" href="img/book-oilgas-es.png?v=5" />
+  <link rel="preload" as="image" href="img/logo-abraxas.png?v=6" />
+  <link rel="preload" as="image" href="img/book-mining-es.png?v=6" />
+  <link rel="preload" as="image" href="img/book-mining-en.png?v=6" />
+  <link rel="preload" as="image" href="img/book-oilgas-es.png?v=6" />
 </head>
 <body>
 
-  <!-- Sparkles global (fijo, muy suave) -->
-  <canvas id="sparklesPage" class="sparkles-fixed" aria-hidden="true"></canvas>
+  <!-- Fondo dorado “sparkles” basado en CSS -->
+  <div class="gold-dust" aria-hidden="true"></div>
 
   <!-- HEADER -->
   <header class="site-header">
-    <div class="container">
-      <a class="brand" href="#">
-        <img src="img/logo-abraxas.png?v=5" alt="Abraxas — WeTrade · WeConnect · WeWork" width="180" height="36" class="brand__logo" loading="eager" decoding="sync">
+    <div class="container header__row">
+      <a class="brand" href="#hero" aria-label="Abraxas">
+        <img src="img/logo-abraxas.png?v=6" alt="Abraxas — WeTrade · WeConnect · WeWork" class="brand__logo" width="150" height="36" />
       </a>
       <nav class="nav">
         <a href="#pricing" data-lang="es">Plan 10 días</a>
@@ -39,14 +39,18 @@
     </div>
   </header>
 
-  <!-- HERO WAVY -->
-  <section id="hero" class="hero hero--wavy" aria-labelledby="heroTitle">
-    <canvas id="wavyHero" class="wavy-canvas" aria-hidden="true"></canvas>
-    <div class="hero__inner">
-      <h1 id="heroTitle" class="hero__title" data-lang="es">Abraxas: donde el <span>Riesgo</span> encuentra la <span>Oportunidad</span></h1>
-      <h1 class="hero__title" data-lang="en">Abraxas: where <span>Risk</span> meets <span>Opportunity</span></h1>
-      <p class="hero__subtitle" data-lang="es">Minería y commodities con <strong class="glow">transparencia</strong> y <strong class="glow">rentabilidad</strong>.</p>
-      <p class="hero__subtitle" data-lang="en">Mining & commodities with <strong class="glow">transparency</strong> and <strong class="glow">profitability</strong>.</p>
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="hero__waves" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <h1 class="hero__title" data-lang="es">
+        Abraxas: donde el <span>Riesgo</span> encuentra la <span>Oportunidad</span>
+      </h1>
+      <h1 class="hero__title" data-lang="en">
+        Abraxas: where <span>Risk</span> meets <span>Opportunity</span>
+      </h1>
+      <p class="hero__subtitle" data-lang="es">Minería y commodities con <b class="glow">transparencia</b> y <b class="glow">rentabilidad</b>.</p>
+      <p class="hero__subtitle" data-lang="en">Mining & commodities with <b class="glow">transparency</b> and <b class="glow">profitability</b>.</p>
       <div class="hero__cta">
         <a class="btn btn--gold btn--xl" href="#agenda" data-lang="es">Agendar llamada estratégica</a>
         <a class="btn btn--gold btn--xl" href="#agenda" data-lang="en">Book a strategic call</a>
@@ -59,25 +63,30 @@
     </div>
   </section>
 
-  <!-- PRECIO / ANCLA -->
+  <!-- PRECIO -->
   <section id="pricing" class="pricing">
-    <div class="container pricing__box">
+    <div class="container">
       <h2 data-lang="es">Diagnóstico + Plan (10 días) — <span class="price">USD 1.500</span></h2>
       <h2 data-lang="en">10-Day Diagnostic + Action Plan — <span class="price">USD 1,500</span></h2>
-      <ul data-lang="es" class="pricing__list"><li>Mapa de riesgos</li><li>Estrategia de abastecimiento</li><li>Guion de validación</li><li>1 intro útil</li></ul>
-      <ul data-lang="en" class="pricing__list"><li>Risk map</li><li>Sourcing strategy</li><li>Validation script</li><li>1 useful intro</li></ul>
+      <ul class="pricing__list" data-lang="es">
+        <li>Mapa de riesgos</li><li>Estrategia de abastecimiento</li><li>Guion de validación</li><li>1 intro útil</li>
+      </ul>
+      <ul class="pricing__list" data-lang="en">
+        <li>Risk map</li><li>Sourcing strategy</li><li>Validation script</li><li>1 useful intro</li>
+      </ul>
       <p class="pricing__note" data-lang="es">Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k).</p>
       <p class="pricing__note" data-lang="en">We work with owners & supply/trading leaders (deal size ≥ USD 500k).</p>
     </div>
   </section>
 
   <!-- OFERTA -->
-  <section id="oferta" class="offer-blocks">
+  <section id="oferta" class="offer">
     <div class="container">
       <h2 class="section-title" data-lang="es">¿Qué ofrecemos?</h2>
       <h2 class="section-title" data-lang="en">What we offer</h2>
-      <div class="offer-grid">
-        <div class="offer-card">
+
+      <div class="offer__grid">
+        <article class="card">
           <h3 data-lang="es">All In Gas — Acceso directo, sin humo</h3>
           <ul data-lang="es">
             <li>Mandatos reales en Houston, Fujairah y Ámsterdam</li>
@@ -92,14 +101,14 @@
             <li>Tank validation / AML compliance</li>
             <li>Deals with direct traders & refineries</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="offer-card">
+        <article class="card">
           <h3 data-lang="es">Minería — Donde se define el valor</h3>
           <ul data-lang="es">
             <li>Acceso directo a productores y brokers regulados</li>
             <li>Dueños de concesiones en venta</li>
-            <li>Opciones de joint ventures y financiamiento</li>
+            <li>Joint ventures y financiamiento</li>
             <li>Litio, oro, cobre y tierras raras</li>
           </ul>
           <h3 data-lang="en">Mining — Where value is created</h3>
@@ -109,92 +118,90 @@
             <li>Joint venture & funding opportunities</li>
             <li>Lithium, gold, copper & rare earths</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="offer-card">
+        <article class="card">
           <h3 data-lang="es">Comercio Exterior — Validación y confianza</h3>
           <ul data-lang="es">
-            <li>Acceso a proveedores validados</li>
+            <li>Proveedores validados</li>
             <li>Due diligence comercial y legal</li>
             <li>Validación de contrapartes y productos</li>
-            <li>Red internacional de proveedores serios</li>
+            <li>Red internacional seria</li>
           </ul>
           <h3 data-lang="en">International Trade — Validation & trust</h3>
           <ul data-lang="en">
-            <li>Access to validated suppliers</li>
+            <li>Validated suppliers</li>
             <li>Commercial & legal due diligence</li>
             <li>Counterparty & product validation</li>
-            <li>International supplier network</li>
+            <li>Serious intl. network</li>
           </ul>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- LIBROS -->
-  <section id="libros" class="libros">
-    <h2 class="section-title">Libros / Books</h2>
-    <div class="libros-grid">
-      <div class="card3d"><div class="card3d-inner">
-        <img src="img/book-mining-es.png?v=5" alt="Libro minería ES" width="640" height="900" class="card3d-img">
-        <h3>Cómo ser un intermediario en minería</h3>
-        <a class="btn btn--gold" href="https://www.amazon.com.mx/dp/B0FQ7W6DJC" target="_blank" rel="noopener">Amazon</a>
-      </div></div>
-      <div class="card3d"><div class="card3d-inner">
-        <img src="img/book-mining-en.png?v=5" alt="Book mining EN" width="640" height="900" class="card3d-img">
-        <h3>How to be an Intermediary in the Mining Business</h3>
-        <a class="btn btn--gold" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">Amazon</a>
-      </div></div>
-      <div class="card3d"><div class="card3d-inner">
-        <img src="img/book-oilgas-es.png?v=5" alt="Libro Oil & Gas" width="640" height="900" class="card3d-img">
-        <h3>La Biblia del Oil & Gas</h3>
-        <a class="btn btn--gold" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">Amazon</a>
-      </div></div>
+  <section id="libros" class="books">
+    <div class="container">
+      <h2 class="section-title">Libros / Books</h2>
+      <div class="books__grid">
+        <div class="book">
+          <img src="img/book-mining-es.png?v=6" alt="Libro minería ES" class="book__img" width="640" height="900">
+          <h3>Cómo ser un intermediario en minería</h3>
+          <a class="btn btn--gold" href="https://www.amazon.com.mx/dp/B0FQ7W6DJC" target="_blank" rel="noopener">Amazon</a>
+        </div>
+        <div class="book">
+          <img src="img/book-mining-en.png?v=6" alt="Book mining EN" class="book__img" width="640" height="900">
+          <h3>How to be an Intermediary in the Mining Business</h3>
+          <a class="btn btn--gold" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">Amazon</a>
+        </div>
+        <div class="book">
+          <img src="img/book-oilgas-es.png?v=6" alt="Libro Oil & Gas" class="book__img" width="640" height="900">
+          <h3>La Biblia del Oil & Gas</h3>
+          <a class="btn btn--gold" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">Amazon</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- TESTIMONIOS con Sparkles dorados -->
-  <section id="testimonios" class="testis sparkles-section">
-    <!-- canvas local de chispas -->
-    <canvas id="sparklesTestis" class="sparkles-local" aria-hidden="true"></canvas>
-
+  <!-- TESTIMONIOS (solo texto + sparkles dorados) -->
+  <section id="testimonios" class="testis">
     <div class="container">
+      <div class="sparkles-bar" aria-hidden="true"></div>
       <h2 class="section-title">Testimonios / Testimonials</h2>
 
-      <div class="t-card">
-        <h3 class="t-name">María Fernanda</h3>
-        <p class="t-role">Gerente de Abastecimiento · Monterrey</p>
-        <p class="t-quote">Con Abraxas pasamos de promesas a contratos reales. Claridad legal y velocidad.</p>
+      <div class="slider" data-autoplay="6000">
+        <article class="t-card">
+          <h3 class="t-name">María Fernanda</h3>
+          <p class="t-role">Gerente de Abastecimiento · Monterrey</p>
+          <p class="t-quote">Con Abraxas pasamos de promesas a contratos reales. Claridad legal y velocidad.</p>
+        </article>
+        <article class="t-card">
+          <h3 class="t-name">James Carter</h3>
+          <p class="t-role">Procurement Lead · Houston</p>
+          <p class="t-quote">They speak both the engineer’s and the CFO’s language. That duality gets deals done.</p>
+        </article>
+        <article class="t-card">
+          <h3 class="t-name">Lucía Romero</h3>
+          <p class="t-role">Legal Counsel · Madrid</p>
+          <p class="t-quote">KYC/AML impecable y contratos limpios. Menos riesgo, más velocidad.</p>
+        </article>
+        <article class="t-card">
+          <h3 class="t-name">Ahmed Khan</h3>
+          <p class="t-role">Trading Partner · Dubái</p>
+          <p class="t-quote">From brief to match to call in days. Clear validation and a low-risk pilot deal.</p>
+        </article>
+        <article class="t-card">
+          <h3 class="t-name">Carlos Reyes</h3>
+          <p class="t-role">Operaciones · Santiago</p>
+          <p class="t-quote">Un deal ‘de escritorio’ que corta el humo del mercado. Menos fricción, más resultados.</p>
+        </article>
       </div>
 
-      <div class="t-card">
-        <h3 class="t-name">James Carter</h3>
-        <p class="t-role">Procurement Lead · Houston</p>
-        <p class="t-quote">They speak both the engineer’s and the CFO’s language. That duality gets deals done.</p>
-      </div>
-
-      <div class="t-card">
-        <h3 class="t-name">Lucía Romero</h3>
-        <p class="t-role">Legal Counsel · Madrid</p>
-        <p class="t-quote">KYC/AML impecable y contratos limpios. Menos riesgo, más velocidad.</p>
-      </div>
-
-      <div class="t-card">
-        <h3 class="t-name">Ahmed Khan</h3>
-        <p class="t-role">Trading Partner · Dubái</p>
-        <p class="t-quote">From brief to match to call in days. Clear validation and a low-risk pilot deal.</p>
-      </div>
-
-      <div class="t-card">
-        <h3 class="t-name">Carlos Reyes</h3>
-        <p class="t-role">Operaciones · Santiago</p>
-        <p class="t-quote">Un deal ‘de escritorio’ que corta el humo del mercado. Menos fricción, más resultados.</p>
-      </div>
-
-      <div class="t-controls">
-        <button id="tPrev" aria-label="Anterior">‹</button>
-        <div id="tDots" class="t-dots"></div>
-        <button id="tNext" aria-label="Siguiente">›</button>
+      <div class="slider__controls">
+        <button class="slider__btn" id="tPrev" aria-label="Anterior">‹</button>
+        <div class="slider__dots" id="tDots"></div>
+        <button class="slider__btn" id="tNext" aria-label="Siguiente">›</button>
       </div>
     </div>
   </section>
