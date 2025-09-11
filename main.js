@@ -22,7 +22,7 @@ const I18N = {
     "og.description": "Trading & facilitación en minería y commodities con transparencia total.",
 
     "nav.services":"Servicios","nav.cases":"Casos","nav.process":"Proceso","nav.resources":"Recursos","nav.faq":"FAQ","nav.book":"Agendar",
-    "nav.about":"Sobre mí","nav.books":"Libros",
+    "nav.about":"Sobre mí","nav.books":"Libros","nav.testimonials":"Testimonios",
 
     "hero1.title":"Abraxas: Donde el <span>Riesgo</span> encuentra la <span>Oportunidad</span>",
     "hero1.subtitle":"De la mina al mercado global — negocios claros y rentables en minería y commodities estratégicos.",
@@ -57,8 +57,6 @@ const I18N = {
     "about.cta":"Agendar llamada estratégica",
 
     "books.title":"Libros","books.intro":"Te comparto mis publicaciones y lecturas recomendadas. Si sos nuevo en Oil & Gas, empezá por la “Biblia de Oil & Gas”.",
-    "books.b1":"Libro 1 — Título en Amazon","books.b2":"Libro 2 — Título en Amazon","books.b3":"Libro 3 — Título en Amazon",
-
     "promo.title":"BONO 7 DÍAS — Oil & Gas","promo.copy":"Agenda una llamada por Oil & Gas y recibí gratis la Biblia de Oil & Gas (ebook).","promo.ends_in":"Termina en","promo.cta":"Agendar Oil & Gas ahora","promo.note":"Mostrá el código OILBIBLE al confirmar.",
 
     "form.name":"Nombre","form.email":"Email","form.cta":"Recibir checklist",
@@ -72,7 +70,7 @@ const I18N = {
     "og.description":"Trading & facilitation in mining and commodities with full transparency.",
 
     "nav.services":"Services","nav.cases":"Cases","nav.process":"Process","nav.resources":"Resources","nav.faq":"FAQ","nav.book":"Book",
-    "nav.about":"About","nav.books":"Books",
+    "nav.about":"About","nav.books":"Books","nav.testimonials":"Testimonials",
 
     "hero1.title":"Abraxas: Where <span>Risk</span> Meets <span>Opportunity</span>",
     "hero1.subtitle":"From mine to global markets — clear, profitable deals in mining & strategic commodities.",
@@ -107,7 +105,6 @@ const I18N = {
     "about.cta":"Book strategy call",
 
     "books.title":"Books","books.intro":"Here are my publications and recommended readings. If you’re new to Oil & Gas, start with the “Oil & Gas Bible”.",
-    "books.b1":"Book 1 — Amazon title","books.b2":"Book 2 — Amazon title","books.b3":"Book 3 — Amazon title",
 
     "promo.title":"7-DAY BONUS — Oil & Gas","promo.copy":"Book an Oil & Gas call and get the Oil & Gas Bible (ebook) for free.","promo.ends_in":"Ends in","promo.cta":"Book Oil & Gas now","promo.note":"Mention code OILBIBLE when confirming.",
 
@@ -215,3 +212,201 @@ document.addEventListener('click',(e)=>{
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({event: t.getAttribute('data-track')});
 });
+
+// ===== 3D Tilt (Libros) =====
+(function threeDTilt(){
+  const cards = document.querySelectorAll('.threed-card');
+  const maxTilt = 12;
+  cards.forEach(card=>{
+    const body = card.querySelector('.threed-card__body');
+    const items = card.querySelectorAll('[data-z]');
+    const rectRef = {w:0,h:0,l:0,t:0};
+    const setRect = ()=>{ const r = body.getBoundingClientRect(); rectRef.w=r.width;rectRef.h=r.height;rectRef.l=r.left;rectRef.t=r.top; };
+    setRect(); window.addEventListener('resize', setRect, {passive:true});
+    card.addEventListener('mousemove', (e)=>{
+      const x=e.clientX-rectRef.l, y=e.clientY-rectRef.t;
+      const rx=((y/rectRef.h)-.5)*-2*maxTilt, ry=((x/rectRef.w)-.5)*2*maxTilt;
+      body.style.transform=`rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+      items.forEach(el=>{
+        const z = Number(el.getAttribute('data-z')||0);
+        el.style.transform = `translateZ(${z}px)`;
+      });
+    });
+    card.addEventListener('mouseenter', ()=>{ body.style.transition='transform .08s linear'; });
+    card.addEventListener('mouseleave', ()=>{
+      body.style.transition='transform .25s ease';
+      body.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      items.forEach(el=>{ el.style.transform='translateZ(0)' });
+    });
+  });
+})();
+
+// ===== Vortex dorado (Libros) =====
+(function goldVortex(){
+  const canvas = document.getElementById('vortexBooks');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d', { alpha: true });
+  let W=0,H=0, particles=[], raf;
+  const COUNT = 420;
+  const GOLD_H = 44;            // tono dorado (HSL)
+  const SPEED = .6;
+  const CENTER_FORCE = .0028;
+  const NOISE = .002;
+
+  function resize(){
+    const dpr = Math.max(1, window.devicePixelRatio||1);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W*dpr; canvas.height = H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function spawn(){
+    particles = [];
+    const cx=W/2, cy=H/2;
+    for(let i=0;i<COUNT;i++){
+      const a = Math.random()*Math.PI*2;
+      const r = Math.random()*Math.max(W,H)*.55;
+      particles.push({
+        x: cx + Math.cos(a)*r,
+        y: cy + Math.sin(a)*r,
+        vx: -Math.sin(a)*SPEED,
+        vy:  Math.cos(a)*SPEED,
+        life: Math.random()*200+60,
+        size: Math.random()*1.6+0.6,
+        hue: GOLD_H + (Math.random()*10-5)
+      });
+    }
+  }
+  function step(){
+    ctx.clearRect(0,0,W,H);
+    const cx=W/2, cy=H/2;
+    ctx.globalCompositeOperation='lighter';
+    for(const p of particles){
+      const dx = cx - p.x, dy = cy - p.y;
+      p.vx += dx*CENTER_FORCE + (Math.random()-.5)*NOISE;
+      p.vy += dy*CENTER_FORCE + (Math.random()-.5)*NOISE;
+
+      const x2 = p.x + p.vx;
+      const y2 = p.y + p.vy;
+
+      const grd = ctx.createLinearGradient(p.x,p.y,x2,y2);
+      grd.addColorStop(0, `hsla(${p.hue},100%,60%,0)`);
+      grd.addColorStop(1, `hsla(${p.hue},100%,60%,0.65)`);
+
+      ctx.strokeStyle = grd;
+      ctx.lineWidth = p.size;
+      ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(x2,y2); ctx.stroke();
+
+      p.x=x2; p.y=y2;
+      p.life--;
+      if(p.life<=0 || p.x<0||p.x>W||p.y<0||p.y>H){
+        const a = Math.random()*Math.PI*2;
+        const r = Math.random()*Math.max(W,H)*.55;
+        p.x = cx + Math.cos(a)*r;
+        p.y = cy + Math.sin(a)*r;
+        p.vx = -Math.sin(a)*SPEED;
+        p.vy =  Math.cos(a)*SPEED;
+        p.life = Math.random()*200+60;
+        p.size = Math.random()*1.6+0.6;
+        p.hue  = GOLD_H + (Math.random()*10-5);
+      }
+    }
+    ctx.globalCompositeOperation='source-over';
+    raf = requestAnimationFrame(step);
+  }
+  function start(){ resize(); spawn(); cancelAnimationFrame(raf); step(); }
+  start();
+  window.addEventListener('resize', ()=>{ start(); }, {passive:true});
+})();
+
+// ===== Testimonios (animados tipo Aceternity) =====
+(function testimonials(){
+  const stackImgs = Array.from(document.querySelectorAll('.t-stack__img'));
+  const nameEl = document.getElementById('tName');
+  const roleEl = document.getElementById('tRole');
+  const quoteEl = document.getElementById('tQuote');
+  const prevBtn = document.getElementById('tPrev');
+  const nextBtn = document.getElementById('tNext');
+
+  if (!stackImgs.length || !nameEl || !roleEl || !quoteEl) return;
+
+  const data = [
+    {
+      name: "María Fernanda",
+      role: "Gerente de Abastecimiento · Monterrey",
+      quote: "Con Abraxas logramos pasar de promesas a contratos reales. La claridad legal nos ahorró semanas de ida y vuelta.",
+      srcIndex: 0
+    },
+    {
+      name: "James Carter",
+      role: "Procurement Lead · Houston",
+      quote: "They speak both the engineer’s and the CFO’s language. That duality is rare—and it’s why deals get done.",
+      srcIndex: 1
+    },
+    {
+      name: "Lucía Romero",
+      role: "Legal Counsel · Madrid",
+      quote: "KYC/AML impecable y contratos limpios. Reducimos riesgo y ganamos velocidad sin sacrificar compliance.",
+      srcIndex: 2
+    },
+    {
+      name: "Ahmed Khan",
+      role: "Trading Partner · Dubai",
+      quote: "From brief to match to call in days. Clear validation and a low-risk pilot deal—we scaled with confidence.",
+      srcIndex: 3
+    },
+    {
+      name: "Carlos Reyes",
+      role: "Operaciones · Santiago",
+      quote: "Primera vez que veo un ‘deal de escritorio’ que corta el humo del mercado. Menos fricción, más resultados.",
+      srcIndex: 4
+    }
+  ];
+
+  let active = 0;
+  const autoplay = true;
+  let timer;
+
+  function setActive(i){
+    active = (i + data.length) % data.length;
+    stackImgs.forEach((img,idx)=>{
+      img.classList.toggle('is-active', idx===data[active].srcIndex);
+      img.style.zIndex = (idx===data[active].srcIndex) ? 40 : (10+idx);
+      img.style.transform = (idx===data[active].srcIndex) ? 'scale(1)' : 'scale(.95) rotate(' + ((idx-active)*2) + 'deg)';
+      img.style.opacity = (idx===data[active].srcIndex) ? '1' : '.7';
+    });
+    nameEl.textContent = data[active].name;
+    roleEl.textContent = data[active].role;
+    animateWords(data[active].quote);
+  }
+
+  function animateWords(text){
+    // limpia
+    quoteEl.innerHTML = '';
+    const words = text.split(' ').map(w=>{
+      const span = document.createElement('span');
+      span.textContent = w + ' ';
+      span.className = 'word';
+      quoteEl.appendChild(span);
+      return span;
+    });
+    // anima progresivo
+    words.forEach((w,i)=>{
+      setTimeout(()=>{ w.classList.add('in'); }, 20 * i);
+    });
+  }
+
+  function next(){ setActive(active+1); restart(); }
+  function prev(){ setActive(active-1); restart(); }
+
+  nextBtn?.addEventListener('click', next);
+  prevBtn?.addEventListener('click', prev);
+
+  function restart(){
+    if(!autoplay) return;
+    clearInterval(timer);
+    timer = setInterval(next, 5000);
+  }
+
+  setActive(0);
+  if (autoplay) timer = setInterval(next, 5000);
+})();
