@@ -3,313 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title data-i18n="meta.title">Abraxas — Donde el Riesgo Encuentra la Oportunidad</title>
-  <meta name="description" content="Abraxas: negocios claros y rentables en minería y commodities estratégicos. De la mina a tu bolsillo. Agenda tu llamada estratégica." data-i18n-attr="content:meta.description"/>
+  <title>Abraxas Group — Donde el Riesgo encuentra la Oportunidad</title>
   <meta name="theme-color" content="#0b0b0f" />
-  <meta property="og:title" content="Abraxas — Donde el Riesgo Encuentra la Oportunidad" data-i18n-attr="content:og.title"/>
-  <meta property="og:description" content="Trading & facilitación en minería y commodities con transparencia total." data-i18n-attr="content:og.description"/>
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/images/og-abraxas.jpg" />
-  <meta property="og:url" content="https://www.tu-dominio.com/" />
+  <meta name="description" content="Abraxas: negocios claros y rentables en minería y commodities. De la mina a tu bolsillo." />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preload" as="image" href="assets/images/oscar-chinchilla.png" />
+  <!-- Preload imágenes clave (opcional) -->
+  <link rel="preload" as="image" href="assets/images/book-mining-es.png" />
+  <link rel="preload" as="image" href="assets/images/book-mining-en.png" />
+  <link rel="preload" as="image" href="assets/images/book-oilgas-es.png" />
 </head>
 <body>
-<header class="site-header" role="banner">
-  <a href="#top" class="brand" aria-label="Abraxas">
-    <img src="assets/images/logo-abraxas.png" alt="Abraxas — WeTrade • WeConnect • WeWork" class="brand__logo" width="160" height="40" />
-  </a>
-  <nav class="nav" role="navigation" aria-label="Principal">
-    <button id="navToggle" class="nav__toggle" aria-expanded="false" aria-controls="menu">☰</button>
-    <ul id="menu" class="nav__menu">
-      <li><a href="#servicios" data-i18n="nav.services">Servicios</a></li>
-      <li><a href="#casos" data-i18n="nav.cases">Casos</a></li>
-      <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
-      <li><a href="#libros" data-i18n="nav.books">Libros</a></li>
-      <li><a href="#testimonios" data-i18n="nav.testimonials">Testimonios</a></li>
-      <li><a href="#proceso" data-i18n="nav.process">Proceso</a></li>
-      <li><a href="#recursos" data-i18n="nav.resources">Recursos</a></li>
-      <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
-      <li><a class="btn btn--primary" href="#agenda" data-track="clic_cta_menu" data-i18n="nav.book">Agendar</a></li>
-      <li class="lang-switch">
-        <button id="langES" class="btn btn--ghost" aria-pressed="true">ES</button>
-        <button id="langEN" class="btn btn--ghost" aria-pressed="false">EN</button>
-      </li>
-    </ul>
-  </nav>
-</header>
 
-<main id="top">
-  <!-- HERO (3 variantes, muestra 1 al azar) -->
-  <section class="hero" data-variant="1" aria-labelledby="heroTitle1">
-    <div class="hero__split hero__split--left">
-      <h1 id="heroTitle1" class="hero__title" data-i18n="hero1.title">
-        Abraxas: Donde el <span>Riesgo</span> encuentra la <span>Oportunidad</span>
+  <!-- Header simple (logo opcional) -->
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#">
+        <img src="assets/images/logo-abraxas.png" alt="Abraxas" class="brand__logo" />
+      </a>
+      <nav class="nav">
+        <a href="#libros">Libros</a>
+        <a class="btn btn--gold" href="#agenda">Agendar</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO — Wavy Gold Background ===== -->
+  <section id="hero" class="hero hero--wavy" aria-labelledby="heroTitle">
+    <canvas id="wavyHero" class="wavy-canvas" aria-hidden="true"></canvas>
+    <div class="hero__inner">
+      <h1 id="heroTitle" class="hero__title">
+        Abraxas: donde el <span>Riesgo</span> encuentra la <span>Oportunidad</span>
       </h1>
-      <p class="hero__subtitle" data-i18n="hero1.subtitle">
-        De la mina al mercado global — negocios claros y rentables en minería y commodities estratégicos.
+      <p class="hero__subtitle">
+        Minería y commodities con <strong class="glow">transparencia</strong> y <strong class="glow">rentabilidad</strong>.
+        De la mina a tu bolsillo.
       </p>
       <div class="hero__cta">
-        <a class="btn btn--gold" href="#agenda" data-track="clic_cta_hero_1" data-i18n="cta.book_call">Agendar llamada estratégica</a>
-        <a class="btn btn--ghost" href="#recursos" data-i18n="cta.download_checklist">Descargar checklist</a>
+        <a class="btn btn--gold btn--xl" href="#agenda">Agendar llamada estratégica</a>
+        <a class="btn btn--ghost" href="#libros">Ver libros</a>
       </div>
-      <ul class="badges" aria-label="Autoridad y alcance">
-        <li data-i18n="badges.projects">20+ proyectos mineros LATAM</li>
-        <li data-i18n="badges.hubs">Houston · Rotterdam · Dubái</li>
-        <li data-i18n="badges.compliance">Compliance & AML</li>
+      <ul class="badges">
+        <li>20+ proyectos LATAM</li>
+        <li>Houston · Rotterdam · Dubái</li>
+        <li>Compliance & AML</li>
       </ul>
     </div>
-    <div class="hero__split hero__split--right" aria-hidden="true">
-      <div class="duality duality--grid"></div>
-    </div>
   </section>
 
-  <section class="hero" data-variant="2" aria-labelledby="heroTitle2">
-    <div class="hero__split hero__split--left">
-      <h1 id="heroTitle2" class="hero__title" data-i18n="hero2.title">
-        De la mina a tu bolsillo: <span>Transparencia</span> que convierte incertidumbre en <span>rentabilidad</span>
-      </h1>
-      <p class="hero__subtitle" data-i18n="hero2.subtitle">
-        Acceso a litio, cobre, acero y combustibles con procesos legales, seguros y veloces.
-      </p>
-      <div class="hero__cta">
-        <a class="btn btn--gold" href="#agenda" data-track="clic_cta_hero_2" data-i18n="cta.reserve_diagnostic">Reservar diagnóstico</a>
-        <a class="btn btn--ghost" href="#casos" data-i18n="cta.view_cases">Ver casos</a>
-      </div>
-    </div>
-    <div class="hero__split hero__split--right" aria-hidden="true">
-      <div class="duality duality--yin"></div>
-    </div>
-  </section>
+  <!-- ===== SECCIÓN LIBROS (3D tilt) ===== -->
+  <section id="libros" class="libros">
+    <h2 class="section-title">Libros</h2>
+    <div class="libros-grid">
 
-  <section class="hero" data-variant="3" aria-labelledby="heroTitle3">
-    <div class="hero__split hero__split--left">
-      <h1 id="heroTitle3" class="hero__title" data-i18n="hero3.title">
-        Abraxas: el poder de la <span>dualidad</span> al servicio de tus negocios
-      </h1>
-      <p class="hero__subtitle" data-i18n="hero3.subtitle">
-        Unimos legal + comercial, activo + demanda, riesgo + control.
-      </p>
-      <div class="hero__cta">
-        <a class="btn btn--gold" href="#agenda" data-track="clic_cta_hero_3" data-i18n="cta.talk_now">Hablar ahora</a>
-        <a class="btn btn--ghost" href="#recursos" data-i18n="cta.explore_resources">Explorar recursos</a>
-      </div>
-    </div>
-    <div class="hero__split hero__split--right" aria-hidden="true">
-      <div class="duality"></div>
-    </div>
-  </section>
-
-  <!-- Servicios -->
-  <section id="servicios" class="section section--light">
-    <h2 data-i18n="sections.services">Servicios</h2>
-    <div class="cards">
-      <article class="card">
-        <h3 data-i18n="services.mining.title">Facilitación Minera</h3>
-        <p data-i18n="services.mining.desc">Acceso a concesiones (litio, cobre, oro) con due diligence, NI 43-101/JORC y acuerdos claros.</p>
-      </article>
-      <article class="card">
-        <h3 data-i18n="services.trading.title">Trading de Commodities</h3>
-        <p data-i18n="services.trading.desc">HMS1/2, acero, combustibles (EN590, Jet A-1), logística y contratos SIF/FOB verificados.</p>
-      </article>
-      <article class="card">
-        <h3 data-i18n="services.legal.title">Legal & Compliance</h3>
-        <p data-i18n="services.legal.desc">NDA, NCNDA, KYC/AML, contratos internacionales, auditorías de contraparte.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Casos -->
-  <section id="casos" class="section">
-    <h2 data-i18n="sections.cases">Casos & Resultados</h2>
-    <div class="cases">
-      <article class="case">
-        <h3 data-i18n="cases.case1.title">Litio — Salta</h3>
-        <p data-i18n="cases.case1.text"><strong>Problema:</strong> acceso fragmentado a activos confiables.<br/><strong>Proceso:</strong> due diligence técnica + legal + deal de prueba.<br/><strong>Resultado:</strong> pipeline de inversión escalable. <em>(Sin datos sensibles)</em></p>
-      </article>
-      <article class="case">
-        <h3 data-i18n="cases.case2.title">Acero — LATAM → UE</h3>
-        <p data-i18n="cases.case2.text"><strong>Problema:</strong> riesgo de proveedores.<br/><strong>Proceso:</strong> verificación multi-etapa + escrow.<br/><strong>Resultado:</strong> contratos recurrentes con variación de volumen.</p>
-      </article>
-      <article class="case">
-        <h3 data-i18n="cases.case3.title">Combustibles — Houston</h3>
-        <p data-i18n="cases.case3.text"><strong>Problema:</strong> ruido y “humo” en el mercado.<br/><strong>Proceso:</strong> filtro documental + deal de escritorio.<br/><strong>Resultado:</strong> incremento de tasa de cierre con compradores serios.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- SOBRE MÍ -->
-  <section id="sobre-mi" class="section section--light">
-    <h2 data-i18n="about.title">Sobre mí</h2>
-    <div class="about">
-      <div class="about__text">
-        <h3 class="about__headline glow" data-i18n="about.headline">
-          Abraxas: la dualidad que convierte el riesgo en oportunidad
-        </h3>
-        <p data-i18n="about.p1">
-          Soy Oscar Esteban Chinchilla. En Abraxas operamos donde otros dudan: en la línea fina entre lo técnico y lo comercial, entre la mina y el mercado, entre la tradición y el futuro. Esa <strong>dualidad</strong> no es un dilema: es nuestra ventaja.
-        </p>
-        <p data-i18n="about.p2">
-          He trabajado con proyectos reales de litio, cobre, acero y combustibles. Entiendo el lenguaje del geólogo y el del CFO; el de la perforación y el del contrato. <em>De eso se trata Abraxas</em>: traducir dos mundos para cerrar negocios claros y rentables.
-        </p>
-        <ul class="about__duo">
-          <li data-i18n="about.d1"><span class="glow">Legal</span> + Comercial</li>
-          <li data-i18n="about.d2"><span class="glow">Activo</span> + Demanda</li>
-          <li data-i18n="about.d3"><span class="glow">Riesgo</span> + Control</li>
-          <li data-i18n="about.d4"><span class="glow">LatAm</span> + Global</li>
-        </ul>
-        <p class="about__closing" data-i18n="about.p3">
-          Si buscás acceso serio a oportunidades en minería y commodities, hablemos. Te muestro la otra cara del mercado.
-        </p>
-        <div class="about__cta">
-          <a class="btn btn--gold" href="#agenda" data-track="clic_cta_about" data-i18n="about.cta">Agendar llamada estratégica</a>
+      <!-- Libro ES Minería -->
+      <div class="card3d">
+        <div class="card3d-inner">
+          <img src="assets/images/book-mining-es.png" alt="Cómo ser un intermediario en el negocio de la minería" class="card3d-img" />
+          <h3 class="card3d-title">Cómo ser un intermediario en el negocio de la minería</h3>
+          <p class="card3d-author">Autor: Oscar Esteban Chinchilla</p>
+          <a class="btn btn--gold" href="https://www.amazon.com.mx/dp/B0FQ7W6DJC" target="_blank" rel="noopener">Ver en Amazon</a>
         </div>
       </div>
-      <div class="about__media">
-        <img src="assets/images/oscar-chinchilla.png" alt="Oscar Esteban Chinchilla — Abraxas" class="about__photo" width="360" height="360" loading="lazy" decoding="async" />
+
+      <!-- Libro EN Minería -->
+      <div class="card3d">
+        <div class="card3d-inner">
+          <img src="assets/images/book-mining-en.png" alt="How to be an intermediary in the mining business" class="card3d-img" />
+          <h3 class="card3d-title">How to be an Intermediary in the Mining Business</h3>
+          <p class="card3d-author">Author: Oscar Esteban Chinchilla</p>
+          <a class="btn btn--gold" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">View on Amazon</a>
+        </div>
       </div>
+
+      <!-- Libro Oil & Gas -->
+      <div class="card3d">
+        <div class="card3d-inner">
+          <img src="assets/images/book-oilgas-es.png" alt="La Biblia del Oil & Gas" class="card3d-img" />
+          <h3 class="card3d-title">La Biblia del Oil & Gas</h3>
+          <p class="card3d-author">Autor: Oscar Esteban Chinchilla</p>
+          <a class="btn btn--gold" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">Ver en Amazon</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- LIBROS (3D cards + Vortex dorado) -->
-  <section id="libros" class="section section--vortex">
-    <canvas id="vortexBooks" class="vortex-canvas" aria-hidden="true"></canvas>
-    <h2 class="glow" data-i18n="books.title">Libros</h2>
-    <p data-i18n="books.intro">
-      Te comparto mis publicaciones y lecturas recomendadas. Si sos nuevo en Oil & Gas, empezá por la “Biblia de Oil & Gas”.
-    </p>
-    <div class="books-3d">
-      <article class="threed-card" data-tilt>
-        <div class="threed-card__body">
-          <h3 class="threed-card__title" data-z="40">How to be an Intermediary in the Mining Business</h3>
-          <p class="threed-card__meta" data-z="30">Author: Oscar Esteban Chinchilla</p>
-          <div class="threed-card__imgwrap" data-z="80">
-            <img src="assets/images/book-mining-en.png" alt="How to be an Intermediary in the Mining Business (and not die trying)"/>
-          </div>
-          <div class="threed-card__actions">
-            <a class="btn btn--ghost" data-track="click_book_mining_en"
-               href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener" data-z="20">
-              Ver en Amazon
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="threed-card" data-tilt>
-        <div class="threed-card__body">
-          <h3 class="threed-card__title" data-z="40">Cómo ser un intermediario en el negocio de la minería</h3>
-          <p class="threed-card__meta" data-z="30">Autor: Oscar Esteban Chinchilla</p>
-          <div class="threed-card__imgwrap" data-z="80">
-            <img src="assets/images/book-mining-es.png" alt="Cómo ser un intermediario en el negocio de la minería y no morir en el intento"/>
-          </div>
-          <div class="threed-card__actions">
-            <a class="btn btn--ghost" data-track="click_book_mining_es"
-               href="https://www.amazon.com.mx/dp/B0FQ7W6DJC" target="_blank" rel="noopener" data-z="20">
-              Ver en Amazon
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="threed-card" data-tilt>
-        <div class="threed-card__body">
-          <h3 class="threed-card__title" data-z="40">La Biblia del Oil & Gas</h3>
-          <p class="threed-card__meta" data-z="30">Autor: Oscar Esteban Chinchilla</p>
-          <div class="threed-card__imgwrap" data-z="80">
-            <img src="assets/images/book-oilgas-es.png" alt="La Biblia del Oil & Gas — 12 mandamientos para no caer en fraudes y comerciar combustible con éxito"/>
-          </div>
-          <div class="threed-card__actions">
-            <a class="btn btn--ghost" data-track="click_book_oilgas_es"
-               href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener" data-z="20">
-              Ver en Amazon
-            </a>
-          </div>
-        </div>
-      </article>
+  <!-- ===== Agenda (CTA simple) ===== -->
+  <section id="agenda" class="agenda">
+    <div class="container center">
+      <h2>Convertí incertidumbre en claridad</h2>
+      <p>Quedan <strong>6</strong> cupos esta semana.</p>
+      <a class="btn btn--gold btn--xl" href="https://calendly.com/o-chinchilla-abraxas-group/30min" target="_blank" rel="noopener">Agendar en Calendly</a>
     </div>
   </section>
 
-  <!-- TESTIMONIOS (Animados estilo Aceternity, vanilla) -->
-  <section id="testimonios" class="section section--light">
-    <h2 data-i18n="sections.testimonials">Testimonios</h2>
-    <div class="testis">
-      <div class="t-stack" aria-hidden="true">
-        <img class="t-stack__img is-active" src="assets/images/t1.jpg" alt="Testimonio 1" />
-        <img class="t-stack__img" src="assets/images/t2.jpg" alt="Testimonio 2" />
-        <img class="t-stack__img" src="assets/images/t3.jpg" alt="Testimonio 3" />
-        <img class="t-stack__img" src="assets/images/t4.jpg" alt="Testimonio 4" />
-        <img class="t-stack__img" src="assets/images/t5.jpg" alt="Testimonio 5" />
-      </div>
-      <div class="t-text">
-        <h3 id="tName">María Fernanda</h3>
-        <p class="role" id="tRole">Gerente de Abastecimiento · Monterrey</p>
-        <p class="t-quote" id="tQuote">Con Abraxas logramos pasar de promesas a contratos reales. La claridad legal nos ahorró semanas de ida y vuelta.</p>
-        <div class="t-controls">
-          <button class="t-btn" id="tPrev" aria-label="Anterior">‹</button>
-          <button class="t-btn" id="tNext" aria-label="Siguiente">›</button>
-        </div>
-      </div>
+  <footer class="site-footer">
+    <div class="container center">
+      <p>© <span id="year"></span> Abraxas — <span class="glow">De la mina a tu bolsillo</span></p>
     </div>
-  </section>
+  </footer>
 
-  <!-- RECURSOS -->
-  <section id="recursos" class="section">
-    <h2 data-i18n="sections.resources">Checklist gratuito</h2>
-    <p data-i18n="resources.leadcopy">Descargá <em>“5 claves para invertir seguro en LATAM”</em> y evitá errores comunes.</p>
-    <form id="leadForm" class="form" aria-labelledby="recursos">
-      <label for="name" data-i18n="form.name">Nombre</label>
-      <input id="name" name="name" type="text" autocomplete="name" required />
-      <label for="email" data-i18n="form.email">Email</label>
-      <input id="email" name="email" type="email" autocomplete="email" required />
-      <button class="btn btn--primary" type="submit" data-track="enviar_form" data-i18n="form.cta">Recibir checklist</button>
-      <p id="formMsg" class="form__msg" role="status" aria-live="polite"></p>
-      <a id="downloadES" href="assets/lead-magnet-es.pdf" download hidden>dl</a>
-      <a id="downloadEN" href="assets/lead-magnet-en.pdf" download hidden>dl</a>
-    </form>
-  </section>
-
-  <!-- PROMO OIL & GAS (7 días) -->
-  <section id="promo-oil" class="section section--light">
-    <h2 class="glow" data-i18n="promo.title">BONO 7 DÍAS — Oil & Gas</h2>
-    <p data-i18n="promo.copy">
-      Agenda una llamada por Oil & Gas y recibí <strong>gratis</strong> la <em>Biblia de Oil & Gas</em> (ebook).
-    </p>
-    <p><span data-i18n="promo.ends_in">Termina en</span> <strong id="promoCountdown">00:00:00</strong></p>
-    <a id="ctaOil" class="btn btn--gold"
-       href="https://calendly.com/o-chinchilla-abraxas-group/30min"
-       data-track="promo_oil_click" data-i18n="promo.cta">
-       Agendar Oil & Gas ahora
-    </a>
-    <p class="micro" data-i18n="promo.note">
-      Mostrá el código <strong>OILBIBLE</strong> al confirmar.
-    </p>
-  </section>
-
-  <!-- AGENDA -->
-  <section id="agenda" class="section section--cta" aria-labelledby="agendaTitle">
-    <h2 id="agendaTitle" data-i18n="sections.book">Convertí incertidumbre en claridad</h2>
-    <p><span data-i18n="agenda.left">Quedan</span> <span id="cupos">5</span> <span data-i18n="agenda.right">cupos esta semana.</span></p>
-    <a class="btn btn--gold btn--xl"
-       href="https://calendly.com/o-chinchilla-abraxas-group/30min"
-       data-track="abrir_agenda" data-i18n="cta.book_call">Agendar llamada estratégica</a>
-    <p class="micro" data-i18n="agenda.micro">Al confirmar, contanos en 1 frase tu mayor reto actual.</p>
-  </section>
-
-  <!-- FAQ (placeholder) -->
-  <section id="faq" class="section">
-    <h2 data-i18n="sections.faq">FAQ</h2>
-    <details>
-      <summary>¿Cómo trabajamos?</summary>
-      <p>Diagnóstico → Validación (KYC/AML) → Deal de prueba → Escalado.</p>
-    </details>
-  </section>
-</main>
-
-<footer class="site-footer" role="contentinfo">
-  <p>© <span id="year"></span> Abraxas — <span class="glow" data-i18n="footer.claim">De la mina a tu bolsillo</span></p>
-  <nav aria-label="Legal">
-    <a href="#" data-i18n="legal.privacy">Privacidad</a> · <a href="#" data-i18n="legal.terms">Términos</a>
-  </nav>
-</footer>
-
-<script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
