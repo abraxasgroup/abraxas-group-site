@@ -111,3 +111,104 @@ document.getElementById('year')?.append(new Date().getFullYear());
     card.addEventListener('touchend', ()=>{ inner.style.transition='transform .25s ease'; reset(); }, {passive:true});
   });
 })();
+
+/* ===== Testimonios (autoplay + palabra a palabra + pausa al interactuar) ===== */
+(function testimonials(){
+  const imgs = Array.from(document.querySelectorAll('.t-img'));
+  const nameEl = document.getElementById('tName');
+  const roleEl = document.getElementById('tRole');
+  const quoteEl = document.getElementById('tQuote');
+  const prevBtn = document.getElementById('tPrev');
+  const nextBtn = document.getElementById('tNext');
+
+  if (!imgs.length || !nameEl || !roleEl || !quoteEl) return;
+
+  const data = [
+    {
+      name: "María Fernanda",
+      role: "Gerente de Abastecimiento · Monterrey",
+      quote: "Con Abraxas logramos pasar de promesas a contratos reales. La claridad legal nos ahorró semanas de ida y vuelta.",
+      idx: 0
+    },
+    {
+      name: "James Carter",
+      role: "Procurement Lead · Houston",
+      quote: "They speak both the engineer’s and the CFO’s language. That duality is rare—and it’s why deals get done.",
+      idx: 1
+    },
+    {
+      name: "Lucía Romero",
+      role: "Legal Counsel · Madrid",
+      quote: "KYC/AML impecable y contratos limpios. Reducimos riesgo y ganamos velocidad sin sacrificar compliance.",
+      idx: 2
+    },
+    {
+      name: "Ahmed Khan",
+      role: "Trading Partner · Dubái",
+      quote: "From brief to match to call in days. Clear validation and a low-risk pilot deal—we scaled with confidence.",
+      idx: 3
+    },
+    {
+      name: "Carlos Reyes",
+      role: "Operaciones · Santiago",
+      quote: "Un ‘deal de escritorio’ que corta el humo del mercado. Menos fricción, más resultados.",
+      idx: 4
+    }
+  ];
+
+  let active = 0;
+  const AUTOPLAY_MS = 5000;
+  let timer = null;
+
+  function setActive(i){
+    active = (i + data.length) % data.length;
+
+    // fotos
+    imgs.forEach((img, idx)=>{
+      img.classList.toggle('is-active', idx === data[active].idx);
+      img.style.zIndex = idx === data[active].idx ? 40 : (10 + idx);
+    });
+
+    // texto
+    nameEl.textContent = data[active].name;
+    roleEl.textContent = data[active].role;
+    animateWords(data[active].quote);
+  }
+
+  function animateWords(text){
+    quoteEl.innerHTML = '';
+    const parts = text.split(/\s+/);
+    parts.forEach((word, i)=>{
+      const span = document.createElement('span');
+      span.className = 'word';
+      span.innerHTML = word + '&nbsp;';  // evita colapso de espacios en Safari
+      quoteEl.appendChild(span);
+      setTimeout(()=>{ span.classList.add('in'); }, 20 * i);
+    });
+  }
+
+  function next(){ setActive(active+1); restart(); }
+  function prev(){ setActive(active-1); restart(); }
+
+  function restart(){
+    clearInterval(timer);
+    timer = setInterval(next, AUTOPLAY_MS);
+  }
+
+  // Controles
+  nextBtn?.addEventListener('click', next);
+  prevBtn?.addEventListener('click', prev);
+
+  // Pausa al pasar mouse o tocar
+  const tWrap = document.querySelector('.t-wrap');
+  const pause = () => clearInterval(timer);
+  const play  = () => restart();
+  tWrap?.addEventListener('mouseenter', pause);
+  tWrap?.addEventListener('mouseleave', play);
+  tWrap?.addEventListener('touchstart', pause, {passive:true});
+  tWrap?.addEventListener('touchend', play, {passive:true});
+
+  // init
+  setActive(0);
+  restart();
+})();
