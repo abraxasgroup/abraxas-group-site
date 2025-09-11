@@ -9,9 +9,10 @@
   <meta property="og:title" content="Abraxas — Donde el Riesgo Encuentra la Oportunidad" data-i18n-attr="content:og.title"/>
   <meta property="og:description" content="Trading & facilitación en minería y commodities con transparencia total." data-i18n-attr="content:og.description"/>
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/images/logo-abraxas.png" />
+  <meta property="og:image" content="assets/images/og-abraxas.jpg" />
   <meta property="og:url" content="https://www.tu-dominio.com/" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" as="image" href="assets/images/oscar-chinchilla.png" />
 </head>
 <body>
 <header class="site-header" role="banner">
@@ -59,10 +60,7 @@
       </ul>
     </div>
     <div class="hero__split hero__split--right" aria-hidden="true">
-      <div class="duality">
-        <div class="duality__left" title="Mina / Activo físico"></div>
-        <div class="duality__right" title="Mercado / Finanzas"></div>
-      </div>
+      <div class="duality duality--grid"></div>
     </div>
   </section>
 
@@ -98,7 +96,7 @@
       </div>
     </div>
     <div class="hero__split hero__split--right" aria-hidden="true">
-      <div class="duality duality--grid"></div>
+      <div class="duality"></div>
     </div>
   </section>
 
@@ -173,17 +171,14 @@
     </div>
   </section>
 
-  <!-- LIBROS (3D Cards + Vortex dorado) -->
+  <!-- LIBROS (3D cards + Vortex dorado) -->
   <section id="libros" class="section section--vortex">
     <canvas id="vortexBooks" class="vortex-canvas" aria-hidden="true"></canvas>
-
     <h2 class="glow" data-i18n="books.title">Libros</h2>
     <p data-i18n="books.intro">
       Te comparto mis publicaciones y lecturas recomendadas. Si sos nuevo en Oil & Gas, empezá por la “Biblia de Oil & Gas”.
     </p>
-
     <div class="books-3d">
-      <!-- Libro 1 EN -->
       <article class="threed-card" data-tilt>
         <div class="threed-card__body">
           <h3 class="threed-card__title" data-z="40">How to be an Intermediary in the Mining Business</h3>
@@ -199,8 +194,6 @@
           </div>
         </div>
       </article>
-
-      <!-- Libro 2 ES -->
       <article class="threed-card" data-tilt>
         <div class="threed-card__body">
           <h3 class="threed-card__title" data-z="40">Cómo ser un intermediario en el negocio de la minería</h3>
@@ -216,8 +209,6 @@
           </div>
         </div>
       </article>
-
-      <!-- Libro 3 Oil & Gas -->
       <article class="threed-card" data-tilt>
         <div class="threed-card__body">
           <h3 class="threed-card__title" data-z="40">La Biblia del Oil & Gas</h3>
@@ -241,38 +232,26 @@
     <h2 data-i18n="sections.testimonials">Testimonios</h2>
     <div class="testis">
       <div class="t-stack" aria-hidden="true">
-        <!-- imágenes del carrusel (podés cambiarlas por las tuyas) -->
-        <img class="t-stack__img is-active" src="assets/images/oscar-chinchilla.png" alt="Testimonio 1" data-index="0"/>
-        <img class="t-stack__img" src="assets/images/logo-abraxas.png" alt="Testimonio 2" data-index="1"/>
-        <img class="t-stack__img" src="assets/images/book-mining-es.png" alt="Testimonio 3" data-index="2"/>
-        <img class="t-stack__img" src="assets/images/book-mining-en.png" alt="Testimonio 4" data-index="3"/>
-        <img class="t-stack__img" src="assets/images/book-oilgas-es.png" alt="Testimonio 5" data-index="4"/>
+        <img class="t-stack__img is-active" src="assets/images/t1.jpg" alt="Testimonio 1" />
+        <img class="t-stack__img" src="assets/images/t2.jpg" alt="Testimonio 2" />
+        <img class="t-stack__img" src="assets/images/t3.jpg" alt="Testimonio 3" />
+        <img class="t-stack__img" src="assets/images/t4.jpg" alt="Testimonio 4" />
+        <img class="t-stack__img" src="assets/images/t5.jpg" alt="Testimonio 5" />
       </div>
       <div class="t-text">
-        <h3 id="tName">María González</h3>
-        <p id="tRole" class="role">Gerente de Compras · Acero (MX)</p>
-        <p id="tQuote" class="t-quote"></p>
+        <h3 id="tName">María Fernanda</h3>
+        <p class="role" id="tRole">Gerente de Abastecimiento · Monterrey</p>
+        <p class="t-quote" id="tQuote">Con Abraxas logramos pasar de promesas a contratos reales. La claridad legal nos ahorró semanas de ida y vuelta.</p>
         <div class="t-controls">
-          <button id="tPrev" class="t-btn" aria-label="Anterior">⟵</button>
-          <button id="tNext" class="t-btn" aria-label="Siguiente">⟶</button>
+          <button class="t-btn" id="tPrev" aria-label="Anterior">‹</button>
+          <button class="t-btn" id="tNext" aria-label="Siguiente">›</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROCESO -->
-  <section id="proceso" class="section">
-    <h2 data-i18n="sections.process">El Proceso Abraxas</h2>
-    <ol class="process">
-      <li data-i18n="process.step1">Diagnóstico — 15 minutos para entender reto y viabilidad.</li>
-      <li data-i18n="process.step2">Validación — documentación, KYC/AML, prueba de seriedad.</li>
-      <li data-i18n="process.step3">Deal de Prueba — bajo riesgo para ambas partes.</li>
-      <li data-i18n="process.step4">Escalado — contratos mayores, acceso directo a refinería/proveedor.</li>
-    </ol>
-  </section>
-
   <!-- RECURSOS -->
-  <section id="recursos" class="section section--light">
+  <section id="recursos" class="section">
     <h2 data-i18n="sections.resources">Checklist gratuito</h2>
     <p data-i18n="resources.leadcopy">Descargá <em>“5 claves para invertir seguro en LATAM”</em> y evitá errores comunes.</p>
     <form id="leadForm" class="form" aria-labelledby="recursos">
@@ -312,6 +291,15 @@
        href="https://calendly.com/o-chinchilla-abraxas-group/30min"
        data-track="abrir_agenda" data-i18n="cta.book_call">Agendar llamada estratégica</a>
     <p class="micro" data-i18n="agenda.micro">Al confirmar, contanos en 1 frase tu mayor reto actual.</p>
+  </section>
+
+  <!-- FAQ (placeholder) -->
+  <section id="faq" class="section">
+    <h2 data-i18n="sections.faq">FAQ</h2>
+    <details>
+      <summary>¿Cómo trabajamos?</summary>
+      <p>Diagnóstico → Validación (KYC/AML) → Deal de prueba → Escalado.</p>
+    </details>
   </section>
 </main>
 
