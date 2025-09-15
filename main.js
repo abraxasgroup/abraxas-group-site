@@ -1,162 +1,102 @@
-/* Año dinámico */
-document.getElementById('year')?.append(new Date().getFullYear());
+// WhatsApp deep link
+function openWA(){
+  const msg = encodeURIComponent("Hola Abraxas, quiero agendar una mentoría.");
+  window.open(`https://wa.me/5493417400299?text=${msg}`, "_blank");
+}
 
-/* Toggle ES/EN */
-(() => {
-  const btn = document.getElementById('langToggle');
-  const saved = localStorage.getItem('abraxas_lang');
-  const browserIsEN = (navigator.language || 'es').toLowerCase().startsWith('en');
-  const initial = saved || (browserIsEN ? 'en' : 'es');
-  const apply = (lang) => {
-    document.documentElement.setAttribute('lang', lang);
-    localStorage.setItem('abraxas_lang', lang);
-    if (btn) btn.textContent = lang === 'es' ? 'EN' : 'ES';
-  };
-  btn?.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('lang') || initial;
-    apply(current === 'es' ? 'en' : 'es');
-  });
-  apply(initial);
-})();
+// Year
+document.getElementById('y').textContent = new Date().getFullYear();
 
-/* Carrusel Testimonios (1 tarjeta + autoplay + swipe) */
-(() => {
-  const slider = document.querySelector('.slider');
-  if (!slider) return;
-  const cards = [...slider.querySelectorAll('.t-card')];
-  const dotsWrap = document.getElementById('tDots');
-  const btnPrev = document.getElementById('tPrev');
-  const btnNext = document.getElementById('tNext');
+// Bilingual toggler
+const es = {
+  "nav.offer":"Oferta","nav.books":"Libros","nav.payments":"Pagos","nav.about":"Acerca","nav.contact":"Contacto",
+  "cta.book":"Agendar",
+  "hero.h1a":"Acceso real","hero.h1b":"sin humo",
+  "hero.sub":"Oil & Gas, Minería, Agro y Comercio Exterior. Ejecutamos con dueños y directores de supply/trading (ticket ≥ USD 500k).",
+  "hero.cta1":"Ver oferta","hero.cta2":"Hablar por WhatsApp",
+  "offer.title":"¿Qué ofrecemos?",
+  "offer.gas.title":"All In Gas — Acceso directo, sin humo",
+  "offer.gas.i1":"Mandatos reales en Houston, Fujairah y Ámsterdam",
+  "offer.gas.i2":"Operaciones CIF/FOB verificadas",
+  "offer.gas.i3":"Validación de tanque / compliance AML",
+  "offer.gas.i4":"Tratos con traders y refinerías directas",
+  "offer.mining.title":"Minería — Donde se define el valor",
+  "offer.mining.i1":"Acceso directo a productores y brokers regulados",
+  "offer.mining.i2":"Dueños de concesiones en venta",
+  "offer.mining.i3":"Joint ventures y financiamiento",
+  "offer.mining.i4":"Litio, oro, cobre y tierras raras",
+  "offer.trade.title":"Comercio Exterior — Validación y ejecución",
+  "offer.trade.i1":"Due diligence de counterparties y rutas",
+  "offer.trade.i2":"Estructuras seguras de pago y entrega",
+  "offer.trade.i3":"Documentación, compliance y seguros",
+  "offer.trade.i4":"Optimización de costos logísticos",
+  "offer.agro.title":"Agro — Aceites y granos",
+  "offer.agro.i1":"Origen auditado y contratos estandarizados",
+  "offer.agro.i2":"Operaciones spot y a término",
+  "offer.agro.i3":"QA/QC independiente y control de calidad",
+  "offer.agro.i4":"Integración con trading y logística portuaria",
+  "offer.note":"* Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k).",
+  "books.title":"Libros","books.buy":"Comprar en Amazon",
+  "pay.title":"Reservar mentoría · Pago anticipado","pay.payoneer":"Transferencia bancaria (Payoneer/USD)","pay.cta":"Enviar comprobante y agendar",
+  "about.p1":"Abraxas es la dualidad hecha método: riesgo y control, intuición y proceso. Nacimos en operaciones reales y llevamos deals desde el origen hasta la liquidación.",
+  "about.p2":"Nuestro sello: acceso directo, compliance sin excusas y ejecución silenciosa. Operamos con mandatarios en Oil & Gas, productores y brokers regulados en Minería, y cadenas auditadas en Agro.",
+  "about.p3":"Si buscás ruido y promesas, no somos tu socio. Si buscás cerrar bien, a la primera, hablemos.",
+  "about.role":"CEO · Abraxas Group",
+  "contact.title":"Contacto","contact.whatsapp":"Escribir por WhatsApp"
+};
 
-  let i = 0;
-  const N = cards.length;
-  let autoTimer = null;
-  const autoplayMs = Number(slider.getAttribute('data-autoplay') || 6000);
+const en = {
+  "nav.offer":"Offer","nav.books":"Books","nav.payments":"Payments","nav.about":"About","nav.contact":"Contact",
+  "cta.book":"Book a call",
+  "hero.h1a":"Real access","hero.h1b":"no smoke",
+  "hero.sub":"Oil & Gas, Mining, Agri and Foreign Trade. We execute with owners and supply/trading directors (ticket ≥ USD 500k).",
+  "hero.cta1":"See offer","hero.cta2":"Chat on WhatsApp",
+  "offer.title":"What we offer",
+  "offer.gas.title":"All In Gas — Direct access, no smoke",
+  "offer.gas.i1":"Real mandates in Houston, Fujairah and Amsterdam",
+  "offer.gas.i2":"Verified CIF/FOB operations",
+  "offer.gas.i3":"Tank validation / AML compliance",
+  "offer.gas.i4":"Deals with traders and direct refineries",
+  "offer.mining.title":"Mining — Where value is defined",
+  "offer.mining.i1":"Direct access to producers & regulated brokers",
+  "offer.mining.i2":"Owners of concessions for sale",
+  "offer.mining.i3":"Joint ventures & financing",
+  "offer.mining.i4":"Lithium, gold, copper and rare earths",
+  "offer.trade.title":"Foreign Trade — Validation & execution",
+  "offer.trade.i1":"Counterparty & route due diligence",
+  "offer.trade.i2":"Secure payment & delivery structures",
+  "offer.trade.i3":"Documentation, compliance & insurance",
+  "offer.trade.i4":"Logistics cost optimization",
+  "offer.agro.title":"Agri — Oils & grains",
+  "offer.agro.i1":"Audited origin & standard contracts",
+  "offer.agro.i2":"Spot and forward operations",
+  "offer.agro.i3":"Independent QA/QC and quality control",
+  "offer.agro.i4":"Integration with trading & port logistics",
+  "offer.note":"* We work with owners and supply/trading directors (ticket ≥ USD 500k).",
+  "books.title":"Books","books.buy":"Buy on Amazon",
+  "pay.title":"Book mentorship · Prepayment","pay.payoneer":"Bank transfer (Payoneer/USD)","pay.cta":"Send receipt & schedule",
+  "about.p1":"Abraxas is duality turned method: risk & control, intuition & process. Born in real operations, we drive deals end-to-end.",
+  "about.p2":"Our mark: direct access, zero-excuse compliance and silent execution. Oil & Gas mandates, regulated Mining producers/brokers and audited Agri chains.",
+  "about.p3":"If you want noise and promises, we’re not your partner. If you want to close right, the first time, let’s talk.",
+  "about.role":"CEO · Abraxas Group",
+  "contact.title":"Contact","contact.whatsapp":"Message on WhatsApp"
+};
 
-  // Bullets
-  for (let k = 0; k < N; k++) {
-    const b = document.createElement('button');
-    b.addEventListener('click', () => { i = k; show(i); restart(); });
-    dotsWrap?.appendChild(b);
+const $ = (s)=>document.querySelectorAll(`[data-i18n="${s}"]`);
+function setLang(lang){
+  const dict = (lang==='en')? en : es;
+  document.documentElement.lang = (lang==='en')?'en':'es';
+  for(const key in dict){
+    document.querySelectorAll(`[data-i18n="${key}"]`).forEach(el => el.textContent = dict[key]);
   }
+  localStorage.setItem('ax_lang', lang);
+  document.getElementById('btnES').classList.toggle('active', lang!=='en');
+  document.getElementById('btnEN').classList.toggle('active', lang==='en');
+}
 
-  function show(idx){
-    i = (idx+N)%N;
-    cards.forEach((c,ix)=> c.classList.toggle('is-active', ix===i));
-    [...(dotsWrap?.children||[])].forEach((d,ix)=> d.classList.toggle('is-active', ix===i));
-  }
-  function next(){ show(i+1); }
-  function prev(){ show(i-1); }
-  function play(){ autoTimer = setInterval(next, autoplayMs); }
-  function stop(){ if (autoTimer) clearInterval(autoTimer); }
-  function restart(){ stop(); play(); }
+// Hook buttons
+document.getElementById('btnES').onclick = ()=>setLang('es');
+document.getElementById('btnEN').onclick = ()=>setLang('en');
 
-  btnPrev?.addEventListener('click', ()=>{ prev(); restart(); });
-  btnNext?.addEventListener('click', ()=>{ next(); restart(); });
-
-  // Gestos táctiles
-  let x0 = null;
-  slider.addEventListener('touchstart', (e)=>{ x0 = e.touches[0].clientX; stop(); }, {passive:true});
-  slider.addEventListener('touchmove', (e)=>{
-    if (x0===null) return;
-    const dx = e.touches[0].clientX - x0;
-    if (Math.abs(dx) > 40) { dx>0 ? prev() : next(); x0=null; }
-  }, {passive:true});
-  slider.addEventListener('touchend', ()=>{ x0=null; play(); }, {passive:true});
-
-  slider.addEventListener('mouseenter', stop);
-  slider.addEventListener('mouseleave', play);
-
-  show(0); play();
-})();
-
-/* Sparkles dorado (Canvas), estilo Aceternity pero sin React */
-(() => {
-  const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const canvas = document.getElementById('sparklesCanvas');
-  if (!canvas || prefersReduce) return;
-
-  const ctx = canvas.getContext('2d',{alpha:true});
-  let w=0,h=0,dpr=Math.min(window.devicePixelRatio||1,2);
-  let particles=[];
-  let rafId=null, last=0;
-
-  function resize(){
-    const rect = canvas.parentElement.getBoundingClientRect();
-    w = Math.floor(rect.width);
-    h = Math.floor(rect.height);
-    canvas.width = Math.floor(w*dpr);
-    canvas.height = Math.floor(h*dpr);
-    canvas.style.width = w+'px';
-    canvas.style.height = h+'px';
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    init();
-  }
-
-  function baseCount(){
-    const area = w*h;
-    if (area < 400*600) return 90;
-    if (area < 800*900) return 140;
-    return 200;
-  }
-
-  function init(){
-    particles.length = 0;
-    const N = baseCount();
-    for(let i=0;i<N;i++){
-      particles.push({
-        x: Math.random()*w,
-        y: Math.random()*h,
-        vx: (Math.random()-0.5)*0.25,
-        vy: (Math.random()*0.6)+0.15,
-        r: Math.random()*1.6+0.4,
-        life: Math.random()*100,
-      });
-    }
-  }
-
-  function draw(now){
-    rafId = requestAnimationFrame(draw);
-    if (now - last < 22) return; // ~45fps
-    last = now;
-
-    ctx.clearRect(0,0,w,h);
-
-    for (const p of particles){
-      p.x += p.vx; p.y += p.vy; p.life += 0.5;
-
-      // wrap
-      if (p.y > h+10){ p.y = -10; p.x = Math.random()*w; }
-      if (p.x > w+10){ p.x = -10; }
-      if (p.x < -10){ p.x = w+10; }
-
-      const alpha = 0.4 + 0.3*Math.sin(p.life*0.1);
-
-      const grd = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*6);
-      grd.addColorStop(0, `rgba(240,210,131,${alpha})`);
-      grd.addColorStop(1, 'rgba(240,210,131,0)');
-
-      ctx.fillStyle = grd;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-
-      // Halo leve
-      ctx.shadowColor = '#f0d283';
-      ctx.shadowBlur = 8;
-      ctx.fillStyle = '#e0c06b';
-      ctx.globalAlpha = 0.25;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*2,0,Math.PI*2); ctx.fill();
-      ctx.globalAlpha = 1; ctx.shadowBlur = 0;
-    }
-  }
-
-  function onVis(){
-    if (document.hidden){ cancelAnimationFrame(rafId); rafId=null; }
-    else { last=0; rafId=requestAnimationFrame(draw); }
-  }
-
-  window.addEventListener('resize', resize);
-  document.addEventListener('visibilitychange', onVis);
-
-  resize();
-  rafId=requestAnimationFrame(draw);
-})();
+// Init
+setLang(localStorage.getItem('ax_lang') || 'es');
