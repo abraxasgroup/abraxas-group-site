@@ -1,196 +1,92 @@
-// WhatsApp links
-const WA_NUMBER = "5493417400299";
-const WA_TEXT = encodeURIComponent(
-  "Hola Abraxas Group, quiero agendar una mentoría."
-);
-const WA_URL = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`;
+// WhatsApp
+const WA = "5493417400299";
+const whatsURL = (msg="Hola, vengo de la web de Abraxas.") =>
+  `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 
-function setWA() {
-  const a = document.getElementById("ctaWhats");
-  if (a) a.href = WA_URL;
-  const b = document.getElementById("ctaWhatsBottom");
-  if (b) b.href = WA_URL;
-  const fab = document.getElementById("waFab");
-  if (fab) fab.href = WA_URL;
+// Set enlaces
+const ctaWhats = document.getElementById('ctaWhats');
+const ctaMentor = document.getElementById('ctaMentor');
+const ctaWeb   = document.getElementById('ctaWeb');
+const fabWhats = document.getElementById('fabWhats');
+[ctaWhats, ctaMentor, ctaWeb, fabWhats].forEach(el=>{
+  if(!el) return;
+  let text = el.id==='ctaWeb' ? 'Quiero cotizar mi web' : 'Hola, vengo de la web de Abraxas.';
+  el.href = whatsURL(text);
+});
+
+// Año footer
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Reveal on scroll
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Fallback si el video no puede reproducir (autoplay bloqueado)
+const v = document.getElementById('bgvideo');
+if (v) {
+  const playIt = () => v.play().catch(()=>{ v.style.display='none'; document.querySelector('.bgimg').style.display='block'; });
+  if (document.visibilityState === 'visible') playIt();
+  document.addEventListener('visibilitychange', () => document.visibilityState==='visible' && playIt());
 }
 
-// Video autoplay en iOS + fallbacks
-function bootHeroVideo() {
-  const v = document.getElementById("heroVideo");
-  if (!v) return;
-
-  const tryPlay = () => v.play().catch(() => {});
-  tryPlay();
-
-  ["touchstart", "pointerdown", "click", "scroll"].forEach((evt) => {
-    window.addEventListener(
-      evt,
-      () => {
-        tryPlay();
-      },
-      { once: true, passive: true }
-    );
-  });
-
-  // Si no carga en 3s, oculta video (usa poster)
-  setTimeout(() => {
-    if (v.readyState < 2) v.style.display = "none";
-  }, 3000);
-}
-
-// I18N simple
-const STR = {
+// ======== I18N simple ========
+const dict = {
   es: {
-    "nav.offer": "Oferta",
-    "nav.books": "Libros",
-    "nav.about": "Acerca",
-    "nav.schedule": "Agendar",
-
-    "hero.leadA": "Acceso real a",
-    "hero.leadB": " — con validación y ejecución.",
-    "hero.subtitle":
-      "Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k). Sin humo, con compliance.",
-
-    "cta.whatsapp": "Hablar por WhatsApp",
-    "cta.viewOffer": "Ver oferta",
-
-    "services.title": "¿Qué ofrecemos?",
-    "services.note":
-      "* Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k).",
-
-    "s1.title": "All In Gas — Acceso directo, sin humo",
-    "s1.l1": "Mandatos reales en Houston, Fujairah y Ámsterdam",
-    "s1.l2": "Operaciones CIF/FOB verificadas",
-    "s1.l3": "Validación de tanque / compliance AML",
-    "s1.l4": "Tratos con traders y refinerías directas",
-
-    "s2.title": "Minería — Donde se define el valor",
-    "s2.l1": "Acceso directo a productores y brokers regulados",
-    "s2.l2": "Dueños de concesiones en venta",
-    "s2.l3": "Joint ventures y financiamiento",
-    "s2.l4": "Litio, oro, cobre y tierras raras",
-
-    "s3.title": "Comercio Exterior — Validación y ejecución",
-    "s3.l1": "Due diligence de counterparties y rutas",
-    "s3.l2": "Estructuras seguras de pago y entrega",
-    "s3.l3": "Documentación, compliance y seguros",
-    "s3.l4": "Optimización de costos logísticos",
-
-    "s4.title": "Agro — Aceites y granos",
-    "s4.l1": "Origen auditado y contratos estandarizados",
-    "s4.l2": "Operaciones spot y a término",
-    "s4.l3": "QA/QC independiente y control de calidad",
-    "s4.l4": "Integración con trading y logística portuaria",
-
-    "books.title": "Libros",
-    "books.minen": "How to be an Intermediary in the Mining Business (EN)",
-    "books.mines": "Cómo ser Intermediario en el Negocio de la Minería (ES)",
-    "books.oilgas": "La Biblia del Oil & Gas (ES)",
-    "books.cta": "Comprar en Amazon",
-
-    "about.title": "Acerca de Abraxas",
-    "about.p1":
-      "Abraxas simboliza la dualidad y el equilibrio: riesgo y control, visión y ejecución. Nacimos en operaciones reales y llevamos esa práctica a cada proyecto de energía, minería y agro.",
-    "about.p2":
-      "Conectamos actores serios, validamos operaciones y ejecutamos con estructuras seguras. WeTrade · WeConnect · WeWork.",
-
-    "schedule.title": "Reservar mentoría · Book mentorship",
-    "schedule.p":
-      "Escríbenos por WhatsApp para coordinar; trabajamos con agenda priorizada."
+    'nav.offer':'Oferta','nav.books':'Libros','nav.about':'Acerca','nav.schedule':'Agendar',
+    'hero.titleA':'Acceso real a','hero.energy':'energía','hero.mining':'minería','hero.and':'y','hero.agro':'agro','hero.titleB':' — con validación y ejecución.',
+    'hero.sub':'Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k). Sin humo, con compliance.',
+    'cta.whatsapp':'Hablar por WhatsApp','cta.seeOffer':'Ver oferta','cta.quote':'Quiero cotizar mi web',
+    'services.title':'¿Qué ofrecemos?',
+    's1.title':'All In Gas — Acceso directo, sin humo','s1.1':'Mandatos reales en Houston, Fujairah y Ámsterdam','s1.2':'Operaciones CIF/FOB verificadas','s1.3':'Validación de tanque / compliance AML','s1.4':'Tratos con traders y refinerías directas',
+    's2.title':'Minería — Donde se define el valor','s2.1':'Acceso directo a productores y brokers regulados','s2.2':'Dueños de concesiones en venta','s2.3':'Joint ventures y financiamiento','s2.4':'Litio, oro, cobre y tierras raras',
+    's3.title':'Comercio Exterior — Validación y ejecución','s3.1':'Due diligence de counterparties y rutas','s3.2':'Estructuras seguras de pago y entrega','s3.3':'Documentación, compliance y seguros','s3.4':'Optimización de costos logísticos',
+    's4.title':'Agro — Aceites y granos','s4.1':'Origen auditado y contratos estandarizados','s4.2':'Operaciones spot y a término','s4.3':'QA/QC independiente y control de calidad','s4.4':'Integración con trading y logística portuaria',
+    'web.title':'Estudio Web — SEO · Branding · Web',
+    'books.title':'Libros','books.buyAmazon':'Comprar en Amazon',
+    'about.title':'Acerca de Abraxas','about.story':'Abraxas nace de la dualidad: orden y caos, intuición y método. Operamos en esa tensión para convertir oportunidades complejas en acuerdos ejecutables. Nuestra obsesión: validar, ejecutar y entregar.',
+    'agenda.title':'Reservar mentoría / Book mentorship','agenda.note':'Sin límite de tiempo por llamada. Validación y plan claro.'
   },
-
   en: {
-    "nav.offer": "Offer",
-    "nav.books": "Books",
-    "nav.about": "About",
-    "nav.schedule": "Book",
-
-    "hero.leadA": "Real access to",
-    "hero.leadB": " — with validation and execution.",
-    "hero.subtitle":
-      "We work with owners and supply/trading directors (ticket ≥ USD 500k). No smoke, full compliance.",
-
-    "cta.whatsapp": "Chat on WhatsApp",
-    "cta.viewOffer": "View offer",
-
-    "services.title": "What do we offer?",
-    "services.note":
-      "* We work with owners and supply/trading directors (ticket ≥ USD 500k).",
-
-    "s1.title": "All In Gas — Direct access, no smoke",
-    "s1.l1": "Real mandates in Houston, Fujairah and Amsterdam",
-    "s1.l2": "Verified CIF/FOB operations",
-    "s1.l3": "Tank validation / AML compliance",
-    "s1.l4": "Deals with traders and refineries",
-
-    "s2.title": "Mining — Where value is defined",
-    "s2.l1": "Direct access to producers and regulated brokers",
-    "s2.l2": "Mining concessions for sale",
-    "s2.l3": "Joint ventures and financing",
-    "s2.l4": "Lithium, gold, copper and rare earths",
-
-    "s3.title": "International Trade — Validation and execution",
-    "s3.l1": "Counterparty and route due diligence",
-    "s3.l2": "Secure payment & delivery structures",
-    "s3.l3": "Documentation, compliance & insurance",
-    "s3.l4": "Logistics cost optimization",
-
-    "s4.title": "Agri — Oils & Grains",
-    "s4.l1": "Audited origin and standardized contracts",
-    "s4.l2": "Spot and forward operations",
-    "s4.l3": "Independent QA/QC and quality control",
-    "s4.l4": "Integration with trading and port logistics",
-
-    "books.title": "Books",
-    "books.minen": "How to be an Intermediary in the Mining Business (EN)",
-    "books.mines": "How to be an Intermediary in the Mining Business (ES)",
-    "books.oilgas": "The Oil & Gas Bible (ES)",
-    "books.cta": "View on Amazon",
-
-    "about.title": "About Abraxas",
-    "about.p1":
-      "Abraxas symbolizes duality and balance: risk and control, vision and execution. We were born in real operations and bring that practice to every energy, mining and agri project.",
-    "about.p2":
-      "We connect serious players, validate deals and execute with secure structures. WeTrade · WeConnect · WeWork.",
-
-    "schedule.title": "Book mentorship · Reservar mentoría",
-    "schedule.p":
-      "Message us on WhatsApp to schedule; we work with a prioritized calendar."
+    'nav.offer':'Offer','nav.books':'Books','nav.about':'About','nav.schedule':'Schedule',
+    'hero.titleA':'Real access to','hero.energy':'energy','hero.mining':'mining','hero.and':'and','hero.agro':'agri','hero.titleB':' — with validation and execution.',
+    'hero.sub':'We work with owners and trading/supply directors (ticket ≥ USD 500k). No smoke, with compliance.',
+    'cta.whatsapp':'WhatsApp','cta.seeOffer':'See offer','cta.quote':'Get a web quote',
+    'services.title':'What we offer',
+    's1.title':'All In Gas — Direct access, no smoke','s1.1':'Real mandates in Houston, Fujairah and Amsterdam','s1.2':'Verified CIF/FOB operations','s1.3':'Tank validation / AML compliance','s1.4':'Deals with traders and refineries',
+    's2.title':'Mining — Where value is defined','s2.1':'Direct access to producers and regulated brokers','s2.2':'Owners of concessions for sale','s2.3':'Joint ventures and financing','s2.4':'Lithium, gold, copper and rare earths',
+    's3.title':'Foreign Trade — Validation & execution','s3.1':'Counterparty & route due diligence','s3.2':'Secure payment & delivery structures','s3.3':'Docs, compliance and insurance','s3.4':'Logistics cost optimization',
+    's4.title':'Agri — Oils & grains','s4.1':'Audited origin & standardized contracts','s4.2':'Spot and term operations','s4.3':'Independent QA/QC','s4.4':'Integration with trading & port logistics',
+    'web.title':'Web Studio — SEO · Branding · Web',
+    'books.title':'Books','books.buyAmazon':'Buy on Amazon',
+    'about.title':'About Abraxas','about.story':'Abraxas is born from duality: order and chaos, intuition and method. We operate in that tension to turn complex opportunities into executable deals. Our obsession: validate, execute and deliver.',
+    'agenda.title':'Book mentorship','agenda.note':'No time limit per call. Validation and a clear plan.'
   }
 };
 
-let currentLang = "es";
-
-function applyI18N(lang){
-  currentLang = lang;
+// Cambiar idioma
+const applyI18n = (lang='es')=>{
   document.documentElement.lang = lang;
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.getAttribute("data-i18n");
-    const str = STR[lang][key];
-    if (typeof str === "string") el.innerHTML = str;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    const t = (dict[lang] && dict[lang][key]) || el.textContent;
+    el.textContent = t;
   });
+  document.getElementById('btnES').classList.toggle('chip-on', lang==='es');
+  document.getElementById('btnEN').classList.toggle('chip-on', lang==='en');
+  // Actualizar textos de CTAs (query ya seteada)
+  if (lang==='en') {
+    ctaWhats && (ctaWhats.textContent = dict.en['cta.whatsapp']);
+    ctaMentor && (ctaMentor.textContent = dict.en['cta.whatsapp']);
+    ctaWeb && (ctaWeb.textContent   = dict.en['cta.quote']);
+  } else {
+    ctaWhats && (ctaWhats.textContent = dict.es['cta.whatsapp']);
+    ctaMentor && (ctaMentor.textContent = dict.es['cta.whatsapp']);
+    ctaWeb && (ctaWeb.textContent   = dict.es['cta.quote']);
+  }
+};
+applyI18n('es');
 
-  // chips
-  document.getElementById("btnES")?.classList.toggle("chip-on", lang==="es");
-  document.getElementById("btnEN")?.classList.toggle("chip-on", lang==="en");
-}
-
-function wireLang(){
-  document.getElementById("btnES")?.addEventListener("click",()=>applyI18N("es"));
-  document.getElementById("btnEN")?.addEventListener("click",()=>applyI18N("en"));
-}
-
-// Footer year
-function setYear(){
-  const y = document.getElementById("y");
-  if (y) y.textContent = new Date().getFullYear();
-}
-
-// Boot
-document.addEventListener("DOMContentLoaded", () => {
-  setWA();
-  bootHeroVideo();
-  wireLang();
-  applyI18N("es");
-  setYear();
-});
+document.getElementById('btnES').addEventListener('click', ()=>applyI18n('es'));
+document.getElementById('btnEN').addEventListener('click', ()=>applyI18n('en'));
