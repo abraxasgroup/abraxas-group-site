@@ -1,160 +1,207 @@
-<!-- ======== SERVICES START (Abraxas) ======== -->
-<section id="services" class="ax-section">
-  <style>
-    /* ====== Scoped styles (solo afectan a #services) ====== */
-    #services {
-      --ax-bg: #0b0b0e;
-      --ax-card: #121318;
-      --ax-text: #e8e9ee;
-      --ax-soft: #b9bdc7;
-      --ax-gold1: #b38728;        /* dorado base */
-      --ax-gold2: #ffd56a;        /* brillo */
-      --ax-gold3: #e6b34e;
-      --ax-shadow: 0 10px 30px rgba(0,0,0,.35);
-      background: radial-gradient(1200px 600px at 50% -200px, rgba(255,213,106,.12), transparent 60%), var(--ax-bg);
-      color: var(--ax-text);
-      padding: 42px 16px 64px;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    }
-    #services .ax-wrap { max-width: 1100px; margin: 0 auto; }
-    #services .ax-title {
-      font-size: clamp(26px, 5vw, 36px);
-      font-weight: 800;
-      text-align: center;
-      margin: 0 0 22px;
-      letter-spacing: .2px;
-      line-height: 1.1;
-      color: #fff;
-      text-shadow: 0 2px 20px rgba(0,0,0,.35);
-    }
-    /* efecto “glow” dorado al título */
-    #services .ax-title .ax-gold {
-      background: linear-gradient(100deg, var(--ax-gold2) 0%, var(--ax-gold1) 45%, var(--ax-gold3) 80%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      filter: drop-shadow(0 0 12px rgba(255,213,106,.25));
-    }
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Abraxas Group — WeTrade · WeConnect · WeWork</title>
+  <meta name="description" content="Abraxas Group — Oil & Gas, Minería, Agro y Comercio Exterior. Acceso directo sin humo. Mentoring y ejecución.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <a class="brand" href="#top">
+      <img src="img/logo-abraxas.png" alt="Abraxas Group" class="brand-logo" onerror="this.style.display='none'">
+      <span>ABRAXAS GROUP</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#offer" data-i18n="nav.offer">Oferta</a>
+      <a href="#books" data-i18n="nav.books">Libros</a>
+      <a href="#payments" data-i18n="nav.payments">Pagos</a>
+      <a href="#about" data-i18n="nav.about">Acerca</a>
+      <a href="#contact" data-i18n="nav.contact">Contacto</a>
+      <button id="cta" class="btn-gold" onclick="openWA()" data-i18n="cta.book">Agendar</button>
+      <div class="lang">
+        <button class="pill active" id="btnES">ES</button>
+        <button class="pill" id="btnEN">EN</button>
+      </div>
+    </nav>
+  </header>
 
-    #services .ax-grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 720px) {
-      #services .ax-grid { grid-template-columns: 1fr 1fr; }
-    }
+  <!-- HERO -->
+  <section id="top" class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <h1 class="hero-title">
+        <span data-i18n="hero.h1a">Acceso real</span>
+        <span class="gold-text" data-i18n="hero.h1b">sin humo</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero.sub">
+        Oil & Gas, Minería, Agro y Comercio Exterior. Ejecutamos con dueños y directores de supply/trading (ticket ≥ USD 500k).
+      </p>
+      <div class="hero-cta">
+        <a class="btn-gold big" href="#offer" data-i18n="hero.cta1">Ver oferta</a>
+        <button class="btn-ghost big" onclick="openWA()" data-i18n="hero.cta2">Hablar por WhatsApp</button>
+      </div>
+      <div class="badges">
+        <span>PetroBridge</span><span>AgriVector</span><span>OreAxis</span><span>PortLine</span><span>CapTrust</span>
+      </div>
+    </div>
+  </section>
 
-    #services .ax-card {
-      background: radial-gradient(800px 300px at -10% -20%, rgba(255,213,106,.08), transparent 45%), var(--ax-card);
-      border-radius: 18px;
-      padding: 20px 18px;
-      box-shadow: var(--ax-shadow);
-      border: 1px solid rgba(255,255,255,.06);
-      position: relative;
-      overflow: hidden;
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-    #services .ax-card::after{
-      content:"";
-      position:absolute; inset: -1px;
-      border-radius: 18px;
-      background: linear-gradient(120deg, rgba(255,213,106,.22), rgba(179,135,40,.05), transparent 55%);
-      pointer-events:none; mask: linear-gradient(#000, transparent 60%);
-    }
-    #services .ax-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 36px rgba(0,0,0,.45);
-      border-color: rgba(255,213,106,.22);
-    }
+  <!-- OFFER -->
+  <section id="offer" class="wrap">
+    <h2 class="section-title" data-i18n="offer.title">¿Qué ofrecemos?</h2>
 
-    #services .ax-card h3 {
-      font-size: 18px;
-      font-weight: 800;
-      margin: 0 0 14px;
-      color: #fff;
-      letter-spacing: .2px;
-    }
-    #services .ax-card h3 .ax-em {
-      background: linear-gradient(95deg, var(--ax-gold2), var(--ax-gold1));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    #services ul { list-style: none; padding: 0; margin: 0; }
-    #services li {
-      display: grid;
-      grid-template-columns: 22px 1fr;
-      gap: 10px;
-      align-items: start;
-      font-size: 15.5px;
-      line-height: 1.45;
-      color: var(--ax-soft);
-      padding: 9px 2px;
-    }
-    #services li .ax-tick {
-      width: 22px; height: 22px;
-      border-radius: 7px;
-      background: linear-gradient(140deg, var(--ax-gold2), var(--ax-gold1) 70%);
-      box-shadow: 0 6px 14px rgba(255,213,106,.25), inset 0 1px 0 rgba(255,255,255,.3);
-      display: grid; place-items: center;
-      color: #111;
-      font-weight: 900;
-      font-size: 15px;
-      transform: translateY(1px);
-    }
-    #services .ax-note {
-      font-size: 13px; color: #9aa1ae; margin: 12px 2px 0;
-    }
-  </style>
+    <div class="grid">
+      <article class="card">
+        <h3 data-i18n="offer.gas.title">All In Gas — Acceso directo, sin humo</h3>
+        <ul class="list">
+          <li data-i18n="offer.gas.i1">Mandatos reales en Houston, Fujairah y Ámsterdam</li>
+          <li><b data-i18n="offer.gas.i2">Operaciones CIF/FOB verificadas</b></li>
+          <li data-i18n="offer.gas.i3">Validación de tanque / compliance AML</li>
+          <li data-i18n="offer.gas.i4">Tratos con traders y refinerías directas</li>
+        </ul>
+      </article>
 
-<section id="services" class="ax-wrap">
-  <h2 class="ax-title">¿Qué ofrecemos?</h2>
+      <article class="card">
+        <h3 data-i18n="offer.mining.title">Minería — Donde se define el valor</h3>
+        <ul class="list">
+          <li data-i18n="offer.mining.i1">Acceso directo a productores y brokers regulados</li>
+          <li data-i18n="offer.mining.i2">Dueños de concesiones en venta</li>
+          <li data-i18n="offer.mining.i3">Joint ventures y financiamiento</li>
+          <li data-i18n="offer.mining.i4">Litio, oro, cobre y tierras raras</li>
+        </ul>
+      </article>
 
-  <div class="ax-grid">
-    <!-- All In Gas -->
-    <div class="ax-card">
-      <h3>All In Gas — Acceso directo, sin humo</h3>
-      <ul class="ax-list">
-        <li>Mandatos reales en Houston, Fujairah y Ámsterdam</li>
-        <li><strong>Operaciones CIF/FOB verificadas</strong></li>
-        <li>Validación de tanque / compliance AML</li>
-        <li>Tratos con traders y refinerías directas</li>
-      </ul>
+      <article class="card">
+        <h3 data-i18n="offer.trade.title">Comercio Exterior — Validación y ejecución</h3>
+        <ul class="list">
+          <li data-i18n="offer.trade.i1">Due diligence de counterparties y rutas</li>
+          <li data-i18n="offer.trade.i2">Estructuras seguras de pago y entrega</li>
+          <li data-i18n="offer.trade.i3">Documentación, compliance y seguros</li>
+          <li data-i18n="offer.trade.i4">Optimización de costos logísticos</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3 data-i18n="offer.agro.title">Agro — Aceites y granos</h3>
+        <ul class="list">
+          <li data-i18n="offer.agro.i1">Origen auditado y contratos estandarizados</li>
+          <li data-i18n="offer.agro.i2">Operaciones spot y a término</li>
+          <li data-i18n="offer.agro.i3">QA/QC independiente y control de calidad</li>
+          <li data-i18n="offer.agro.i4">Integración con trading y logística portuaria</li>
+        </ul>
+      </article>
     </div>
 
-    <!-- Minería -->
-    <div class="ax-card">
-      <h3>Minería — Donde se define el valor</h3>
-      <ul class="ax-list">
-        <li>Acceso directo a productores y brokers regulados</li>
-        <li>Dueños de concesiones en venta</li>
-        <li>Joint ventures y financiamiento</li>
-        <li>Litio, oro, cobre y tierras raras</li>
-      </ul>
-    </div>
+    <p class="note" data-i18n="offer.note">* Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k).</p>
+  </section>
 
-    <!-- Comercio Exterior -->
-    <div class="ax-card">
-      <h3>Comercio Exterior — Validación y ejecución</h3>
-      <ul class="ax-list">
-        <li>Due diligence de counterparties y rutas</li>
-        <li>Estructuras seguras de pago y entrega</li>
-        <li>Documentación, compliance y seguros</li>
-        <li>Optimización de costos logísticos</li>
-      </ul>
+  <!-- BOOKS -->
+  <section id="books" class="wrap">
+    <h2 class="section-title" data-i18n="books.title">Libros</h2>
+    <div class="grid books">
+      <article class="card book">
+        <img src="img/book-mining-en.png" alt="How to be an Intermediary in the Mining Business" onerror="this.style.display='none'">
+        <h3>How to be an Intermediary in the Mining Business (EN)</h3>
+        <a class="btn-gold" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener" data-i18n="books.buy">Comprar en Amazon</a>
+      </article>
+      <article class="card book">
+        <img src="img/book-mining-es.png" alt="Cómo ser un Intermediario en el Negocio de la Minería" onerror="this.style.display='none'">
+        <h3>Cómo ser Intermediario en el Negocio de la Minería (ES)</h3>
+        <a class="btn-gold" href="https://www.amazon.es/dp/B0FQ7W6DJC" target="_blank" rel="noopener" data-i18n="books.buy">Comprar en Amazon</a>
+      </article>
+      <article class="card book">
+        <img src="img/book-oilgas-es.png" alt="La Biblia del Oil & Gas" onerror="this.style.display='none'">
+        <h3>La Biblia del Oil & Gas (ES)</h3>
+        <a class="btn-gold" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener" data-i18n="books.buy">Comprar en Amazon</a>
+      </article>
     </div>
+  </section>
 
-    <!-- Agro -->
-    <div class="ax-card">
-      <h3>Agro — Aceites y granos</h3>
-      <ul class="ax-list">
-        <li>Origen auditado y contratos estandarizados</li>
-        <li>Operaciones spot y a término</li>
-        <li>QA/QC independiente y control de calidad</li>
-        <li>Integración con trading y logística portuaria</li>
-      </ul>
+  <!-- PAYMENTS -->
+  <section id="payments" class="wrap">
+    <h2 class="section-title" data-i18n="pay.title">Reservar mentoría · Pago anticipado</h2>
+    <div class="grid pay">
+      <article class="card pay-card">
+        <h3>USDT (ERC20 / TRC20)</h3>
+        <div class="mono">
+          <div><b>ERC20:</b> 0xbc268ec3181501997365889aaf6beba71b1366ef</div>
+          <div><b>TRC20:</b> TJUfT3C7muDnfvBbhPCzh3tro7uD2c6Tf8</div>
+        </div>
+      </article>
+      <article class="card pay-card">
+        <h3 data-i18n="pay.payoneer">Transferencia bancaria (Payoneer/USD)</h3>
+        <div class="mono small">
+          Citibank — 111 Wall Street New York, NY 10043 USA<br>
+          <b>Routing (ABA):</b> 031100209 · <b>SWIFT:</b> CITIUS33<br>
+          <b>Account #:</b> 70580380002006071 · <b>Type:</b> Checking<br>
+          <b>Beneficiary:</b> Oscar Esteban Chinchilla
+        </div>
+      </article>
+      <article class="card pay-card">
+        <h3>CVU (Mercado Pago)</h3>
+        <div class="mono"><b>0000003100033441065967</b></div>
+      </article>
     </div>
-  </div>
-</section>
-<!-- ======== SERVICES END (Abraxas) ======== -->
+    <div class="hero-cta">
+      <button class="btn-gold big" onclick="openWA()" data-i18n="pay.cta">Enviar comprobante y agendar</button>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="wrap">
+    <h2 class="section-title">Abraxas</h2>
+    <div class="about">
+      <div class="about-text">
+        <p data-i18n="about.p1">
+          Abraxas es la dualidad hecha método: riesgo y control, intuición y proceso. 
+          Nacimos en operaciones reales y llevamos deals desde el origen hasta la liquidación.
+        </p>
+        <p data-i18n="about.p2">
+          Nuestro sello: acceso directo, compliance sin excusas y ejecución silenciosa. 
+          Operamos con mandatarios en Oil & Gas, productores y brokers regulados en Minería, y cadenas auditadas en Agro.
+        </p>
+        <p data-i18n="about.p3">
+          Si buscás ruido y promesas, no somos tu socio. Si buscás cerrar bien, a la primera, hablemos.
+        </p>
+      </div>
+      <div class="about-card">
+        <img src="img/oscar-chinchilla.png" alt="Oscar Esteban Chinchilla" onerror="this.style.display='none'">
+        <div class="about-meta">
+          <div class="name">Oscar Esteban Chinchilla</div>
+          <div class="role" data-i18n="about.role">CEO · Abraxas Group</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="wrap">
+    <h2 class="section-title" data-i18n="contact.title">Contacto</h2>
+    <div class="contact-row">
+      <div class="contact-item">
+        <div class="mono">info@abraxas-group.lat</div>
+        <div class="mono">energy@abraxas-group.lat</div>
+      </div>
+      <div class="contact-item">
+        <button class="btn-ghost" onclick="openWA()" data-i18n="contact.whatsapp">Escribir por WhatsApp</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <span>© <span id="y"></span> Abraxas Group · WeTrade · WeConnect · WeWork</span>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a id="waFab" class="wa-fab" href="javascript:void(0)" onclick="openWA()">WhatsApp</a>
+
+  <script src="main.js"></script>
+</body>
+</html>
