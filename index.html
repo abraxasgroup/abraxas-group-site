@@ -1,32 +1,36 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0b0f" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="theme-color" content="#0b0b0f"/>
   <title>Abraxas Group — WeTrade · WeConnect · WeWork</title>
-  <link rel="icon" href="favicon.ico" />
-  <link rel="preload" href="img/logo-abraxas.png" as="image" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.ico"/>
+  <link rel="preload" href="img/logo-abraxas.png" as="image"/>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-
-  <!-- Fondo galáctico animado -->
-  <div class="bg" aria-hidden="true"></div>
+  <!-- Fondo galáctico -->
+  <div class="bg" aria-hidden="true">
+    <!-- Opción VIDEO: poné assets/galaxy.mp4 y descomentá la línea de abajo -->
+    <!-- <video class="galaxy" autoplay muted loop playsinline src="assets/galaxy.mp4"></video> -->
+    <div class="galaxy" role="presentation"></div>  <!-- imagen: img/bg-galaxy.jpg -->
+    <canvas id="galaxyFx" aria-hidden="true"></canvas> <!-- espiral animada -->
+  </div>
   <canvas id="stars" aria-hidden="true"></canvas>
   <div class="vignette" aria-hidden="true"></div>
 
   <header class="site-header">
     <div class="container nav">
       <a href="#top" class="brand">
-        <img src="img/logo-abraxas.png" alt="Abraxas Group" class="brand__logo" />
+        <img src="img/logo-abraxas.png" alt="Abraxas Group" class="brand__logo"/>
         <span class="brand__name">ABRAXAS GROUP</span>
       </a>
-
       <nav class="menu">
-        <a href="#offer" data-i18n="nav.offer" class="link">Oferta</a>
-        <a href="#books" data-i18n="nav.books" class="link">Libros</a>
-        <a href="#contact" data-i18n="nav.contact" class="btn btn-gold">Agendar</a>
+        <a href="#offer" class="link" data-i18n="nav.offer">Oferta</a>
+        <a href="#books" class="link" data-i18n="nav.books">Libros</a>
+        <a href="#about" class="link" data-i18n="nav.about">Acerca</a>
+        <a href="#contact" class="btn btn-gold" data-i18n="nav.contact">Agendar</a>
         <button id="langToggle" class="chip">ES</button>
       </nav>
     </div>
@@ -42,22 +46,15 @@
           Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k). Sin humo, con compliance.
         </p>
         <div class="cta-row">
-          <a class="btn btn-gold" href="https://wa.me/5493417400299" target="_blank" rel="noopener">
-            <span data-i18n="cta.whatsapp">Hablar por WhatsApp</span>
-          </a>
-          <a class="btn btn-ghost" href="#offer">
-            <span data-i18n="cta.seeOffer">Ver oferta</span>
-          </a>
+          <a class="btn btn-gold" href="https://wa.me/5493417400299" target="_blank" rel="noopener" data-i18n="cta.whatsapp">Hablar por WhatsApp</a>
+          <a class="btn btn-ghost" href="#offer" data-i18n="cta.seeOffer">Ver oferta</a>
         </div>
       </div>
     </section>
 
-    <!-- ¿Qué ofrecemos? -->
     <section id="offer" class="section container">
       <h2 class="section-title" data-i18n="offer.title">¿Qué ofrecemos?</h2>
-
       <div class="grid cards">
-        <!-- All In Gas -->
         <article class="card reveal">
           <h3 class="card__title" data-i18n="offer.oil.title">All In Gas — Acceso directo, sin humo</h3>
           <ul class="card__list">
@@ -67,8 +64,6 @@
             <li data-i18n="offer.oil.li4">Tratos con traders y refinerías directas</li>
           </ul>
         </article>
-
-        <!-- Minería -->
         <article class="card reveal">
           <h3 class="card__title" data-i18n="offer.mining.title">Minería — Donde se define el valor</h3>
           <ul class="card__list">
@@ -78,8 +73,6 @@
             <li data-i18n="offer.mining.li4">Litio, oro, cobre y tierras raras</li>
           </ul>
         </article>
-
-        <!-- Comercio Exterior -->
         <article class="card reveal">
           <h3 class="card__title" data-i18n="offer.trade.title">Comercio Exterior — Validación y ejecución</h3>
           <ul class="card__list">
@@ -89,8 +82,6 @@
             <li data-i18n="offer.trade.li4">Optimización de costos logísticos</li>
           </ul>
         </article>
-
-        <!-- Agro -->
         <article class="card reveal">
           <h3 class="card__title" data-i18n="offer.agro.title">Agro — Aceites y granos</h3>
           <ul class="card__list">
@@ -101,65 +92,67 @@
           </ul>
         </article>
       </div>
-
-      <p class="legal" data-i18n="offer.legal">
-        * Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k).
-      </p>
+      <p class="legal" data-i18n="offer.legal">* Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k).</p>
     </section>
 
-    <!-- Libros -->
     <section id="books" class="section container">
       <h2 class="section-title" data-i18n="books.title">Libros</h2>
-
       <div class="grid books">
         <article class="book reveal">
-          <img src="img/book-mining-en.png" alt="How to be an Intermediary in the Mining Business" />
+          <img src="img/book-mining-en.png" alt="How to be an Intermediary in the Mining Business"/>
           <h3 class="book__title">How to be an Intermediary in the Mining Business (EN)</h3>
           <a class="btn btn-gold book__btn" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener" data-i18n="books.buy">Comprar en Amazon</a>
         </article>
-
         <article class="book reveal">
-          <img src="img/book-mining-es.png" alt="Cómo ser intermediario en el negocio de la minería y no morir en el intento" />
+          <img src="img/book-mining-es.png" alt="Cómo ser intermediario en el negocio de la minería"/>
           <h3 class="book__title">Cómo ser intermediario en el negocio de la minería (ES)</h3>
           <a class="btn btn-gold book__btn" href="https://www.amazon.es/dp/B0FQ7W6DJC" target="_blank" rel="noopener" data-i18n="books.buy">Comprar en Amazon</a>
         </article>
-
         <article class="book reveal">
-          <img src="img/book-oilgas-es.png" alt="La Biblia del Oil & Gas" />
+          <img src="img/book-oilgas-es.png" alt="La Biblia del Oil & Gas"/>
           <h3 class="book__title">La Biblia del Oil & Gas (ES)</h3>
           <a class="btn btn-gold book__btn" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener" data-i18n="books.buy">Comprar en Amazon</a>
         </article>
       </div>
     </section>
 
-    <!-- Contacto -->
+    <section id="about" class="section container about">
+      <h2 class="section-title" data-i18n="about.title">Abraxas — Orden en la dualidad</h2>
+      <div class="about__wrap">
+        <div class="about__text">
+          <p data-i18n="about.p1">Abraxas simboliza la tensión creativa entre opuestos: riesgo y control, velocidad y rigor, intuición y data. Ahí operamos.</p>
+          <p data-i18n="about.p2">Conectamos capital, producto y ejecución para cerrar deals reales. Sin humo. Con procesos claros, compliance y métricas.</p>
+          <ul class="about__bullets">
+            <li><strong>WeTrade</strong>: acceso y pricing.</li>
+            <li><strong>WeConnect</strong>: contrapartes validadas.</li>
+            <li><strong>WeWork</strong>: logística, documentos y delivery.</li>
+          </ul>
+        </div>
+        <figure class="about__figure">
+          <img src="img/oscar-chinchilla.png" alt="Oscar Esteban Chinchilla"/>
+          <figcaption>Founder · Oscar E. Chinchilla</figcaption>
+        </figure>
+      </div>
+    </section>
+
     <section id="contact" class="section container">
       <h2 class="section-title" data-i18n="contact.title">Agendá tu validación</h2>
-      <p class="muted" data-i18n="contact.copy">
-        Primero validamos encaje y objetivos. Si hay fit, avanzamos con la estructura adecuada.
-      </p>
+      <p class="muted" data-i18n="contact.copy">Primero validamos encaje y objetivos. Si hay fit, avanzamos con la estructura adecuada.</p>
       <div class="cta-row">
         <a class="btn btn-gold" href="https://wa.me/5493417400299" target="_blank" rel="noopener" data-i18n="cta.whatsapp">Hablar por WhatsApp</a>
         <a class="btn btn-ghost" href="#top" data-i18n="cta.backTop">Volver arriba</a>
       </div>
     </section>
-
   </main>
 
   <footer class="site-footer">
     <div class="container footer">
-      <div class="footer__brand">
-        <img src="img/logo-abraxas.png" alt="Abraxas" />
-        <span>ABRAXAS GROUP</span>
-      </div>
+      <div class="footer__brand"><img src="img/logo-abraxas.png" alt="Abraxas"/><span>ABRAXAS GROUP</span></div>
       <small>© <span id="year"></span> Abraxas Group. All rights reserved.</small>
     </div>
   </footer>
 
-  <!-- WhatsApp flotante -->
-  <a class="wa-fab" href="https://wa.me/5493417400299" target="_blank" rel="noopener" aria-label="WhatsApp">
-    WhatsApp
-  </a>
+  <a class="wa-fab" href="https://wa.me/5493417400299" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
 
   <script src="main.js"></script>
 </body>
