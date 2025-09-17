@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
   <url>
     <loc>https://www.abraxas-group.lat/</loc>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-09-17</lastmod>
     <priority>1.0</priority>
   </url>
+
   <url>
-    <loc>https://www.abraxas-group.lat/en/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://www.abraxas-group.lat/#oferta</loc>
+    <lastmod>2025-09-17</lastmod>
+    <priority>0.9</priority>
   </url>
-  <url><loc>https://www.abraxas-group.lat/#services</loc></url>
-  <url><loc>https://www.abraxas-group.lat/#web</loc></url>
-  <url><loc>https://www.abraxas-group.lat/#books</loc></url>
-  <url><loc>https://www.abraxas-group.lat/#cases</loc></url>
-  <url><loc>https://www.abraxas-group.lat/#faq</loc></url>
+
+  <url>
+    <loc>https://www.abraxas-group.lat/#libros</loc>
+    <lastmod>2025-09-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.abraxas-group.lat/#contacto</loc>
+    <lastmod>2025-09-17</lastmod>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
