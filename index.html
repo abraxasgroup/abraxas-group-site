@@ -1,186 +1,142 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0b0c10">
-  <title>Abraxas Group — WeTrade · WeConnect · WeWork</title>
-  <link rel="icon" href="/favicon.ico">
-
-  <!-- Preload del hero poster (rápido en móvil) -->
-  <link rel="preload" as="image" href="/img/bg-galaxy.jpg" imagesrcset="/img/bg-galaxy-1280.webp 1280w, /img/bg-galaxy-1920.webp 1920w" imagesizes="100vw" fetchpriority="high">
-  <link rel="preload" href="/styles.css" as="style">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Abraxas Group — Expertos en energía, minería, agro y desarrollo web. Acceso directo, sin humo, con validación y ejecución.">
+  <meta name="keywords" content="minería, oil & gas, agro, comercio exterior, desarrollo web, páginas web, e-commerce, asesoría, mentoría, exportación">
+  <meta name="author" content="Abraxas Group">
+  <title>Abraxas Group — WeTrade · WeConnect · WeExecute</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="/styles.css">
 </head>
-
 <body>
-  <!-- NAV -->
-  <header class="nav">
-    <div class="container nav_inner">
-      <a class="brand" href="#top" aria-label="Abraxas Group">
-        <img src="/img/logo-abraxas.png" alt="Abraxas logo" class="brand_logo" width="40" height="40" decoding="async">
-        <span class="brand_name">ABRAXAS GROUP</span>
-      </a>
-
-      <nav class="nav_links">
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header_inner">
+      <img src="/img/logo-abraxas.png" alt="Logo Abraxas" class="logo">
+      <nav class="nav">
         <a href="#services">Oferta</a>
         <a href="#books">Libros</a>
+        <a href="#pricing">Web</a>
         <a href="#about">Acerca</a>
+        <a href="#contact" class="btn-gold">Agendar</a>
       </nav>
-
-      <a class="btn btn-gold" href="https://wa.me/5493417400299" target="_blank" rel="noopener" aria-label="Agendar por WhatsApp">Agendar</a>
+      <div class="lang">
+        <button class="chip">ES</button>
+        <button class="chip">EN</button>
+      </div>
     </div>
   </header>
 
   <!-- HERO -->
-  <section id="hero" class="hero">
-    <div class="hero_bgwrap">
-      <!-- Poster responsive (si hay ahorro de datos o móvil, solo imagen) -->
-      <picture>
-        <source srcset="/img/bg-galaxy-1280.webp 1280w, /img/bg-galaxy-1920.webp 1920w" type="image/webp" sizes="100vw">
-        <img src="/img/bg-galaxy.jpg" alt="" class="hero_poster" width="1920" height="1080" decoding="async">
-      </picture>
-
-      <!-- Video SOLO para pantallas grandes; se activa vía JS -->
-      <video id="bgvideo" class="hero_video" playsinline muted loop preload="metadata" poster="/img/bg-galaxy.jpg"></video>
-
-      <div class="hero_overlay"></div>
-    </div>
-
-    <div class="container hero_content">
-      <h1 class="hero_title">
-        Acceso real a <span class="gold">energía</span>, <span class="gold">minería</span> y <span class="gold">agro</span> — con<br>
-        validación y ejecución.
+  <section class="hero">
+    <video class="bgvideo" autoplay muted playsinline loop preload="metadata" poster="/img/bg-galaxy.jpg">
+      <source src="/assets/galaxy.mp4" type="video/mp4">
+    </video>
+    <div class="hero_overlay"></div>
+    <div class="hero_content">
+      <h1>
+        Acceso real a <span class="gold">energía</span>, 
+        <span class="gold">minería</span> y 
+        <span class="gold">agro</span> — con validación y ejecución.
       </h1>
-      <p class="hero_sub">Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k). Sin humo, con compliance.</p>
-
-      <div class="hero_cta">
-        <a class="btn btn-xl btn-gold" href="https://wa.me/5493417400299" target="_blank" rel="noopener">Hablar por WhatsApp</a>
-        <a class="btn btn-xl btn-glass" href="#services">Ver oferta</a>
+      <p>Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k). Sin humo, con compliance.</p>
+      <div class="cta">
+        <a href="https://wa.me/5493417400299" target="_blank" class="btn-gold">Hablar por WhatsApp</a>
+        <a href="#services" class="btn-dark">Ver oferta</a>
       </div>
     </div>
   </section>
 
-  <!-- SERVICIOS -->
+  <!-- SERVICES -->
   <section id="services" class="section">
-    <div class="container">
-      <h2 class="section_title">¿Qué ofrecemos?</h2>
-
-      <div class="grid">
-        <article class="card reveal">
-          <h3 class="card_title">All In Gas — Acceso directo, sin humo</h3>
-          <ul class="list">
-            <li>Mandatos reales en Houston, Fujairah y Ámsterdam</li>
-            <li><b>Operaciones CIF/FOB verificadas</b></li>
-            <li>Validación de tanque / compliance AML</li>
-            <li>Tratos con traders y refinerías directas</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <h3 class="card_title">Minería — Donde se define el valor</h3>
-          <ul class="list">
-            <li>Acceso directo a productores y brokers regulados</li>
-            <li>Dueños de concesiones en venta</li>
-            <li>Joint ventures y financiamiento</li>
-            <li>Litio, oro, cobre y tierras raras</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <h3 class="card_title">Comercio Exterior — Validación y ejecución</h3>
-          <ul class="list">
-            <li>Due diligence de contrapartes y rutas</li>
-            <li>Estructuras seguras de pago y entrega</li>
-            <li>Documentación, compliance y seguros</li>
-            <li>Optimización de costos logísticos</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <h3 class="card_title">Agro — Aceites y granos</h3>
-          <ul class="list">
-            <li>Origen auditado y contratos estandarizados</li>
-            <li>Operaciones spot y a término</li>
-            <li>QA/QC independiente y control de calidad</li>
-            <li>Integración con trading y logística portuaria</li>
-          </ul>
-        </article>
+    <h2>¿Qué ofrecemos?</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>All In Gas</h3>
+        <ul>
+          <li>Mandatos reales en Houston, Fujairah y Ámsterdam</li>
+          <li><b>Operaciones CIF/FOB verificadas</b></li>
+          <li>Validación de tanque / compliance AML</li>
+          <li>Tratos con traders y refinerías directas</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Minería</h3>
+        <ul>
+          <li>Acceso directo a productores y brokers regulados</li>
+          <li>Dueños de concesiones en venta</li>
+          <li>Joint ventures y financiamiento</li>
+          <li>Litio, oro, cobre y tierras raras</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Comercio Exterior</h3>
+        <ul>
+          <li>Due diligence de counterparty y rutas</li>
+          <li>Estructuras seguras de pago y entrega</li>
+          <li>Documentación, compliance y seguros</li>
+          <li>Optimización de costos logísticos</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Agro</h3>
+        <ul>
+          <li>Origen auditado y contratos estandarizados</li>
+          <li>Operaciones spot y a término</li>
+          <li>QA/QC independiente y control de calidad</li>
+          <li>Integración con trading y logística portuaria</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- LIBROS -->
+  <!-- BOOKS -->
   <section id="books" class="section">
-    <div class="container">
-      <h2 class="section_title">Libros</h2>
-
-      <div class="grid grid-3">
-        <a class="banner" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">
-          <img
-            src="/img/book-mining-en.png"
-            alt="How to be an Intermediary in the Mining Business (EN)"
-            width="480" height="640"
-            loading="lazy" decoding="async">
-          <span class="banner_btn">Comprar en Amazon</span>
-        </a>
-
-        <a class="banner" href="https://www.amazon.es/dp/B0FQ7W6DJC" target="_blank" rel="noopener">
-          <img
-            src="/img/book-mining-es.png"
-            alt="Cómo ser Intermediario en el Negocio de la Minería (ES)"
-            width="480" height="640"
-            loading="lazy" decoding="async">
-          <span class="banner_btn">Comprar en Amazon</span>
-        </a>
-
-        <a class="banner" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">
-          <img
-            src="/img/book-oilgas-es.png"
-            alt="La Biblia del Oil & Gas (ES)"
-            width="480" height="640"
-            loading="lazy" decoding="async">
-          <span class="banner_btn">Comprar en Amazon</span>
-        </a>
+    <h2>Libros</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="/img/book-mining-en.png" alt="How to be an Intermediary in the Mining Business">
+        <p><b>How to be an Intermediary in the Mining Business</b></p>
+        <a href="https://amazon.com" target="_blank" class="btn-gold">Comprar en Amazon</a>
+      </div>
+      <div class="card">
+        <img src="/img/book-mining-es.png" alt="Cómo ser Intermediario en el Negocio de la Minería">
+        <p><b>Cómo ser Intermediario en el Negocio de la Minería</b></p>
+        <a href="https://amazon.com" target="_blank" class="btn-gold">Comprar en Amazon</a>
+      </div>
+      <div class="card">
+        <img src="/img/book-oilgas-es.png" alt="La Biblia del Oil & Gas">
+        <p><b>La Biblia del Oil & Gas</b></p>
+        <a href="https://amazon.com" target="_blank" class="btn-gold">Comprar en Amazon</a>
       </div>
     </div>
   </section>
 
-  <!-- SERVICIOS WEB (imagen de precios) -->
-  <section id="web" class="section">
-    <div class="container">
-      <h2 class="section_title">Servicios Web — SEO | Branding | Web</h2>
-      <figure class="pricing">
-        <img
-          src="/img/pricing-web.png"
-          alt="Planes Web: básica, corporativa y e-commerce con precios y entregas"
-          width="1200" height="1600"
-          loading="lazy" decoding="async">
-      </figure>
-      <div class="center">
-        <a class="btn btn-gold" href="https://wa.me/5493417400299" target="_blank" rel="noopener">Quiero cotizar mi web</a>
-      </div>
-    </div>
+  <!-- PRICING -->
+  <section id="pricing" class="section">
+    <h2>Desarrollo Web</h2>
+    <img src="/img/pricing-web.png" alt="Planes de desarrollo web" class="responsive-img">
   </section>
 
-  <!-- ACERCA -->
+  <!-- ABOUT -->
   <section id="about" class="section">
-    <div class="container">
-      <h2 class="section_title">Acerca de Abraxas</h2>
-      <p class="lead">
-        Abraxas representa la dualidad y su resolución: riesgo/valor, velocidad/control. Operamos en esa frontera.
-        Nuestro foco: acceso directo, validación real y ejecución que cierra deals.
-      </p>
+    <h2>Casos de Éxito</h2>
+    <div class="cards">
+      <div class="card">
+        <p><b>Pyme Argentina</b> — hoy exporta tras optimizar su presencia web. Producto increíble, ahora con clientes internacionales.</p>
+      </div>
+      <div class="card">
+        <p><b>Holding Minero</b> — 30 años operando de forma tradicional, ahora con branding digital que atrae inversores globales.</p>
+      </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="container footer_inner">
-      <p>© <span id="y"></span> Abraxas Group</p>
-      <a class="btn btn-glass" href="https://wa.me/5493417400299" target="_blank" rel="noopener">WhatsApp</a>
-    </div>
+    <p>© 2025 Abraxas Group — Todos los derechos reservados.</p>
+    <p><a href="mailto:o.chinchilla@abraxas-group.lat">o.chinchilla@abraxas-group.lat</a> | +54 9 341 7400299</p>
   </footer>
-
-  <script src="/main.js" defer></script>
 </body>
 </html>
