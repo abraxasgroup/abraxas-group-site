@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Abraxas Group — energía, minería y agro con validación y ejecución</title>
+  <meta name="description" content="Acceso real a Oil & Gas, minería y agro. Due diligence, compliance AML, operaciones CIF/FOB y estructuración de deals. Mentoría y acompañamiento hasta la firma.">
+  <link rel="canonical" href="https://www.abraxas-group.lat/">
+  <link rel="alternate" hreflang="es" href="https://www.abraxas-group.lat/">
+  <link rel="alternate" hreflang="en" href="https://www.abraxas-group.lat/en/">
+  <link rel="alternate" hreflang="x-default" href="https://www.abraxas-group.lat/">
+
+  <!-- Social -->
+  <meta property="og:site_name" content="Abraxas Group">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Abraxas Group — energía, minería y agro con validación y ejecución">
+  <meta property="og:description" content="Validamos y ejecutamos operaciones reales en energía, minería y agro. Sin humo, con compliance.">
+  <meta property="og:url" content="https://www.abraxas-group.lat/">
+  <meta property="og:image" content="https://www.abraxas-group.lat/img/logo-abraxas.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preload" as="image" href="/img/bg-galaxy.jpg" fetchpriority="high">
+  <link rel="preload" as="video" href="/assets/galaxy.mp4" type="video/mp4">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <header class="nav">
+    <div class="container nav_inner">
+      <a href="/" class="brand">
+        <img src="/img/logo-abraxas.png" alt="Abraxas Group" class="brand_logo" width="28" height="28">
+        <span class="brand_name">ABRAXAS GROUP</span>
+      </a>
+
+      <nav class="menu">
+        <a href="#services">Oferta</a>
+        <a href="#books">Libros</a>
+        <a href="#about">Acerca</a>
+        <a class="btn btn-gold" href="#schedule">Agendar</a>
+      </nav>
+
+      <div class="lang">
+        <a class="chip chip-on">ES</a>
+        <a class="chip" href="/en/">EN</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="hero">
+    <div class="bgwrap">
+      <!-- vídeo galaxia -->
+      <video class="bgvideo" id="bgvideo" autoplay muted playsinline loop preload="metadata" poster="/img/bg-galaxy.jpg">
+        <source src="/assets/galaxy.mp4" type="video/mp4">
+      </video>
+      <!-- fallback imagen si el video no corre -->
+      <noscript><img src="/img/bg-galaxy.jpg" alt="Fondo galáctico" class="bgimg"></noscript>
+      <div class="bg_overlay"></div>
+    </div>
+
+    <div class="container hero_content">
+      <h1 class="hero_title">
+        Acceso real a <span class="gold">energía</span>, <span class="gold">minería</span> y <span class="gold">agro</span> — con<br>
+        <span class="glow">validación y ejecución.</span>
+      </h1>
+      <p class="hero_sub">
+        Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k). Sin humo, con compliance.
+      </p>
+      <div class="hero_cta">
+        <a class="btn btn-xl btn-gold" href="https://wa.me/5493417400299?text=Hola%20Abraxas%20Group%2C%20quiero%20asesor%C3%ADa.&utm_source=site&utm_medium=whatsapp&utm_campaign=cta_hero">Hablar por WhatsApp</a>
+        <a class="btn btn-xl btn-ghost" href="#services">Ver oferta</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section_title">¿Qué ofrecemos?</h2>
+
+      <div class="grid">
+        <article class="card reveal">
+          <h3 class="card_title">All In Gas — Acceso directo, sin humo</h3>
+          <ul class="list">
+            <li>Mandatos reales en Houston, Fujairah y Ámsterdam</li>
+            <li><b>Operaciones CIF/FOB verificadas</b></li>
+            <li>Validación de tanque / compliance AML</li>
+            <li>Tratos con traders y refinerías directas</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <h3 class="card_title">Minería — Donde se define el valor</h3>
+          <ul class="list">
+            <li>Acceso directo a productores y brokers regulados</li>
+            <li>Dueños de concesiones en venta</li>
+            <li>Joint ventures y financiamiento</li>
+            <li>Litio, oro, cobre y tierras raras</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <h3 class="card_title">Comercio Exterior — Validación y ejecución</h3>
+          <ul class="list">
+            <li>Due diligence de contrapartes y rutas</li>
+            <li>Estructuras seguras de pago y entrega</li>
+            <li>Documentación, compliance y seguros</li>
+            <li>Optimización de costos logísticos</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <h3 class="card_title">Agro — Aceites y granos</h3>
+          <ul class="list">
+            <li>Origen auditado y contratos estandarizados</li>
+            <li>Operaciones spot y a término</li>
+            <li>QA/QC independiente y control de calidad</li>
+            <li>Integración con trading y logística portuaria</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WEB SERVICES (con precios) ===== -->
+  <section id="web" class="section">
+    <div class="container">
+      <h2 class="section_title">Desarrollo Web, Branding y SEO</h2>
+      <p class="lead">Tu presencia digital lista para vender más. Planes claros, entrega comprometida.</p>
+
+      <div class="web_pricing">
+        <img src="/img/pricing-web.png" alt="Planes de desarrollo web" width="1200" height="1800" loading="lazy">
+      </div>
+
+      <div class="hero_cta">
+        <a class="btn btn-xl btn-gold" href="https://wa.me/5493417400299?text=Quiero%20cotizar%20un%20sitio%20web%20con%20SEO.&utm_source=site&utm_medium=whatsapp&utm_campaign=cta_web">Pedir cotización</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOOKS ===== -->
+  <section id="books" class="section">
+    <div class="container">
+      <h2 class="section_title">Libros</h2>
+      <div class="grid books">
+        <a class="book card reveal" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">
+          <img src="/img/book-mining-en.png" alt="How to be an Intermediary in the Mining Business (EN)" width="480" height="720" loading="lazy">
+          <span class="book_title">How to be an Intermediary in the Mining Business (EN)</span>
+        </a>
+
+        <a class="book card reveal" href="https://www.amazon.es/dp/B0FQ7W6DJC" target="_blank" rel="noopener">
+          <img src="/img/book-mining-es.png" alt="Cómo ser intermediario en minería (ES)" width="480" height="720" loading="lazy">
+          <span class="book_title">Cómo ser intermediario en minería (ES)</span>
+        </a>
+
+        <a class="book card reveal" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">
+          <img src="/img/book-oilgas-es.png" alt="La Biblia del Oil &amp; Gas (ES)" width="480" height="720" loading="lazy">
+          <span class="book_title">La Biblia del Oil &amp; Gas (ES)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CASE STUDIES ===== -->
+  <section id="cases" class="section">
+    <div class="container">
+      <h2 class="section_title">Casos de éxito</h2>
+
+      <div class="grid">
+        <article class="card reveal">
+          <h3 class="card_title">PyME argentina → exportadora</h3>
+          <p>Producto excelente, cero presencia digital. Rediseñamos marca, web y funnel SEO. En 60 días: +220% leads orgánicos y primeras órdenes de exportación cerradas.</p>
+          <ul class="list small">
+            <li>Auditoría SEO + estrategia de contenidos</li>
+            <li>Implementación web rápida (Core Web Vitals en verde)</li>
+            <li>Onboarding de ventas con WhatsApp + CRM</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <h3 class="card_title">Holding minero (LATAM)</h3>
+          <p>30 años operando con procesos antiguos. Estandarizamos el dealflow: verificación técnica bajo JORC, KYC/AML y data room. Resultado: menos viajes, acuerdos más limpios.</p>
+          <ul class="list small">
+            <li>Guión de validación y term sheet</li>
+            <li>Checklist técnico + compliance</li>
+            <li>Ruta CIF/FOB y estructura de pago segura</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2 class="section_title">Preguntas frecuentes</h2>
+      <details class="faq"><summary>¿Trabajan con traders y refinerías directas?</summary><p>Sí, con mandatos reales en Houston, Fujairah y Ámsterdam. Validamos tanque y compliance AML.</p></details>
+      <details class="faq"><summary>¿Pueden validar una oferta CIF/FOB?</summary><p>Sí. Due diligence de contraparte, estructura de pagos y documentación.</p></details>
+      <details class="faq"><summary>¿Las mentorías tienen límite de tiempo?</summary><p>No. Nos quedamos en la llamada hasta cumplir el objetivo de la sesión.</p></details>
+      <details class="faq"><summary>¿Desarrollan sitios web para empresas?</summary><p>Sí. Planes desde web básica hasta e-commerce con pagos integrados, SEO y CRM.</p></details>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT & FOOTER ===== -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section_title">Acerca</h2>
+      <p>ABRAXAS: la dualidad que ordena el caos. Negocio es luz y sombra: oportunidad y riesgo. Nuestro trabajo es **convertir incertidumbre en decisión**, con evidencia técnica, compliance y ejecución.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer_inner">
+      <p>© Abraxas Group — WeTrade · WeConnect · WeWork</p>
+      <p><a href="mailto:o.chinchilla@abraxas-group.lat">o.chinchilla@abraxas-group.lat</a> · <a href="https://wa.me/5493417400299?utm_source=site&utm_medium=whatsapp&utm_campaign=cta_footer">WhatsApp</a></p>
+      <p><a href="/en/">English</a></p>
+    </div>
+  </footer>
+
+  <!-- ====== JSON-LD ====== -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"Abraxas Group","url":"https://www.abraxas-group.lat/","logo":"https://www.abraxas-group.lat/img/logo-abraxas.png","contactPoint":[{"@type":"ContactPoint","contactType":"sales","email":"o.chinchilla@abraxas-group.lat","telephone":"+5493417400299","areaServed":"Worldwide","availableLanguage":["es","en"]}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","url":"https://www.abraxas-group.lat/","name":"Abraxas Group","potentialAction":{"@type":"SearchAction","target":"https://www.abraxas-group.lat/?q={search_term_string}","query-input":"required name=search_term_string"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Product","name":"Mentoría / Due diligence express","description":"Validación, estructuración y acompañamiento en Oil & Gas, minería y agro.","brand":{"@type":"Brand","name":"Abraxas Group"},"offers":[{"@type":"Offer","priceCurrency":"USD","price":"350"},{"@type":"Offer","priceCurrency":"USD","price":"900"},{"@type":"Offer","priceCurrency":"USD","price":"1800"}],"url":"https://www.abraxas-group.lat/#schedule"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Product","name":"Desarrollo web — planes","brand":{"@type":"Brand","name":"Abraxas Group"},"offers":[{"@type":"Offer","priceCurrency":"USD","price":"300","url":"https://www.abraxas-group.lat/#web"},{"@type":"Offer","priceCurrency":"USD","price":"1500","url":"https://www.abraxas-group.lat/#web"},{"@type":"Offer","priceCurrency":"USD","price":"5000","url":"https://www.abraxas-group.lat/#web"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Book","name":"La Biblia del Oil & Gas","inLanguage":"es","author":{"@type":"Person","name":"Oscar Esteban Chinchilla"},"image":"https://www.abraxas-group.lat/img/book-oilgas-es.png","url":"https://www.amazon.es/dp/B0FQCXNB5Y"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Book","name":"Cómo ser intermediario en minería","inLanguage":"es","author":{"@type":"Person","name":"Oscar Esteban Chinchilla"},"image":"https://www.abraxas-group.lat/img/book-mining-es.png","url":"https://www.amazon.es/dp/B0FQ7W6DJC"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"¿Trabajan con traders y refinerías directas?","acceptedAnswer":{"@type":"Answer","text":"Sí, con mandatos reales en Houston, Fujairah y Ámsterdam; validamos tanque y compliance AML."}},
+    {"@type":"Question","name":"¿Pueden validar una oferta CIF/FOB?","acceptedAnswer":{"@type":"Answer","text":"Sí. Due diligence de contraparte, estructura de pagos y documentación."}},
+    {"@type":"Question","name":"¿Las mentorías tienen límite de tiempo?","acceptedAnswer":{"@type":"Answer","text":"No. Nos quedamos en la llamada hasta cumplir el objetivo de la sesión."}},
+    {"@type":"Question","name":"¿Desarrollan sitios web para empresas?","acceptedAnswer":{"@type":"Answer","text":"Sí. Planes desde web básica hasta e-commerce con pagos integrados, SEO y CRM."}}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"CaseStudy","name":"PyME argentina pasa a exportar","about":"SEO, branding y web para internacionalizar","audience":"SMB","author":{"@type":"Organization","name":"Abraxas Group"},"url":"https://www.abraxas-group.lat/#cases"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"CaseStudy","name":"Holding minero moderniza dealflow","about":"Estandarización JORC, KYC/AML y data room","audience":"Enterprise","author":{"@type":"Organization","name":"Abraxas Group"},"url":"https://www.abraxas-group.lat/#cases"}
+  </script>
+
+</body>
+</html>
