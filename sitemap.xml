@@ -1,43 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <!-- Home ES -->
   <url>
     <loc>https://www.abraxas-group.lat/</loc>
-    <lastmod>2025-09-17</lastmod>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Home EN (si ya existe /en/) -->
+  <!-- Home EN (si existe /en/) -->
   <url>
     <loc>https://www.abraxas-group.lat/en/</loc>
-    <lastmod>2025-09-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Landing de servicios web (si la tenés como ancla no suma; mejor un HTML real) -->
-  <!-- Ejemplo si creás /web/ -->
-  <!--
-  <url>
-    <loc>https://www.abraxas-group.lat/web/</loc>
-    <lastmod>2025-09-17</lastmod>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  -->
 
-  <!-- PDFs (lead magnet) -->
+  <!-- Recursos (opcional; borrá estas líneas si no existen esos PDFs) -->
+  <!--
   <url>
     <loc>https://www.abraxas-group.lat/assets/lead-magnet-es.pdf</loc>
-    <lastmod>2025-09-17</lastmod>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.abraxas-group.lat/assets/lead-magnet-en.pdf</loc>
-    <lastmod>2025-09-17</lastmod>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  -->
+
 </urlset>
