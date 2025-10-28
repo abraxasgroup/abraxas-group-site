@@ -2,23 +2,26 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ABRAXAS GROUP • WeTrade • WeConnect • WeWork</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>ABRAXAS GROUP</title>
 
+  <!-- Tipografías: Inter (negocio), Cormorant Garamond (lujo sobrio) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet" />
+
+  <link rel="preload" as="video" href="assets/fondo.mp4" type="video/mp4" />
   <link rel="preload" as="image" href="assets/logo.png" />
   <link rel="preload" as="image" href="assets/fotoCEO.png" />
-  <link rel="preload" as="video" href="assets/abraxas_hero.mp4" type="video/mp4" />
 
   <style>
     :root {
-      --bg-dark: #0a0a0f;
-      --text-main: #f5f5f5;
-      --text-dim: #9b9b9b;
-      --gold-light: #ffd782;
-      --gold-mid: #b48a2a;
-      --panel-border: rgba(255,215,130,0.4);
-      --radius-card: 20px;
-      --radius-pill: 999px;
+      --bg-dark: #0b0b0d;
+      --text-main: #ececec;
+      --text-dim: #8e8e92;
+      --accent: #c9a86a; /* champagne/dorado suave */
+      --border-card: rgba(201,168,106,0.28);
+      --border-soft: rgba(255,255,255,0.07);
+      --radius-card: 16px;
+      --radius-round: 999px;
       --shadow-deep: 0 40px 120px rgba(0,0,0,0.9);
     }
 
@@ -26,490 +29,571 @@
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Poppins", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
     body {
       background-color: var(--bg-dark);
       color: var(--text-main);
-      margin: 0;
-      line-height: 1.4;
+      line-height: 1.5;
       overflow-x: hidden;
+      position: relative;
+      z-index: 0;
     }
 
-    /* ==== LANGUAGE SWITCHER ==== */
-    .lang-switch {
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ====== VIDEO DE FONDO GLOBAL ====== */
+    .site-bg {
       position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 10;
-      background: rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,215,130,0.5);
-      border-radius: 12px;
-      padding: 0.4rem 0.6rem;
+      inset: 0;
+      z-index: -3;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .site-bg video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.28) saturate(0.7);
+    }
+
+    /* overlay visual encima del video para que el texto sea legible */
+    .site-bg-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          circle at 40% 30%,
+          rgba(201,168,106,0.22) 0%,
+          rgba(0,0,0,0) 40%
+        ),
+        radial-gradient(
+          circle at 50% 60%,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0.78) 70%,
+          rgba(0,0,0,0.92) 100%
+        ),
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0.4) 60%,
+          rgba(0,0,0,0.9) 100%
+        );
+      mix-blend-mode: normal;
+    }
+
+    /* ====== HEADER FIJO (NAV) ====== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .brand-mini-logo {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(201,168,106,0.4));
+    }
+
+    .brand-mini-name {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-shadow: 0 0 16px rgba(201,168,106,0.4);
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .main-nav a {
+      font-size: .7rem;
+      font-weight: 500;
+      color: var(--text-main);
+      opacity: .8;
+      transition: opacity .15s, color .15s;
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    .lang-switch {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(201,168,106,0.5);
+      border-radius: var(--radius-card);
+      padding: .4rem .6rem;
       box-shadow:
         0 20px 40px rgba(0,0,0,.8),
-        0 0 20px rgba(255,215,130,.3);
-      backdrop-filter: blur(4px);
+        0 0 20px rgba(201,168,106,.25);
     }
+
     .lang-switch select {
       background: transparent;
       border: 0;
-      color: var(--gold-light);
-      font-size: 0.7rem;
+      color: var(--accent);
+      font-size: .7rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: .08em;
       text-transform: uppercase;
       outline: none;
       cursor: pointer;
     }
 
-    /* ==== VIDEO DE FONDO ==== */
-    #bgVideo {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -3;
-      background: #000;
-    }
-
-    /* fallback por si el video tarda */
-    .video-poster {
-      position: fixed;
-      inset: 0;
-      background: #000 url('assets/logo.png') center/120px no-repeat;
-      z-index: -4;
-    }
-
-    /* capa radial suave para contraste sobre el universo */
-    .overlay-gradient {
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(
-          circle at 50% 35%,
-          rgba(255,215,130,0.25) 0%,
-          rgba(0,0,0,0.0) 40%,
-          rgba(0,0,0,0.6) 75%,
-          rgba(0,0,0,0.8) 100%
-        ),
-        radial-gradient(
-          circle at 50% 10%,
-          rgba(120,0,255,0.22) 0%,
-          rgba(0,0,0,0) 60%
-        );
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    /* ==== PANTALLA PORTAL ==== */
-    .portal-screen {
+    /* ====== HERO PRINCIPAL ====== */
+    .hero {
       min-height: 100vh;
-      width: 100%;
-      padding: 2rem 1rem 4rem;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      align-items: flex-end;
+      padding-top: 6rem; /* espacio para header fijo */
     }
 
-    /* Logo y tagline SIN caja, transparente total */
-    .brand-block {
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-      backdrop-filter: none;
-      padding: 0;
-      max-width: 420px;
+    .hero-inner {
       width: 100%;
-      margin-bottom: 2rem;
-    }
-
-    .brand-logo {
-      width: 180px;
-      height: auto;
-      display: block;
-      margin: 0 auto 0.75rem auto;
-      user-select: none;
-      filter:
-        drop-shadow(0 0 20px rgba(255,215,130,0.45))
-        drop-shadow(0 0 60px rgba(255,215,130,0.2));
-    }
-
-    .brand-name {
-      color: var(--gold-light);
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-shadow:
-        0 0 16px rgba(255,215,130,0.5),
-        0 0 32px rgba(255,215,130,0.3);
-    }
-
-    .brand-tagline {
-      font-size: 0.8rem;
-      font-weight: 400;
-      line-height: 1.4rem;
-      color: var(--text-main);
-      text-shadow:
-        0 0 12px rgba(0,0,0,0.8),
-        0 0 24px rgba(0,0,0,0.8);
-    }
-
-    .instruction {
-      margin-top: 1rem;
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-shadow:
-        0 0 8px rgba(0,0,0,0.9),
-        0 0 20px rgba(0,0,0,0.9);
-    }
-
-    /* ==== GRID DE PUERTAS ==== */
-    .portal-options-wrapper {
-      max-width: 900px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      background: transparent;
-    }
-
-    .portal-options {
-      display: grid;
-      grid-template-columns: repeat(2,minmax(240px,1fr));
-      gap: 1rem;
-      width: 100%;
-      max-width: 700px;
-    }
-
-    @media (max-width: 580px) {
-      .portal-options {
-        grid-template-columns: 1fr;
-        max-width: 360px;
-      }
-    }
-
-    .portal-btn {
-      background: linear-gradient(
-        90deg,
-        var(--gold-light) 0%,
-        var(--gold-mid) 50%,
-        var(--gold-light) 100%
-      );
-      border: 1px solid rgba(255,215,130,0.6);
-      border-radius: var(--radius-pill);
-      color: #1a1a1a;
-      box-shadow:
-        0 30px 100px rgba(0,0,0,0.9),
-        0 0 60px rgba(255,215,130,0.4),
-        inset 0 0 20px rgba(255,255,255,0.4);
-      padding: 1rem 1.5rem;
-      cursor: pointer;
-      transition: all .15s ease;
-      text-align: center;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .portal-btn:hover {
-      box-shadow:
-        0 40px 120px rgba(0,0,0,1),
-        0 0 80px rgba(255,215,130,0.6),
-        inset 0 0 28px rgba(255,255,255,0.55);
-      transform: translateY(-1px);
-    }
-
-    .portal-title {
-      font-size: 0.8rem;
-      line-height: 1.2rem;
-      font-weight: 600;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-    }
-
-    .portal-sub {
-      font-size: 0.7rem;
-      line-height: 1rem;
-      font-weight: 400;
-      color: #2b2b2b;
-    }
-
-    /* ==== BLOQUE CEO / AUTOR AMAZON ==== */
-    .cred-block {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 1rem;
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,215,130,0.4);
-      border-radius: var(--radius-card);
-      padding: 1rem 1.2rem 1rem;
-      max-width: 700px;
-      width: 100%;
-      box-shadow:
-        0 30px 100px rgba(0,0,0,.9),
-        0 0 50px rgba(255,215,130,.3);
-      text-align: left;
-    }
-    @media(max-width:600px){
-      .cred-block { flex-direction: column; }
-    }
-    .ceo-pic {
-      width: 90px;
-      height: 90px;
-      border-radius: 12px;
-      object-fit: cover;
-      background: #000;
-      border: 1px solid rgba(255,215,130,0.5);
-      box-shadow:
-        0 0 30px rgba(255,215,130,.4),
-        0 0 60px rgba(255,215,130,.1);
-      flex-shrink: 0;
-    }
-    .cred-text {
-      flex: 1;
-      min-width: 0;
-    }
-    .ceo-name {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--gold-light);
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-    }
-    .ceo-role {
-      font-size: 0.8rem;
-      line-height: 1.2rem;
-      color: var(--text-main);
-      margin-top: 0.25rem;
-    }
-    .ceo-books {
-      font-size: 0.75rem;
-      line-height: 1.2rem;
-      color: var(--text-dim);
-      margin-top: 0.5rem;
-    }
-    .ceo-bookslist-title {
-      font-size: 0.7rem;
-      color: var(--gold-light);
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-top: 0.75rem;
-    }
-    .book-list {
-      font-size: 0.75rem;
-      line-height: 1.2rem;
-      color: var(--text-main);
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-      margin-top: 0.4rem;
-    }
-    .book-item {
-      background: rgba(255,215,130,0.07);
-      border: 1px solid rgba(255,215,130,0.4);
-      border-radius: 12px;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: var(--gold-light);
-      width: max-content;
-      max-width: 100%;
-      box-shadow: 0 0 20px rgba(255,215,130,0.3);
-    }
-
-    /* ==== SECCIONES INTERNAS ==== */
-    .section-view {
-      display: none; /* JS la hace visible */
-      min-height: 100vh;
-      width: 100%;
-      padding: 5rem 1rem 4rem;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(6px);
-    }
-
-    .section-inner {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
-      background: rgba(15,15,20,0.6);
-      border: 1px solid var(--panel-border);
-      border-radius: var(--radius-card);
-      padding: 2rem 1.5rem 3rem;
-      box-shadow:
-        var(--shadow-deep),
-        0 0 60px rgba(255,215,130,0.25);
-    }
-
-    @media (min-width: 768px) {
-      .section-inner {
-        padding: 3rem 3rem 4rem;
-      }
-    }
-
-    .back-link {
-      display: inline-block;
-      font-size: 0.8rem;
-      text-decoration: none;
-      color: var(--gold-light);
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-      letter-spacing: 0.07em;
-    }
-
-    .unit-eyebrow {
-      font-size: 0.7rem;
-      color: var(--gold-light);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .unit-headline {
-      font-size: clamp(1.2rem, 0.6vw + 1rem, 1.5rem);
-      font-weight: 600;
-      color: var(--text-main);
-      line-height: 1.3em;
-      max-width: 780px;
-    }
-    .unit-headline span {
-      color: var(--gold-light);
-    }
-
-    .unit-body {
-      margin-top: 1rem;
-      color: var(--text-dim);
-      font-size: 0.9rem;
-      line-height: 1.5rem;
-      max-width: 780px;
-    }
-
-    /* sub-bloques */
-    .subgrid {
-      margin-top: 2rem;
+      padding: 2rem 1.25rem 4rem;
       display: grid;
-      gap: 1rem;
+      grid-template-columns: 1fr;
+      row-gap: 2rem;
     }
 
-    @media (min-width: 640px) {
-      .subgrid {
-        grid-template-columns: repeat(2,1fr);
+    @media(min-width:900px){
+      .hero-inner {
+        grid-template-columns: minmax(0,600px) minmax(0,1fr);
+        column-gap: 3rem;
+        align-items: end;
       }
     }
 
-    .subcard {
-      background: rgba(20,20,30,0.65);
-      border: 1px solid rgba(255,215,130,0.2);
-      border-radius: var(--radius-card);
-      padding: 1rem 1rem 1.2rem;
-      box-shadow:
-        0 20px 60px rgba(0,0,0,0.8),
-        0 0 40px rgba(255,215,130,0.18);
-    }
-
-    .subcard h3 {
-      margin: 0 0 0.4rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--gold-light);
-      letter-spacing: 0.07em;
+    .hero-copy .eyebrow {
+      font-family: "Cormorant Garamond", serif;
+      font-size: .8rem;
+      line-height: 1.2rem;
+      letter-spacing: .08em;
       text-transform: uppercase;
+      color: var(--accent);
+      text-shadow: 0 0 16px rgba(201,168,106,0.4);
+      font-weight: 500;
+      margin-bottom: .5rem;
     }
 
-    .subcard p {
-      margin: 0;
+    .hero-copy h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.6rem, 1vw + 1rem, 2.1rem);
+      line-height: 1.2;
+      font-weight: 500;
       color: var(--text-main);
-      font-size: 0.8rem;
-      line-height: 1.3rem;
-      font-weight: 400;
-    }
-
-    /* CTA / Pago / Contacto */
-    .cta-block {
-      margin-top: 2rem;
-      background: rgba(255,215,130,0.07);
-      border: 1px solid rgba(255,215,130,0.4);
-      border-radius: var(--radius-card);
-      padding: 1rem 1.2rem 1.5rem;
-      max-width: 780px;
-      box-shadow:
-        0 30px 80px rgba(0,0,0,0.9),
-        0 0 50px rgba(255,215,130,0.3);
-    }
-
-    .cta-block h4 {
-      margin: 0 0 0.6rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--gold-light);
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-    }
-
-    .cta-block p {
-      margin: 0 0 1rem;
-      color: var(--text-main);
-      font-size: 0.9rem;
-      line-height: 1.4rem;
-    }
-
-    .payment-block {
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,215,130,0.25);
-      border-radius: var(--radius-card);
-      padding: 0.8rem 1rem 1rem;
+      text-shadow: 0 20px 60px rgba(0,0,0,0.9);
       margin-bottom: 1rem;
     }
 
-    .payment-block-title {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--gold-light);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.4rem;
+    .hero-copy .sub {
+      font-size: .9rem;
+      line-height: 1.45rem;
+      color: var(--text-dim);
+      max-width: 520px;
+      text-shadow: 0 20px 60px rgba(0,0,0,0.9);
+      margin-bottom: 1.5rem;
     }
 
-    .payment-methods {
-      font-size: 0.8rem;
-      line-height: 1.4rem;
-      color: var(--text-main);
-    }
-
-    .cta-actions a {
+    .cta-main {
       display: inline-block;
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      border-radius: 12px;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--gold-light);
-      background-color: var(--gold-light);
-      color: #1a1a1a;
-      box-shadow: 0 0 20px rgba(255,215,130,0.5);
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
+      border-radius: var(--radius-round);
+      padding: .75rem 1rem;
+      font-size: .75rem;
+      font-weight: 500;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-card);
+      color: var(--text-main);
+      backdrop-filter: blur(4px);
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.9),
+        0 0 40px rgba(201,168,106,.25);
+      white-space: nowrap;
     }
 
-    .legal-note {
-      margin-top: 0.8rem;
-      font-size: 0.7rem;
-      line-height: 1.2rem;
+    .cta-main:hover {
+      background: rgba(201,168,106,0.08);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* trust / acceso directo */
+    .hero-side {
+      max-width: 360px;
+      width: 100%;
+      justify-self: start;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-card);
+      padding: 1rem 1rem 1.2rem;
+      box-shadow:
+        var(--shadow-deep),
+        0 0 60px rgba(201,168,106,0.2);
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-side-title {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+
+    .hero-side-body {
+      font-size: .75rem;
+      line-height: 1.3rem;
+      color: var(--text-main);
+      opacity: .9;
+      margin-bottom: 1rem;
+    }
+
+    .hero-side-pay {
+      font-size: .7rem;
+      line-height: 1.3rem;
       color: var(--text-dim);
     }
 
+    .hero-side-cta {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .contact-pill {
+      display: inline-block;
+      border-radius: var(--radius-round);
+      border: 1px solid var(--border-card);
+      padding: .6rem .8rem;
+      font-size: .7rem;
+      line-height: 1rem;
+      font-weight: 500;
+      color: var(--text-main);
+      background: rgba(0,0,0,0.2);
+      box-shadow:
+        0 20px 40px rgba(0,0,0,.9),
+        0 0 20px rgba(201,168,106,.2);
+    }
+
+    .contact-pill:hover {
+      background: rgba(201,168,106,0.08);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ====== BLOQUES DE SERVICIO ====== */
+    section.service-block {
+      position: relative;
+      padding: 4rem 1.25rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    section.service-block:first-of-type {
+      margin-top: 2rem;
+    }
+
+    .service-head {
+      max-width: 720px;
+      margin-bottom: 2rem;
+    }
+
+    .service-eyebrow {
+      font-family: "Cormorant Garamond", serif;
+      font-size: .8rem;
+      line-height: 1.2rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      text-shadow: 0 0 16px rgba(201,168,106,0.4);
+      margin-bottom: .5rem;
+    }
+
+    .service-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.2rem, .5vw + 1rem, 1.5rem);
+      line-height: 1.3;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      text-shadow: 0 20px 60px rgba(0,0,0,.9);
+    }
+
+    .service-body {
+      font-size: .9rem;
+      line-height: 1.45rem;
+      color: var(--text-dim);
+      text-shadow: 0 20px 60px rgba(0,0,0,.9);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+      max-width: 900px;
+    }
+
+    @media(min-width:700px){
+      .service-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .service-card {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-card);
+      padding: 1rem 1rem 1.25rem;
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.9),
+        0 0 40px rgba(201,168,106,0.18);
+      backdrop-filter: blur(4px);
+    }
+
+    .service-card h3 {
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin-bottom: .4rem;
+    }
+
+    .service-card p {
+      font-size: .8rem;
+      line-height: 1.3rem;
+      color: var(--text-main);
+      opacity: .9;
+    }
+
+    /* ====== SECCIÓN CONTACTO / CREDIBILIDAD ====== */
+    .contact-block {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 1.25rem 6rem;
+      border-top: 1px solid var(--border-soft);
+      display: grid;
+      grid-template-columns: 1fr;
+      row-gap: 2rem;
+    }
+
+    @media(min-width:900px){
+      .contact-block {
+        grid-template-columns: minmax(0,400px) minmax(0,1fr);
+        column-gap: 3rem;
+      }
+    }
+
+    .contact-left {
+      max-width: 400px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-card);
+      box-shadow:
+        var(--shadow-deep),
+        0 0 60px rgba(201,168,106,0.2);
+      backdrop-filter: blur(4px);
+      padding: 1.25rem 1.25rem 1.5rem;
+    }
+
+    .contact-eyebrow {
+      font-family: "Cormorant Garamond", serif;
+      font-size: .8rem;
+      line-height: 1.2rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      text-shadow: 0 0 16px rgba(201,168,106,0.4);
+      margin-bottom: .5rem;
+    }
+
+    .contact-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.2rem, .5vw + 1rem, 1.4rem);
+      line-height: 1.3;
+      color: var(--text-main);
+      font-weight: 500;
+      text-shadow: 0 20px 60px rgba(0,0,0,0.9);
+      margin-bottom: .75rem;
+    }
+
+    .ceo-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      margin-bottom: 1rem;
+    }
+
+    .ceo-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      border: 1px solid var(--border-card);
+      object-fit: cover;
+      background: #000;
+      box-shadow:
+        0 0 30px rgba(201,168,106,.4),
+        0 0 60px rgba(201,168,106,.1);
+      flex-shrink: 0;
+    }
+
+    .ceo-text {
+      font-size: .75rem;
+      line-height: 1.2rem;
+      color: var(--text-main);
+    }
+
+    .ceo-name {
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: .03em;
+      margin-bottom: .2rem;
+    }
+
+    .ceo-role {
+      color: var(--text-main);
+      opacity: .8;
+      margin-bottom: .4rem;
+      font-size: .75rem;
+      line-height: 1.2rem;
+    }
+
+    .ceo-desc {
+      color: var(--text-dim);
+      font-size: .7rem;
+      line-height: 1.2rem;
+    }
+
+    .dl-group-title {
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 1.25rem;
+      margin-bottom: .5rem;
+    }
+
+    .dl-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .dl-pill {
+      display: inline-block;
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-round);
+      padding: .5rem .75rem;
+      font-size: .7rem;
+      line-height: 1rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(0,0,0,0.2);
+      box-shadow:
+        0 20px 40px rgba(0,0,0,0.9),
+        0 0 20px rgba(201,168,106,0.25);
+    }
+
+    .dl-pill:hover {
+      background: rgba(201,168,106,0.08);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .contact-bottom-note {
+      font-size: .7rem;
+      line-height: 1.2rem;
+      color: var(--text-dim);
+      margin-top: 1.25rem;
+    }
+
+    .contact-right {
+      max-width: 700px;
+      color: var(--text-main);
+    }
+
+    .contact-body {
+      font-size: .8rem;
+      line-height: 1.4rem;
+      color: var(--text-dim);
+      text-shadow: 0 20px 60px rgba(0,0,0,0.9);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .contact-cta-pill {
+      display: inline-block;
+      border-radius: var(--radius-round);
+      border: 1px solid var(--border-card);
+      padding: .6rem .8rem;
+      font-size: .7rem;
+      line-height: 1rem;
+      font-weight: 500;
+      color: var(--text-main);
+      background: rgba(0,0,0,0.2);
+      box-shadow:
+        0 20px 40px rgba(0,0,0,.9),
+        0 0 20px rgba(201,168,106,.2);
+    }
+
+    .contact-cta-pill:hover {
+      background: rgba(201,168,106,0.08);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ====== FOOTER FINAL ====== */
     footer.footer {
+      border-top: 1px solid var(--border-soft);
       text-align: center;
-      padding: 2rem 1rem 4rem;
-      font-size: 0.7rem;
+      padding: 3rem 1rem 4rem;
+      font-size: .7rem;
+      line-height: 1.2rem;
       color: var(--text-dim);
       text-shadow:
         0 0 12px rgba(0,0,0,0.8),
@@ -517,984 +601,790 @@
     }
 
     footer.footer .powered {
-      color: var(--gold-light);
+      color: var(--accent);
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      margin-top: 0.5rem;
+      margin-top: .5rem;
       text-shadow:
-        0 0 16px rgba(255,215,130,0.5),
-        0 0 32px rgba(255,215,130,0.2);
-    }
-
-    /* helper */
-    .hidden {
-      display: none !important;
+        0 0 16px rgba(201,168,106,0.4),
+        0 0 32px rgba(201,168,106,0.2);
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Poster fallback -->
-  <div class="video-poster" aria-hidden="true"></div>
-
-  <!-- Video fondo universo Abraxas -->
-  <video id="bgVideo" autoplay muted loop playsinline>
-    <source src="assets/abraxas_hero.mp4" type="video/mp4" />
-  </video>
-
-  <div class="overlay-gradient"></div>
-
-  <!-- Selector de idioma -->
-  <div class="lang-switch">
-    <select id="langSelect">
-      <option value="es">ES</option>
-      <option value="en">EN</option>
-      <option value="ja">日本語</option>
-      <option value="zh">中文</option>
-      <option value="fr">FR</option>
-      <option value="pt">PT</option>
-    </select>
+  <!-- ====== FONDO VIDEO INMERSIVO ====== -->
+  <div class="site-bg">
+    <video id="bgVideo" autoplay muted loop playsinline preload="auto" poster="assets/logo.png">
+      <source src="assets/fondo.mp4" type="video/mp4" />
+    </video>
   </div>
+  <div class="site-bg-overlay"></div>
 
-  <!-- PORTAL INICIAL -->
-  <section id="portal" class="portal-screen">
-    <div class="brand-block">
-      <img src="assets/logo.png" alt="ABRAXAS GROUP" class="brand-logo" />
-      <div class="brand-name">ABRAXAS GROUP</div>
-      <div class="brand-tagline" data-i18n="brand.tagline"></div>
-      <div class="instruction" data-i18n="brand.choose"></div>
+  <!-- ====== HEADER / NAV ====== -->
+  <header class="site-header">
+    <div class="brand-mini">
+      <img src="assets/logo.png" alt="ABRAXAS GROUP" class="brand-mini-logo" />
+      <div class="brand-mini-name">ABRAXAS GROUP</div>
     </div>
 
-    <div class="portal-options-wrapper">
-      <div class="portal-options">
+    <nav class="main-nav">
+      <a href="#ia" data-i18n="nav.ia"></a>
+      <a href="#b2b" data-i18n="nav.b2b"></a>
+      <a href="#mentoria" data-i18n="nav.mentoria"></a>
+      <a href="#capital" data-i18n="nav.capital"></a>
+      <a href="#contacto" data-i18n="nav.contact"></a>
 
-        <button class="portal-btn" data-target="iaSection">
-          <div class="portal-title" data-i18n="door.ia.title"></div>
-          <div class="portal-sub" data-i18n="door.ia.sub"></div>
-        </button>
-
-        <button class="portal-btn" data-target="b2bSection">
-          <div class="portal-title" data-i18n="door.b2b.title"></div>
-          <div class="portal-sub" data-i18n="door.b2b.sub"></div>
-        </button>
-
-        <button class="portal-btn" data-target="mentoriaSection">
-          <div class="portal-title" data-i18n="door.mentoria.title"></div>
-          <div class="portal-sub" data-i18n="door.mentoria.sub"></div>
-        </button>
-
-        <button class="portal-btn" data-target="assetSection">
-          <div class="portal-title" data-i18n="door.asset.title"></div>
-          <div class="portal-sub" data-i18n="door.asset.sub"></div>
-        </button>
-
+      <div class="lang-switch">
+        <select id="langSelect">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+          <option value="ja">日本語</option>
+          <option value="zh">中文</option>
+          <option value="fr">FR</option>
+          <option value="pt">PT</option>
+        </select>
       </div>
+    </nav>
+  </header>
+
+  <!-- ====== HERO PRINCIPAL ====== -->
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="eyebrow">ABRAXAS GROUP</div>
+        <h1 data-i18n="hero.headline"></h1>
+        <p class="sub" data-i18n="hero.sub"></p>
+
+        <a class="cta-main" href="https://wa.me/5493417400299" data-i18n="hero.cta"></a>
+      </div>
+
+      <aside class="hero-side">
+        <div class="hero-side-title" data-i18n="trust.title"></div>
+        <div class="hero-side-body" data-i18n="trust.body"></div>
+        <div class="hero-side-pay" data-i18n="trust.pay"></div>
+
+        <div class="hero-side-cta">
+          <a class="contact-pill" href="https://wa.me/5493417400299" data-i18n="trust.whatsapp"></a>
+          <a class="contact-pill" href="mailto:o.chinchilla@abraxas-group.lat" data-i18n="trust.email"></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ====== SECCIÓN AGENCIA IA ====== -->
+  <section class="service-block" id="ia">
+    <div class="service-head">
+      <div class="service-eyebrow" data-i18n="ia.eyebrow"></div>
+      <div class="service-title" data-i18n="ia.title"></div>
+      <div class="service-body" data-i18n="ia.body"></div>
     </div>
 
-    <!-- BLOQUE CEO + LIBROS AMAZON -->
-    <div class="cred-block">
-      <img src="assets/fotoCEO.png" alt="CEO" class="ceo-pic" />
-      <div class="cred-text">
-        <div class="ceo-name" data-i18n="cred.ceoName"></div>
-        <div class="ceo-role" data-i18n="cred.ceoRole"></div>
-        <div class="ceo-books" data-i18n="cred.books"></div>
-        <div class="ceo-bookslist-title" data-i18n="cred.booksListTitle"></div>
-        <div class="book-list">
-          <div class="book-item" data-i18n="cred.book1"></div>
-          <div class="book-item" data-i18n="cred.book2"></div>
-        </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <h3 data-i18n="ia.card1.title"></h3>
+        <p data-i18n="ia.card1.desc"></p>
+      </div>
+      <div class="service-card">
+        <h3 data-i18n="ia.card2.title"></h3>
+        <p data-i18n="ia.card2.desc"></p>
+      </div>
+      <div class="service-card">
+        <h3 data-i18n="ia.card3.title"></h3>
+        <p data-i18n="ia.card3.desc"></p>
+      </div>
+      <div class="service-card">
+        <h3 data-i18n="ia.card4.title"></h3>
+        <p data-i18n="ia.card4.desc"></p>
       </div>
     </div>
   </section>
 
-  <!-- =========================== -->
-  <!-- SECCIÓN AGENCIA IA          -->
-  <!-- =========================== -->
-  <section id="iaSection" class="section-view">
-    <div class="section-inner">
-      <a href="#" class="back-link" data-back data-i18n="back.portal"></a>
+  <!-- ====== SECCIÓN B2B ====== -->
+  <section class="service-block" id="b2b">
+    <div class="service-head">
+      <div class="service-eyebrow" data-i18n="b2b.eyebrow"></div>
+      <div class="service-title" data-i18n="b2b.title"></div>
+      <div class="service-body" data-i18n="b2b.body"></div>
+    </div>
 
-      <div class="unit-eyebrow" data-i18n="ia.eyebrow"></div>
-      <div class="unit-headline" data-i18n="ia.headline"></div>
-      <div class="unit-body" data-i18n="ia.body"></div>
-
-      <div class="subgrid">
-        <div class="subcard">
-          <h3 data-i18n="ia.card1.title"></h3>
-          <p data-i18n="ia.card1.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="ia.card2.title"></h3>
-          <p data-i18n="ia.card2.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="ia.card3.title"></h3>
-          <p data-i18n="ia.card3.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="ia.card4.title"></h3>
-          <p data-i18n="ia.card4.desc"></p>
-        </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <h3 data-i18n="b2b.card1.title"></h3>
+        <p data-i18n="b2b.card1.desc"></p>
       </div>
-
-      <div class="cta-block">
-        <h4 data-i18n="ia.cta.title"></h4>
-        <p data-i18n="ia.cta.desc"></p>
-
-        <div class="payment-block">
-          <div class="payment-block-title" data-i18n="pay.title"></div>
-          <div class="payment-methods" data-i18n="pay.methods"></div>
-        </div>
-
-        <div class="cta-actions">
-          <a href="https://wa.me/5493417400299" data-i18n="ia.button"></a>
-          <a href="mailto:o.chinchilla@abraxas-group.lat" data-i18n="cta.email"></a>
-        </div>
-
-        <div class="legal-note" data-i18n="legal.ia"></div>
+      <div class="service-card">
+        <h3 data-i18n="b2b.card2.title"></h3>
+        <p data-i18n="b2b.card2.desc"></p>
+      </div>
+      <div class="service-card">
+        <h3 data-i18n="b2b.card3.title"></h3>
+        <p data-i18n="b2b.card3.desc"></p>
+      </div>
+      <div class="service-card">
+        <h3 data-i18n="b2b.card4.title"></h3>
+        <p data-i18n="b2b.card4.desc"></p>
       </div>
     </div>
   </section>
 
-  <!-- =========================== -->
-  <!-- SECCIÓN B2B                 -->
-  <!-- =========================== -->
-  <section id="b2bSection" class="section-view">
-    <div class="section-inner">
-      <a href="#" class="back-link" data-back data-i18n="back.portal"></a>
+  <!-- ====== SECCIÓN MENTORÍA PRIVADA ====== -->
+  <section class="service-block" id="mentoria">
+    <div class="service-head">
+      <div class="service-eyebrow" data-i18n="ment.eyebrow"></div>
+      <div class="service-title" data-i18n="ment.title"></div>
+      <div class="service-body" data-i18n="ment.body"></div>
+    </div>
 
-      <div class="unit-eyebrow" data-i18n="b2b.eyebrow"></div>
-      <div class="unit-headline" data-i18n="b2b.headline"></div>
-      <div class="unit-body" data-i18n="b2b.body"></div>
-
-      <div class="subgrid">
-        <div class="subcard">
-          <h3 data-i18n="b2b.card1.title"></h3>
-          <p data-i18n="b2b.card1.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="b2b.card2.title"></h3>
-          <p data-i18n="b2b.card2.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="b2b.card3.title"></h3>
-          <p data-i18n="b2b.card3.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="b2b.card4.title"></h3>
-          <p data-i18n="b2b.card4.desc"></p>
-        </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <h3 data-i18n="ment.card1.title"></h3>
+        <p data-i18n="ment.card1.desc"></p>
       </div>
-
-      <div class="cta-block">
-        <h4 data-i18n="b2b.cta.title"></h4>
-        <p data-i18n="b2b.cta.desc"></p>
-
-        <div class="payment-block">
-          <div class="payment-block-title" data-i18n="b2b.legalblock.title"></div>
-          <div class="payment-methods" data-i18n="b2b.legalblock.desc"></div>
-        </div>
-
-        <div class="cta-actions">
-          <a href="https://wa.me/5493417400299" data-i18n="b2b.button"></a>
-          <a href="mailto:o.chinchilla@abraxas-group.lat" data-i18n="cta.email"></a>
-        </div>
-
-        <div class="legal-note" data-i18n="b2b.legalnote"></div>
+      <div class="service-card">
+        <h3 data-i18n="ment.card2.title"></h3>
+        <p data-i18n="ment.card2.desc"></p>
+      </div>
+      <div class="service-card">
+        <h3 data-i18n="ment.card3.title"></h3>
+        <p data-i18n="ment.card3.desc"></p>
+      </div>
+      <div class="service-card">
+        <h3 data-i18n="ment.card4.title"></h3>
+        <p data-i18n="ment.card4.desc"></p>
       </div>
     </div>
   </section>
 
-  <!-- =========================== -->
-  <!-- SECCIÓN MENTORÍA            -->
-  <!-- =========================== -->
-  <section id="mentoriaSection" class="section-view">
-    <div class="section-inner">
-      <a href="#" class="back-link" data-back data-i18n="back.portal"></a>
+  <!-- ====== SECCIÓN CAPITAL / ASSET ====== -->
+  <section class="service-block" id="capital">
+    <div class="service-head">
+      <div class="service-eyebrow" data-i18n="cap.eyebrow"></div>
+      <div class="service-title" data-i18n="cap.title"></div>
+      <div class="service-body" data-i18n="cap.body"></div>
+    </div>
 
-      <div class="unit-eyebrow" data-i18n="ment.eyebrow"></div>
-      <div class="unit-headline" data-i18n="ment.headline"></div>
-      <div class="unit-body" data-i18n="ment.body"></div>
-
-      <div class="subgrid">
-        <div class="subcard">
-          <h3 data-i18n="ment.card1.title"></h3>
-          <p data-i18n="ment.card1.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="ment.card2.title"></h3>
-          <p data-i18n="ment.card2.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="ment.card3.title"></h3>
-          <p data-i18n="ment.card3.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="ment.card4.title"></h3>
-          <p data-i18n="ment.card4.desc"></p>
-        </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <h3 data-i18n="cap.card1.title"></h3>
+        <p data-i18n="cap.card1.desc"></p>
       </div>
-
-      <div class="cta-block">
-        <h4 data-i18n="ment.cta.title"></h4>
-        <p data-i18n="ment.cta.desc"></p>
-
-        <div class="payment-block">
-          <div class="payment-block-title" data-i18n="ment.payment.title"></div>
-          <div class="payment-methods" data-i18n="ment.payment.methods"></div>
-        </div>
-
-        <div class="cta-actions">
-          <a href="https://wa.me/5493417400299" data-i18n="ment.button"></a>
-          <a href="mailto:o.chinchilla@abraxas-group.lat" data-i18n="cta.email"></a>
-        </div>
-
-        <div class="legal-note" data-i18n="ment.legalnote"></div>
+      <div class="service-card">
+        <h3 data-i18n="cap.card2.title"></h3>
+        <p data-i18n="cap.card2.desc"></p>
+      </div>
+      <div class="service-card">
+        <h3 data-i18n="cap.card3.title"></h3>
+        <p data-i18n="cap.card3.desc"></p>
+      </div>
+      <div class="service-card">
+        <h3 data-i18n="cap.card4.title"></h3>
+        <p data-i18n="cap.card4.desc"></p>
       </div>
     </div>
   </section>
 
-  <!-- =========================== -->
-  <!-- SECCIÓN ASSET / INVESTMENT  -->
-  <!-- =========================== -->
-  <section id="assetSection" class="section-view">
-    <div class="section-inner">
-      <a href="#" class="back-link" data-back data-i18n="back.portal"></a>
+  <!-- ====== CONTACTO / AUTORIDAD / DESCARGAS ====== -->
+  <section class="contact-block" id="contacto">
+    <div class="contact-left">
+      <div class="contact-eyebrow" data-i18n="contact.eyebrow"></div>
+      <div class="contact-title" data-i18n="contact.title"></div>
 
-      <div class="unit-eyebrow" data-i18n="asset.eyebrow"></div>
-      <div class="unit-headline" data-i18n="asset.headline"></div>
-      <div class="unit-body" data-i18n="asset.body"></div>
-
-      <div class="subgrid">
-        <div class="subcard">
-          <h3 data-i18n="asset.card1.title"></h3>
-          <p data-i18n="asset.card1.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="asset.card2.title"></h3>
-          <p data-i18n="asset.card2.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="asset.card3.title"></h3>
-          <p data-i18n="asset.card3.desc"></p>
-        </div>
-        <div class="subcard">
-          <h3 data-i18n="asset.card4.title"></h3>
-          <p data-i18n="asset.card4.desc"></p>
+      <div class="ceo-row">
+        <img src="assets/fotoCEO.png" class="ceo-avatar" data-i18n-alt="contact.photoAlt" alt="CEO" />
+        <div class="ceo-text">
+          <div class="ceo-name">Osqui Chinchilla</div>
+          <div class="ceo-role" data-i18n="contact.role"></div>
+          <div class="ceo-desc" data-i18n="contact.body"></div>
         </div>
       </div>
 
-      <div class="cta-block">
-        <h4 data-i18n="asset.cta.title"></h4>
-        <p data-i18n="asset.cta.desc"></p>
-
-        <div class="payment-block">
-          <div class="payment-block-title" data-i18n="asset.legalblock.title"></div>
-          <div class="payment-methods" data-i18n="asset.legalblock.desc"></div>
+      <div class="dl-group">
+        <div class="dl-group-title" data-i18n="contact.booksTitle"></div>
+        <div class="dl-list">
+          <a class="dl-pill" href="assets/lead-magnet-es.pdf" target="_blank" rel="noopener noreferrer" data-i18n="contact.bookES"></a>
+          <a class="dl-pill" href="assets/lead-magnet-en.pdf" target="_blank" rel="noopener noreferrer" data-i18n="contact.bookEN"></a>
         </div>
+      </div>
 
-        <div class="cta-actions">
-          <a href="https://wa.me/5493417400299" data-i18n="asset.button"></a>
-          <a href="mailto:o.chinchilla@abraxas-group.lat" data-i18n="cta.email"></a>
+      <div class="dl-group">
+        <div class="dl-group-title" data-i18n="contact.brochureTitle"></div>
+        <div class="dl-list">
+          <a class="dl-pill" href="assets/brochure-es.pdf" target="_blank" rel="noopener noreferrer" data-i18n="contact.brochureES"></a>
+          <a class="dl-pill" href="assets/brochure-en.pdf" target="_blank" rel="noopener noreferrer" data-i18n="contact.brochureEN"></a>
         </div>
+      </div>
 
-        <div class="legal-note" data-i18n="asset.legalnote"></div>
+      <div class="contact-bottom-note" data-i18n="contact.note"></div>
+    </div>
+
+    <div class="contact-right">
+      <div class="contact-body" data-i18n="trust.body"></div>
+      <div class="contact-body" data-i18n="trust.pay"></div>
+
+      <div class="contact-cta-row">
+        <a class="contact-cta-pill" href="https://wa.me/5493417400299" data-i18n="contact.whatsapp"></a>
+        <a class="contact-cta-pill" href="mailto:o.chinchilla@abraxas-group.lat" data-i18n="contact.email"></a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ====== FOOTER ====== -->
   <footer class="footer">
     <div data-i18n="footer.line1"></div>
     <div data-i18n="footer.line2"></div>
     <div class="powered" data-i18n="footer.line3"></div>
   </footer>
 
-  <!-- JS -->
+  <!-- ====== JS ====== -->
   <script>
-    // --- Navegación entre puertas y secciones ---
-    const portalEl = document.getElementById('portal');
-    const sections = {
-      iaSection: document.getElementById('iaSection'),
-      b2bSection: document.getElementById('b2bSection'),
-      mentoriaSection: document.getElementById('mentoriaSection'),
-      assetSection: document.getElementById('assetSection'),
-    };
-
-    function openSection(id) {
-      portalEl.classList.add('hidden');
-      Object.values(sections).forEach(sec => sec.style.display = 'none');
-      sections[id].style.display = 'block';
-      document.body.style.overflowY = 'auto';
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
-
-    function backToPortal() {
-      Object.values(sections).forEach(sec => sec.style.display = 'none');
-      portalEl.classList.remove('hidden');
-      document.body.style.overflowY = 'hidden';
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
-
-    document.querySelectorAll('.portal-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-target');
-        if (target && sections[target]) openSection(target);
-      });
-    });
-
-    document.querySelectorAll('[data-back]').forEach(back => {
-      back.addEventListener('click', e => {
-        e.preventDefault();
-        backToPortal();
-      });
-    });
-
-    // --- Video autoplay fallback en iOS/Safari ---
+    // Autoplay fallback para iOS / Safari
     const vid = document.getElementById('bgVideo');
     (async () => {
       try { await vid.play(); }
       catch(e) {
+        window.addEventListener('touchstart', () => vid.play(), { once: true });
         window.addEventListener('click', () => vid.play(), { once: true });
       }
     })();
 
-    // --- TRADUCCIONES ---
+    // Traducciones
     const translations = {
       es: {
-        "brand.tagline": `Luz y sombra. Estrategia y ejecución.`,
-        "brand.choose": `Elegí tu puerta`,
+        "nav.ia": "Agencia IA",
+        "nav.b2b": "B2B",
+        "nav.mentoria": "Mentoría Privada",
+        "nav.capital": "Capital",
+        "nav.contact": "Contacto",
 
-        "door.ia.title": `Agencia IA`,
-        "door.ia.sub": `Marca, web, automatización y autoridad.`,
-        "door.b2b.title": `B2B · Oil & Gas · Minería · Supply Chain`,
-        "door.b2b.sub": `Sólo contrapartes verificadas.`,
-        "door.mentoria.title": `Mentorías 1:1`,
-        "door.mentoria.sub": `Te ordeno para cobrar mejor.`,
-        "door.asset.title": `Investment · Asset · Portfolio`,
-        "door.asset.sub": `Capital real en activos reales.`,
+        "hero.headline": "Reputación ejecutiva. Acceso reservado. Operaciones reales.",
+        "hero.sub": "Posicionamos, estructuramos y abrimos puertas donde la mayoría ni puede sentarse. Sin marketing barato. Sin promesas vacías.",
+        "hero.cta": "Solicitar evaluación privada",
 
-        "cred.ceoName": `Osqui Chinchilla`,
-        "cred.ceoRole": `Fundador y CEO de Abraxas Group`,
-        "cred.books": `Autor publicado en Amazon. Operación, estrategia y ejecución en mercados reales.`,
-        "cred.booksListTitle": `Publicaciones en Amazon:`,
-        "cred.book1": `Libro 1`,
-        "cred.book2": `Libro 2`,
+        "trust.title": "Confidencial · Acceso directo",
+        "trust.body": "Sin SDRs. Sin formularios masivos. Hablás directo para ver si tiene sentido trabajar juntos.",
+        "trust.pay": "Pago disponible: USDT · Payoneer USD · Mercado Pago ARS · Brubank ARS",
+        "trust.whatsapp": "WhatsApp Directo",
+        "trust.email": "Mail Directo",
 
-        "back.portal": `← Volver al Portal`,
+        "ia.eyebrow": "AGENCIA IA",
+        "ia.title": "Autoridad inmediata y canal comercial listo para cobrar.",
+        "ia.body": "Te paramos como oferta premium, con presencia creíble y una vía directa de entrada de deals.",
+        "ia.card1.title": "Posicionamiento",
+        "ia.card1.desc": "Tu narrativa deja de sonar a 'freelancer' y pasa a sonar a 'asesoría seria'.",
+        "ia.card2.title": "Infra Marca & Sitio",
+        "ia.card2.desc": "Identidad visual y web institucional sobria, enviable a un decisor sin vergüenza.",
+        "ia.card3.title": "Automatización Comercial",
+        "ia.card3.desc": "WhatsApp / n8n: captura, responde y empuja la conversación sin que vos persigas.",
+        "ia.card4.title": "Perfil Corporativo",
+        "ia.card4.desc": "Documento PDF corporativo que valida solvencia y seriedad en el primer contacto.",
 
-        "ia.eyebrow": `AGENCIA IA`,
-        "ia.headline": `Construimos tu presencia <span>lista para cobrar</span>: marca, sitio, automatización comercial y autoridad LinkedIn.`,
-        "ia.body": `No hacemos “página linda”. Te posicionamos como oferta premium y te generamos llamadas serias.`,
-        "ia.card1.title": `Brand & Landing Express`,
-        "ia.card1.desc": `Identidad visual, titular que vende en 5 segundos y landing responsive lista para cerrar clientes.`,
-        "ia.card2.title": `Automatización WhatsApp / n8n`,
-        "ia.card2.desc": `Captura el lead, responde automático y sigue el deal sin que vos persigas a nadie.`,
-        "ia.card3.title": `Autoridad LinkedIn`,
-        "ia.card3.desc": `Te paro como ‘el que resuelve el problema caro’, no ‘otro proveedor barato’.`,
-        "ia.card4.title": `Infra seria`,
-        "ia.card4.desc": `Mail corporativo, sitio institucional, perfil corporativo PDF listo para mandar.`,
-        "ia.cta.title": `Quiero esto`,
-        "ia.cta.desc": `Decime qué vendés y dónde cobrás. Yo te devuelvo estructura lista para facturar.`,
+        "b2b.eyebrow": "B2B · OIL & GAS · MINERÍA · SUPPLY CHAIN",
+        "b2b.title": "Operaciones físicas entre contrapartes verificadas.",
+        "b2b.body": "Combustibles refinados (EN590, Jet A1, D6). Minerales críticos (litio, cobre, manganeso, hierro). Acero industrial real LATAM.",
+        "b2b.card1.title": "Oil & Gas",
+        "b2b.card1.desc": "Procesos C.I.F / F.O.B claros. NDA, ICPO, logística trazable.",
+        "b2b.card2.title": "Minería",
+        "b2b.card2.desc": "Acceso directo a titularidad real en litio, cobre, manganeso, hierro.",
+        "b2b.card3.title": "Acero / Tubular",
+        "b2b.card3.desc": "Pipe industrial, OCTG, scrap pesado. Stock físico, no PPT.",
+        "b2b.card4.title": "Cadena LATAM",
+        "b2b.card4.desc": "Producto que existe y se mueve. Nada de humo comercial.",
 
-        "pay.title": `Métodos de pago`,
-        "pay.methods": `• USDT (cripto estable)<br>• USD vía Payoneer<br>• Mercado Pago (ARS)<br>• Brubank (ARS)`,
+        "ment.eyebrow": "MENTORÍA PRIVADA 1:1",
+        "ment.title": "Te ordeno la oferta, el precio y el discurso para que cobres como asesor, no como proveedor.",
+        "ment.body": "Esto es estructura comercial. Salís con propuesta en USD, pitch serio y pipeline controlable.",
+        "ment.card1.title": "Oferta en USD",
+        "ment.card1.desc": "Definimos exactamente qué vendés y por cuánto, en lenguaje que un decisor entiende.",
+        "ment.card2.title": "Autoridad Pública",
+        "ment.card2.desc": "LinkedIn que posiciona poder, no necesidad.",
+        "ment.card3.title": "Pipeline Controlado",
+        "ment.card3.desc": "Secuencia de avance hasta cierre sin rogar.",
+        "ment.card4.title": "Ruta 5K/mes",
+        "ment.card4.desc": "Estrategia para ~5.000 USD/mes sin quemarte y sin circo motivacional.",
 
-        "ia.button": `WhatsApp Directo`,
-        "cta.email": `Mail Directo`,
-        "legal.ia": `Sólo proyectos reales.`,
+        "cap.eyebrow": "CAPITAL · ASSET · PORTFOLIO",
+        "cap.title": "Acceso privado a activos reales y flujo recurrente.",
+        "cap.body": "Deal flow en minería, combustibles y acero. Sólo capital listo con KYC/NDA. No retail.",
+        "cap.card1.title": "Capital Deployment",
+        "cap.card1.desc": "Entrada en flujo operativo real, no pitch deck.",
+        "cap.card2.title": "Activos Mineros",
+        "cap.card2.desc": "Litio, cobre, manganeso, hierro. Puerta directa bajo NDA.",
+        "cap.card3.title": "Flujo Recurrente",
+        "cap.card3.desc": "Trading estructurado con logística LATAM clara.",
+        "cap.card4.title": "Gobernanza",
+        "cap.card4.desc": "Jurisdicción clara y contraparte trazable. Compliance ejecutable.",
 
-        "b2b.eyebrow": `B2B · OIL & GAS · MINERÍA · SUPPLY CHAIN`,
-        "b2b.headline": `Trading real entre partes verificadas. <span>Sin turistas.</span>`,
-        "b2b.body": `Combustibles refinados (EN590, Jet A1, D6). Metales críticos (litio, cobre, manganeso, mineral de hierro). Acero industrial y excedentes de obra listos para mover.`,
-        "b2b.card1.title": `Oil & Gas`,
-        "b2b.card1.desc": `Procedimientos C.I.F / F.O.B no negociables. ICPO, NDA y logística clara.`,
-        "b2b.card2.title": `Minería & Metales Críticos`,
-        "b2b.card2.desc": `Litio, cobre, manganeso, hierro. Acceso directo a titularidad real.`,
-        "b2b.card3.title": `Acero Industrial`,
-        "b2b.card3.desc": `Caños estructurales, OCTG, scrap pesado. Stock físico LATAM.`,
-        "b2b.card4.title": `Supply Chain LATAM`,
-        "b2b.card4.desc": `Comprás producto físico, no un PowerPoint.`,
-        "b2b.cta.title": `Próximo paso`,
-        "b2b.cta.desc": `Si sos comprador/vendedor serio: volumen, destino, modalidad (C.I.F o F.O.B) y prueba de capacidad.`,
-        "b2b.legalblock.title": `Nota legal`,
-        "b2b.legalblock.desc": `Operamos B2B bajo NDA y jurisdicción internacional ejecutable. No enviamos POP / refinery docs sin ICPO/LOI + NDA.`,
-        "b2b.button": `Soy Parte Verificada`,
-        "b2b.legalnote": `Sólo tratamos con contrapartes verificadas.`,
+        "contact.eyebrow": "Contacto & Credenciales",
+        "contact.title": "Acceso restringido.",
+        "contact.body": "Operamos en Oil & Gas, Minería, Supply Chain y posicionamiento de oferta premium.",
+        "contact.role": "Fundador y CEO · Abraxas Group",
+        "contact.booksTitle": "Playbooks internos:",
+        "contact.bookES": "Playbook Comercial (ES)",
+        "contact.bookEN": "Commercial Playbook (EN)",
+        "contact.brochureTitle": "Perfil corporativo / Brochure:",
+        "contact.brochureES": "Brochure Corporativo (ES)",
+        "contact.brochureEN": "Corporate Brochure (EN)",
+        "contact.note": "El acceso a deal flow, asesoramiento 1:1 o supply físico requiere KYC/NDA y validación de capacidad.",
+        "contact.whatsapp": "WhatsApp Directo",
+        "contact.email": "Mail Directo",
+        "contact.photoAlt": "Contacto Abraxas / Dirección",
 
-        "ment.eyebrow": `MENTORÍA 1:1`,
-        "ment.headline": `Te ordeno la oferta, el precio y el pitch en LinkedIn para que empieces a cobrar mejor.`,
-        "ment.body": `Esto es ejecución, no teoría. Salís con una propuesta clara en USD lista para vender.`,
-        "ment.card1.title": `Perfil LinkedIn Deal-Ready`,
-        "ment.card1.desc": `Headline 5s: problema caro + solución + resultado real. Posicionamiento autoridad.`,
-        "ment.card2.title": `Oferta en USD`,
-        "ment.card2.desc": `Convertimos tu servicio en producto premium claro. Sin regalar horas.`,
-        "ment.card3.title": `Pipeline Simple`,
-        "ment.card3.desc": `Proceso para mover cada lead hasta cierre sin rogar.`,
-        "ment.card4.title": `Ruta 5K/mes`,
-        "ment.card4.desc": `Plan para ~5.000 USD/mes sin quemarte.`,
-        "ment.cta.title": `Quiero la sesión`,
-        "ment.cta.desc": `Decime qué vendés y cuánto facturás por mes. Yo te devuelvo el ajuste.`,
-        "ment.payment.title": `Pago / Payment`,
-        "ment.payment.methods": `USDT · Payoneer USD · Mercado Pago ARS · Brubank ARS`,
-        "ment.button": `Reservar 1:1`,
-        "ment.legalnote": `Cupos limitados.`,
-
-        "asset.eyebrow": `INVESTMENT · ASSET · PORTFOLIO`,
-        "asset.headline": `Acceso privado a activos reales: minería, flujo de commodities, acero industrial. <span>Sólo capital serio con KYC/NDA.</span>`,
-        "asset.body": `No vendemos humo financiero. Movemos cosas que existen, se transportan y generan flujo.`,
-        "asset.card1.title": `Colocación de Capital`,
-        "asset.card1.desc": `Entrada en deals con retorno operativo real, no marketing.`,
-        "asset.card2.title": `Activos Mineros`,
-        "asset.card2.desc": `Litio, cobre, manganeso, hierro. NDA. Acceso directo a dueño / titular.`,
-        "asset.card3.title": `Flujo Recurrente`,
-        "asset.card3.desc": `Trading estructurado (combustibles / acero / LATAM) para capital que busca rotación.`,
-        "asset.card4.title": `Gobernanza`,
-        "asset.card4.desc": `Jurisdicción clara y trazabilidad de contraparte.`,
-        "asset.cta.title": `Solicitud de acceso`,
-        "asset.cta.desc": `Si tenés capital listo y querés deal flow privado, presentate con nombre legal y jurisdicción.`,
-        "asset.legalblock.title": `Nota`,
-        "asset.legalblock.desc": `Se requiere KYC/NDA. No retail.`,
-        "asset.button": `Tengo Capital`,
-        "asset.legalnote": `Operamos sólo entre contrapartes verificadas.`,
-
-        "footer.line1": `ABRAXAS GROUP · WeTrade • WeConnect • WeWork`,
-        "footer.line2": `o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299`,
-        "footer.line3": `Sólo B2B · Sólo contrapartes verificadas`
+        "footer.line1": "ABRAXAS GROUP · Advisory · B2B · Capital Access",
+        "footer.line2": "o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299",
+        "footer.line3": "Sólo trabajamos con partes validadas"
       },
 
       en: {
-        "brand.tagline": `Light and shadow. Strategy and execution.`,
-        "brand.choose": `Choose your door`,
+        "nav.ia": "AI Advisory",
+        "nav.b2b": "B2B",
+        "nav.mentoria": "Private Mentorship",
+        "nav.capital": "Capital",
+        "nav.contact": "Contact",
 
-        "door.ia.title": `AI Agency`,
-        "door.ia.sub": `Brand, site, automation, authority.`,
-        "door.b2b.title": `B2B · Oil & Gas · Mining · Supply Chain`,
-        "door.b2b.sub": `Verified counterparts only.`,
-        "door.mentoria.title": `1:1 Mentorship`,
-        "door.mentoria.sub": `I clean your offer so you charge more.`,
-        "door.asset.title": `Investment · Asset · Portfolio`,
-        "door.asset.sub": `Real capital in real assets.`,
+        "hero.headline": "Executive positioning. Restricted access. Real operations.",
+        "hero.sub": "We build credibility, structure and access where most people can't even get in the room. No cheap marketing. No empty promises.",
+        "hero.cta": "Request private assessment",
 
-        "cred.ceoName": `Osqui Chinchilla`,
-        "cred.ceoRole": `Founder & CEO, Abraxas Group`,
-        "cred.books": `Published author on Amazon. We build and execute real deals, not theory.`,
-        "cred.booksListTitle": `Books on Amazon:`,
-        "cred.book1": `Book Title 1`,
-        "cred.book2": `Book Title 2`,
+        "trust.title": "Confidential · Direct access",
+        "trust.body": "No SDR wall. No mass form. You speak directly to see if there's a fit.",
+        "trust.pay": "Payment available: USDT · Payoneer USD · Mercado Pago ARS · Brubank ARS",
+        "trust.whatsapp": "WhatsApp Direct",
+        "trust.email": "Email Direct",
 
-        "back.portal": `← Back to Portal`,
+        "ia.eyebrow": "AI ADVISORY",
+        "ia.title": "Immediate authority and a revenue-ready pipeline.",
+        "ia.body": "We frame you as a premium solution with a credible presence and a direct channel for deal flow.",
+        "ia.card1.title": "Positioning",
+        "ia.card1.desc": "Your narrative stops sounding like 'freelancer for hire' and starts sounding like 'serious advisory'.",
+        "ia.card2.title": "Brand & Site Infra",
+        "ia.card2.desc": "Institutional identity and site you can send to decision makers without embarrassment.",
+        "ia.card3.title": "Commercial Automation",
+        "ia.card3.desc": "WhatsApp / n8n: capture, reply, and advance the deal without you chasing.",
+        "ia.card4.title": "Corporate Profile",
+        "ia.card4.desc": "Formal PDF that signals legitimacy in first contact.",
 
-        "ia.eyebrow": `AI AGENCY`,
-        "ia.headline": `We build an <span>income-ready</span> presence: brand, website, commercial automation, and LinkedIn authority.`,
-        "ia.body": `We don’t sell “pretty websites”. We position you as a premium offer and generate serious calls.`,
-        "ia.card1.title": `Brand & Landing Express`,
-        "ia.card1.desc": `Visual identity, 5-second hook headline, responsive landing built to convert.`,
-        "ia.card2.title": `WhatsApp / n8n Automation`,
-        "ia.card2.desc": `Capture the lead, auto-reply, and push the deal forward without chasing.`,
-        "ia.card3.title": `LinkedIn Authority`,
-        "ia.card3.desc": `You become ‘the one who fixes the expensive problem’, not ‘just another vendor’.`,
-        "ia.card4.title": `Serious Infra`,
-        "ia.card4.desc": `Corporate email, institutional site, corporate profile deck you can send.`,
-        "ia.cta.title": `I want this`,
-        "ia.cta.desc": `Tell me what you sell and where you get paid. I’ll hand back a structure that can bill.`,
+        "b2b.eyebrow": "B2B · OIL & GAS · MINING · SUPPLY CHAIN",
+        "b2b.title": "Physical operations between verified counterparties.",
+        "b2b.body": "Refined fuels (EN590, Jet A1, D6). Critical minerals (lithium, copper, manganese, iron). Industrial steel and pipe with real LATAM logistics.",
+        "b2b.card1.title": "Oil & Gas",
+        "b2b.card1.desc": "Non-negotiable C.I.F / F.O.B procedures. NDA, ICPO, traceable logistics.",
+        "b2b.card2.title": "Mining",
+        "b2b.card2.desc": "Direct access to actual holders in lithium, copper, manganese, iron.",
+        "b2b.card3.title": "Steel / Pipe",
+        "b2b.card3.desc": "Industrial pipe, OCTG, heavy scrap. Real stock, not a slide deck.",
+        "b2b.card4.title": "LATAM Chain",
+        "b2b.card4.desc": "We're talking physical shipment, not theory.",
 
-        "pay.title": `Payment methods`,
-        "pay.methods": `• USDT (stable crypto)<br>• USD via Payoneer<br>• Mercado Pago (ARS)<br>• Brubank (ARS bank)`,
+        "ment.eyebrow": "PRIVATE 1:1 MENTORSHIP",
+        "ment.title": "We refine your offer, your price and your message so you're paid as an advisor, not squeezed like a vendor.",
+        "ment.body": "This is commercial architecture. You leave with a USD offer, controlled pitch, and a calm pipeline.",
+        "ment.card1.title": "USD Offer",
+        "ment.card1.desc": "Exactly what you sell and at what price — phrased in decision-maker language.",
+        "ment.card2.title": "Public Authority",
+        "ment.card2.desc": "LinkedIn that signals power, not need.",
+        "ment.card3.title": "Controlled Pipeline",
+        "ment.card3.desc": "A sequence that advances each lead without begging.",
+        "ment.card4.title": "5K/month Path",
+        "ment.card4.desc": "A ~5K USD/month track without burnout or guru theater.",
 
-        "ia.button": `WhatsApp Direct`,
-        "cta.email": `Email Direct`,
-        "legal.ia": `Serious projects only.`,
+        "cap.eyebrow": "CAPITAL · ASSET · PORTFOLIO",
+        "cap.title": "Private access to real assets and recurring flow.",
+        "cap.body": "Deal flow in mining, fuels and industrial steel. Only deployable capital with KYC/NDA. No retail.",
+        "cap.card1.title": "Capital Deployment",
+        "cap.card1.desc": "Operational cashflow, not pitch slides.",
+        "cap.card2.title": "Mining Assets",
+        "cap.card2.desc": "Lithium, copper, manganese, iron. Direct door under NDA.",
+        "cap.card3.title": "Recurring Flow",
+        "cap.card3.desc": "Structured trading with defined LATAM logistics.",
+        "cap.card4.title": "Governance",
+        "cap.card4.desc": "Clear jurisdiction, traceable counterparties, enforceable compliance.",
 
-        "b2b.eyebrow": `B2B · OIL & GAS · MINING · SUPPLY CHAIN`,
-        "b2b.headline": `Real trading between verified parties. <span>No tourists.</span>`,
-        "b2b.body": `Refined fuels (EN590, Jet A1, D6). Critical minerals (lithium, copper, manganese, iron ore). Industrial steel and surplus pipe, ready to move.`,
-        "b2b.card1.title": `Oil & Gas`,
-        "b2b.card1.desc": `Non-negotiable C.I.F / F.O.B procedures. ICPO, NDA, clear logistics.`,
-        "b2b.card2.title": `Mining & Critical Minerals`,
-        "b2b.card2.desc": `Lithium, copper, manganese, iron. Direct access to real ownership.`,
-        "b2b.card3.title": `Industrial Steel`,
-        "b2b.card3.desc": `Structural pipe, OCTG, heavy scrap. Physical LATAM stock.`,
-        "b2b.card4.title": `LATAM Supply Chain`,
-        "b2b.card4.desc": `You buy physical product, not a slide deck.`,
-        "b2b.cta.title": `Next step`,
-        "b2b.cta.desc": `If you’re a serious buyer/seller: volume, destination, C.I.F or F.O.B, and capacity proof.`,
-        "b2b.legalblock.title": `Legal note`,
-        "b2b.legalblock.desc": `We operate B2B under NDA and enforceable international jurisdiction. No POP / refinery docs without ICPO/LOI + NDA.`,
-        "b2b.button": `I Am a Verified Counterparty`,
-        "b2b.legalnote": `Verified counterparties only.`,
+        "contact.eyebrow": "Contact & Credentials",
+        "contact.title": "Access is restricted.",
+        "contact.body": "Active in Oil & Gas, Mining, Supply Chain and premium positioning for high-ticket offers.",
+        "contact.role": "Founder & CEO · Abraxas Group",
+        "contact.booksTitle": "Internal playbooks:",
+        "contact.bookES": "Commercial Playbook (ES)",
+        "contact.bookEN": "Commercial Playbook (EN)",
+        "contact.brochureTitle": "Corporate profile / Brochure:",
+        "contact.brochureES": "Corporate Brochure (ES)",
+        "contact.brochureEN": "Corporate Brochure (EN)",
+        "contact.note": "Access to deal flow, 1:1 advisory or physical supply requires KYC/NDA and proof of capacity.",
+        "contact.whatsapp": "WhatsApp Direct",
+        "contact.email": "Email Direct",
+        "contact.photoAlt": "Abraxas Contact / Direction",
 
-        "ment.eyebrow": `1:1 MENTORSHIP`,
-        "ment.headline": `We fix your offer, pricing, and LinkedIn pitch so you can charge more.`,
-        "ment.body": `This is execution, not theory. You leave with a clear USD offer ready to sell.`,
-        "ment.card1.title": `Deal-Ready LinkedIn Profile`,
-        "ment.card1.desc": `5-second headline: expensive problem + your solution + real outcome.`,
-        "ment.card2.title": `USD Offer`,
-        "ment.card2.desc": `We turn your service into a clear premium product instead of “I do everything”.`,
-        "ment.card3.title": `Simple Pipeline`,
-        "ment.card3.desc": `Controlled follow-up that moves each lead to close without begging.`,
-        "ment.card4.title": `5K/month Path`,
-        "ment.card4.desc": `Plan to reach ~5K USD/month without burning yourself out.`,
-        "ment.cta.title": `Book the session`,
-        "ment.cta.desc": `Tell me what you sell and your average monthly revenue. I’ll give you the fix.`,
-        "ment.payment.title": `Payment`,
-        "ment.payment.methods": `USDT · Payoneer USD · Mercado Pago ARS · Brubank ARS`,
-        "ment.button": `Book 1:1`,
-        "ment.legalnote": `Limited intake.`,
-
-        "asset.eyebrow": `INVESTMENT · ASSET · PORTFOLIO`,
-        "asset.headline": `Private access to real assets: mining, commodity flow, industrial steel. <span>Only serious capital with KYC/NDA.</span>`,
-        "asset.body": `We don’t sell financial hype. We move things that exist, ship, and cashflow.`,
-        "asset.card1.title": `Capital Placement`,
-        "asset.card1.desc": `Entry into operational cashflow deals, not pitch decks.`,
-        "asset.card2.title": `Mining Assets`,
-        "asset.card2.desc": `Lithium, copper, manganese, iron. NDA. Direct to ownership.`,
-        "asset.card3.title": `Recurring Flow`,
-        "asset.card3.desc": `Structured trading (fuels / steel / LATAM) for capital that wants rotation.`,
-        "asset.card4.title": `Governance`,
-        "asset.card4.desc": `Clear jurisdiction and traceable counterparties.`,
-        "asset.cta.title": `Access request`,
-        "asset.cta.desc": `If you have deployable capital and want private deal flow, introduce your legal entity and jurisdiction.`,
-        "asset.legalblock.title": `Notice`,
-        "asset.legalblock.desc": `KYC/NDA required. No retail money.`,
-        "asset.button": `I Have Capital`,
-        "asset.legalnote": `We operate only between verified corporate counterparts.`,
-
-        "footer.line1": `ABRAXAS GROUP · WeTrade • WeConnect • WeWork`,
-        "footer.line2": `o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299`,
-        "footer.line3": `B2B only · Verified counterparts`
+        "footer.line1": "ABRAXAS GROUP · Advisory · B2B · Capital Access",
+        "footer.line2": "o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299",
+        "footer.line3": "Verified counterparties only"
       },
 
       ja: {
-        "brand.tagline": `光と影。戦略と実行。`,
-        "brand.choose": `入口を選んでください`,
+        "nav.ia": "AIアドバイザリー",
+        "nav.b2b": "B2B",
+        "nav.mentoria": "プライベートメンタリング",
+        "nav.capital": "キャピタル",
+        "nav.contact": "コンタクト",
 
-        "door.ia.title": `AIエージェンシー`,
-        "door.ia.sub": `ブランド / サイト / 自動化 / 権威性`,
-        "door.b2b.title": `B2B・石油/ガス・鉱業・サプライチェーン`,
-        "door.b2b.sub": `検証済みの当事者のみ`,
-        "door.mentoria.title": `1対1メンタリング`,
-        "door.mentoria.sub": `高単価オファーを組み立てる`,
-        "door.asset.title": `投資・アセット・ポートフォリオ`,
-        "door.asset.sub": `本物の資産に本物の資本`,
+        "hero.headline": "評判とアクセス。現実のオペレーション。",
+        "hero.sub": "安いマーケではなく、信用・構造・アクセス。普通は座れないテーブルに座れるようにする。",
+        "hero.cta": "プライベート評価を依頼",
 
-        "cred.ceoName": `Osqui Chinchilla`,
-        "cred.ceoRole": `Abraxas Group 代表兼CEO`,
-        "cred.books": `Amazon掲載の著者。理論ではなく実ビジネスと実行。`,
-        "cred.booksListTitle": `Amazon出版:`,
-        "cred.book1": `書籍1`,
-        "cred.book2": `書籍2`,
+        "trust.title": "機密・ダイレクト",
+        "trust.body": "大量フォームやSDR越しではなく、まず直接話して適合性を確認します。",
+        "trust.pay": "支払い: USDT / Payoneer USD / Mercado Pago ARS / Brubank ARS",
+        "trust.whatsapp": "WhatsApp 連絡",
+        "trust.email": "メール連絡",
 
-        "back.portal": `← ポータルに戻る`,
+        "ia.eyebrow": "AIアドバイザリー",
+        "ia.title": "権威性と収益導線を即座に設計。",
+        "ia.body": "あなたを“高額な問題を解決するアドバイザリー”として提示し、信用ある入り口をつくる。",
+        "ia.card1.title": "ポジショニング",
+        "ia.card1.desc": "“安い外注”ではなく“頼れるアドバイザー”として見られる構図にする。",
+        "ia.card2.title": "ブランド / サイト基盤",
+        "ia.card2.desc": "決裁者に送れる企業的プレゼンスを整える。",
+        "ia.card3.title": "商談オートメーション",
+        "ia.card3.desc": "WhatsApp / n8nでリード取得～フォローを安定化。",
+        "ia.card4.title": "コーポレートプロフィール",
+        "ia.card4.desc": "初回接触の段階で信頼性を示す正式PDF。",
 
-        "ia.eyebrow": `AIエージェンシー`,
-        "ia.headline": `売上につながる存在をつくる：ブランド、サイト、営業オートメーション、LinkedInでの権威付け。`,
-        "ia.body": `きれいなWebではなく、高単価オファーとして見られ、真剣な商談を呼ぶポジショニングをつくる。`,
-        "ia.card1.title": `ブランド＆LP設計`,
-        "ia.card1.desc": `5秒で刺さるヘッドラインと即使えるランディングページ。`,
-        "ia.card2.title": `WhatsApp / n8n自動化`,
-        "ia.card2.desc": `リード取得→自動返答→フォローアップをシステム化。`,
-        "ia.card3.title": `LinkedIn権威化`,
-        "ia.card3.desc": `「高額な問題を解決する人」として位置付け、「安い業者」から脱出。`,
-        "ia.card4.title": `本気のインフラ`,
-        "ia.card4.desc": `法人メール、コーポレートサイト、即送付できる会社プロフィール。`,
-        "ia.cta.title": `このサービスが欲しい`,
-        "ia.cta.desc": `何を売っていて、どこで入金しているか教えて。請求可能な仕組みに組み直す。`,
+        "b2b.eyebrow": "B2B・石油/ガス・鉱業・サプライチェーン",
+        "b2b.title": "検証済みカウンターパーティ間の現物流。",
+        "b2b.body": "精製燃料(EN590, Jet A1, D6)。重要鉱物(リチウム/銅/マンガン/鉄)。産業用鋼管/在庫、LATAMロジスティクス。",
+        "b2b.card1.title": "石油・ガス",
+        "b2b.card1.desc": "C.I.F / F.O.B手順は交渉不可。NDA、ICPO、追跡可能なロジ。",
+        "b2b.card2.title": "鉱業",
+        "b2b.card2.desc": "リチウム/銅/マンガン/鉄。実ホルダーへの直接アクセス。",
+        "b2b.card3.title": "鋼材 / パイプ",
+        "b2b.card3.desc": "工業用パイプ、OCTG、重量スクラップ。実在在庫のみ。",
+        "b2b.card4.title": "LATAMサプライ",
+        "b2b.card4.desc": "机上のスライドではなく、出荷可能な現物。",
 
-        "pay.title": `支払い方法`,
-        "pay.methods": `• USDT (ステーブル暗号)<br>• Payoneer経由USD<br>• Mercado Pago (ARS)<br>• Brubank (ARS銀行)`,
+        "ment.eyebrow": "プライベート1:1メンタリング",
+        "ment.title": "あなたのオファー/価格/メッセージを調整し、“安売りされない存在”にする。",
+        "ment.body": "これは商業アーキテクチャ。USDオファーと安定パイプラインを持ち帰れる。",
+        "ment.card1.title": "USDオファー",
+        "ment.card1.desc": "何をいくらで売るのかを、決裁者が飲み込める言葉にする。",
+        "ment.card2.title": "パブリック権威",
+        "ment.card2.desc": "LinkedInで“力のある専門家”として見えるよう設計。",
+        "ment.card3.title": "コントロールされたパイプライン",
+        "ment.card3.desc": "必死に追わずとも進むフォロー設計。",
+        "ment.card4.title": "5K/月ルート",
+        "ment.card4.desc": "燃え尽きず約5,000USD/月を狙う現実プラン。",
 
-        "ia.button": `WhatsAppで連絡`,
-        "cta.email": `メールで連絡`,
-        "legal.ia": `本気の案件のみ。`,
+        "cap.eyebrow": "キャピタル・アセット・ポートフォリオ",
+        "cap.title": "鉱業/燃料/産業鋼材など実在アセットへのプライベートアクセス。",
+        "cap.body": "KYC/NDAを通した資本のみ対象。リテール資金は対象外。",
+        "cap.card1.title": "キャピタル配置",
+        "cap.card1.desc": "ピッチデッキではなく、現実のキャッシュフロー。",
+        "cap.card2.title": "鉱山アセット",
+        "cap.card2.desc": "リチウム/銅/マンガン/鉄。NDA下で実ホルダーに直接接続。",
+        "cap.card3.title": "リカーリングフロー",
+        "cap.card3.desc": "LATAMロジ定義済みの構造化トレード。",
+        "cap.card4.title": "ガバナンス",
+        "cap.card4.desc": "明確な法域とトレーサブルな相手先。実行可能なコンプライアンス。",
 
-        "b2b.eyebrow": `B2B・石油/ガス・鉱業・サプライチェーン`,
-        "b2b.headline": `本物の当事者間のトレーディング。<span>観光客お断り。</span>`,
-        "b2b.body": `精製燃料(EN590, Jet A1, D6)。重要鉱物(リチウム・銅・マンガン・鉄鉱)。産業用鋼材・パイプ・現物在庫。`,
-        "b2b.card1.title": `石油・ガス`,
-        "b2b.card1.desc": `C.I.F / F.O.B手順は交渉不可。ICPO、NDA、ロジ明確。`,
-        "b2b.card2.title": `鉱業・重要鉱物`,
-        "b2b.card2.desc": `リチウム・銅・マンガン・鉄。実際の権利者へ直接アクセス。`,
-        "b2b.card3.title": `産業用鋼材`,
-        "b2b.card3.desc": `構造パイプ、OCTG、スクラップ。LATAMの現物在庫。`,
-        "b2b.card4.title": `LATAMサプライチェーン`,
-        "b2b.card4.desc": `スライドではなく現物を買う。`,
-        "b2b.cta.title": `次のステップ`,
-        "b2b.cta.desc": `本気のバイヤー/セラーは: 量、行き先、C.I.FかF.O.B、資金能力を提示してください。`,
-        "b2b.legalblock.title": `法的ノート`,
-        "b2b.legalblock.desc": `当社はNDAと国際的に執行可能な法域の下でのみB2B対応。ICPO/LOI＋NDAなしでPOP等は開示しません。`,
-        "b2b.button": `私は検証済みの当事者です`,
-        "b2b.legalnote": `検証済みの相手のみ対応。`,
+        "contact.eyebrow": "コンタクト & クレデンシャル",
+        "contact.title": "アクセスは制限されています。",
+        "contact.body": "石油・ガス、鉱業、サプライチェーン、高単価オファーのポジショニング領域で稼働中。",
+        "contact.role": "Abraxas Group 創業者・CEO",
+        "contact.booksTitle": "内部プレイブック:",
+        "contact.bookES": "Commercial Playbook (ES)",
+        "contact.bookEN": "Commercial Playbook (EN)",
+        "contact.brochureTitle": "コーポレート・ブローシャ:",
+        "contact.brochureES": "Corporate Brochure (ES)",
+        "contact.brochureEN": "Corporate Brochure (EN)",
+        "contact.note": "ディールフローや1:1アドバイザリー、現物流へのアクセスはKYC/NDAとキャパシティ証明が必要です。",
+        "contact.whatsapp": "WhatsApp 連絡",
+        "contact.email": "メール連絡",
+        "contact.photoAlt": "Abraxas 連絡先",
 
-        "ment.eyebrow": `1対1メンタリング`,
-        "ment.headline": `オファー・価格・LinkedInの打ち出し方を整え、高単価で売れるようにする。`,
-        "ment.body": `これは実行プラン。机上の理論ではない。すぐ売れるUSDオファーを持って帰れる。`,
-        "ment.card1.title": `LinkedInプロファイル最適化`,
-        "ment.card1.desc": `5秒のヘッドライン：高額課題＋あなたの解決策＋実績。`,
-        "ment.card2.title": `USDオファー設計`,
-        "ment.card2.desc": `「なんでも屋」ではなく、明確なプレミアム商品として組む。`,
-        "ment.card3.title": `シンプルなパイプライン`,
-        "ment.card3.desc": `コントロールされたフォローで、必死さゼロでクローズに進める。`,
-        "ment.card4.title": `月5K USDの道筋`,
-        "ment.card4.desc": `燃え尽きずに約5,000USD/月を狙うプラン。`,
-        "ment.cta.title": `セッションを予約`,
-        "ment.cta.desc": `いま何を売っていて、月いくら売上か教えて。そこから最適化する。`,
-        "ment.payment.title": `支払い`,
-        "ment.payment.methods": `USDT・Payoneer USD・Mercado Pago ARS・Brubank ARS`,
-        "ment.button": `1対1を予約`,
-        "ment.legalnote": `人数限定。`,
-
-        "asset.eyebrow": `投資・アセット・ポートフォリオ`,
-        "asset.headline": `鉱山権益、コモディティフロー、産業用鋼材などリアル資産へのプライベートアクセス。<span>KYC/NDA必須の本気資本のみ。</span>`,
-        "asset.body": `金融ハイプではない。実在し、動き、キャッシュフローを生むものだけ。`,
-        "asset.card1.title": `資本アロケーション`,
-        "asset.card1.desc": `プレゼン資料ではなく、実際に回るキャッシュフローディールへ入る。`,
-        "asset.card2.title": `鉱山アセット`,
-        "asset.card2.desc": `リチウム・銅・マンガン・鉄。NDA下で実オーナーに直アクセス。`,
-        "asset.card3.title": `リカーリング・フロー`,
-        "asset.card3.desc": `燃料・鋼材・LATAMロジなどの構造化トレードで資本を回す。`,
-        "asset.card4.title": `ガバナンス`,
-        "asset.card4.desc": `明確な法域とトレーサブルな相手先。`,
-        "asset.cta.title": `アクセス申請`,
-        "asset.cta.desc": `投入可能な資本があるなら、法人名と法域を提示してください。`,
-        "asset.legalblock.title": `注意`,
-        "asset.legalblock.desc": `KYC/NDA必須。リテール資金は不可。`,
-        "asset.button": `資本あり・相談したい`,
-        "asset.legalnote": `検証済み法人間のみ取引。`,
-
-        "footer.line1": `ABRAXAS GROUP · WeTrade • WeConnect • WeWork`,
-        "footer.line2": `o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299`,
-        "footer.line3": `B2B専用・検証済みカウンターパーティのみ`
+        "footer.line1": "ABRAXAS GROUP · アドバイザリー / B2B / キャピタルアクセス",
+        "footer.line2": "o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299",
+        "footer.line3": "検証済みの当事者のみ"
       },
 
       zh: {
-        "brand.tagline": `光与影。战略与执行。`,
-        "brand.choose": `请选择入口`,
+        "nav.ia": "AI咨询",
+        "nav.b2b": "B2B",
+        "nav.mentoria": "私密辅导",
+        "nav.capital": "资本",
+        "nav.contact": "联系",
 
-        "door.ia.title": `AI机构`,
-        "door.ia.sub": `品牌 · 网站 · 自动化 · 权威感`,
-        "door.b2b.title": `B2B · 石油天然气 · 采矿 · 供应链`,
-        "door.b2b.sub": `只与真实、验证过的对手方合作`,
-        "door.mentoria.title": `一对一辅导`,
-        "door.mentoria.sub": `我们整理你的高价值报价`,
-        "door.asset.title": `投资 · 资产 · 组合`,
-        "door.asset.sub": `真实资产，真实资本`,
+        "hero.headline": "声誉。准入。真实执行。",
+        "hero.sub": "不是廉价营销。是信誉、结构、资源入口。我们把你放进普通人进不去的房间。",
+        "hero.cta": "申请私密评估",
 
-        "cred.ceoName": `Osqui Chinchilla`,
-        "cred.ceoRole": `Abraxas Group 创始人兼首席执行官`,
-        "cred.books": `亚马逊上架作者。我们做真实交易，不卖概念。`,
-        "cred.booksListTitle": `亚马逊出版：`,
-        "cred.book1": `书名 1`,
-        "cred.book2": `书名 2`,
+        "trust.title": "保密 · 直接对接",
+        "trust.body": "没有销售团队挡在前面。先直接对话，再判断是否匹配。",
+        "trust.pay": "可付款方式：USDT · Payoneer USD · Mercado Pago ARS · Brubank ARS",
+        "trust.whatsapp": "WhatsApp直联",
+        "trust.email": "邮件直联",
 
-        "back.portal": `← 返回入口`,
+        "ia.eyebrow": "AI咨询",
+        "ia.title": "快速建立权威与可变现的销售入口。",
+        "ia.body": "把你呈现成“解决高价值问题的顾问”，不是“随便压价的服务商”。",
+        "ia.card1.title": "定位",
+        "ia.card1.desc": "重写你的叙事，让你听起来像高层顾问，不是自由职业者。",
+        "ia.card2.title": "品牌 / 站点结构",
+        "ia.card2.desc": "可直接发给决策者的企业级形象和站点。",
+        "ia.card3.title": "商业自动化",
+        "ia.card3.desc": "WhatsApp / n8n：捕获线索→自动回复→推进交易。",
+        "ia.card4.title": "公司资料PDF",
+        "ia.card4.desc": "第一触点就能展示可信度的正式资料。",
 
-        "ia.eyebrow": `AI机构`,
-        "ia.headline": `我们为你打造可以直接收款的存在：品牌、网站、销售自动化、以及 LinkedIn 权威定位。`,
-        "ia.body": `不是“好看的网站”，而是把你定位成高端解决方案并带来真正的商务通话。`,
-        "ia.card1.title": `品牌与落地页`,
-        "ia.card1.desc": `视觉识别、5秒抓人的主标题、可成交的响应式落地页。`,
-        "ia.card2.title": `WhatsApp / n8n 自动化`,
-        "ia.card2.desc": `获取线索→自动回复→系统跟进，无需你去追。`,
-        "ia.card3.title": `LinkedIn 权威定位`,
-        "ia.card3.desc": `把你塑造成“解决昂贵问题的人”，而不是“又一个便宜供应商”。`,
-        "ia.card4.title": `严肃基础设施`,
-        "ia.card4.desc": `公司邮箱、正规公司站、可直接发送的公司简介。`,
-        "ia.cta.title": `我要这个服务`,
-        "ia.cta.desc": `告诉我你卖什么、收款在哪个国家。我会给你一套可以直接收钱的结构。`,
+        "b2b.eyebrow": "B2B · 石油天然气 · 采矿 · 供应链",
+        "b2b.title": "真实对手方之间的实体流 / 现货业务。",
+        "b2b.body": "成品燃料（EN590, Jet A1, D6）、关键矿产（锂/铜/锰/铁）、工业钢管和拉美真实物流。",
+        "b2b.card1.title": "石油 / 天然气",
+        "b2b.card1.desc": "C.I.F / F.O.B流程不可谈判。NDA / ICPO / 可追踪物流。",
+        "b2b.card2.title": "采矿",
+        "b2b.card2.desc": "锂/铜/锰/铁。直接接触真实持有人。",
+        "b2b.card3.title": "钢材 / 管线",
+        "b2b.card3.desc": "工业级管材、OCTG、重型废钢。真实库存，而非PPT故事。",
+        "b2b.card4.title": "拉美供应链",
+        "b2b.card4.desc": "我们谈的是能发货的货，不是概念。",
 
-        "pay.title": `支付方式`,
-        "pay.methods": `• USDT 稳定币<br>• Payoneer 美元<br>• Mercado Pago 阿根廷比索<br>• Brubank 阿根廷本地账户`,
+        "ment.eyebrow": "一对一私密辅导",
+        "ment.title": "我们重塑你的报价、定价、话术，让你被付费为“顾问”，而不是被压价成“供应商”。",
+        "ment.body": "这是商业架构。你会拿走清晰的美元报价、稳定话术、可控的销售节奏。",
+        "ment.card1.title": "美元报价",
+        "ment.card1.desc": "把你卖的东西和价格表达成决策者认得的语言。",
+        "ment.card2.title": "公开权威感",
+        "ment.card2.desc": "LinkedIn 传达的是‘可信能力’，而不是‘我需要这个客户’。",
+        "ment.card3.title": "可控管道",
+        "ment.card3.desc": "推进对话，不是卑微地追客户。",
+        "ment.card4.title": "5K/月路径",
+        "ment.card4.desc": "现实可行的约5000美元/月路线，而不是打鸡血。",
 
-        "ia.button": `WhatsApp 直联`,
-        "cta.email": `邮件直联`,
-        "legal.ia": `只接真实项目。`,
+        "cap.eyebrow": "资本 · 资产 · 组合",
+        "cap.title": "矿权、燃料流、工业钢材等真实资产的私密通道。",
+        "cap.body": "仅对已通过KYC/NDA的可动用资本开放。散户资金不接。",
+        "cap.card1.title": "资本投放",
+        "cap.card1.desc": "进入真实现金流交易，不是融资故事。",
+        "cap.card2.title": "矿业资产",
+        "cap.card2.desc": "锂/铜/锰/铁。签署NDA后直连实际持有人。",
+        "cap.card3.title": "持续供货流",
+        "cap.card3.desc": "按拉美物流结构化的燃料/钢材交易。",
+        "cap.card4.title": "治理 / 合规",
+        "cap.card4.desc": "清晰司法辖区、可追溯对手方、可执行合规。",
 
-        "b2b.eyebrow": `B2B · 石油天然气 · 采矿 · 供应链`,
-        "b2b.headline": `真实贸易，只在验证过的双方之间。<span>拒绝观光客。</span>`,
-        "b2b.body": `成品燃料 (EN590, Jet A1, D6)。关键矿产 (锂、铜、锰、铁矿)。工业钢管、工程剩余库存，现货可动。`,
-        "b2b.card1.title": `石油 / 天然气`,
-        "b2b.card1.desc": `C.I.F / F.O.B 流程不可谈判。ICPO、NDA、物流清晰。`,
-        "b2b.card2.title": `采矿与关键矿产`,
-        "b2b.card2.desc": `锂、铜、锰、铁。直达真正的资产持有人。`,
-        "b2b.card3.title": `工业钢材`,
-        "b2b.card3.desc": `结构管、OCTG、重型废钢。拉美现货。`,
-        "b2b.card4.title": `拉美供应链`,
-        "b2b.card4.desc": `你买到的是实体货，不是PPT。`,
-        "b2b.cta.title": `下一步`,
-        "b2b.cta.desc": `如果你是认真买家/卖家：提供数量、目的地、C.I.F 或 F.O.B、以及资金/能力证明。`,
-        "b2b.legalblock.title": `法律说明`,
-        "b2b.legalblock.desc": `我们只在 NDA 和可执行的国际司法框架下进行 B2B。没有 ICPO/LOI + NDA，就不会提供 POP/炼厂文件。`,
-        "b2b.button": `我是经过验证的对接方`,
-        "b2b.legalnote": `只对接已验证的公司。`,
+        "contact.eyebrow": "联系 & 资质",
+        "contact.title": "准入受限。",
+        "contact.body": "活跃于石油天然气、矿业、供应链，以及高客单价定位。",
+        "contact.role": "Abraxas Group 创始人兼CEO",
+        "contact.booksTitle": "内部手册 / Playbook:",
+        "contact.bookES": "Playbook Comercial (ES)",
+        "contact.bookEN": "Commercial Playbook (EN)",
+        "contact.brochureTitle": "公司简介 / Brochure:",
+        "contact.brochureES": "Brochure Corporativo (ES)",
+        "contact.brochureEN": "Corporate Brochure (EN)",
+        "contact.note": "要获得交易流、一对一咨询或现货供应接入，必须完成KYC/NDA并证明资金能力。",
+        "contact.whatsapp": "WhatsApp直联",
+        "contact.email": "邮件直联",
+        "contact.photoAlt": "Abraxas 联系",
 
-        "ment.eyebrow": `一对一辅导`,
-        "ment.headline": `我们整理你的产品报价、定价和 LinkedIn 话术，让你能收更高的价格。`,
-        "ment.body": `这是直接落地的执行方案，而不是理论。你会带走一个可以用美元出售的清晰服务包。`,
-        "ment.card1.title": `LinkedIn 成交型主页`,
-        "ment.card1.desc": `5秒钩子：昂贵痛点 + 你的解决方案 + 真实结果。`,
-        "ment.card2.title": `美元报价`,
-        "ment.card2.desc": `把“我什么都做”重塑成清晰的高端产品。`,
-        "ment.card3.title": `简单成交流程`,
-        "ment.card3.desc": `可控的跟进，推动客户到成交，而不是到处求人。`,
-        "ment.card4.title": `每月5K美金路径`,
-        "ment.card4.desc": `不上头、不燃尽的 ~5,000 美元/月路线。`,
-        "ment.cta.title": `预约辅导`,
-        "ment.cta.desc": `告诉我你现在卖什么、月均收入多少。我会给你优化方案。`,
-        "ment.payment.title": `支付`,
-        "ment.payment.methods": `USDT · Payoneer 美元 · Mercado Pago 比索 · Brubank 本地`,
-        "ment.button": `预约一对一`,
-        "ment.legalnote": `名额有限。`,
-
-        "asset.eyebrow": `投资 · 资产 · 组合`,
-        "asset.headline": `矿权、商品流、工业钢材等真实资产的私密通道。<span>只接受通过 KYC/NDA 的严肃资金。</span>`,
-        "asset.body": `我们不卖金融炒作。我们处理的是存在的东西，可运输、可产生现金流。`,
-        "asset.card1.title": `资本投放`,
-        "asset.card1.desc": `进入真正有现金流的交易，不是PPT故事。`,
-        "asset.card2.title": `矿业资产`,
-        "asset.card2.desc": `锂、铜、锰、铁。签署NDA后直连实际所有方。`,
-        "asset.card3.title": `持续性货流`,
-        "asset.card3.desc": `燃料 / 钢材 / 拉美供应链的结构化交易，适合想周转的资本。`,
-        "asset.card4.title": `治理`,
-        "asset.card4.desc": `清晰司法辖区，可追溯的对手方。`,
-        "asset.cta.title": `申请访问`,
-        "asset.cta.desc": `如果你有可动用资金并想看私下deal，请提供法人名称和司法辖区。`,
-        "asset.legalblock.title": `提示`,
-        "asset.legalblock.desc": `必须完成 KYC/NDA。不接受散户资金。`,
-        "asset.button": `我有资金`,
-        "asset.legalnote": `我们只与经过验证的企业对接。`,
-
-        "footer.line1": `ABRAXAS GROUP · WeTrade • WeConnect • WeWork`,
-        "footer.line2": `o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299`,
-        "footer.line3": `仅限B2B · 仅限验证过的对手方`
+        "footer.line1": "ABRAXAS GROUP · 咨询 · B2B · 资本通道",
+        "footer.line2": "o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299",
+        "footer.line3": "仅限已验证对手方"
       },
 
       fr: {
-        "brand.tagline": `Lumière et ombre. Stratégie et exécution.`,
-        "brand.choose": `Choisissez votre porte`,
+        "nav.ia": "Conseil IA",
+        "nav.b2b": "B2B",
+        "nav.mentoria": "Mentorat Privé",
+        "nav.capital": "Capital",
+        "nav.contact": "Contact",
 
-        "door.ia.title": `Agence IA`,
-        "door.ia.sub": `Marque, site, automatisation, autorité.`,
-        "door.b2b.title": `B2B · Pétrole & Gaz · Mines · Supply Chain`,
-        "door.b2b.sub": `Interlocuteurs vérifiés uniquement.`,
-        "door.mentoria.title": `Mentorat 1:1`,
-        "door.mentoria.sub": `On structure ton offre haut de gamme.`,
-        "door.asset.title": `Investissement · Actif · Portefeuille`,
-        "door.asset.sub": `Capital réel, actifs réels.`,
+        "hero.headline": "Réputation exécutive. Accès restreint. Opérations réelles.",
+        "hero.sub": "On ne vend pas du marketing low-cost. On crée crédibilité, structure et accès là où la plupart n'entre même pas.",
+        "hero.cta": "Demande d'évaluation privée",
 
-        "cred.ceoName": `Osqui Chinchilla`,
-        "cred.ceoRole": `Fondateur & CEO, Abraxas Group`,
-        "cred.books": `Auteur publié sur Amazon. Nous livrons du concret, pas du blabla.`,
-        "cred.booksListTitle": `Publications Amazon :`,
-        "cred.book1": `Titre Livre 1`,
-        "cred.book2": `Titre Livre 2`,
+        "trust.title": "Confidentiel · Accès direct",
+        "trust.body": "Pas de SDR, pas de formulaire massif. Contact direct pour vérifier l'alignement.",
+        "trust.pay": "Paiement: USDT · Payoneer USD · Mercado Pago ARS · Brubank ARS",
+        "trust.whatsapp": "WhatsApp Direct",
+        "trust.email": "Email Direct",
 
-        "back.portal": `← Retour au portail`,
+        "ia.eyebrow": "CONSEIL IA",
+        "ia.title": "Autorité immédiate et pipeline prêt à encaisser.",
+        "ia.body": "On te positionne comme une solution premium avec une présence crédible et un canal d'entrée sérieux.",
+        "ia.card1.title": "Positionnement",
+        "ia.card1.desc": "On arrête le discours 'prestataire dispo' et on installe 'cabinet sérieux'.",
+        "ia.card2.title": "Infra Marque & Site",
+        "ia.card2.desc": "Identité institutionnelle et site que tu peux envoyer à un décideur sans honte.",
+        "ia.card3.title": "Automatisation Commerciale",
+        "ia.card3.desc": "WhatsApp / n8n : capture, réponse, avancement sans quémander.",
+        "ia.card4.title": "Profil Corporate",
+        "ia.card4.desc": "PDF corporate qui pose de la crédibilité dès le premier message.",
 
-        "ia.eyebrow": `AGENCE IA`,
-        "ia.headline": `On construit une présence <span>prête à encaisser</span> : marque, site web, automatisation commerciale et autorité LinkedIn.`,
-        "ia.body": `Ce n’est pas un “joli site”. On te positionne comme offre premium et on génère des appels sérieux.`,
-        "ia.card1.title": `Brand & Landing Express`,
-        "ia.card1.desc": `Identité visuelle, accroche en 5 secondes, landing responsive qui convertit.`,
-        "ia.card2.title": `Automatisation WhatsApp / n8n`,
-        "ia.card2.desc": `Lead → réponse auto → suivi. Sans courir derrière le client.`,
-        "ia.card3.title": `Autorité LinkedIn`,
-        "ia.card3.desc": `Tu deviens ‘celui qui résout le problème cher’, pas ‘un fournisseur pas cher de plus’.`,
-        "ia.card4.title": `Infra Sérieuse`,
-        "ia.card4.desc": `Email corporate, site institutionnel, profil corporate prêt à envoyer.`,
-        "ia.cta.title": `Je veux ça`,
-        "ia.cta.desc": `Dis-moi ce que tu vends et où tu encaisses. Je te rends une structure prête à facturer.`,
+        "b2b.eyebrow": "B2B · PÉTROLE & GAZ · MINES · SUPPLY CHAIN",
+        "b2b.title": "Opérations physiques entre contreparties vérifiées.",
+        "b2b.body": "Carburants raffinés (EN590, Jet A1, D6). Minéraux critiques (lithium, cuivre, manganèse, fer). Acier industriel réel avec logistique LATAM.",
+        "b2b.card1.title": "Oil & Gas",
+        "b2b.card1.desc": "Procédures C.I.F / F.O.B non négociables. NDA, ICPO, logistique traçable.",
+        "b2b.card2.title": "Mines",
+        "b2b.card2.desc": "Accès direct aux détenteurs réels (lithium, cuivre, manganèse, fer).",
+        "b2b.card3.title": "Acier / Tubes",
+        "b2b.card3.desc": "Tubes industriels, OCTG, ferraille lourde. Stock réel, pas un slide deck.",
+        "b2b.card4.title": "Chaîne LATAM",
+        "b2b.card4.desc": "On parle d'envoi physique, pas de promesse powerpoint.",
 
-        "pay.title": `Moyens de paiement`,
-        "pay.methods": `• USDT (crypto stable)<br>• USD via Payoneer<br>• Mercado Pago (ARS)<br>• Brubank (ARS)`,
+        "ment.eyebrow": "MENTORAT PRIVÉ 1:1",
+        "ment.title": "On ajuste ton offre, ton prix et ton message pour que tu sois payé comme un cabinet, pas pressé comme un prestataire.",
+        "ment.body": "Ceci est une architecture commerciale. Tu repars avec une offre en USD, un discours contrôlé et un pipeline calme.",
+        "ment.card1.title": "Offre USD",
+        "ment.card1.desc": "Ce que tu vends et à quel tarif — exprimé dans le langage d'un décideur.",
+        "ment.card2.title": "Autorité Publique",
+        "ment.card2.desc": "LinkedIn qui renvoie du poids, pas du besoin.",
+        "ment.card3.title": "Pipeline Contrôlé",
+        "ment.card3.desc": "Avancer chaque lead sans mendier.",
+        "ment.card4.title": "Piste 5K/mois",
+        "ment.card4.desc": "Objectif ~5 000 USD/mois sans burn-out ni gourou.",
 
-        "ia.button": `WhatsApp direct`,
-        "cta.email": `Email direct`,
-        "legal.ia": `Seulement des projets sérieux.`,
+        "cap.eyebrow": "CAPITAL · ACTIF · PORTEFEUILLE",
+        "cap.title": "Accès privé à des actifs réels et à du flux récurrent.",
+        "cap.body": "Deal flow mines / carburants / acier industriel. Capital sérieux uniquement, sous KYC/NDA. Pas de retail.",
+        "cap.card1.title": "Déploiement de Capital",
+        "cap.card1.desc": "Cashflow opérationnel, pas une présentation marketing.",
+        "cap.card2.title": "Actifs Miniers",
+        "cap.card2.desc": "Lithium, cuivre, manganèse, fer. Accès direct sous NDA.",
+        "cap.card3.title": "Flux Récurrent",
+        "cap.card3.desc": "Trading structuré avec logistique LATAM définie.",
+        "cap.card4.title": "Gouvernance",
+        "cap.card4.desc": "Juridiction claire, contreparties traçables, conformité exécutable.",
 
-        "b2b.eyebrow": `B2B · PÉTROLE & GAZ · MINES · SUPPLY CHAIN`,
-        "b2b.headline": `Trading réel entre parties vérifiées. <span>Pas de touristes.</span>`,
-        "b2b.body": `Carburants raffinés (EN590, Jet A1, D6). Minéraux critiques (lithium, cuivre, manganèse, minerai de fer). Acier industriel et tubes surplus prêts à expédier.`,
-        "b2b.card1.title": `Oil & Gas`,
-        "b2b.card1.desc": `Procédures C.I.F / F.O.B non négociables. ICPO, NDA, logistique claire.`,
-        "b2b.card2.title": `Mines & Minéraux Critiques`,
-        "b2b.card2.desc": `Lithium, cuivre, manganèse, fer. Accès direct au détenteur réel.`,
-        "b2b.card3.title": `Acier Industriel`,
-        "b2b.card3.desc": `Tubes structurels, OCTG, ferraille lourde. Stock physique en Amérique latine.`,
-        "b2b.card4.title": `Supply Chain LATAM`,
-        "b2b.card4.desc": `Tu achètes de la marchandise réelle, pas un slide deck.`,
-        "b2b.cta.title": `Étape suivante`,
-        "b2b.cta.desc": `Acheteur/vendeur sérieux : volume, destination, C.I.F ou F.O.B, et preuve de capacité.`,
-        "b2b.legalblock.title": `Note légale`,
-        "b2b.legalblock.desc": `On n’opère qu’en B2B sous NDA et juridiction internationale exécutoire. Aucun POP / doc raffinerie sans ICPO/LOI + NDA.`,
-        "b2b.button": `Je suis une contrepartie vérifiée`,
-        "b2b.legalnote": `Uniquement des contreparties vérifiées.`,
+        "contact.eyebrow": "Contact & Crédibilité",
+        "contact.title": "Accès restreint.",
+        "contact.body": "Actif sur Oil & Gas, Mines, Supply Chain, et positionnement d'offres haut de gamme.",
+        "contact.role": "Fondateur & CEO · Abraxas Group",
+        "contact.booksTitle": "Playbooks internes :",
+        "contact.bookES": "Playbook Commercial (ES)",
+        "contact.bookEN": "Playbook Commercial (EN)",
+        "contact.brochureTitle": "Profil corporate / Brochure :",
+        "contact.brochureES": "Brochure Corporate (FR/ES)",
+        "contact.brochureEN": "Corporate Brochure (EN)",
+        "contact.note": "L'accès au deal flow, au conseil 1:1 ou à la supply physique exige KYC/NDA et preuve de capacité.",
+        "contact.whatsapp": "WhatsApp Direct",
+        "contact.email": "Email Direct",
+        "contact.photoAlt": "Contact Abraxas",
 
-        "ment.eyebrow": `MENTORAT 1:1`,
-        "ment.headline": `On nettoie ton offre, ton pricing et ton pitch LinkedIn pour que tu puisses facturer plus cher.`,
-        "ment.body": `C’est de l’exécution, pas de la théorie. Tu repars avec une offre USD claire et vendable.`,
-        "ment.card1.title": `Profil LinkedIn Prêt-à-Vendre`,
-        "ment.card1.desc": `Accroche 5s : problème cher + ta solution + résultat réel.`,
-        "ment.card2.title": `Offre en USD`,
-        "ment.card2.desc": `On transforme ton service en produit premium clair, pas ‘je fais tout’.`,
-        "ment.card3.title": `Pipeline Simple`,
-        "ment.card3.desc": `Suivi maîtrisé qui amène chaque lead à la signature sans quémander.`,
-        "ment.card4.title": `Plan 5K/mois`,
-        "ment.card4.desc": `Objectif ~5 000 USD/mois sans burn-out.`,
-        "ment.cta.title": `Je veux la session`,
-        "ment.cta.desc": `Dis-moi ce que tu vends et ton revenu mensuel moyen. Je te donne l’optimisation.`,
-        "ment.payment.title": `Paiement`,
-        "ment.payment.methods": `USDT · Payoneer USD · Mercado Pago ARS · Brubank ARS`,
-        "ment.button": `Réserver 1:1`,
-        "ment.legalnote": `Capacité limitée.`,
-
-        "asset.eyebrow": `INVESTISSEMENT · ACTIF · PORTEFEUILLE`,
-        "asset.headline": `Accès privé à des actifs réels : mines, flux de matières premières, acier industriel. <span>Capital sérieux uniquement, KYC/NDA obligatoire.</span>`,
-        "asset.body": `Pas de promesse financière bullshit. On déplace des actifs réels qui circulent et génèrent du cashflow.`,
-        "asset.card1.title": `Placement de Capital`,
-        "asset.card1.desc": `Accès à des deals avec cashflow opérationnel, pas des slides marketing.`,
-        "asset.card2.title": `Actifs Miniers`,
-        "asset.card2.desc": `Lithium, cuivre, manganèse, fer. NDA, accès direct au propriétaire.`,
-        "asset.card3.title": `Flux Récurrent`,
-        "asset.card3.desc": `Trading structuré (carburants / acier / LATAM) pour du capital qui veut tourner.`,
-        "asset.card4.title": `Gouvernance`,
-        "asset.card4.desc": `Juridiction claire et contreparties traçables.`,
-        "asset.cta.title": `Demande d’accès`,
-        "asset.cta.desc": `Si tu as du capital mobilisable et tu veux du deal flow privé, présente ton entité légale et juridiction.`,
-        "asset.legalblock.title": `Note`,
-        "asset.legalblock.desc": `KYC/NDA requis. Pas d’argent retail.`,
-        "asset.button": `J'ai du capital`,
-        "asset.legalnote": `Nous opérons uniquement entre sociétés vérifiées.`,
-
-        "footer.line1": `ABRAXAS GROUP · WeTrade • WeConnect • WeWork`,
-        "footer.line2": `o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299`,
-        "footer.line3": `B2B uniquement · Contreparties vérifiées uniquement`
+        "footer.line1": "ABRAXAS GROUP · Advisory · B2B · Accès Capital",
+        "footer.line2": "o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299",
+        "footer.line3": "Uniquement avec des contreparties vérifiées"
       },
 
       pt: {
-        "brand.tagline": `Luz e sombra. Estratégia e execução.`,
-        "brand.choose": `Escolha sua porta`,
+        "nav.ia": "Consultoria IA",
+        "nav.b2b": "B2B",
+        "nav.mentoria": "Mentoria Privada",
+        "nav.capital": "Capital",
+        "nav.contact": "Contato",
 
-        "door.ia.title": `Agência IA`,
-        "door.ia.sub": `Marca, site, automação e autoridade.`,
-        "door.b2b.title": `B2B · Óleo & Gás · Mineração · Supply Chain`,
-        "door.b2b.sub": `Só partes verificadas.`,
-        "door.mentoria.title": `Mentoria 1:1`,
-        "door.mentoria.sub": `Organizo sua oferta pra você cobrar mais.`,
-        "door.asset.title": `Investimento · Ativos · Portfólio`,
-        "door.asset.sub": `Capital real em ativos reais.`,
+        "hero.headline": "Reputação executiva. Acesso restrito. Operação real.",
+        "hero.sub": "Não é marketing barato. É credibilidade, estrutura e entrada em mesas onde a maioria nem chega.",
+        "hero.cta": "Solicitar avaliação privada",
 
-        "cred.ceoName": `Osqui Chinchilla`,
-        "cred.ceoRole": `Fundador e CEO da Abraxas Group`,
-        "cred.books": `Autor publicado na Amazon. A gente entrega operação real, não discurso.`,
-        "cred.booksListTitle": `Livros na Amazon:`,
-        "cred.book1": `Livro 1`,
-        "cred.book2": `Livro 2`,
+        "trust.title": "Confidencial · Acesso direto",
+        "trust.body": "Sem SDR filtrando. Sem formulário em massa. Contato direto pra ver se faz sentido.",
+        "trust.pay": "Pagamento disponível: USDT · Payoneer USD · Mercado Pago ARS · Brubank ARS",
+        "trust.whatsapp": "WhatsApp Direto",
+        "trust.email": "Email Direto",
 
-        "back.portal": `← Voltar ao Portal`,
+        "ia.eyebrow": "CONSULTORIA IA",
+        "ia.title": "Autoridade imediata e funil pronto pra faturar.",
+        "ia.body": "A gente te posiciona como solução premium, com presença séria e canal direto de deal flow.",
+        "ia.card1.title": "Posicionamento",
+        "ia.card1.desc": "Você deixa de soar 'prestador barato' e passa a soar 'advisory serio'.",
+        "ia.card2.title": "Marca & Site",
+        "ia.card2.desc": "Identidade institucional e site corporativo que você pode mandar pra decisor sem passar vergonha.",
+        "ia.card3.title": "Automação Comercial",
+        "ia.card3.desc": "WhatsApp / n8n: captura, responde e empurra a conversa sem você correr atrás.",
+        "ia.card4.title": "Perfil Corporativo",
+        "ia.card4.desc": "PDF formal que já sinaliza seriedade no primeiro contato.",
 
-        "ia.eyebrow": `AGÊNCIA IA`,
-        "ia.headline": `Construímos uma presença <span>pronta para faturar</span>: marca, site, automação comercial e autoridade no LinkedIn.`,
-        "ia.body": `Não é ‘site bonitinho’. É posicionamento premium que gera ligações sérias.`,
-        "ia.card1.title": `Brand & Landing Express`,
-        "ia.card1.desc": `Identidade visual, headline que bate em 5 segundos e landing responsiva que converte.`,
-        "ia.card2.title": `Automação WhatsApp / n8n`,
-        "ia.card2.desc": `Captura o lead, responde automático e mantém o follow-up sem você correr atrás.`,
-        "ia.card3.title": `Autoridade LinkedIn`,
-        "ia.card3.desc": `Você vira ‘quem resolve o problema caro’, não ‘mais um fornecedor barato’.`,
-        "ia.card4.title": `Infra Séria`,
-        "ia.card4.desc": `E-mail corporativo, site institucional, perfil corporativo pronto pra enviar.`,
-        "ia.cta.title": `Quero isso`,
-        "ia.cta.desc": `Me fala o que você vende e onde recebe. Eu devolvo a estrutura pronta pra cobrar.`,
+        "b2b.eyebrow": "B2B · ÓLEO & GÁS · MINERAÇÃO · SUPPLY CHAIN",
+        "b2b.title": "Operação física entre partes verificadas.",
+        "b2b.body": "Combustíveis refinados (EN590, Jet A1, D6). Minerais críticos (lítio, cobre, manganês, ferro). Aço industrial e pipe real LATAM.",
+        "b2b.card1.title": "Oil & Gas",
+        "b2b.card1.desc": "Procedimentos C.I.F / F.O.B não negociáveis. NDA, ICPO, logística rastreável.",
+        "b2b.card2.title": "Mineração",
+        "b2b.card2.desc": "Acesso direto ao titular real em lítio, cobre, manganês, ferro.",
+        "b2b.card3.title": "Aço / Tubo",
+        "b2b.card3.desc": "Tubo industrial, OCTG, sucata pesada. Estoque real, não apresentação.",
+        "b2b.card4.title": "Cadeia LATAM",
+        "b2b.card4.desc": "Produto físico e despacho real. Nada de PowerPoint.",
 
-        "pay.title": `Formas de pagamento`,
-        "pay.methods": `• USDT (cripto estável)<br>• USD via Payoneer<br>• Mercado Pago (ARS)<br>• Brubank (ARS)`,
+        "ment.eyebrow": "MENTORIA PRIVADA 1:1",
+        "ment.title": "Ajustamos tua oferta, preço e discurso pra você ser pago como consultor — não espremido como fornecedor.",
+        "ment.body": "Isso é arquitetura comercial. Você sai com oferta em USD, discurso forte e pipeline calmo.",
+        "ment.card1.title": "Oferta em USD",
+        "ment.card1.desc": "Exato o que você vende e por quanto, falado em linguagem que um decisor respeita.",
+        "ment.card2.title": "Autoridade Pública",
+        "ment.card2.desc": "LinkedIn que mostra poder, não necessidade.",
+        "ment.card3.title": "Pipeline Controlado",
+        "ment.card3.desc": "Sequência que avança cada lead sem mendigar.",
+        "ment.card4.title": "Trilha 5K/mês",
+        "ment.card4.desc": "Rota ~5.000 USD/mês sustentável, sem guru e sem burnout.",
 
-        "ia.button": `WhatsApp Direto`,
-        "cta.email": `Email Direto`,
-        "legal.ia": `Somente projetos reais.`,
+        "cap.eyebrow": "CAPITAL · ATIVO · PORTFÓLIO",
+        "cap.title": "Acesso privado a ativos reais e fluxo recorrente.",
+        "cap.body": "Deal flow em mineração, combustíveis e aço industrial. Só capital pronto com KYC/NDA. Sem varejo.",
+        "cap.card1.title": "Deploy de Capital",
+        "cap.card1.desc": "Entrada em fluxo de caixa operacional, não slide bonito.",
+        "cap.card2.title": "Ativos de Mineração",
+        "cap.card2.desc": "Lítio, cobre, manganês, ferro. Acesso direto sob NDA.",
+        "cap.card3.title": "Fluxo Recorrente",
+        "cap.card3.desc": "Trading estruturado com logística LATAM clara.",
+        "cap.card4.title": "Governança",
+        "cap.card4.desc": "Jurisd. clara, contraparte rastreável, compliance executável.",
 
-        "b2b.eyebrow": `B2B · ÓLEO & GÁS · MINERAÇÃO · SUPPLY CHAIN`,
-        "b2b.headline": `Trading real entre partes verificadas. <span>Sem turista.</span>`,
-        "b2b.body": `Combustíveis refinados (EN590, Jet A1, D6). Minerais críticos (lítio, cobre, manganês, minério de ferro). Aço industrial e tubo excedente prontos pra girar.`,
-        "b2b.card1.title": `Oil & Gas`,
-        "b2b.card1.desc": `Procedimentos C.I.F / F.O.B não negociáveis. ICPO, NDA, logística clara.`,
-        "b2b.card2.title": `Mineração & Minerais Críticos`,
-        "b2b.card2.desc": `Lítio, cobre, manganês, ferro. Acesso direto à titularidade real.`,
-        "b2b.card3.title": `Aço Industrial`,
-        "b2b.card3.desc": `Tubos estruturais, OCTG, sucata pesada. Estoque físico LATAM.`,
-        "b2b.card4.title": `Supply Chain LATAM`,
-        "b2b.card4.desc": `Você compra produto físico, não um slide.`,
-        "b2b.cta.title": `Próximo passo`,
-        "b2b.cta.desc": `Se você é comprador/vendedor sério: volume, destino, C.I.F ou F.O.B e prova de capacidade.`,
-        "b2b.legalblock.title": `Nota legal`,
-        "b2b.legalblock.desc": `Operamos apenas B2B, sob NDA e jurisdição internacional executável. Sem POP / docs de refinaria sem ICPO/LOI + NDA.`,
-        "b2b.button": `Sou parte verificada`,
-        "b2b.legalnote": `Só trabalhamos com partes verificadas.`,
+        "contact.eyebrow": "Contato & Credenciais",
+        "contact.title": "Acesso restrito.",
+        "contact.body": "Atuação em Oil & Gas, Mineração, Supply Chain e posicionamento premium high-ticket.",
+        "contact.role": "Fundador & CEO · Abraxas Group",
+        "contact.booksTitle": "Playbooks internos:",
+        "contact.bookES": "Playbook Comercial (ES)",
+        "contact.bookEN": "Commercial Playbook (EN)",
+        "contact.brochureTitle": "Perfil corporativo / Brochure:",
+        "contact.brochureES": "Brochure Corporativo (PT/ES)",
+        "contact.brochureEN": "Corporate Brochure (EN)",
+        "contact.note": "Acesso a deal flow, mentoria 1:1 ou supply físico exige KYC/NDA e prova de capacidade.",
+        "contact.whatsapp": "WhatsApp Direto",
+        "contact.email": "Email Direto",
+        "contact.photoAlt": "Contato Abraxas",
 
-        "ment.eyebrow": `MENTORIA 1:1`,
-        "ment.headline": `Organizo sua oferta, preço e pitch no LinkedIn pra você cobrar mais alto.`,
-        "ment.body": `Execução, não teoria. Você sai com oferta clara em USD, pronta pra vender.`,
-        "ment.card1.title": `Perfil LinkedIn Pronto pra Fechar`,
-        "ment.card1.desc": `Headline de 5 segundos: dor cara + sua solução + resultado real.`,
-        "ment.card2.title": `Oferta em USD`,
-        "ment.card2.desc": `Transformamos ‘faço de tudo’ em produto premium claro.`,
-        "ment.card3.title": `Pipeline Simples`,
-        "ment.card3.desc": `Follow-up controlado que leva cada lead até fechar sem implorar.`,
-        "ment.card4.title": `Caminho 5K/mês`,
-        "ment.card4.desc": `Rota pra ~5.000 USD/mês sem se matar.`,
-        "ment.cta.title": `Quero a sessão`,
-        "ment.cta.desc": `Me diz o que você vende e quanto você fatura/mês. Eu ajusto.`,
-        "ment.payment.title": `Pagamento`,
-        "ment.payment.methods": `USDT · Payoneer USD · Mercado Pago ARS · Brubank ARS`,
-        "ment.button": `Reservar 1:1`,
-        "ment.legalnote": `Vagas limitadas.`,
-
-        "asset.eyebrow": `INVESTIMENTO · ATIVO · PORTFÓLIO`,
-        "asset.headline": `Acesso privado a ativos reais: mineração, fluxo de commodities, aço industrial. <span>Só capital sério com KYC/NDA.</span>`,
-        "asset.body": `Não é hype financeiro. É coisa que existe, se move e gera caixa.`,
-        "asset.card1.title": `Aloque de Capital`,
-        "asset.card1.desc": `Entrada em deals com fluxo de caixa operacional, não apresentação bonita.`,
-        "asset.card2.title": `Ativos de Mineração`,
-        "asset.card2.desc": `Lítio, cobre, manganês, ferro. NDA e acesso direto ao dono.`,
-        "asset.card3.title": `Fluxo Recorrente`,
-        "asset.card3.desc": `Trading estruturado (combustíveis / aço / LATAM) pra capital que quer girar.`,
-        "asset.card4.title": `Governança`,
-        "asset.card4.desc": `Jurisdição clara e contraparte rastreável.`,
-        "asset.cta.title": `Pedido de acesso`,
-        "asset.cta.desc": `Se você tem capital pronto e quer deal flow privado, apresente entidade legal e jurisdição.`,
-        "asset.legalblock.title": `Aviso`,
-        "asset.legalblock.desc": `KYC/NDA obrigatório. Sem varejo.`,
-        "asset.button": `Tenho capital`,
-        "asset.legalnote": `Só operamos entre contrapartes verificadas.`,
-
-        "footer.line1": `ABRAXAS GROUP · WeTrade • WeConnect • WeWork`,
-        "footer.line2": `o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299`,
-        "footer.line3": `Somente B2B · Somente partes verificadas`
+        "footer.line1": "ABRAXAS GROUP · Advisory · B2B · Capital Access",
+        "footer.line2": "o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299",
+        "footer.line3": "Só com partes verificadas"
       }
     };
 
     function setLanguage(lang) {
-      const dict = translations[lang] || translations['es'];
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
+      const dict = translations[lang] || translations["es"];
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
         if (dict[key] !== undefined) {
           el.innerHTML = dict[key];
         }
       });
+      // alt text update for CEO photo
+      const ceoImg = document.querySelector("[data-i18n-alt='contact.photoAlt']");
+      if (ceoImg && dict["contact.photoAlt"]) {
+        ceoImg.setAttribute("alt", dict["contact.photoAlt"]);
+      }
     }
 
-    const langSelect = document.getElementById('langSelect');
-    langSelect.addEventListener('change', e => {
+    const langSelect = document.getElementById("langSelect");
+    langSelect.addEventListener("change", e => {
       setLanguage(e.target.value);
     });
 
-    // Estado inicial
-    document.body.style.overflowY = 'hidden';
-    langSelect.value = 'es';
-    setLanguage('es');
+    // idioma inicial
+    langSelect.value = "es";
+    setLanguage("es");
   </script>
 </body>
 </html>
