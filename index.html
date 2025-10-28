@@ -1,260 +1,710 @@
-<!-- ========== SEO (ES) ========== -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Abraxas Group — Energía, Minería y Agro | Validación y ejecución</title>
-<meta name="description" content="Abraxas Group: acceso real a energía, minería y agro. Mandatos reales, operaciones CIF/FOB verificadas y compliance. Consultoría high-ticket y desarrollo web.">
-<link rel="canonical" href="https://www.abraxas-group.lat/">
-<meta name="robots" content="index, follow">
-
-<!-- Idiomas -->
-<link rel="alternate" hreflang="es" href="https://www.abraxas-group.lat/">
-<link rel="alternate" hreflang="en" href="https://www.abraxas-group.lat/en/">
-<link rel="alternate" hreflang="x-default" href="https://www.abraxas-group.lat/">
-
-<!-- Open Graph / Twitter -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Abraxas Group">
-<meta property="og:title" content="Abraxas Group — Energía • Minería • Agro">
-<meta property="og:description" content="Acceso real a energía, minería y agro — con validación y ejecución. Mandatos reales y cumplimiento AML.">
-<meta property="og:url" content="https://www.abraxas-group.lat/">
-<meta property="og:image" content="https://www.abraxas-group.lat/img/logo-abraxas.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Abraxas Group — Energía • Minería • Agro">
-<meta name="twitter:description" content="Acceso real a energía, minería y agro — con validación y ejecución.">
-<meta name="twitter:image" content="https://www.abraxas-group.lat/img/logo-abraxas.png">
-
-<!-- Datos estructurados (Organization + WebSite) -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Organization",
-  "name":"Abraxas Group",
-  "url":"https://www.abraxas-group.lat/",
-  "logo":"https://www.abraxas-group.lat/img/logo-abraxas.png",
-  "sameAs":[
-    "https://www.amazon.com/dp/B0FQ83TDHN",
-    "https://www.amazon.es/dp/B0FQ7W6DJC",
-    "https://www.amazon.es/dp/B0FQCXNB5Y"
-  ],
-  "contactPoint":[{
-    "@type":"ContactPoint",
-    "contactType":"Sales",
-    "telephone":"+5493417400299",
-    "email":"o.chinchilla@abraxas-group.lat",
-    "areaServed":"Worldwide",
-    "availableLanguage":["es","en"]
-  }]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebSite",
-  "url":"https://www.abraxas-group.lat/",
-  "name":"Abraxas Group",
-  "potentialAction":{
-    "@type":"SearchAction",
-    "target":"https://www.abraxas-group.lat/?q={search_term_string}",
-    "query-input":"required name=search_term_string"
-  }
-}
-</script>
-<!-- ========== /SEO (ES) ========== -->
-
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0a0b12" />
-  <title>Abraxas Group — WeTrade · WeConnect · WeWork</title>
-  <link rel="icon" href="/favicon.ico" />
-  <!-- TIPOGRAFÍA SISTEMA: carga ultra-rápida y consistente en iOS/Android -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABRAXAS GROUP • WeTrade • WeConnect • WeWork</title>
+
+  <!-- Preload opcional para mejorar primera pintura -->
+  <link rel="preload" as="image" href="assets/logo.png">
+  <link rel="preload" as="video" href="assets/abraxas_hero.mp4" type="video/mp4">
+
   <style>
-    /* Fuente del sistema (evita FOIT/zoom raro en iOS) */
-    :root{--bg:#0a0b12;--panel:#121421;--panel-2:#0e1020;--text:#e8ecf2;--muted:#b8c0cc;
-      --gold-1:#e9c46a;--gold-2:#b88a2d;--gold-3:#ffd175;--radius:18px;--shadow:0 10px 40px rgba(0,0,0,.35)}
-    html{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; scroll-behavior:smooth}
+    :root {
+      --bg-dark: #0a0a0f;
+      --text-main: #f5f5f5;
+      --text-dim: #9b9b9b;
+      --gold-light: #ffd782;
+      --gold-mid: #b48a2a;
+      --panel-bg: rgba(10,10,15,0.55);
+      --panel-border: rgba(255,215,130,0.4);
+      --radius-card: 20px;
+      --radius-pill: 999px;
+      --shadow-deep: 0 40px 120px rgba(0,0,0,0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Poppins", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      margin: 0;
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    /* === VIDEO DE FONDO === */
+    #bgVideo {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+      background: #000;
+    }
+    /* Fallback poster si el video tarda */
+    .video-poster {
+      position: fixed;
+      inset: 0;
+      background: #000 url('assets/logo.png') center/120px no-repeat;
+      z-index: -4;
+    }
+
+    /* Capa de oscurecido y glow galáctico */
+    .overlay-gradient {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255,215,130,0.18) 0%, rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.85) 70%, rgba(0,0,0,0.95) 100%),
+        radial-gradient(circle at 50% 10%, rgba(120,0,255,0.25) 0%, rgba(0,0,0,0) 60%);
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* === PANTALLA PORTAL (HOME INICIAL) === */
+    .portal-screen {
+      min-height: 100vh;
+      width: 100%;
+      padding: 2rem 1rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Tarjeta central con logo y tagline */
+    .brand-block {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      box-shadow: var(--shadow-deep), 0 0 60px rgba(255,215,130,0.25);
+      border-radius: var(--radius-card);
+      padding: 1.5rem 1rem 1.5rem;
+      max-width: 360px;
+      width: 100%;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .brand-logo {
+      width: 140px;
+      height: auto;
+      display: block;
+      margin: 0 auto 0.75rem auto;
+      user-select: none;
+    }
+
+    .brand-name {
+      color: var(--gold-light);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-shadow: 0 0 16px rgba(255,215,130,0.5);
+    }
+
+    .tagline {
+      font-size: 0.8rem;
+      font-weight: 400;
+      line-height: 1.4rem;
+      color: var(--text-main);
+    }
+
+    .tagline span {
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .instruction {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* === GRID DE PUERTAS (BOTONES DORADOS) === */
+    .portal-options-wrapper {
+      max-width: 900px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .portal-options {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(240px,1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    @media (max-width: 580px) {
+      .portal-options {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+      }
+    }
+
+    .portal-btn {
+      background: linear-gradient(90deg, var(--gold-light) 0%, var(--gold-mid) 50%, var(--gold-light) 100%);
+      border: 1px solid rgba(255,215,130,0.6);
+      border-radius: var(--radius-pill);
+      color: #1a1a1a;
+      box-shadow:
+        0 30px 100px rgba(0,0,0,0.9),
+        0 0 60px rgba(255,215,130,0.4),
+        inset 0 0 20px rgba(255,255,255,0.4);
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      transition: all .15s ease;
+      text-align: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .portal-btn:hover {
+      box-shadow:
+        0 40px 120px rgba(0,0,0,1),
+        0 0 80px rgba(255,215,130,0.6),
+        inset 0 0 28px rgba(255,255,255,0.55);
+      transform: translateY(-1px);
+    }
+
+    .portal-title {
+      font-size: 0.8rem;
+      line-height: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .portal-sub {
+      font-size: 0.7rem;
+      line-height: 1rem;
+      font-weight: 400;
+      color: #2b2b2b;
+    }
+
+    /* === SECCIONES INTERNAS === */
+    .section-view {
+      display: none; /* se muestra con JS */
+      min-height: 100vh;
+      width: 100%;
+      padding: 5rem 1rem 4rem;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: rgba(15,15,20,0.6);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius-card);
+      padding: 2rem 1.5rem 3rem;
+      box-shadow: var(--shadow-deep), 0 0 60px rgba(255,215,130,0.25);
+    }
+
+    @media (min-width: 768px) {
+      .section-inner {
+        padding: 3rem 3rem 4rem;
+      }
+    }
+
+    .back-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      text-decoration: none;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+    }
+
+    .unit-eyebrow {
+      font-size: 0.7rem;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .unit-headline {
+      font-size: clamp(1.2rem, 0.6vw + 1rem, 1.5rem);
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.3em;
+      max-width: 780px;
+    }
+    .unit-headline span { color: var(--gold-light); }
+
+    .unit-body {
+      margin-top: 1rem;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      line-height: 1.5rem;
+      max-width: 780px;
+    }
+
+    /* SUBCARDS DENTRO DE CADA SECCIÓN */
+    .subgrid {
+      margin-top: 2rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .subgrid { grid-template-columns: repeat(2,1fr); }
+    }
+
+    .subcard {
+      background: rgba(20,20,30,0.65);
+      border: 1px solid rgba(255,215,130,0.2);
+      border-radius: var(--radius-card);
+      padding: 1rem 1rem 1.2rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(255,215,130,0.18);
+    }
+
+    .subcard h3 {
+      margin: 0 0 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .subcard p {
+      margin: 0;
+      color: var(--text-main);
+      font-size: 0.8rem;
+      line-height: 1.3rem;
+      font-weight: 400;
+    }
+
+    /* CTA / PAGO / CONTACTO */
+    .cta-block {
+      margin-top: 2rem;
+      background: rgba(255,215,130,0.07);
+      border: 1px solid rgba(255,215,130,0.4);
+      border-radius: var(--radius-card);
+      padding: 1rem 1.2rem 1.5rem;
+      max-width: 780px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.9), 0 0 50px rgba(255,215,130,0.3);
+    }
+    .cta-block h4 {
+      margin: 0 0 0.6rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .cta-block p {
+      margin: 0 0 1rem;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      line-height: 1.4rem;
+    }
+
+    .payment-block {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,215,130,0.25);
+      border-radius: var(--radius-card);
+      padding: 0.8rem 1rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .payment-block-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .payment-methods {
+      font-size: 0.8rem;
+      line-height: 1.4rem;
+      color: var(--text-main);
+    }
+
+    .cta-actions a {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--gold-light);
+      background-color: var(--gold-light);
+      color: #1a1a1a;
+      box-shadow: 0 0 20px rgba(255,215,130,0.5);
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .legal-note {
+      margin-top: 0.8rem;
+      font-size: 0.7rem;
+      line-height: 1.2rem;
+      color: var(--text-dim);
+    }
+
+    footer.footer {
+      text-align: center;
+      padding: 2rem 1rem 4rem;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+    footer.footer .powered {
+      color: var(--gold-light);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    /* Utilidad para JS */
+    .hidden { display: none !important; }
   </style>
-  <link rel="preload" as="image" href="/img/bg-galaxy.jpg" />
-  <link rel="preload" as="video" href="/assets/galaxy.mp4" />
-  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <!-- NAV -->
-  <header class="nav">
-    <div class="wrap nav__inner">
-      <a class="brand" href="#top">
-        <img src="/img/logo-abraxas.png" width="28" height="28" alt="Logo Abraxas" />
-        <span>ABRAXAS GROUP</span>
-      </a>
-      <nav class="nav__links">
-        <a href="#offer">Oferta</a>
-        <a href="#books">Libros</a>
-        <a href="#web">Web</a>
-        <a href="#about">Acerca</a>
-      </nav>
-      <a class="btn btn--gold" href="#book">Agendar</a>
-    </div>
-  </header>
 
-  <!-- HERO -->
-  <section id="top" class="hero">
-    <div class="hero__bg">
-      <!-- Vídeo galaxia: cubre, silenciado, sin controles -->
-      <video class="hero__video" autoplay muted playsinline loop preload="metadata" poster="/img/bg-galaxy.jpg">
-        <source src="/assets/galaxy.mp4" type="video/mp4" />
-      </video>
-      <div class="hero__overlay"></div>
+  <!-- Fallback Poster -->
+  <div class="video-poster" aria-hidden="true"></div>
+
+  <!-- VIDEO DE FONDO -->
+  <video id="bgVideo" autoplay muted loop playsinline>
+    <source src="assets/abraxas_hero.mp4" type="video/mp4" />
+  </video>
+  <div class="overlay-gradient"></div>
+
+  <!-- PORTAL INICIAL -->
+  <section id="portal" class="portal-screen">
+    <div class="brand-block">
+      <img src="assets/logo.png" alt="ABRAXAS GROUP" class="brand-logo" />
+      <div class="brand-name">ABRAXAS GROUP</div>
+      <div class="tagline">
+        Luz y sombra. Estrategia y ejecución.<br/>
+        <span>Light and shadow. Strategy and execution.</span>
+      </div>
+      <div class="instruction">Elegí tu puerta · Choose your door</div>
     </div>
 
-    <div class="wrap hero__content">
-      <h1 class="hero__title">
-        Acceso real a <span class="gold">energía</span>, <span class="gold">minería</span> y <span class="gold">agro</span> — con<br/> validación y ejecución.
-      </h1>
-      <p class="hero__sub">Trabajamos con dueños y directores de supply/trading (ticket ≥ USD 500k). Sin humo, con compliance.</p>
+    <div class="portal-options-wrapper">
+      <div class="portal-options">
 
-      <div class="hero__cta">
-        <a class="btn btn--gold btn--xl" target="_blank" rel="noopener" href="https://wa.me/5493417400299">Hablar por WhatsApp</a>
-        <a class="btn btn--ghost btn--xl" href="#offer">Ver oferta</a>
+        <button class="portal-btn" data-target="iaSection">
+          <div class="portal-title">Agencia IA / AI Agency</div>
+          <div class="portal-sub">Marca, web, automatización y autoridad.</div>
+        </button>
+
+        <button class="portal-btn" data-target="b2bSection">
+          <div class="portal-title">B2B · Oil & Gas · Minería · Supply Chain</div>
+          <div class="portal-sub">Sólo contrapartes verificadas.</div>
+        </button>
+
+        <button class="portal-btn" data-target="mentoriaSection">
+          <div class="portal-title">Mentorías 1:1 / Business Mentorship</div>
+          <div class="portal-sub">Te ordeno para cobrar mejor.</div>
+        </button>
+
+        <button class="portal-btn" data-target="assetSection">
+          <div class="portal-title">Investment · Asset · Portfolio</div>
+          <div class="portal-sub">Capital real en activos reales.</div>
+        </button>
+
       </div>
     </div>
   </section>
 
-  <!-- OFERTA -->
-  <section id="offer" class="section">
-    <div class="wrap">
-      <h2 class="section__title">¿Qué ofrecemos?</h2>
+  <!-- =========================== -->
+  <!-- SECCIÓN AGENCIA IA          -->
+  <!-- =========================== -->
+  <section id="iaSection" class="section-view">
+    <div class="section-inner">
+      <a href="#" class="back-link" data-back>← Volver al Portal / Back to Portal</a>
 
-      <div class="grid">
-        <article class="card">
-          <h3>All In Gas — Acceso directo, sin humo</h3>
-          <ul>
-            <li>Mandatos reales en Houston, Fujairah y Ámsterdam</li>
-            <li><b>Operaciones CIF/FOB verificadas</b></li>
-            <li>Validación de tanque / compliance AML</li>
-            <li>Tratos con traders y refinerías directas</li>
-          </ul>
-        </article>
+      <div class="unit-eyebrow">AGENCIA IA · AI AGENCY</div>
+      <div class="unit-headline">
+        Construimos tu presencia <span>lista para cobrar</span>: marca, sitio, automatización comercial y autoridad LinkedIn.
+        <br/>We build an <span>income-ready</span> presence: brand, site, WhatsApp automation, LinkedIn authority.
+      </div>
+      <div class="unit-body">
+        No hacemos “página linda”. Hacemos posicionamiento que te deja parado como oferta premium y te genera llamadas serias.
+        / We don’t sell “pretty websites”. We build authority and pipeline.
+      </div>
 
-        <article class="card">
-          <h3>Minería — Donde se define el valor</h3>
-          <ul>
-            <li>Acceso directo a productores y brokers regulados</li>
-            <li>Dueños de concesiones en venta</li>
-            <li>Joint ventures y financiamiento</li>
-            <li>Litio, oro, cobre y tierras raras</li>
-          </ul>
-        </article>
+      <div class="subgrid">
+        <div class="subcard">
+          <h3>Brand & Landing Express</h3>
+          <p>Identidad visual, titular que vende en 5 segundos, landing responsive. / Visual identity + 5s headline + responsive landing.</p>
+        </div>
+        <div class="subcard">
+          <h3>Automatización WhatsApp / n8n</h3>
+          <p>Lead → respuesta automática → seguimiento. / Lead → auto-reply → follow-up pipeline.</p>
+        </div>
+        <div class="subcard">
+          <h3>Autoridad LinkedIn</h3>
+          <p>Te posiciono como “el que resuelve el problema caro”. / You become “the fix”, not “another vendor”.</p>
+        </div>
+        <div class="subcard">
+          <h3>Infra seria</h3>
+          <p>Mail corporativo, sitio institucional, perfil corporativo. / Corporate email, institutional site, profile deck.</p>
+        </div>
+      </div>
 
-        <article class="card">
-          <h3>Comercio Exterior — Validación y ejecución</h3>
-          <ul>
-            <li>Due diligence de counterparty y rutas</li>
-            <li>Estructuras seguras de pago y entrega</li>
-            <li>Documentación, compliance y seguros</li>
-            <li>Optimización de costos logísticos</li>
-          </ul>
-        </article>
+      <div class="cta-block">
+        <h4>Quiero esto / I want this</h4>
+        <p>Decime qué vendés y dónde cobrás. Yo te devuelvo estructura lista para facturar. / Tell me what you sell and where you get paid.</p>
 
-        <article class="card">
-          <h3>Agro — Aceites y granos</h3>
-          <ul>
-            <li>Origen auditado y contratos estandarizados</li>
-            <li>Operaciones spot y a término</li>
-            <li>QA/QC independiente y control de calidad</li>
-            <li>Integración con trading y logística portuaria</li>
-          </ul>
-        </article>
+        <div class="payment-block">
+          <div class="payment-block-title">Métodos de pago / Payment methods</div>
+          <div class="payment-methods">
+            • USDT (crypto estable) · • USD vía Payoneer · • Mercado Pago (ARS) · • Brubank (ARS)
+          </div>
+        </div>
+
+        <div class="cta-actions">
+          <a href="https://wa.me/5493417400299">WhatsApp Directo</a>
+          <a href="mailto:o.chinchilla@abraxas-group.lat">o.chinchilla@abraxas-group.lat</a>
+        </div>
+
+        <div class="legal-note">Sólo proyectos reales. / Serious projects only.</div>
       </div>
     </div>
   </section>
 
-  <!-- LIBROS -->
-  <section id="books" class="section">
-    <div class="wrap">
-      <h2 class="section__title">Libros</h2>
+  <!-- =========================== -->
+  <!-- SECCIÓN B2B                 -->
+  <!-- =========================== -->
+  <section id="b2bSection" class="section-view">
+    <div class="section-inner">
+      <a href="#" class="back-link" data-back>← Volver al Portal / Back to Portal</a>
 
-      <div class="books">
-        <a class="book" href="https://www.amazon.com/dp/B0FQ83TDHN" target="_blank" rel="noopener">
-          <img src="/img/book-mining-en.png" alt="How to be an Intermediary in the Mining Business (EN)" loading="lazy" />
-          <span class="book__cta btn btn--gold">Comprar en Amazon</span>
-        </a>
+      <div class="unit-eyebrow">B2B · OIL & GAS · MINERÍA · SUPPLY CHAIN</div>
+      <div class="unit-headline">
+        Trading real entre partes verificadas. <span>Sin turistas.</span><br/>
+        Verified commodity flow. <span>No clowns.</span>
+      </div>
+      <div class="unit-body">
+        Combustibles refinados (EN590, Jet A1, D6). Metales críticos (litio, cobre, manganeso, mineral de hierro).
+        Acero industrial, caños sobrantes de obra, scrap listo para mover.
+        / Refined fuels. Critical minerals. Industrial steel & surplus pipe.
+      </div>
 
-        <a class="book" href="https://www.amazon.es/dp/B0FQ7W6DJC" target="_blank" rel="noopener">
-          <img src="/img/book-mining-es.png" alt="Cómo ser intermediario en el negocio de la minería (ES)" loading="lazy" />
-          <span class="book__cta btn btn--gold">Comprar en Amazon</span>
-        </a>
+      <div class="subgrid">
+        <div class="subcard">
+          <h3>Oil & Gas</h3>
+          <p>Procedimientos C.I.F / F.O.B no negociables. ICPO, NDA, logística clara. / Strict C.I.F / F.O.B, ICPO, NDA, defined logistics.</p>
+        </div>
+        <div class="subcard">
+          <h3>Minería & Metales Críticos</h3>
+          <p>Litio, cobre, manganeso, hierro. Acceso directo a titularidad real. / Direct asset-level access.</p>
+        </div>
+        <div class="subcard">
+          <h3>Acero Industrial</h3>
+          <p>Caños estructurales, OCTG, excedentes de obra. Supply real LATAM. / Structural pipe, OCTG, surplus lots.</p>
+        </div>
+        <div class="subcard">
+          <h3>Supply Chain LATAM</h3>
+          <p>Comprás producto físico, no un PowerPoint. / You buy physical, not a pitch deck.</p>
+        </div>
+      </div>
 
-        <a class="book" href="https://www.amazon.es/dp/B0FQCXNB5Y" target="_blank" rel="noopener">
-          <img src="/img/book-oilgas-es.png" alt="La Biblia del Oil & Gas (ES)" loading="lazy" />
-          <span class="book__cta btn btn--gold">Comprar en Amazon</span>
-        </a>
+      <div class="cta-block">
+        <h4>Próximo paso / Next step</h4>
+        <p>Si sos comprador/vendedor serio: enviame volumen, destino, modalidad (C.I.F o F.O.B) y prueba de capacidad.</p>
+
+        <div class="payment-block">
+          <div class="payment-block-title">Nota legal / Legal note</div>
+          <div class="payment-methods">Operamos B2B bajo NDA y jurisdicción internacional ejecutable.</div>
+        </div>
+
+        <div class="cta-actions">
+          <a href="https://wa.me/5493417400299">Soy Parte Verificada</a>
+          <a href="mailto:o.chinchilla@abraxas-group.lat">o.chinchilla@abraxas-group.lat</a>
+        </div>
+
+        <div class="legal-note">No enviamos docs sensibles sin ICPO/LOI + NDA. / No POP/refinery docs without ICPO/LOI + NDA.</div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICIO WEB -->
-  <section id="web" class="section">
-    <div class="wrap">
-      <h2 class="section__title">Web · Branding · SEO</h2>
-      <p class="section__lead">Tu presencia digital, lista para vender más.</p>
+  <!-- =========================== -->
+  <!-- SECCIÓN MENTORÍA            -->
+  <!-- =========================== -->
+  <section id="mentoriaSection" class="section-view">
+    <div class="section-inner">
+      <a href="#" class="back-link" data-back>← Volver al Portal / Back to Portal</a>
 
-      <div class="pricing">
-        <article class="price">
-          <h3>Web básica</h3>
-          <strong>USD 300–500</strong>
-          <ul>
-            <li>Hasta 5 secciones</li>
-            <li>Responsive + WhatsApp</li>
-            <li>Formulario de contacto</li>
-            <li>Entrega 7–10 días</li>
-          </ul>
-        </article>
-
-        <article class="price">
-          <h3>Web corporativa</h3>
-          <strong>USD 800–1.500</strong>
-          <ul>
-            <li>Hasta 10 secciones</li>
-            <li>Branding + Blog</li>
-            <li>SEO inicial + Analytics</li>
-            <li>Entrega 15–25 días</li>
-          </ul>
-        </article>
-
-        <article class="price">
-          <h3>Web premium / E-commerce</h3>
-          <strong>USD 2.000–5.000</strong>
-          <ul>
-            <li>Tienda online (hasta 50 productos)</li>
-            <li>Pagos integrados (PayPal / Stripe / MP)</li>
-            <li>SEO avanzado + CRM</li>
-            <li>Entrega 30–45 días</li>
-          </ul>
-        </article>
+      <div class="unit-eyebrow">MENTORÍA 1:1 · BUSINESS MENTORSHIP</div>
+      <div class="unit-headline">
+        Te ordeno la oferta, el precio y el pitch en LinkedIn para que empieces a cobrar mejor.<br/>
+        We fix your offer, price, and LinkedIn pitch so you start charging more.
+      </div>
+      <div class="unit-body">
+        Esto es ejecución, no teoría. Salís con una propuesta clara en USD lista para vender.
+        / Execution, not fluff. You leave with a deal-ready offer.
       </div>
 
-      <div class="pay">
-        <p>Métodos de pago: <b>Payoneer (USD)</b>, <b>USDT ERC20/TRC20</b>, <b>MercadoPago</b>.</p>
+      <div class="subgrid">
+        <div class="subcard">
+          <h3>Perfil LinkedIn Deal-Ready</h3>
+          <p>Headline 5s: problema caro + solución + resultado real. / 5-second hook positioning.</p>
+        </div>
+        <div class="subcard">
+          <h3>Oferta en USD</h3>
+          <p>Convertimos tu servicio en producto premium claro. / Premium productization.</p>
+        </div>
+        <div class="subcard">
+          <h3>Pipeline Simple</h3>
+          <p>Proceso para mover cada lead hasta cierre. / Calm, controlled pipeline.</p>
+        </div>
+        <div class="subcard">
+          <h3>Ruta 5K/mes</h3>
+          <p>Plan para ~5.000 USD/mes sin quemarte. / Path to ~5K/month.</p>
+        </div>
+      </div>
+
+      <div class="cta-block">
+        <h4>Quiero la sesión / I want the session</h4>
+        <p>Decime qué vendés hoy y cuánto facturás por mes. Yo te devuelvo el ajuste.</p>
+
+        <div class="payment-block">
+          <div class="payment-block-title">Pago / Payment</div>
+          <div class="payment-methods">USDT · Payoneer USD · Mercado Pago ARS · Brubank ARS</div>
+        </div>
+
+        <div class="cta-actions">
+          <a href="https://wa.me/5493417400299">Reservar 1:1</a>
+          <a href="mailto:o.chinchilla@abraxas-group.lat">o.chinchilla@abraxas-group.lat</a>
+        </div>
+
+        <div class="legal-note">Cupos limitados. / Limited intake.</div>
       </div>
     </div>
   </section>
 
-  <!-- ACERCA -->
-  <section id="about" class="section">
-    <div class="wrap">
-      <h2 class="section__title">Acerca</h2>
-      <p>Abraxas es la dualidad resuelta en ejecución: idea y materia, riesgo y control, velocidad y compliance. Unimos mandatos reales con procesos verificables para cerrar operaciones grandes sin humo.</p>
+  <!-- =========================== -->
+  <!-- SECCIÓN ASSET / INVESTMENT  -->
+  <!-- =========================== -->
+  <section id="assetSection" class="section-view">
+    <div class="section-inner">
+      <a href="#" class="back-link" data-back>← Volver al Portal / Back to Portal</a>
+
+      <div class="unit-eyebrow">INVESTMENT · ASSET · PORTFOLIO</div>
+      <div class="unit-headline">
+        Acceso privado a activos reales: minería, flujo de commodities, acero industrial.
+        <span>Sólo capital serio con KYC/NDA.</span><br/>
+        Private access to real assets. <span>Deployable capital only.</span>
+      </div>
+      <div class="unit-body">
+        No ofrecemos humo financiero. Ofrecemos cosas que existen, se transportan y generan flujo.
+        / We don’t sell hype. We move physical assets and repeatable cashflow.
+      </div>
+
+      <div class="subgrid">
+        <div class="subcard">
+          <h3>Colocación de Capital</h3>
+          <p>Entrada en deals con retorno operativo. / Operational cashflow plays.</p>
+        </div>
+        <div class="subcard">
+          <h3>Activos Mineros</h3>
+          <p>Litio, cobre, manganeso, hierro. NDA, directo a titularidad. / NDA, direct to ownership.</p>
+        </div>
+        <div class="subcard">
+          <h3>Flujo Recurrente</h3>
+          <p>Trading estructurado (combustibles / acero / LATAM). / Structured physical flow.</p>
+        </div>
+        <div class="subcard">
+          <h3>Gobernanza</h3>
+          <p>Jurisdicción clara y trazabilidad. / Enforceable jurisdiction & traceability.</p>
+        </div>
+      </div>
+
+      <div class="cta-block">
+        <h4>Solicitud de acceso / Access request</h4>
+        <p>Si tenés capital listo y querés deal flow privado, presentate con nombre legal y jurisdicción.</p>
+
+        <div class="payment-block">
+          <div class="payment-block-title">Nota</div>
+          <div class="payment-methods">Se requiere KYC/NDA. No retail. / KYC/NDA required. No retail money.</div>
+        </div>
+
+        <div class="cta-actions">
+          <a href="https://wa.me/5493417400299">Tengo Capital</a>
+          <a href="mailto:o.chinchilla@abraxas-group.lat">o.chinchilla@abraxas-group.lat</a>
+        </div>
+
+        <div class="legal-note">Operamos sólo entre contrapartes verificadas.</div>
+      </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="wrap footer__grid">
-      <img src="/img/logo-abraxas.png" width="28" height="28" alt="Abraxas" />
-      <small>© <span id="year"></span> Abraxas Group — WeTrade · WeConnect · WeWork</small>
-      <a class="btn btn--gold" id="book" target="_blank" rel="noopener" href="https://wa.me/5493417400299">WhatsApp</a>
-    </div>
+    <div>ABRAXAS GROUP · WeTrade • WeConnect • WeWork</div>
+    <div>o.chinchilla@abraxas-group.lat · WhatsApp +54 9 341 740 0299</div>
+    <div class="powered">B2B only · Verified counterparts</div>
   </footer>
 
-  <script src="/main.js"></script>
+  <!-- JS DE NAVEGACIÓN -->
+  <script>
+    // Selección de elementos
+    const portalEl = document.getElementById('portal');
+    const sections = {
+      iaSection: document.getElementById('iaSection'),
+      b2bSection: document.getElementById('b2bSection'),
+      mentoriaSection: document.getElementById('mentoriaSection'),
+      assetSection: document.getElementById('assetSection'),
+    };
+
+    // Navegación
+    function openSection(id) {
+      portalEl.classList.add('hidden');
+      Object.values(sections).forEach(sec => sec.style.display = 'none');
+      sections[id].style.display = 'block';
+      document.body.style.overflowY = 'auto';
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+    function backToPortal() {
+      Object.values(sections).forEach(sec => sec.style.display = 'none');
+      portalEl.classList.remove('hidden');
+      document.body.style.overflowY = 'hidden';
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    // Listeners
+    document.querySelectorAll('.portal-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        if (target && sections[target]) openSection(target);
+      });
+    });
+    document.querySelectorAll('[data-back]').forEach(back => {
+      back.addEventListener('click', e => { e.preventDefault(); backToPortal(); });
+    });
+
+    // Estado inicial
+    document.body.style.overflowY = 'hidden';
+
+    // Autoplay fix para iOS/Safari (si falla, intentamos play programático)
+    const vid = document.getElementById('bgVideo');
+    (async () => {
+      try { await vid.play(); } catch(e) {
+        // En algunos navegadores pide una interacción; al primer click intentamos play
+        window.addEventListener('click', () => vid.play(), { once: true });
+      }
+    })();
+  </script>
 </body>
 </html>
