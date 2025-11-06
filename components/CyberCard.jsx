@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import "./CyberCard.css";
 
 /**
  * CyberCard is a reusable 3D interactive card component. It uses a set of
