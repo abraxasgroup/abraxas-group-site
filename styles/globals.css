@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles for the Abraxas landing page */
+body {
+  @apply bg-secondary text-white;
+  font-family: sans-serif;
+}
+
+/* Utility classes for headings and paragraphs inside the hero */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold;
+}
+
+p {
+  @apply text-base leading-relaxed;
+}
