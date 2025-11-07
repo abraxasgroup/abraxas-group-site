@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Golos Text",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+  color:#e7e7e7;
+  background:#05050a url('/hero/Fondo_universo_BG.webp') center/cover fixed no-repeat;
+  overflow-x:hidden;
+}
+.webgl{
+  position:fixed;inset:0;z-index:-1;width:100vw;height:100dvh;display:block;
+}
+
+/* Preloader */
+#preloader{position:fixed;inset:0;display:grid;place-items:center;background:rgba(5,5,10,.8);backdrop-filter:blur(4px);z-index:10}
+.loader-spinner{
+  width:64px;height:64px;border-radius:50%;
+  border:4px solid rgba(255,255,255,.2);border-top-color:#78ffcf;animation:spin 1s linear infinite
+}
+.loader-info{margin-top:16px;font-size:14px;color:#78ffcf}
+@keyframes spin{to{transform:rotate(360deg)})}
+
+/* Copy block */
+.hero-copy{
+  position:relative;z-index:2;max-width:1100px;margin:0 auto;
+  padding:18vh 24px 12vh;text-align:center
+}
+.hero-copy h1{font-weight:900;font-size:clamp(36px,6vw,84px);line-height:1.05;letter-spacing:.4px;text-transform:uppercase}
+.hero-copy h1 .light{color:#78ffcf;filter:drop-shadow(0 0 22px rgba(120,255,207,.35))}
+.hero-copy p{opacity:.85;margin-top:14px;font-size:clamp(14px,2.5vw,18px)}
+.cta{
+  display:inline-block;margin-top:24px;padding:14px 20px;border-radius:999px;
+  background:radial-gradient(100% 100% at 100% 0,#2af598 0,#009efd 100%);
+  color:#041018;font-weight:700;text-decoration:none;box-shadow:0 8px 28px rgba(42,245,152,.25);
+  transition:transform .15s ease, box-shadow .2s ease
+}
+.cta:hover{transform:translateY(-1px);box-shadow:0 12px 34px rgba(0,158,253,.32)}
+
+section{min-height:100vh}
+.images-container{display:flex;justify-content:space-between;flex-wrap:wrap;padding:60px 24px 120px;gap:24px;max-width:1200px;margin:0 auto}
+.images-container .img{flex:1 1 420px;display:flex;justify-content:center}
+.img-main{width:min(30vw,520px);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;line-height:0;opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease, border-color .2s ease}
+.img-main img{width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform 1s ease}
+.img-main:hover{border-color:rgba(120,255,207,.5)}
+.img-main:hover img{transform:scale(1.1)}
+
+/* Floating WhatsApp bubble */
+.wb-bubble{
+  position:fixed;right:18px;bottom:18px;z-index:5;width:62px;height:62px;border-radius:50%;
+  background:radial-gradient(100% 100% at 50% 0,#25D366 0,#128C7E 100%);display:grid;place-items:center;
+  box-shadow:0 0 22px rgba(37,211,102,.5), 0 8px 24px rgba(18,140,126,.5);
+  border:1px solid rgba(255,255,255,.15)
+}
+.wb-bubble img{width:34px;height:34px;filter:drop-shadow(0 0 8px rgba(255,255,255,.25))}
+.wb-bubble .pulse{position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(120,255,207,.4);animation:pulse 2.2s infinite}
+@keyframes pulse{from{transform:scale(.9);opacity:.7}to{transform:scale(1.25);opacity:0}}
+
+/* Responsive */
+@media (max-width: 1024px){
+  .images-container{gap:18px}
+  .img-main{width:min(42vw,520px)}
+}
+@media (max-width: 768px){
+  .hero-copy{padding:16vh 14px 6vh}
+  .images-container{padding:36px 14px 72px}
+  .img-main{width:min(75vw,520px)}
+}
