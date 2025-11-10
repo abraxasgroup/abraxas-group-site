@@ -1,213 +1,128 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Abraxas — Creamos tu universo virtual</title>
-  <!-- Load global stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ABRAXAS — Creamos tu universo virtual</title>
+  <meta name="description" content="Diseño web, SaaS, automatizaciones e IA. Abraxas: Creamos tu universo virtual.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;700;900&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Top navigation and branding -->
-  <header class="header">
-    <div class="brand">
-      <span class="badge">Abraxas Group</span>
-      <span class="tagline">Creamos tu universo virtual</span>
+
+  <!-- HERO con video de galaxia -->
+  <header class="hero" id="inicio" aria-label="Abraxas Hero">
+    <video id="bg-video" class="hero__video" autoplay muted loop playsinline preload="auto">
+      <source src="media/Abraxas.mp4" type="video/mp4" />
+      <!-- Fallback: canvas estrella si el video falla (se activa desde app.js) -->
+    </video>
+    <canvas id="stars" class="hero__stars" aria-hidden="true"></canvas>
+    <div class="hero__overlay"></div>
+
+    <div class="hero__content container">
+      <h1 class="hero__title">
+        ABRAXAS<span>_</span> <em>Creamos tu universo virtual</em>
+      </h1>
+      <p class="hero__lead">
+        Websites, SaaS y automatización con IA. Diseñamos, lanzamos y escalamos productos que
+        generan impacto real. Si querés que tu idea exista, la construimos.
+      </p>
+      <div class="hero__ctas">
+        <a href="#contacto" class="btn btn--primary">Quiero mi universo</a>
+        <a href="#juego" class="btn btn--ghost">Jugar mientras espero</a>
+      </div>
     </div>
-    <nav class="nav">
-      <a href="#servicios">Servicios</a>
-      <a href="#portafolio">Portfolio</a>
-      <a href="#demo">Demo</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
+
+    <!-- Botón WhatsApp neón (sin API Meta; modificá el link a tu preferencia) -->
+    <a class="wa-fab" href="https://wa.me/message/XXXXXXXXXXXX" target="_blank" rel="noopener" aria-label="WhatsApp Abraxas">
+      <!-- Ícono simple -->
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.4 20.6L2 22l1.6-.4A11 11 0 1 0 20.5 3.5Zm-5.9 15.2c-1.9 0-3.8-.5-5.4-1.6l-.4-.2-3 .7.8-2.9-.2-.4a8.9 8.9 0 1 1 8.2 4.4Zm4.1-6.7c-.2-.1-1.2-.6-1.4-.7s-.3-.1-.5.1-.6.7-.7.9-.3.2-.5.1a7.3 7.3 0 0 1-3.4-3c-.3-.4.3-.4.8-1.5.1-.2 0-.4 0-.5l-.5-1.1c-.1-.3-.3-.3-.5-.3h-.5c-.1 0-.5.1-.8.4s-1 1-1 2.5 1 2.9 1.2 3.1 2 3.2 5 4.4c.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.3-.7.3-1.3.2-1.4 0-.2-.2-.3-.4-.4Z"/></svg>
+      <span class="wa-fab__pulse"></span>
+    </a>
   </header>
 
-  <!-- Hero section with 3D canvas and introductory text -->
-  <section class="hero">
-    <!-- Background video behind the 3D canvas -->
-    <video class="bg-video" autoplay muted loop playsinline>
-      <source src="./videos/Abraxas.mp4" type="video/mp4">
-      Tu navegador no soporta video.
-    </video>
-    <canvas class="webgl"></canvas>
-    <div class="hero-content">
-      <h1>Creamos tu universo <br><span class="accent">digital</span></h1>
-      <p>Más allá de las ideas, combinamos diseño, IA, marketing y tecnología para escalar tu negocio.</p>
-      <div class="cta">
-        <a href="#contacto" class="button primary">Hablemos</a>
-        <a href="#portafolio" class="button">Ver portfolio</a>
+  <!-- PORTFOLIO CARDS (estilo “anillos” que enviaste) -->
+  <section class="cards container" id="portfolio" aria-label="Trabajos de Abraxas">
+    <h2 class="section-title">Casos de éxito</h2>
+    <div class="cards__grid">
+
+      <!-- CARD 1: Tienda Virtual -->
+      <div class="panel">
+        <div class="ring">
+          <div class="card card1"></div>
+          <div class="border">
+            <p class="title">Tienda Virtual</p>
+            <div class="slide">
+              <h6 class="para">E-commerce Headless + Pay + SEO</h6>
+              <div class="line"><h6 class="para">Stack</h6><i class="dot"></i><h6 class="para">Next.js · Stripe</h6></div>
+              <div class="line"><h6 class="para">Resultados</h6><i class="dot"></i><h6 class="para">+178% ventas</h6></div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- CARD 2: CRM / Apps -->
+      <div class="panel">
+        <div class="ring">
+          <div class="card card2"></div>
+          <div class="border">
+            <p class="title">CRM · Apps</p>
+            <div class="slide">
+              <h6 class="para">Funnel · WhatsApp · IA</h6>
+              <div class="line"><h6 class="para">Stack</h6><i class="dot"></i><h6 class="para">Node · Supabase</h6></div>
+              <div class="line"><h6 class="para">Resultados</h6><i class="dot"></i><h6 class="para">Tasa cierre +32%</h6></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: SaaS Logística -->
+      <div class="panel">
+        <div class="ring">
+          <div class="card card3"></div>
+          <div class="border">
+            <p class="title">SaaS Logística</p>
+            <div class="slide">
+              <h6 class="para">Ruteo + IA + Tableros</h6>
+              <div class="line"><h6 class="para">Stack</h6><i class="dot"></i><h6 class="para">React · Python</h6></div>
+              <div class="line"><h6 class="para">Resultados</h6><i class="dot"></i><h6 class="para">-24% costos</h6></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- About section describing the brand and mission -->
-  <section class="about section">
-    <h2>¿Quién es Abraxas?</h2>
-    <p class="muted">Abraxas es el dios del todo y la dualidad. Creamos universos digitales uniendo creatividad y tecnología. Nuestro equipo domina el desarrollo full‑stack, marketing digital, SEO e inteligencia artificial para materializar ideas y transformar negocios.</p>
+  <!-- JUEGO -->
+  <section class="game container" id="juego" aria-label="Juego de espera">
+    <h2 class="section-title">Mientras pensamos tu universo… jugá 🎮</h2>
+    <div class="game__wrap">
+      <canvas id="canvas" width="480" height="480" aria-label="Juego"></canvas>
+    </div>
+    <p class="game__hint">Flechas ← ↑ → para moverte</p>
   </section>
 
-  <!-- Services section with interactive 3D cards -->
-  <section class="services section" id="servicios">
-    <h2>Servicios</h2>
-    <p class="muted">Desde webs y e‑commerce hasta automatizaciones con IA y SaaS a medida.</p>
-    <div class="cards">
-      <div class="card3d" data-tilt>
-        <div class="label">Web / Ecommerce</div>
-        <div class="title">Sitios que venden</div>
-      </div>
-      <div class="card3d" data-tilt>
-        <div class="label">SEO & Ads</div>
-        <div class="title">Crecimiento orgánico</div>
-      </div>
-      <div class="card3d" data-tilt>
-        <div class="label">WhatsApp & IA</div>
-        <div class="title">Flujos inteligentes</div>
-      </div>
-      <div class="card3d" data-tilt>
-        <div class="label">SaaS / Apps</div>
-        <div class="title">Software a medida</div>
-      </div>
-      <div class="card3d" data-tilt>
-        <div class="label">Analytics</div>
-        <div class="title">Datos que guían</div>
-      </div>
-      <div class="card3d" data-tilt>
-        <div class="label">Branding</div>
-        <div class="title">Identidad & UX</div>
-      </div>
-    </div>
+  <!-- CONTACTO -->
+  <section class="contact container" id="contacto" aria-label="Contacto">
+    <h2 class="section-title">Hagamos que pase</h2>
+    <p>Contanos tu idea. Armamos alcance, roadmap y presupuesto. Transparente y accionable.</p>
+    <a class="btn btn--primary" href="mailto:hola@abraxas-group.lat">Escribinos</a>
   </section>
 
-  <!-- Portfolio section with card layout -->
-  <section class="portfolio section" id="portafolio">
-    <h2>Portfolio</h2>
-    <p class="muted">Explora algunos de nuestros proyectos recientes. Cada carta representa un universo digital único.</p>
-    <div class="portfolio-cards">
-      <!-- Card: Tienda Virtual / E‑commerce -->
-      <div class="portfolio-card green">
-        <div class="card-header">
-          <div class="date">Jul 15, 2025</div>
-        </div>
-        <div class="card-body">
-          <h3>Tiendas virtuales</h3>
-          <p>E‑commerce a medida con pasarelas de pago y logística integrada.</p>
-          <div class="progress"><span>Progreso</span><div class="progress-bar" style="--pct:90%"></div><span>90%</span></div>
-        </div>
-        <div class="card-footer">
-          <ul>
-            <li><img src="./images/abx_portfolio_01.webp" alt="Proyecto tienda"></li>
-            <li><img src="./images/abx_portfolio_02.webp" alt="Proyecto WhatsApp"></li>
-            <a href="#" class="btn-add" aria-label="Ver más"></a>
-          </ul>
-          <a href="#" class="btn-countdown">Activo</a>
-        </div>
-      </div>
-      <!-- Card: Apps CRM -->
-      <div class="portfolio-card blue">
-        <div class="card-header">
-          <div class="date">Ago 20, 2025</div>
-        </div>
-        <div class="card-body">
-          <h3>Apps CRM & SaaS</h3>
-          <p>CRM y apps SaaS para gestionar clientes y procesos.</p>
-          <div class="progress"><span>Progreso</span><div class="progress-bar" style="--pct:75%"></div><span>75%</span></div>
-        </div>
-        <div class="card-footer">
-          <ul>
-            <li><img src="./images/abx_portfolio_03.webp" alt="Proyecto CRM"></li>
-            <li><img src="./images/abx_portfolio_04.webp" alt="Proyecto SaaS"></li>
-            <a href="#" class="btn-add" aria-label="Ver más"></a>
-          </ul>
-          <a href="#" class="btn-countdown">En progreso</a>
-        </div>
-      </div>
-      <!-- Card: Automatizaciones & Bots -->
-      <div class="portfolio-card orange">
-        <div class="card-header">
-          <div class="date">Sep 10, 2025</div>
-        </div>
-        <div class="card-body">
-          <h3>Automatizaciones & Bots</h3>
-          <p>Integraciones con WhatsApp e IA para atención y ventas.</p>
-          <div class="progress"><span>Progreso</span><div class="progress-bar" style="--pct:60%"></div><span>60%</span></div>
-        </div>
-        <div class="card-footer">
-          <ul>
-            <li><img src="./images/abx_portfolio_09.webp" alt="Proyecto bot"></li>
-            <li><img src="./images/abx_portfolio_10.webp" alt="Proyecto helpdesk"></li>
-            <a href="#" class="btn-add" aria-label="Ver más"></a>
-          </ul>
-          <a href="#" class="btn-countdown">2 semanas</a>
-        </div>
-      </div>
-      <!-- Card: SEO & Analítica -->
-      <div class="portfolio-card red">
-        <div class="card-header">
-          <div class="date">Oct 01, 2025</div>
-        </div>
-        <div class="card-body">
-          <h3>SEO & Analítica</h3>
-          <p>Paneles personalizados y estrategias de posicionamiento.</p>
-          <div class="progress"><span>Progreso</span><div class="progress-bar" style="--pct:45%"></div><span>45%</span></div>
-        </div>
-        <div class="card-footer">
-          <ul>
-            <li><img src="./images/abx_portfolio_07.webp" alt="Proyecto SEO"></li>
-            <li><img src="./images/abx_portfolio_08.webp" alt="Proyecto One Page"></li>
-            <a href="#" class="btn-add" aria-label="Ver más"></a>
-          </ul>
-          <a href="#" class="btn-countdown">3 semanas</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Demo section with playable Neon Runner game -->
-  <section class="demo section" id="demo">
-    <h2>Demo interactivo</h2>
-    <p class="muted">Tómate un descanso y prueba nuestro mini‑juego de plataformas con las flechas del teclado. Si prefieres crear tu propio universo digital, contáctanos.</p>
-    <div class="demo-iframe">
-      <iframe src="./game/index.html" title="Demo de plataforma" loading="lazy"></iframe>
-    </div>
-    <div class="cta">
-      <a href="#contacto" class="button primary">Contacto</a>
-    </div>
-  </section>
-
-  <!-- Contact section with call-to-action buttons -->
-  <section class="contact section" id="contacto">
-    <h2>Contacto</h2>
-    <p class="muted">¿Listo para llevar tu negocio a otro nivel? Escríbenos por WhatsApp o déjanos tus datos.</p>
-    <div class="row">
-      <!-- Único canal de contacto: WhatsApp Business -->
-      <a href="https://wa.me/541126693072" class="button primary">WhatsApp Business</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer class="footer">
-    &copy; 2025 Abraxas Group • Creamos tu universo digital
+    <div class="container footer__inner">
+      <span>© <span id="y"></span> ABRAXAS</span>
+      <nav class="footer__nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#juego">Juego</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
   </footer>
 
-  <!-- Floating WhatsApp button -->
-  <button id="wbFab" class="whatsapp-fab">
-    <img src="./images/whatsapp-logo.png" alt="WhatsApp">
-  </button>
-  <!-- Contact modal -->
-  <div id="wbModal" class="modal">
-    <div class="panel">
-      <h3>Hablemos</h3>
-      <div class="row">
-        <a href="https://wa.me/541126693072" class="button primary">WhatsApp Business</a>
-      </div>
-      <button id="wbClose" class="button" style="margin-top:10px;width:100%">Cerrar</button>
-    </div>
-  </div>
-
-  <!-- Load scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
-  <script type="module" src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
