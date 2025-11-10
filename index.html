@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Abraxas — Creamos tu universo virtual</title>
+  <!-- Load global stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top navigation and branding -->
+  <header class="header">
+    <div class="brand">
+      <span class="badge">Abraxas Group</span>
+      <span class="tagline">Creamos tu universo virtual</span>
+    </div>
+    <nav class="nav">
+      <a href="#servicios">Servicios</a>
+      <a href="#portafolio">Portfolio</a>
+      <a href="#demo">Demo</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- Hero section with 3D canvas and introductory text -->
+  <section class="hero">
+    <!-- Background video behind the 3D canvas -->
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source src="./videos/Abraxas.mp4" type="video/mp4">
+      Tu navegador no soporta video.
+    </video>
+    <canvas class="webgl"></canvas>
+    <div class="hero-content">
+      <h1>Creamos tu universo <br><span class="accent">digital</span></h1>
+      <p>Más allá de las ideas, combinamos diseño, IA, marketing y tecnología para escalar tu negocio.</p>
+      <div class="cta">
+        <a href="#contacto" class="button primary">Hablemos</a>
+        <a href="#portafolio" class="button">Ver portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About section describing the brand and mission -->
+  <section class="about section">
+    <h2>¿Quién es Abraxas?</h2>
+    <p class="muted">Abraxas es el dios del todo y la dualidad. Creamos universos digitales uniendo creatividad y tecnología. Nuestro equipo domina el desarrollo full‑stack, marketing digital, SEO e inteligencia artificial para materializar ideas y transformar negocios.</p>
+  </section>
+
+  <!-- Services section with interactive 3D cards -->
+  <section class="services section" id="servicios">
+    <h2>Servicios</h2>
+    <p class="muted">Desde webs y e‑commerce hasta automatizaciones con IA y SaaS a medida.</p>
+    <div class="cards">
+      <div class="card3d" data-tilt>
+        <div class="label">Web / Ecommerce</div>
+        <div class="title">Sitios que venden</div>
+      </div>
+      <div class="card3d" data-tilt>
+        <div class="label">SEO & Ads</div>
+        <div class="title">Crecimiento orgánico</div>
+      </div>
+      <div class="card3d" data-tilt>
+        <div class="label">WhatsApp & IA</div>
+        <div class="title">Flujos inteligentes</div>
+      </div>
+      <div class="card3d" data-tilt>
+        <div class="label">SaaS / Apps</div>
+        <div class="title">Software a medida</div>
+      </div>
+      <div class="card3d" data-tilt>
+        <div class="label">Analytics</div>
+        <div class="title">Datos que guían</div>
+      </div>
+      <div class="card3d" data-tilt>
+        <div class="label">Branding</div>
+        <div class="title">Identidad & UX</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio/gallery section showcasing example work -->
+  <section class="portfolio section" id="portafolio">
+    <h2>Portfolio</h2>
+    <p class="muted">Algunos universos que hemos creado.</p>
+    <div class="gallery">
+      <div class="tile"><img src="./images/abx_portfolio_01.webp" alt="Tienda virtual"></div>
+      <div class="tile"><img src="./images/abx_portfolio_02.webp" alt="Landing + WhatsApp"></div>
+      <div class="tile"><img src="./images/abx_portfolio_03.webp" alt="CRM PyME"></div>
+      <div class="tile"><img src="./images/abx_portfolio_04.webp" alt="SaaS logística"></div>
+      <div class="tile"><img src="./images/abx_portfolio_05.webp" alt="Turnos con seña"></div>
+      <div class="tile"><img src="./images/abx_portfolio_06.webp" alt="Marketplace B2B"></div>
+      <div class="tile"><img src="./images/abx_portfolio_07.webp" alt="SEO & Analytics"></div>
+      <div class="tile"><img src="./images/abx_portfolio_08.webp" alt="One‑page Pro"></div>
+      <div class="tile"><img src="./images/abx_portfolio_09.webp" alt="Bot WhatsApp"></div>
+      <div class="tile"><img src="./images/abx_portfolio_10.webp" alt="Helpdesk con IA"></div>
+    </div>
+  </section>
+
+  <!-- Demo section with playable Neon Runner game -->
+  <section class="demo section" id="demo">
+    <h2>Demo interactivo</h2>
+    <p class="muted">Si estás aquí para pasar el tiempo, ponte a jugar un rato con nuestro Neon Runner. Si estás listo para crear tu nuevo universo digital, toca el botón de contacto.</p>
+    <div class="demo-iframe">
+      <iframe src="./game/index.html" title="Neon Runner Demo" loading="lazy"></iframe>
+    </div>
+    <div class="cta">
+      <a href="#contacto" class="button primary">Contacto</a>
+    </div>
+  </section>
+
+  <!-- Contact section with call-to-action buttons -->
+  <section class="contact section" id="contacto">
+    <h2>Contacto</h2>
+    <p class="muted">¿Listo para llevar tu negocio a otro nivel? Escríbenos por WhatsApp o déjanos tus datos.</p>
+    <div class="row">
+      <a href="https://wa.me/541126693072" class="button primary">WhatsApp Business</a>
+      <a href="https://wa.me/543414793935" class="button">WhatsApp API</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 Abraxas Group • Creamos tu universo digital
+  </footer>
+
+  <!-- Floating WhatsApp button -->
+  <button id="wbFab" class="whatsapp-fab">
+    <img src="./images/whatsapp-logo.png" alt="WhatsApp">
+  </button>
+  <!-- Contact modal -->
+  <div id="wbModal" class="modal">
+    <div class="panel">
+      <h3>Hablemos</h3>
+      <div class="row">
+        <a href="https://wa.me/541126693072" class="button primary">WhatsApp Business</a>
+        <a href="https://wa.me/543414793935" class="button">WhatsApp API</a>
+      </div>
+      <button id="wbClose" class="button" style="margin-top:10px;width:100%">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Load scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

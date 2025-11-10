@@ -1,0 +1,341 @@
+/*
+ * Abraxas Enhanced Site Styles
+ * This stylesheet defines the base styles for the Abraxas website.
+ * It uses a dark cosmic palette with neon accents and responsive
+ * layouts for both desktop and mobile. Sections are modular and
+ * styled to emphasise clarity and elegance while maintaining the
+ * "Creamos tu universo virtual" branding.
+ */
+
+:root {
+  --accent: #D6F844;
+  --accent2: #00ffa0;
+  --ink: #EBEBEB;
+  --bg: #0B0B0C;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 99;
+}
+.brand {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.brand .badge {
+  background: rgba(214, 248, 68, 0.15);
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--accent);
+  border: 1px solid rgba(214, 248, 68, 0.25);
+  font-size: 0.7rem;
+}
+.brand .tagline {
+  font-size: 0.8rem;
+  color: #bdbdbd;
+}
+
+.nav {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.nav a {
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+.nav a:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Video background inside the hero section */
+.hero .bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -3;
+  filter: brightness(0.65);
+}
+.webgl {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 16px;
+}
+.hero-content h1 {
+  font-size: clamp(36px, 8vw, 72px);
+  line-height: 1.05;
+  margin: 0;
+}
+.hero-content .accent {
+  color: var(--accent);
+}
+.hero-content p {
+  max-width: 680px;
+  margin: 12px auto 0;
+  color: #c7c7c7;
+}
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 18px;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--ink);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.button:hover {
+  transform: translateY(-2px);
+}
+.button.primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: #111;
+  font-weight: 700;
+}
+
+/* Sections */
+.section {
+  padding: 80px 20px;
+}
+.section h2 {
+  font-size: clamp(28px, 5vw, 42px);
+  margin: 0 0 10px;
+  text-align: center;
+}
+.muted {
+  color: #9aa0a6;
+  max-width: 780px;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+/* Cards for services */
+.cards {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.card3d {
+  position: relative;
+  height: 240px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: linear-gradient(45deg, #121416, #0e1013);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+.card3d:hover {
+  filter: brightness(1.1);
+}
+.card3d .label {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(214, 248, 68, 0.15);
+  border: 1px solid rgba(214, 248, 68, 0.35);
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+.card3d .title {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(45deg, #00ffaa, #00a2ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 8px rgba(92, 103, 255, 0.35);
+}
+
+/* Gallery */
+.gallery {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.gallery .tile {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+}
+.gallery .tile img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+.gallery .tile:hover img {
+  transform: scale(1.05);
+}
+
+/* Demo section */
+.demo {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.demo-iframe iframe {
+  width: 100%;
+  height: 520px;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #070a0c;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* WhatsApp floating button */
+.whatsapp-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 30% 30%, #1aff8c 0%, #00ff66 60%, #00d455 100%);
+  box-shadow: 0 0 20px rgba(0, 255, 120, 0.8), 0 0 40px rgba(0, 255, 120, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  z-index: 200;
+  animation: pulse 2.4s infinite ease-in-out;
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+.whatsapp-fab img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Modal overlay for WhatsApp contacts */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 150;
+  padding: 20px;
+}
+.modal .panel {
+  background: #0f1113;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+.modal .panel h3 {
+  margin: 0 0 12px;
+}
+
+/* Footer */
+.footer {
+  padding: 40px 20px;
+  color: #9aa0a6;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
