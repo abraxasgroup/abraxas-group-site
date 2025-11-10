@@ -2,66 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Neon Runner Demo – Abraxas</title>
-  <!-- Reuse main site stylesheet to keep consistent colours -->
-  <link rel="stylesheet" href="../style.css">
-  <style>
-    /* Game-specific layout styling */
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: var(--bg);
-      color: var(--ink);
-    }
-    .game-container {
-      flex: 1;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #gameCanvas {
-      width: 100%;
-      height: 100%;
-      background: #070a0c;
-      display: block;
-    }
-    .hud {
-      position: absolute;
-      top: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      z-index: 10;
-      font-size: 1rem;
-    }
-    .hud .btn {
-      padding: 8px 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--ink);
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    .hud .btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Abraxas Platformer</title>
+  <!-- Individual game stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="game-container">
-    <canvas id="gameCanvas"></canvas>
-    <div class="hud">
-      <span>Puntaje: <b id="gameScore">0</b></span>
-      <button id="restartBtn" class="btn">Reiniciar</button>
-    </div>
-  </div>
+  <canvas id="canvas"></canvas>
+  <p class="instruction">Usa las flechas izquierda, derecha y arriba para moverte.</p>
+  <p class="info">El mapa es totalmente personalizable y scriptable. Descubre cómo crear tus propios niveles.</p>
+  <br>
+  <a target="_blank" href="https://github.com/dissimulate/Clarity">Ver motor en GitHub</a>
   <script src="game.js"></script>
 </body>
 </html>
