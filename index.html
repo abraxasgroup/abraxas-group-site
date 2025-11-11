@@ -1,40 +1,289 @@
-<!-- Fondo universo (fijo) -->
-<video id="universe-bg"
-       class="universe-bg"
-       src="assets/video/Abraxas.mp4"
-       playsinline
-       autoplay
-       muted
-       loop
-       poster="assets/img/universe-poster.jpg"></video>
-
-<!-- Capa de degradado para fundir el video a negro hacia abajo -->
-<div class="universe-fade"></div>
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
- <title>Abraxas Group — Creamos universos digitales</title>
-<meta name="description" content="Diseñamos y desarrollamos productos digitales a medida. Branding, webs, e-commerce y growth. Cada proyecto es un universo: estrategia, diseño y código trabajando como uno solo.">
 
-<!-- Open Graph -->
-<meta property="og:title" content="Abraxas Group — Creamos universos digitales">
-<meta property="og:description" content="Diseñamos y desarrollamos productos digitales a medida. Cada proyecto es un universo: estrategia, diseño y código como uno solo.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.abraxas-group.lat/">
-<meta property="og:image" content="https://www.abraxas-group.lat/assets/og/cover.jpg">
+  <title>Abraxas Group — Creamos universos digitales</title>
+  <meta name="description" content="Diseñamos y desarrollamos productos digitales a medida. Branding, webs, e-commerce y growth. Cada proyecto es un universo: estrategia, diseño y código trabajando como uno solo.">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Abraxas Group — Creamos universos digitales">
-<meta name="twitter:description" content="Branding, webs, e-commerce y growth hechos a medida.">
-<meta name="twitter:image" content="https://www.abraxas-group.lat/assets/og/cover.jpg">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Abraxas Group — Creamos universos digitales">
+  <meta property="og:description" content="Diseñamos y desarrollamos productos digitales a medida. Cada proyecto es un universo: estrategia, diseño y código como uno solo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.abraxas-group.lat/">
+  <meta property="og:image" content="https://www.abraxas-group.lat/assets/og/cover.jpg">
 
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Abraxas Group — Creamos universos digitales">
+  <meta name="twitter:description" content="Branding, webs, e-commerce y growth hechos a medida.">
+  <meta name="twitter:image" content="https://www.abraxas-group.lat/assets/og/cover.jpg">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Abraxas Group",
+    "url": "https://www.abraxas-group.lat/",
+    "logo": "https://www.abraxas-group.lat/assets/logo.png",
+    "email": "o.chinchilla@abraxas-group.lat",
+    "telephone": "+54-1126693072",
+    "sameAs": []
+  }
+  </script>
+
+  <!-- ESTILOS -->
+  <style>
+    :root{
+      --bg: #000;
+      --txt: #e7e7f0;
+      --muted: #cfd3ff;
+      --brand: #7f5af0;
+      --brand-2:#00e0ff;
+      --glass: rgba(0,0,0,.45);
+      --container: 1140px;
+      --radius: 14px;
+      --gap: clamp(16px, 2.2vw, 28px);
+    }
+
+    /* Reset base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--txt); background:var(--bg);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
+      line-height:1.5;
+    }
+    img{max-width:100%; display:block}
+
+    /* ======== FONDO UNIVERSO (FIJO A TODA LA WEB) ======== */
+    .universe-bg{
+      position:fixed; inset:0; width:100%; height:100%;
+      object-fit:cover; z-index:-2; filter:saturate(1.2) contrast(1.05) brightness(.9);
+    }
+    .universe-fade{
+      position:fixed; inset:0; z-index:-1;
+      background: linear-gradient(to bottom, rgba(0,0,0,.08) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.85) 100%);
+      pointer-events:none;
+    }
+
+    /* ======== LAYOUT ======== */
+    .container{ width:min(100%, var(--container)); margin-inline:auto; padding-inline: clamp(16px, 4vw, 40px); }
+    .section{ padding: clamp(72px, 8vw, 120px) 0; }
+    /* Eliminamos cualquier “skew/diagonal” heredada */
+    .section--skew-up::before,
+    .section--skew-down::before{ content:none !important; }
+
+    /* ======== HEADER ======== */
+    .site-header{
+      position:sticky; top:0; z-index:10;
+      background:rgba(0,0,0,.35); backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .header-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      height:64px;
+    }
+    .brand{ color:#fff; text-decoration:none; font-weight:800; letter-spacing:.12em; }
+    .brand span{ background:linear-gradient(90deg,var(--brand), var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+    .nav{ display:flex; gap:20px; align-items:center; }
+    .nav a{ color:#fff; text-decoration:none; opacity:.9; font-weight:500; }
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+      padding:.8rem 1.1rem; border-radius:999px; text-decoration:none; }
+    .btn--primary{ background:var(--brand); color:#fff; }
+    .btn--ghost{ border:1px solid var(--brand); color:#fff; background:transparent; }
+
+    /* Mobile nav */
+    .nav-toggle{ display:none; background:none; border:0; width:40px; height:40px; }
+    .nav-toggle span{ display:block; height:2px; background:#fff; margin:7px 0; }
+
+    @media (max-width: 900px){
+      .nav{ position:fixed; inset:64px 0 auto 0; background:rgba(0,0,0,.9);
+            flex-direction:column; padding:20px; transform:translateY(-120%);
+            transition:.35s ease; }
+      .nav.is-open{ transform:translateY(0); }
+      .nav-toggle{ display:block; }
+    }
+
+    /* ======== HERO ======== */
+    .hero{
+      position:relative; min-height: clamp(72vh, 80vh, 92vh);
+      display:grid; place-items:center; text-align:center;
+    }
+    .hero__video{ display:none } /* Ya usamos el video fijo global */
+    .hero__overlay{ display:none }
+    .hero__content{ padding: 40px 0; }
+    .hero h1{
+      font-size: clamp(32px, 6vw, 64px);
+      line-height:1.05; margin:0 0 .5rem 0;
+      text-shadow: 0 1px 0 rgba(0,0,0,.25);
+    }
+    .hero p{
+      color:var(--muted); max-width: 65ch; margin: 0 auto 1.2rem auto;
+      font-size: clamp(16px, 1.5vw, 20px);
+    }
+    .hero__cta{ display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; }
+
+    /* ======== ABOUT ======== */
+    .about__grid{
+      display:grid; gap: var(--gap);
+      grid-template-columns: 1.3fr .9fr;
+    }
+    .about__card{
+      background: var(--glass);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: clamp(16px, 2vw, 24px);
+    }
+    .bullets{ padding-left: 1.1rem; }
+    .bullets li{ margin:.2rem 0; }
+
+    @media (max-width: 900px){
+      .about__grid{ grid-template-columns: 1fr; }
+    }
+
+    /* ======== SERVICES / CARDS (inspiradas en referencia, proporcionadas) ======== */
+    .services h2{ text-align:center; margin-bottom: 28px; }
+    .cards{
+      display:grid; gap: clamp(18px, 2.4vw, 26px);
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 1100px){ .cards{ grid-template-columns: repeat(2, 1fr);} }
+    @media (max-width: 640px){ .cards{ grid-template-columns: 1fr; } }
+
+    /* Panel base */
+    .panel{ position:relative; height: 320px; }
+    .ring,.card,.border,.slide,.line{ display:flex; justify-content:center; align-items:center; }
+    .ring{ position:absolute; inset:0; font-size:170px; color:#fffbf1; }
+    .card{
+      height: 320px; width:100%; border-radius: 16px;
+      background:#111 center/cover no-repeat; transition: all .7s ease;
+      filter: saturate(1.1) contrast(1.05) brightness(.95);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 8px 30px rgba(0,0,0,.35);
+    }
+    /* Imágenes por servicio */
+    .card--web{ background-image:url('assets/img/cards/web.jpg'); }
+    .card--seo{ background-image:url('assets/img/cards/seo.jpg'); }
+    .card--saas{ background-image:url('assets/img/cards/saas.jpg'); }
+    .card--wa{  background-image:url('assets/img/cards/wa.jpg'); }
+
+    .border{
+      position:absolute; inset:10px;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius: 14px; overflow:hidden; transition:border .6s ease;
+      pointer-events:none;
+    }
+    .title{
+      position:absolute; top:14px; left:16px; right:16px; text-align:left;
+      font-weight:800; font-size: clamp(18px, 1.4vw, 22px);
+      text-shadow: 0 1px 0 rgba(0,0,0,.5);
+    }
+    .slide{
+      position:absolute; left:0; right:0; bottom:-100%;
+      height: 48%; padding:16px; display:flex; flex-direction:column; gap:10px;
+      background: linear-gradient(0deg, rgba(0,0,0,.85), rgba(0,0,0,.55));
+      transition: bottom .6s ease;
+    }
+    .para{ margin:0; font-size: 14px; color:#eaeaff; opacity:.95; }
+    .line{ justify-content: flex-start; gap:8px; }
+    .line i{ opacity:.5; }
+
+    /* Hover/Focus: más sutil y legible */
+    .panel:hover .card{ transform: translateY(-4px) scale(1.02); filter: brightness(1.02); }
+    .panel:hover .slide{ bottom:0; }
+    .panel:hover .border{ border-color: rgba(255,255,255,.55); }
+
+    .note{
+      margin-top: 14px; color:#bfc4ff; text-align:center; font-size: .95rem;
+      opacity:.9;
+    }
+
+    /* ======== WORK ======== */
+    .work h2{ text-align:center; margin-bottom: 8px; }
+    .work p{ text-align:center; color:var(--muted); }
+
+    /* ======== GAME ======== */
+    .game__intro{ text-align:center; margin-bottom: 18px; }
+    .game__wrap{
+      display:grid; place-items:center;
+      padding: 12px; background:var(--glass); border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+    }
+    /* Si tu game dibuja en <canvas id="canvas">, esto lo mantiene proporcionado */
+    #canvas{ width:min(92vw, 560px); height:auto; display:block; image-rendering: pixelated; }
+
+    /* ======== CONTACT ======== */
+    .contact__grid{
+      display:grid; gap: var(--gap);
+      grid-template-columns: 1.1fr .9fr;
+    }
+    .contact__card{
+      background: var(--glass);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: clamp(16px, 2vw, 24px);
+    }
+    .contact__cta{ display:flex; gap:.8rem; flex-wrap:wrap; margin-top:8px; }
+
+    @media (max-width: 900px){
+      .contact__grid{ grid-template-columns: 1fr; }
+    }
+
+    /* ======== FOOTER ======== */
+    .site-footer{
+      border-top:1px solid rgba(255,255,255,.06);
+      background: rgba(0,0,0,.35); backdrop-filter: blur(6px);
+    }
+    .footer-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      min-height:64px;
+    }
+    .link{ color:#bfc4ff; text-decoration:none; }
+
+    /* ======== WHATSAPP FLOTANTE (NEÓN) ======== */
+    .wb-float{
+      position:fixed; right:18px; bottom:18px; z-index:20;
+      width:60px; height:60px; border-radius:50%;
+      background: radial-gradient(ellipse at center, rgba(127,90,240,.35), rgba(0,0,0,.45));
+      border:1px solid rgba(127,90,240,.8);
+      box-shadow:
+        0 0 12px rgba(127,90,240,.65),
+        0 0 32px rgba(0,224,255,.35),
+        inset 0 0 18px rgba(127,90,240,.45);
+      display:grid; place-items:center;
+      transition: transform .2s ease;
+    }
+    .wb-float:hover{ transform: translateY(-2px) scale(1.03); }
+    .wb-float img{ width:28px; height:28px; filter: drop-shadow(0 0 6px rgba(0,224,255,.6)); }
+    .wb-pulse{
+      position:absolute; inset:-8px; border-radius:50%;
+      border:1px solid rgba(0,224,255,.45);
+      animation: pulse 2.4s ease-out infinite;
+    }
+    @keyframes pulse{
+      0%{ transform: scale(0.9); opacity:.9; }
+      70%{ transform: scale(1.15); opacity:.15; }
+      100%{ transform: scale(1.25); opacity:0; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER (inspirado en GLOBAL: limpio + sticky) -->
+  <!-- Video de galaxia a pantalla completa (fondo de TODA la web) -->
+  <video id="universe-bg"
+         class="universe-bg"
+         src="assets/video/Abraxas.mp4"
+         playsinline
+         autoplay
+         muted
+         loop
+         poster="assets/img/universe-poster.jpg"></video>
+  <div class="universe-fade" aria-hidden="true"></div>
+
+  <!-- HEADER -->
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a class="brand" href="#top"><span>ABRAXAS</span></a>
@@ -51,21 +300,19 @@
     </div>
   </header>
 
-  <!-- HERO con video galaxia y diagonal (estilo GLOBAL) -->
-  <section class="hero section--skew-down">
-    <video class="hero__video" src="./assets/video/Abraxas.mp4" autoplay muted loop playsinline></video>
-    <div class="hero__overlay"></div>
+  <!-- HERO -->
+  <section class="hero">
     <div class="container hero__content">
-      <h1><strong>ABRAXAS</strong> — <em>Creamos tu universo virtual</em></h1>
-      <p>Dios del todo y la dualidad: construimos sitios, e-commerce, SEO, SaaS y automatizaciones con IA. Majestuoso en desktop. Perfecto en móvil.</p>
+      <h1><strong>ABRAXAS</strong> — <em>Creamos universos digitales</em></h1>
+      <p>Inspirados en Abraxas —dios de la dualidad— unimos estrategia y diseño, contenido y código, para construir sitios, e-commerce, SEO y automatizaciones con IA.</p>
       <div class="hero__cta">
         <a href="#services" class="btn btn--primary">Ver servicios</a>
-        <a href="#contact" class="btn btn--ghost">Quiero cotizar</a>
+        <a href="#contact" class="btn btn--ghost">Hablemos</a>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT (bloque simple, fuerte tipográfico) -->
+  <!-- ABOUT -->
   <section id="about" class="about section">
     <div class="container about__grid">
       <div>
@@ -85,10 +332,11 @@
     </div>
   </section>
 
-  <!-- SERVICES (tarjetas diagonales estilo que pasaste) -->
-  <section id="services" class="services section section--skew-up">
+  <!-- SERVICES / CARDS -->
+  <section id="services" class="services section">
     <div class="container">
       <h2>Servicios</h2>
+
       <div class="cards">
         <article class="panel">
           <div class="ring">
@@ -145,13 +393,14 @@
             </div>
           </div>
         </article>
-
       </div>
-      <p class="note">* Cotizamos por proyecto. Sin precios en la web para no espantar 😉</p>
+
+      <!-- Frase de pricing reemplazada y mejorada -->
+      <p class="note">Cada proyecto es un universo; por eso nos ajustamos a cada trabajo.</p>
     </div>
   </section>
 
-  <!-- WORK (placeholder; después lo llenamos) -->
+  <!-- WORK -->
   <section id="work" class="work section">
     <div class="container">
       <h2>Portfolio</h2>
@@ -159,8 +408,8 @@
     </div>
   </section>
 
-  <!-- GAME (mini juego limpio, responsive) -->
-  <section id="game" class="game section section--skew-down">
+  <!-- GAME -->
+  <section id="game" class="game section">
     <div class="container">
       <div class="game__intro">
         <h2>Mientras pensás tu universo… jugá 😄</h2>
@@ -168,6 +417,8 @@
         <a href="#contact" class="btn btn--primary">Quiero mi universo digital</a>
       </div>
       <div class="game__wrap">
+        <!-- Si tu game escribe en este canvas, listo.
+             Si tu game actual agrega su propio canvas al <body>, lo cambiamos después para que pinte aquí. -->
         <canvas id="canvas" aria-label="Abraxas Mini Game"></canvas>
       </div>
     </div>
@@ -199,12 +450,33 @@
     </div>
   </footer>
 
-  <!-- WhatsApp flotante NEON -->
+  <!-- WhatsApp flotante NEÓN -->
   <a class="wb-float" href="https://wa.me/541126693072" target="_blank" rel="noopener" aria-label="WhatsApp">
     <span class="wb-pulse"></span>
     <img src="./assets/img/whatsapp-logo.png" alt="WhatsApp">
   </a>
 
-  <script src="./js/main.js"></script>
+  <!-- SCRIPTS -->
+  <script>
+    // Toggle del menú mobile
+    const navToggle = document.getElementById('navToggle');
+    const nav = document.getElementById('nav');
+    navToggle?.addEventListener('click', ()=> nav.classList.toggle('is-open'));
+
+    // Si el enlace de nav se toca en mobile, cerramos
+    [...document.querySelectorAll('.nav a')].forEach(a=>{
+      a.addEventListener('click', ()=> nav.classList.remove('is-open'));
+    });
+  </script>
+
+  <!-- Tu lógica general -->
+  <script src="./js/main.js" defer></script>
+
+  <!-- (Opcional) Conectar el juego acá. 
+       Nota: el game.js que me pasaste crea su propio <canvas> en <body> y lo pone fullscreen.
+       Para integrarlo dentro de #canvas sin romper el layout, en la próxima iteración
+       te paso una versión “mountable” que dibuja dentro del canvas existente. -->
+  <!-- <script src="./js/game.js" defer></script> -->
+
 </body>
 </html>
