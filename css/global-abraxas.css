@@ -265,3 +265,22 @@ body::before {
   box-shadow: none !important;
   border: 0 !important;
 }
+/* === Planet Defense (scoped) === */
+.game-canvas-wrap{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #191919;
+}
+#planet-defense-canvas{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  background: url('https://marclopezavila.github.io/planet-defense-game/img/space.jpg') center/cover no-repeat;
+}
+#planet-defense-canvas.playing{
+  cursor: url('https://marclopezavila.github.io/planet-defense-game/img/aim_red.png') 17.5 17.5, auto !important;
+}
+#game .game__intro p{ opacity:.9; }
