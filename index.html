@@ -11,14 +11,16 @@
 </head>
 <body>
 
-  <!-- HERO con video de galaxia -->
-  <header class="hero" id="inicio" aria-label="Abraxas Hero">
-    <video id="bg-video" class="hero__video" autoplay muted loop playsinline preload="auto">
-      <source src="media/Abraxas.mp4" type="video/mp4" />
-      <!-- Fallback: canvas estrella si el video falla (se activa desde app.js) -->
-    </video>
-    <canvas id="stars" class="hero__stars" aria-hidden="true"></canvas>
-    <div class="hero__overlay"></div>
+  <!-- HERO VIDEO BACKGROUND -->
+<video id="bg-video" class="bg-video" src="assets/Abraxas.mp4"
+       autoplay muted playsinline loop poster="assets/galaxy-poster.jpg"></video>
+
+<div class="hero">
+  <h1>Creamos tu universo virtual</h1>
+  <p>Branding, Web, Apps, SaaS e IA – la dualidad hecha producto.</p>
+  <a class="cta" href="#contacto" aria-label="Ir a contacto">Quiero mi universo</a>
+</div>
+
 
     <div class="hero__content container">
       <h1 class="hero__title">
