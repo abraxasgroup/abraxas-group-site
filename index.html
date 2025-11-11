@@ -205,15 +205,19 @@
     .work h2{ text-align:center; margin-bottom: 8px; }
     .work p{ text-align:center; color:var(--muted); }
 
-    /* ======== GAME ======== */
-    .game__intro{ text-align:center; margin-bottom: 18px; }
-    .game__wrap{
-      display:grid; place-items:center;
-      padding: 12px; background:var(--glass); border:1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius);
-    }
-    /* Si tu game dibuja en <canvas id="canvas">, esto lo mantiene proporcionado */
-    #canvas{ width:min(92vw, 560px); height:auto; display:block; image-rendering: pixelated; }
+    <section id="game" class="game section">
+  <div class="container">
+    <div class="game__intro">
+      <h2>Planet Defense 🚀</h2>
+      <p>Tocá el planeta para empezar. Apuntá con el mouse o el dedo y defendé tu universo.</p>
+    </div>
+
+    <!-- Canvas del juego (scoped, no rompe la página) -->
+    <div class="game-canvas-wrap">
+      <canvas id="planet-defense-canvas"></canvas>
+    </div>
+  </div>
+</section>
 
     /* ======== CONTACT ======== */
     .contact__grid{
