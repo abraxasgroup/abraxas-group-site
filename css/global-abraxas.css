@@ -209,3 +209,59 @@ main{
 @supports (-webkit-touch-callout: none) {
   .universe-bg { transform: translateZ(0); }
 }
+/* ====== OVERRIDES HERO / DIVIDER ====== */
+
+/* 1) Apagar pseudo-elementos o líneas de división genéricas */
+.hero::before,
+.hero::after,
+.section::before,
+.section::after,
+.shape-divider,
+hr,
+.divider {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 2) Fondo de universo fijo en TODA la web (debajo de todo) */
+body {
+  position: relative;
+  background: #000; /* fallback */
+}
+
+body::before {
+  content: "";
+  position: fixed;    /* cubre el viewport siempre */
+  inset: 0;
+  z-index: -1;        /* queda detrás de todo */
+  background-image: url("/assets/img/bg-galaxy.jpg");  /* cambia la ruta por la tuya */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* efecto parallax suave */
+  opacity: 1; /* si querés más sutil, bajá a 0.6–0.8 */
+}
+
+/* 3) Hero ocupando 80% u 100% del alto de pantalla */
+.hero {
+  min-height: 80vh;  /* o 100vh si querés pantalla completa */
+  display: grid;
+  place-items: center;   /* centra contenido */
+  position: relative;
+  background: transparent !important; /* que no tape la galaxia */
+}
+
+/* Si el hero traía un gradiente que ensucia, lo apagamos */
+.hero {
+  --hero-overlay: transparent;
+}
+.hero .overlay,
+.hero .mask,
+.hero .bg,
+.hero .hero-overlay {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
