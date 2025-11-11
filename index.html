@@ -212,9 +212,17 @@
       <p>Tocá el planeta para empezar. Apuntá con el mouse o el dedo y defendé tu universo.</p>
     </div>
 
-    <!-- Canvas del juego (scoped, no rompe la página) -->
+    <section id="game" class="game section section--skew-down">
+  <div class="container">
+    <div class="game__intro">
+      <h2>Mientras pensás tu universo… jugá 😄</h2>
+      <p>Usá las flechas <strong>← ↑ →</strong>. Si estás para lanzar, tocá “Contacto”.</p>
+      <a href="#contact" class="btn btn--primary">Quiero mi universo digital</a>
+    </div>
+
+    <!-- NUEVO: contenedor responsive + canvas del juego -->
     <div class="game-canvas-wrap">
-      <canvas id="planet-defense-canvas"></canvas>
+      <canvas id="planet-defense-canvas" aria-label="Abraxas Planet Defense"></canvas>
     </div>
   </div>
 </section>
@@ -473,11 +481,9 @@
     });
   </script>
 
-  <!-- Tu lógica general -->
-  <script src="./js/main.js" defer></script>
+  <script src="./js/main.js"></script>
+<script src="assets/js/planet-defense.js" defer></script>
 
-
-  <!-- <script src="./js/game.js" defer></script> -->
 
 </body>
 </html>
