@@ -60,41 +60,105 @@ body{margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Inter,Roboto
 .about__card{background:var(--glass); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:24px}
 .bullets{margin:14px 0 0; padding:0 0 0 18px; color:#cfd6eb}
 
-/* SERVICES (tarjetas con anillos que pediste) */
-.services{background:linear-gradient(to bottom,#0a0a12,#090912)}
-.services h2{text-align:center; margin:0 0 24px}
-.cards{display:flex; flex-wrap:wrap; justify-content:center; gap:26px}
-.panel{height:270px; width:190px; position:relative}
-.panel:hover .card{filter:blur(1.1px)}
-.panel:hover .title{color:rgba(255,255,255,.25)}
-.panel:hover .border{border:1px solid rgba(255,255,255,1)}
-.panel:hover .slide{bottom:0}
-.panel:hover .ring:before,.panel:hover .ring:after{transform:translate(-50%,-50%) rotate(310deg)}
-.ring,.card,.border,.slide,.line{display:flex; justify-content:center; align-items:center}
-.ring{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:170px}
-.card{
-  position:relative; transition:all 1s; height:270px; width:190px;
-  border:1px solid rgba(255,255,255,.6); background:#0f1119; background-position:center; background-size:140% 110%;
-  box-shadow:0 12px 28px rgba(0,0,0,.5)
+/* ===== Services – CARDS 3D mejoradas (tilt + temas por servicio) */
+.services h2{ text-align:center; margin-bottom: 28px; }
+
+.cards{
+  display:grid; gap: clamp(18px, 2.4vw, 26px);
+  grid-template-columns: repeat(4, 1fr);
 }
-.card--web{ background-image:linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,.35)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop') }
-.card--seo{ background-image:linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,.35)), url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop'); background-size:110% 110%}
-.card--saas{ background-image:linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,.35)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop'); background-size:150% 120%}
-.card--wa{ background-image:linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,.35)), url('https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?q=80&w=1200&auto=format&fit=crop'); background-size:145% 120%}
-.border{position:absolute; height:260px; width:180px; transition:border 1s; overflow:hidden; border:1px solid rgba(255,255,255,.4)}
-.ring:before,.ring:after{
-  content:""; position:absolute; left:50%; top:50%; width:115%; padding:.7em .4em; border:5px solid #50c9c3; border-radius:50%; transition:transform 1s; transform:translate(-50%,-50%) rotate(50deg)
+@media (max-width:1100px){ .cards{ grid-template-columns: repeat(2, 1fr);} }
+@media (max-width:620px){ .cards{ grid-template-columns: 1fr;} }
+
+/* Colores por servicio */
+.card--web { --c1:#7f5af0; --c2:#00e0ff; }
+.card--seo { --c1:#21d07a; --c2:#00e0ff; }
+.card--saas{ --c1:#ff8a00; --c2:#ffd400; }
+.card--wa  { --c1:#25D366; --c2:#12b886; }
+
+/* Base card */
+.tilt-card{
+  position:relative;
+  height: 320px;
+  background:#0f0f0f url('assets/img/cards/starfield.jpg') center/cover no-repeat;
+  border-radius: 20px;
+  color: #fff;
+  transform-style: preserve-3d;
+  animation: cardFloat 2s ease-in-out infinite;
+  box-shadow: 0 0 50px 0 rgba(0,0,0,.6), inset 0 0 90px 0 rgba(31,31,31,1);
+  border:1px solid rgba(255,255,255,.08);
+  padding:18px;
+  display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-start;
+  overflow:hidden;
+  transition: box-shadow .35s ease, transform .2s ease, filter .35s ease;
+  backdrop-filter: blur(2px);
+  will-change: transform, filter;
 }
-.ring:before{border-color:#eee #eee transparent transparent; z-index:-1}
-.ring:after{border-color:transparent transparent #eee #eee}
-.title{position:absolute; top:0; font-size:22px; font-weight:800; margin:10px 0}
-.slide{
-  position:absolute; bottom:-270px; height:260px; width:180px; background:rgba(0,0,0,.55); transition:bottom 1s; flex-direction:column; padding-top:46px
+
+/* Fondo por servicio (si tenés imágenes, se aplican acá) */
+.card--web  { background-image:url('assets/img/cards/web.jpg'); }
+.card--seo  { background-image:url('assets/img/cards/seo.jpg'); }
+.card--saas { background-image:url('assets/img/cards/saas.jpg'); }
+.card--wa   { background-image:url('assets/img/cards/wa.jpg'); }
+
+/* Glow temático (overlay) */
+.tilt-card::after{
+  content:"";
+  position:absolute; inset:-2px;
+  background: radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--c1) 45%, transparent) 0%, transparent 60%),
+              radial-gradient(120% 80% at 0% 100%, color-mix(in oklab, var(--c2) 45%, transparent) 0%, transparent 60%);
+  mix-blend-mode: screen;
+  opacity:.28; pointer-events:none;
+  transition: opacity .35s ease;
 }
-.para{font-size:13px; font-weight:600; color:#e8eaf0; padding:0 16px; text-align:center}
-.line{gap:8px; margin-top:10px}
-.line .para{position:static; font-weight:700; color:#bfe9ff}
-.note{text-align:center; color:var(--muted); margin-top:18px}
+
+.tilt-card .kicker{
+  position:absolute; top:14px; left:16px; font-weight:800; letter-spacing:.02em;
+  text-shadow: 0 1px 0 rgba(0,0,0,.45);
+}
+.tilt-card .text{
+  opacity:.0; transition:.35s ease; transform: translateZ(30px);
+  text-shadow: 0 1px 0 rgba(0,0,0,.6);
+}
+.tilt-card .points{ font-size:14px; color:#eaeaff; opacity:.95; margin:8px 0 0 0; }
+.tilt-card .points i{ opacity:.6; margin: 0 6px; }
+
+/* Hover/focus desktop: más brillo + muestra texto */
+.tilt-card:hover,
+.tilt-card:focus-within{
+  filter: brightness(1.04) saturate(1.08);
+  box-shadow: 0 0 36px 0 color-mix(in oklab, var(--c1) 35%, transparent),
+              0 0 72px 0 color-mix(in oklab, var(--c2) 28%, transparent),
+              inset 5px 5px 18px 0 rgba(31,31,31,1);
+}
+.tilt-card:hover .text,
+.tilt-card:focus-within .text{ opacity:.96; transform: translateZ(36px) scale(1.02); }
+.tilt-card:hover::after,
+.tilt-card:focus-within::after{ opacity:.48; }
+
+@keyframes cardFloat{
+  0%{ transform: rotateX(-12deg) translateY(0); }
+  50%{ transform: rotateX(-12deg) translateY(-8px); }
+  100%{ transform: rotateX(-12deg) translateY(0); }
+}
+
+/* Accesibilidad / móviles: menos altura + sin tilt */
+@media (max-width: 900px){
+  .tilt-card{ height: 260px; padding:16px; }
+  .tilt-card .points{ font-size:13px; }
+}
+@media (max-width: 480px){
+  .tilt-card{ height: 230px; }
+  .tilt-card .kicker{ font-size:15px; }
+}
+
+/* Si no hay hover (táctil): mostrar un poco el contenido y glow suave */
+@media (hover: none){
+  .tilt-card{ animation: none; }
+  .tilt-card .text{ opacity:.9; }
+  .tilt-card::after{ opacity:.35; }
+}
+
 
 /* WORK */
 .work h2{text-align:center; margin:0 0 8px}
