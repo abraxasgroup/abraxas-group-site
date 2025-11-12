@@ -158,6 +158,16 @@ body{margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Inter,Roboto
   .tilt-card .text{ opacity:.9; }
   .tilt-card::after{ opacity:.35; }
 }
+/* Juego más alto en móviles (vertical) */
+@media (max-width: 520px){
+  .game-canvas-wrap{ aspect-ratio: 9 / 16; }
+}
+
+/* Astronauta más compacto en móviles */
+@media (max-width: 520px){
+  .astro-card .image{ width:140px; }
+  .astro-card .icons{ flex-direction: column; }
+}
 
 
 /* WORK */
