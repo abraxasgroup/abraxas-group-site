@@ -144,7 +144,7 @@
       .about__grid{ grid-template-columns: 1fr; }
     }
 
-    /* ======== SERVICES / CARDS (inspiradas en referencia, proporcionadas) ======== */
+    /* ======== SERVICES / CARDS ======== */
     .services h2{ text-align:center; margin-bottom: 28px; }
     .cards{
       display:grid; gap: clamp(18px, 2.4vw, 26px);
@@ -156,7 +156,20 @@
     /* Panel base */
     .panel{ position:relative; height: 320px; }
     .ring,.card,.border,.slide,.line{ display:flex; justify-content:center; align-items:center; }
-    .ring{ position:absolute; inset:0; font-size:170px; color:#fffbf1; }
+    .ring{ position:absolute; inset:0; pointer-events:none; }
+    .ring::before, .ring::after{
+      content:""; position:absolute; left:50%; top:50%;
+      width: 125%; height: 125%; border-radius:50%;
+      border:4px solid rgba(127,90,240,.45);
+      transform: translate(-50%,-50%) rotate(40deg);
+      transition: transform .9s ease;
+      box-shadow: inset 0 0 24px rgba(0,224,255,.15);
+    }
+    .ring::after{
+      border-color: transparent transparent rgba(0,224,255,.5) rgba(0,224,255,.5);
+      width: 115%; height:115%;
+    }
+
     .card{
       height: 320px; width:100%; border-radius: 16px;
       background:#111 center/cover no-repeat; transition: all .7s ease;
@@ -191,10 +204,11 @@
     .line{ justify-content: flex-start; gap:8px; }
     .line i{ opacity:.5; }
 
-    /* Hover/Focus: más sutil y legible */
+    /* Hover/Focus */
     .panel:hover .card{ transform: translateY(-4px) scale(1.02); filter: brightness(1.02); }
     .panel:hover .slide{ bottom:0; }
     .panel:hover .border{ border-color: rgba(255,255,255,.55); }
+    .panel:hover .ring::before, .panel:hover .ring::after{ transform: translate(-50%,-50%) rotate(310deg); }
 
     .note{
       margin-top: 14px; color:#bfc4ff; text-align:center; font-size: .95rem;
@@ -205,27 +219,21 @@
     .work h2{ text-align:center; margin-bottom: 8px; }
     .work p{ text-align:center; color:var(--muted); }
 
-    <section id="game" class="game section">
-  <div class="container">
-    <div class="game__intro">
-      <h2>Planet Defense 🚀</h2>
-      <p>Tocá el planeta para empezar. Apuntá con el mouse o el dedo y defendé tu universo.</p>
-    </div>
-
-    <section id="game" class="game section section--skew-down">
-  <div class="container">
-    <div class="game__intro">
-      <h2>Mientras pensás tu universo… jugá 😄</h2>
-      <p>Usá las flechas <strong>← ↑ →</strong>. Si estás para lanzar, tocá “Contacto”.</p>
-      <a href="#contact" class="btn btn--primary">Quiero mi universo digital</a>
-    </div>
-
-    <!-- NUEVO: contenedor responsive + canvas del juego -->
-    <div class="game-canvas-wrap">
-      <canvas id="planet-defense-canvas" aria-label="Abraxas Planet Defense"></canvas>
-    </div>
-  </div>
-</section>
+    /* ======== GAME (Planet Defense) ======== */
+    .game__intro{ text-align:center; margin-bottom: 18px; }
+    .game-canvas-wrap{
+      position:relative; width:100%; aspect-ratio:16/9;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px; overflow:hidden; background:#191919;
+      box-shadow: 0 8px 30px rgba(0,0,0,.35);
+    }
+    #planet-defense-canvas{
+      position:absolute; inset:0; width:100%; height:100%;
+      background:url('https://marclopezavila.github.io/planet-defense-game/img/space.jpg') center/cover no-repeat;
+    }
+    #planet-defense-canvas.playing{
+      cursor:url('https://marclopezavila.github.io/planet-defense-game/img/aim_red.png') 17.5 17.5, auto!important;
+    }
 
     /* ======== CONTACT ======== */
     .contact__grid{
@@ -420,18 +428,16 @@
     </div>
   </section>
 
-  <!-- GAME -->
+  <!-- GAME (Planet Defense) -->
   <section id="game" class="game section">
     <div class="container">
       <div class="game__intro">
-        <h2>Mientras pensás tu universo… jugá 😄</h2>
-        <p>Usá las flechas <strong>← ↑ →</strong>. Si estás para lanzar, tocá “Contacto”.</p>
-        <a href="#contact" class="btn btn--primary">Quiero mi universo digital</a>
+        <h2>Planet Defense 🚀</h2>
+        <p>Tocá el planeta para empezar. Apuntá con mouse o dedo y defendé tu universo.</p>
       </div>
-      <div class="game__wrap">
-        <!-- Si tu game escribe en este canvas, listo.
-             Si tu game actual agrega su propio canvas al <body>, lo cambiamos después para que pinte aquí. -->
-        <canvas id="canvas" aria-label="Abraxas Mini Game"></canvas>
+
+      <div class="game-canvas-wrap">
+        <canvas id="planet-defense-canvas" aria-label="Abraxas Planet Defense"></canvas>
       </div>
     </div>
   </section>
@@ -475,15 +481,16 @@
     const nav = document.getElementById('nav');
     navToggle?.addEventListener('click', ()=> nav.classList.toggle('is-open'));
 
-    // Si el enlace de nav se toca en mobile, cerramos
+    // Si un link del nav se toca en mobile, cerramos
     [...document.querySelectorAll('.nav a')].forEach(a=>{
       a.addEventListener('click', ()=> nav.classList.remove('is-open'));
     });
   </script>
 
+  <!-- Tu JS general (si aplica) -->
   <script src="./js/main.js"></script>
-<script src="assets/js/planet-defense.js" defer></script>
-
+  <!-- Juego Planet Defense adaptado -->
+  <script src="assets/js/planet-defense.js" defer></script>
 
 </body>
 </html>
