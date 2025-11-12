@@ -34,7 +34,7 @@
   }
   </script>
 
-  <!-- ESTILOS -->
+  <!-- ESTILOS PRINCIPALES -->
   <style>
     :root{
       --bg: #000;
@@ -57,7 +57,7 @@
     }
     img{max-width:100%; display:block}
 
-    /* ===== Fondo universo fijo */
+    /* ======== Fondo universo fijo ======== */
     .universe-bg{
       position:fixed; inset:0; width:100%; height:100%;
       object-fit:cover; z-index:-2; filter:saturate(1.2) contrast(1.05) brightness(.9);
@@ -71,7 +71,7 @@
     .container{ width:min(100%, var(--container)); margin-inline:auto; padding-inline: clamp(16px, 4vw, 40px); }
     .section{ padding: clamp(72px, 8vw, 120px) 0; }
 
-    /* ===== Header */
+    /* ======== Header ======== */
     .site-header{
       position:sticky; top:0; z-index:10;
       background:rgba(0,0,0,.35); backdrop-filter: blur(8px);
@@ -91,34 +91,34 @@
 
     @media (max-width: 900px){
       .nav{ position:fixed; inset:64px 0 auto 0; background:rgba(0,0,0,.9);
-            flex-direction:column; padding:20px; transform:translateY(-120%); transition:.35s ease; }
+            flex-direction:column; padding:20px; transform:translateY(-120%);
+            transition:.35s ease; }
       .nav.is-open{ transform:translateY(0); }
       .nav-toggle{ display:block; }
     }
 
-    /* ===== Hero */
+    /* ======== Hero ======== */
     .hero{ position:relative; min-height: clamp(72vh, 80vh, 92vh); display:grid; place-items:center; text-align:center; }
     .hero__content{ padding: 40px 0; }
     .hero h1{ font-size: clamp(32px, 6vw, 64px); line-height:1.05; margin:0 0 .5rem 0; text-shadow: 0 1px 0 rgba(0,0,0,.25); }
     .hero p{ color:var(--muted); max-width: 65ch; margin: 0 auto 1.2rem auto; font-size: clamp(16px, 1.5vw, 20px); }
     .hero__cta{ display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; }
 
-    /* ===== About */
+    /* ======== About ======== */
     .about__grid{ display:grid; gap: var(--gap); grid-template-columns: 1.3fr .9fr; }
     .about__card{ background: var(--glass); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: clamp(16px, 2vw, 24px); }
     .bullets{ padding-left: 1.1rem; } .bullets li{ margin:.2rem 0; }
     @media (max-width: 900px){ .about__grid{ grid-template-columns: 1fr; } }
 
-    /* ===== Services – NUEVAS CARDS 3D (sin React) */
+    /* ======== Services – Cards 3D mejoradas ======== */
     .services h2{ text-align:center; margin-bottom: 28px; }
-
-    .cards{
-      display:grid; gap: clamp(18px, 2.4vw, 26px);
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .cards{ display:grid; gap: clamp(18px, 2.4vw, 26px); grid-template-columns: repeat(4, 1fr); }
     @media (max-width:1100px){ .cards{ grid-template-columns: repeat(2, 1fr);} }
     @media (max-width:620px){ .cards{ grid-template-columns: 1fr;} }
-
+    .card--web { --c1:#7f5af0; --c2:#00e0ff; }
+    .card--seo { --c1:#21d07a; --c2:#00e0ff; }
+    .card--saas{ --c1:#ff8a00; --c2:#ffd400; }
+    .card--wa  { --c1:#25D366; --c2:#12b886; }
     .tilt-card{
       position:relative;
       height: 320px;
@@ -132,133 +132,76 @@
       padding:18px;
       display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-start;
       overflow:hidden;
-      transition: box-shadow .6s ease, transform .4s ease;
+      transition: box-shadow .35s ease, transform .2s ease, filter .35s ease;
       backdrop-filter: blur(2px);
+      will-change: transform, filter;
+    }
+    .tilt-card::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--c1) 45%, transparent) 0%, transparent 60%),
+                  radial-gradient(120% 80% at 0% 100%, color-mix(in oklab, var(--c2) 45%, transparent) 0%, transparent 60%);
+      mix-blend-mode: screen;
+      opacity:.28; pointer-events:none;
+      transition: opacity .35s ease;
     }
     .tilt-card .kicker{
       position:absolute; top:14px; left:16px; font-weight:800; letter-spacing:.02em;
+      text-shadow: 0 1px 0 rgba(0,0,0,.45);
     }
-    .tilt-card .text{ opacity:.0; transition:.5s; transform: translateZ(30px); }
-    .tilt-card:hover .text{ opacity:.9; transform: translateZ(30px) scale(1.02); }
-    .tilt-card:hover{
-      box-shadow: 0 0 30px 1000px rgba(0,0,0,.65), inset 5px 5px 5px 0 rgb(31,31,31);
-      transform: translateY(-2px);
-    }
-
-    /* imágenes por servicio (puedes cambiarlas) */
-    .card--web   { background-image:url('assets/img/cards/web.jpg'); }
-    .card--seo   { background-image:url('assets/img/cards/seo.jpg'); }
-    .card--saas  { background-image:url('assets/img/cards/saas.jpg'); }
-    .card--wa    { background-image:url('assets/img/cards/wa.jpg'); }
-
+    .tilt-card .text{ opacity:.0; transition:.35s ease; transform: translateZ(30px); text-shadow: 0 1px 0 rgba(0,0,0,.6); }
     .tilt-card .points{ font-size:14px; color:#eaeaff; opacity:.95; margin:8px 0 0 0; }
     .tilt-card .points i{ opacity:.6; margin: 0 6px; }
-
-    @keyframes cardFloat{
-      0%{ transform: rotateX(-15deg) translateY(0); }
-      50%{ transform: rotateX(-15deg) translateY(-10px); }
-      100%{ transform: rotateX(-15deg) translateY(0); }
+    .tilt-card:hover,.tilt-card:focus-within{
+      filter: brightness(1.04) saturate(1.08);
+      box-shadow: 0 0 36px 0 color-mix(in oklab, var(--c1) 35%, transparent), 0 0 72px 0 color-mix(in oklab, var(--c2) 28%, transparent), inset 5px 5px 18px 0 rgba(31,31,31,1);
     }
+    .tilt-card:hover .text,.tilt-card:focus-within .text{ opacity:.96; transform: translateZ(36px) scale(1.02); }
+    .tilt-card:hover::after,.tilt-card:focus-within::after{ opacity:.48; }
+    @keyframes cardFloat{ 0%{ transform: rotateX(-12deg) translateY(0); } 50%{ transform: rotateX(-12deg) translateY(-8px); } 100%{ transform: rotateX(-12deg) translateY(0); } }
+    @media (max-width: 900px){ .tilt-card{ height: 260px; padding:16px; } .tilt-card .points{ font-size:13px; } }
+    @media (max-width: 480px){ .tilt-card{ height: 230px; } .tilt-card .kicker{ font-size:15px; } }
+    @media (hover: none){ .tilt-card{ animation: none; } .tilt-card .text{ opacity:.9; } .tilt-card::after{ opacity:.35; } }
 
-    /* ===== Work */
+    .note{ margin-top: 14px; color:#bfc4ff; text-align:center; font-size: .95rem; opacity:.9; }
+
+    /* ===== Work ===== */
     .work h2{ text-align:center; margin-bottom:8px; }
     .work p{ text-align:center; color:var(--muted); }
 
-    /* ===== Game */
+    /* ===== Game ===== */
     .game__intro{ text-align:center; margin-bottom: 18px; }
-    .game-canvas-wrap{
-      position:relative; width:100%; aspect-ratio:16/9;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:12px; overflow:hidden; background:#191919;
-      box-shadow: 0 8px 30px rgba(0,0,0,.35);
-    }
-    #planet-defense-canvas{
-      position:absolute; inset:0; width:100%; height:100%;
-      background:url('https://marclopezavila.github.io/planet-defense-game/img/space.jpg') center/cover no-repeat;
-    }
-    #planet-defense-canvas.playing{
-      cursor:url('https://marclopezavila.github.io/planet-defense-game/img/aim_red.png') 17.5 17.5, auto!important;
-    }
+    .game-canvas-wrap{ position:relative; width:100%; aspect-ratio:16/9; border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; background:#191919; box-shadow: 0 8px 30px rgba(0,0,0,.35); }
+    #planet-defense-canvas{ position:absolute; inset:0; width:100%; height:100%; background:url('https://marclopezavila.github.io/planet-defense-game/img/space.jpg') center/cover no-repeat; }
+    #planet-defense-canvas.playing{ cursor:url('https://marclopezavila.github.io/planet-defense-game/img/aim_red.png') 17.5 17.5, auto!important; }
+    @media (max-width: 520px){ .game-canvas-wrap{ aspect-ratio: 9/16; } }
 
-    /* ===== Contact + Astronaut card */
+    /* ===== Contact & Astronaut ===== */
     .contact__grid{ display:grid; gap: var(--gap); grid-template-columns: 1.1fr .9fr; }
     @media (max-width: 900px){ .contact__grid{ grid-template-columns: 1fr; } }
-
-    .contact__card, .astro-card{
-      background: var(--glass);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius);
-      padding: clamp(16px, 2vw, 24px);
-    }
+    .contact__card, .astro-card{ background: var(--glass); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: clamp(16px, 2vw, 24px); }
     .contact__cta{ display:flex; gap:.8rem; flex-wrap:wrap; margin-top:8px; }
 
-    /* Astronaut Social Card (adaptación del componente React) */
-    .astro-card{
-      --dark: #212121; --darker:#111111; --semidark:#2c2c2c; --lightgray:#e8e8e8; --unit:10px;
-      position:relative; overflow:hidden; background-color:var(--darker);
-      box-shadow: 0 0 var(--unit) var(--darker);
-      border: calc(var(--unit)/2) solid var(--darker);
-    }
-    .astro-card::before{
-      content:"";
-      position:absolute; width:120%; height:20%; top:40%; left:-10%;
-      background: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-      animation: floatingLight 2.5s infinite ease-in-out;
-      filter: blur(20px);
-      opacity:.7;
-    }
-    @keyframes floatingLight{
-      0%{ transform: rotate(-5deg) translateY(-5%); opacity:.5; }
-      50%{ transform: rotate(5deg) translateY(5%); opacity:1; }
-      100%{ transform: rotate(-5deg) translateY(-5%); opacity:.5; }
-    }
-    .astro-card::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-      filter:blur(20px);
-      pointer-events:none;
-      animation: introFade 1s ease-in forwards;
-      opacity:0; /* inicia oculta para evitar flash */
-    }
-    @keyframes introFade{
-      100%{ transform: translateX(-100%); opacity:0; }
-    }
-    .astro-card .image{
-      width:200px; margin: 0 auto; display:block;
-      animation: floatImg 10s ease-in-out infinite;
-    }
-    @keyframes floatImg{
-      0%{ transform: translate(-2%, 2%) scaleY(.95) rotate(-5deg); }
-      50%{ transform: translate(2%, -2%) scaleY(1) rotate(5deg); }
-      100%{ transform: translate(-2%, 2%) scaleY(.95) rotate(-5deg); }
-    }
-    .astro-card .heading{
-      font-weight:700; text-align:center; color:var(--lightgray); margin-top:-8px; padding-block:10px;
-      animation: flashText .5s infinite;
-    }
+    .astro-card{ --dark: #212121; --darker:#111111; --semidark:#2c2c2c; --lightgray:#e8e8e8; --unit:10px; position:relative; overflow:hidden; background-color:var(--darker); box-shadow: 0 0 var(--unit) var(--darker); border: calc(var(--unit)/2) solid var(--darker); }
+    .astro-card::before{ content:""; position:absolute; width:120%; height:20%; top:40%; left:-10%; background: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb); animation: floatingLight 2.5s infinite ease-in-out; filter: blur(20px); opacity:.7; }
+    @keyframes floatingLight{ 0%{ transform: rotate(-5deg) translateY(-5%); opacity:.5; } 50%{ transform: rotate(5deg) translateY(5%); opacity:1; } 100%{ transform: rotate(-5deg) translateY(-5%); opacity:.5; } }
+    .astro-card::after{ content:""; position:absolute; inset:0; background: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb); filter:blur(20px); pointer-events:none; animation: introFade 1s ease-in forwards; opacity:0; }
+    @keyframes introFade{ 100%{ transform: translateX(-100%); opacity:0; } }
+    .astro-card .image{ width:200px; margin: 0 auto; display:block; animation: floatImg 10s ease-in-out infinite; }
+    @keyframes floatImg{ 0%{ transform: translate(-2%, 2%) scaleY(.95) rotate(-5deg); } 50%{ transform: translate(2%, -2%) scaleY(1) rotate(5deg); } 100%{ transform: translate(-2%, 2%) scaleY(.95) rotate(-5deg); } }
+    .astro-card .heading{ font-weight:700; text-align:center; color:var(--lightgray); margin-top:-8px; padding-block:10px; animation: flashText .5s infinite; }
     @keyframes flashText{ 50%{ opacity:.6; } }
     .astro-card .icons{ display:flex; gap:10px; }
-    .astro-card .icons a{
-      flex:1; display:flex; align-items:center; justify-content:center;
-      background-color:var(--dark); color:var(--lightgray);
-      padding: 6px 10px; border-radius: 8px; text-decoration:none;
-    }
+    .astro-card .icons a{ flex:1; display:flex; align-items:center; justify-content:center; background-color:var(--dark); color:var(--lightgray); padding: 6px 10px; border-radius: 8px; text-decoration:none; }
     .astro-card .icons a:hover{ background-color:var(--semidark); transition:.2s; }
+    @media (max-width: 520px){ .astro-card .image{ width:140px; } .astro-card .icons{ flex-direction:column; } }
 
-    /* ===== Footer + WhatsApp */
+    /* ===== Footer & WhatsApp ===== */
     .site-footer{ border-top:1px solid rgba(255,255,255,.06); background: rgba(0,0,0,.35); backdrop-filter: blur(6px); }
     .footer-inner{ display:flex; align-items:center; justify-content:space-between; min-height:64px; }
     .link{ color:#bfc4ff; text-decoration:none; }
 
-    .wb-float{
-      position:fixed; right:18px; bottom:18px; z-index:20;
-      width:60px; height:60px; border-radius:50%;
-      background: radial-gradient(ellipse at center, rgba(127,90,240,.35), rgba(0,0,0,.45));
-      border:1px solid rgba(127,90,240,.8);
-      box-shadow: 0 0 12px rgba(127,90,240,.65), 0 0 32px rgba(0,224,255,.35), inset 0 0 18px rgba(127,90,240,.45);
-      display:grid; place-items:center; transition: transform .2s ease;
-    }
+    .wb-float{ position:fixed; right:18px; bottom:18px; z-index:20; width:60px; height:60px; border-radius:50%; background: radial-gradient(ellipse at center, rgba(127,90,240,.35), rgba(0,0,0,.45)); border:1px solid rgba(127,90,240,.8); box-shadow: 0 0 12px rgba(127,90,240,.65), 0 0 32px rgba(0,224,255,.35), inset 0 0 18px rgba(127,90,240,.45); display:grid; place-items:center; transition: transform .2s ease; }
     .wb-float:hover{ transform: translateY(-2px) scale(1.03); }
     .wb-float img{ width:28px; height:28px; filter: drop-shadow(0 0 6px rgba(0,224,255,.6)); }
     .wb-pulse{ position:absolute; inset:-8px; border-radius:50%; border:1px solid rgba(0,224,255,.45); animation: pulse 2.4s ease-out infinite; }
@@ -318,11 +261,10 @@
     </div>
   </section>
 
-  <!-- Services – Cards 3D nuevas -->
+  <!-- Services – Cards 3D -->
   <section id="services" class="services section">
     <div class="container">
       <h2>Servicios</h2>
-
       <div class="cards">
         <article class="tilt-card card--web">
           <div class="kicker">Sitios & eCommerce</div>
@@ -332,7 +274,6 @@
             <div class="points">Focus<i>•</i>Conversión</div>
           </div>
         </article>
-
         <article class="tilt-card card--seo">
           <div class="kicker">SEO & Contenido</div>
           <div class="text">
@@ -341,7 +282,6 @@
             <div class="points">Objetivo<i>•</i>Tráfico orgánico</div>
           </div>
         </article>
-
         <article class="tilt-card card--saas">
           <div class="kicker">SaaS a medida</div>
           <div class="text">
@@ -350,7 +290,6 @@
             <div class="points">Escala<i>•</i>Multi-tenant</div>
           </div>
         </article>
-
         <article class="tilt-card card--wa">
           <div class="kicker">Automatizaciones WhatsApp</div>
           <div class="text">
@@ -360,7 +299,6 @@
           </div>
         </article>
       </div>
-
       <p class="note">Cada proyecto es un universo; por eso nos ajustamos a cada trabajo.</p>
     </div>
   </section>
@@ -370,6 +308,49 @@
     <div class="container">
       <h2>Portfolio</h2>
       <p>Próximamente, casos reales con métricas (SEO, conversión, retención).</p>
+    </div>
+  </section>
+
+  <!-- Success Cases Section (Casos de éxito) -->
+  <section id="success" class="section">
+    <div class="container">
+      <h2>Casos de Éxito</h2>
+      <div class="success-cards">
+        <article class="success-item">
+          <h3>SEFA — Ingeniería para el futuro</h3>
+          <p><strong>Antes:</strong> Web hecha en WordPress sin estructura clara ni optimización móvil. Imagen de marca desactualizada.</p>
+          <p><strong>Después:</strong> Rediseño 360° desde el branding digital hasta el sitio actual. Sitio responsive, minimalista, con foco en servicios y contacto. Integración con redes sociales y WhatsApp. Optimización SEO y Core Web Vitals.</p>
+          <p><em>Resultado:</em> Aumento de visitas orgánicas y consultas vía formulario.</p>
+          <a href="https://www.sefa.com.ar" target="_blank" rel="noopener">www.sefa.com.ar</a>
+        </article>
+        <article class="success-item">
+          <h3>El Ángel de la Ayahuasca — Medicina ancestral global</h3>
+          <p><strong>Antes:</strong> Web incompleta, difícil de navegar, sin identidad visual ni foco internacional.</p>
+          <p><strong>Después:</strong> Sitio multilingüe (más de 7 idiomas) con foco en experiencias transformadoras. Integración de formularios, WhatsApp y contenido educativo sobre medicina ancestral. Diseño emocional, limpio, orientado a la conversión para retiros en Latinoamérica.</p>
+          <p><em>Resultado:</em> Visibilidad internacional y generación de leads de alta calidad. Posicionamiento espiritual con mirada profesional.</p>
+        </article>
+        <article class="success-item">
+          <h3>Universos en proceso...</h3>
+          <p>Actualmente acompañamos a 3 marcas en transformación digital: rebranding, e-commerce, funnels automatizados y SEO técnico.</p>
+          <p><em>Casos en desarrollo. Pronto disponibles.</em></p>
+          <p>💡 Cada universo se diseña desde cero, sin plantillas. Tu marca es única: tu web también.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Floating Section -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <h2>Testimonios</h2>
+      <div class="testimonials-wrap">
+        <blockquote class="testimonial">"Excelentes resultados y atención personalizada."<footer>— Agustín</footer></blockquote>
+        <blockquote class="testimonial">"Transformaron nuestro proyecto en algo digitalmente poderoso."<footer>— Fabián</footer></blockquote>
+        <blockquote class="testimonial">"Gran compromiso y creatividad."<footer>— Teo</footer></blockquote>
+        <blockquote class="testimonial">"Superaron nuestras expectativas en cada detalle."<footer>— Lean</footer></blockquote>
+        <blockquote class="testimonial">"Un equipo que realmente escucha y entrega."<footer>— Isabel</footer></blockquote>
+        <blockquote class="testimonial">"Experiencia de usuario impecable."<footer>— Roma</footer></blockquote>
+      </div>
     </div>
   </section>
 
@@ -386,7 +367,7 @@
     </div>
   </section>
 
-  <!-- Contact + Astronaut Social -->
+  <!-- Contact & Astronaut -->
   <section id="contact" class="contact section">
     <div class="container contact__grid">
       <div>
@@ -397,25 +378,21 @@
           <a class="btn btn--ghost" href="mailto:o.chinchilla@abraxas-group.lat">o.chinchilla@abraxas-group.lat</a>
         </div>
       </div>
-
-      <!-- Card Astronauta (links: reemplazar # por tus perfiles) -->
       <div class="astro-card">
         <img class="image" alt="Astronauta" src="https://uiverse.io/astronaut.png" />
         <div class="heading">Seguinos en redes</div>
         <div class="icons">
-          <!-- REEMPLAZAR href con tus perfiles -->
-          <a class="instagram" href="https://www.facebook.com/tu_perfil" target="_blank" rel="noopener" title="Facebook">
-            <!-- Usamos el logo “f” (simple) -->
+          <a href="https://www.facebook.com/profile.php?id=61581446128697" target="_blank" rel="noopener" title="Facebook">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="22" width="22" fill="currentColor">
               <path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5 3.66 9.14 8.44 9.94v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.25c-1.23 0-1.61.77-1.61 1.56v1.87h2.74l-.44 2.9h-2.3V22c4.78-.8 8.44-4.94 8.44-9.94z"/>
             </svg>
           </a>
-          <a class="x" href="https://x.com/tu_usuario" target="_blank" rel="noopener" title="X">
+          <a href="https://x.com/AbraxasGroupLat" target="_blank" rel="noopener" title="X">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="22" width="22" fill="currentColor">
               <path d="M18 2h3l-7.5 8.56L22 22h-6.9l-5.4-7.05L3.7 22H1l8.1-9.26L2 2h7l4.9 6.44L18 2Zm-2 18h1.7L7.14 4H5.3L16 20Z"/>
             </svg>
           </a>
-          <a class="linkedin" href="https://www.linkedin.com/in/tu_usuario" target="_blank" rel="noopener" title="LinkedIn">
+          <a href="https://www.linkedin.com/company/abraxasgroup" target="_blank" rel="noopener" title="LinkedIn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="22" width="22" fill="currentColor">
               <path d="M19 3A2.94 2.94 0 0 1 22 6v12a2.94 2.94 0 0 1-3 3H5a2.94 2.94 0 0 1-3-3V6a2.94 2.94 0 0 1 3-3h14ZM8.34 18.34v-8H5.66v8h2.68Zm-.67-9.11a1.56 1.56 0 1 0-1.56-1.55 1.55 1.55 0 0 0 1.56 1.55ZM18.34 18.34v-4.31c0-2.28-1.22-3.34-2.84-3.34a2.45 2.45 0 0 0-2.21 1.22h-.03v-1h-2.67s.04.65 0 8h2.67v-4.47a1.79 1.79 0 0 1 .08-.64 1.45 1.45 0 0 1 1.35-.96c.95 0 1.33.73 1.33 1.81v4.26h2.32Z"/>
             </svg>
@@ -433,45 +410,37 @@
     </div>
   </footer>
 
-  <!-- WhatsApp flotante -->
+  <!-- WhatsApp flotante con glow -->
   <a class="wb-float" href="https://wa.me/541126693072" target="_blank" rel="noopener" aria-label="WhatsApp">
     <span class="wb-pulse"></span>
     <img src="./assets/img/whatsapp-logo.png" alt="WhatsApp">
   </a>
 
-  <!-- SCRIPTS -->
+  <!-- Scripts del menú móvil -->
   <script>
-    // Toggle menú mobile
     const navToggle = document.getElementById('navToggle');
     const nav = document.getElementById('nav');
     navToggle?.addEventListener('click', ()=> nav.classList.toggle('is-open'));
     [...document.querySelectorAll('.nav a')].forEach(a=> a.addEventListener('click', ()=> nav.classList.remove('is-open')));
   </script>
 
-  <!-- Tu JS general -->
-  <script src="./js/main.js"></script>
   <!-- Juego Planet Defense adaptado -->
   <script src="assets/js/planet-defense.js" defer></script>
-    <!-- SCRIPTS EXISTENTES -->
-  <script src="./js/main.js"></script>
-  <script src="assets/js/planet-defense.js" defer></script>
 
-  <!-- JS: Tilt 3D para las cards -->
+  <!-- Animación tilt de cards (solo desktop) -->
   <script>
   (function(){
     const supportsHover = window.matchMedia('(hover: hover)').matches;
-    if(!supportsHover) return; // en táctil, sin tilt
-
+    if(!supportsHover) return;
     const MAX_TILT = 12;
     document.querySelectorAll('.tilt-card').forEach(card=>{
       let rafId = null;
-
       function handle(e){
         const r = card.getBoundingClientRect();
         const cx = r.left + r.width/2;
         const cy = r.top + r.height/2;
-        const x = (e.clientX - cx) / (r.width/2);   // -1..1
-        const y = (e.clientY - cy) / (r.height/2);  // -1..1
+        const x = (e.clientX - cx) / (r.width/2);
+        const y = (e.clientY - cy) / (r.height/2);
         const rx = (+y * MAX_TILT).toFixed(2);
         const ry = (-x * MAX_TILT).toFixed(2);
         if(rafId) cancelAnimationFrame(rafId);
@@ -479,20 +448,13 @@
           card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
         });
       }
-      function reset(){
-        if(rafId) cancelAnimationFrame(rafId);
-        card.style.transform = '';
-      }
-
+      function reset(){ if(rafId) cancelAnimationFrame(rafId); card.style.transform = ''; }
       card.addEventListener('mousemove', handle);
       card.addEventListener('mouseleave', reset);
       card.addEventListener('blur', reset);
     });
   })();
   </script>
-</body>
-</html>
-
 
 </body>
 </html>
