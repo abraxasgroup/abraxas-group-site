@@ -452,6 +452,47 @@
   <script src="./js/main.js"></script>
   <!-- Juego Planet Defense adaptado -->
   <script src="assets/js/planet-defense.js" defer></script>
+    <!-- SCRIPTS EXISTENTES -->
+  <script src="./js/main.js"></script>
+  <script src="assets/js/planet-defense.js" defer></script>
+
+  <!-- JS: Tilt 3D para las cards -->
+  <script>
+  (function(){
+    const supportsHover = window.matchMedia('(hover: hover)').matches;
+    if(!supportsHover) return; // en táctil, sin tilt
+
+    const MAX_TILT = 12;
+    document.querySelectorAll('.tilt-card').forEach(card=>{
+      let rafId = null;
+
+      function handle(e){
+        const r = card.getBoundingClientRect();
+        const cx = r.left + r.width/2;
+        const cy = r.top + r.height/2;
+        const x = (e.clientX - cx) / (r.width/2);   // -1..1
+        const y = (e.clientY - cy) / (r.height/2);  // -1..1
+        const rx = (+y * MAX_TILT).toFixed(2);
+        const ry = (-x * MAX_TILT).toFixed(2);
+        if(rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(()=>{
+          card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+        });
+      }
+      function reset(){
+        if(rafId) cancelAnimationFrame(rafId);
+        card.style.transform = '';
+      }
+
+      card.addEventListener('mousemove', handle);
+      card.addEventListener('mouseleave', reset);
+      card.addEventListener('blur', reset);
+    });
+  })();
+  </script>
+</body>
+</html>
+
 
 </body>
 </html>
