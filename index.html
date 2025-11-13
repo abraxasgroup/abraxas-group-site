@@ -38,7 +38,7 @@
   }
   </script>
 
-  <!-- ESTILOS -->
+  <!-- ================== CSS GLOBAL EN EL HEAD ================== -->
   <style>
     :root{
       --bg: #000;
@@ -50,9 +50,10 @@
       --container: 1140px;
       --radius: 14px;
       --gap: clamp(16px, 2.2vw, 28px);
-      --card-grad: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      --neon: #00e0ff;
     }
 
+    /* Reset base */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -62,7 +63,7 @@
     }
     img{max-width:100%; display:block}
 
-    /* ======== FONDO UNIVERSO ======== */
+    /* ======== FONDO UNIVERSO (FIJO A TODA LA WEB) ======== */
     .universe-bg{
       position:fixed; inset:0; width:100%; height:100%;
       object-fit:cover; z-index:-2; filter:saturate(1.2) contrast(1.05) brightness(.9);
@@ -76,8 +77,6 @@
     /* ======== LAYOUT ======== */
     .container{ width:min(100%, var(--container)); margin-inline:auto; padding-inline: clamp(16px, 4vw, 40px); }
     .section{ padding: clamp(72px, 8vw, 120px) 0; }
-    .section h2{ margin:0 0 8px 0; font-size: clamp(26px, 3.2vw, 38px); }
-    .section p.lead{ color:var(--muted); margin:0 0 24px 0 }
 
     /* ======== HEADER ======== */
     .site-header{
@@ -98,6 +97,7 @@
     .btn--primary{ background:var(--brand); color:#fff; }
     .btn--ghost{ border:1px solid var(--brand); color:#fff; background:transparent; }
 
+    /* Mobile nav */
     .nav-toggle{ display:none; background:none; border:0; width:40px; height:40px; }
     .nav-toggle span{ display:block; height:2px; background:#fff; margin:7px 0; }
 
@@ -139,371 +139,169 @@
     }
     .bullets{ padding-left: 1.1rem; }
     .bullets li{ margin:.2rem 0; }
+
     @media (max-width: 900px){
       .about__grid{ grid-template-columns: 1fr; }
     }
 
-    /* ======== Services – Cards 3D mejoradas ======== */
-.services h2{ text-align:center; margin-bottom: 28px; }
-.cards{ display:grid; gap: clamp(18px, 2.4vw, 26px); grid-template-columns: repeat(4, 1fr); }
-@media (max-width:1100px){ .cards{ grid-template-columns: repeat(2, 1fr);} }
-@media (max-width:620px){ .cards{ grid-template-columns: 1fr;} }
-
-.card--web { --c1:#7f5af0; --c2:#00e0ff; }
-.card--seo { --c1:#21d07a; --c2:#00e0ff; }
-.card--saas{ --c1:#ff8a00; --c2:#ffd400; }
-.card--wa  { --c1:#25D366; --c2:#12b886; }
-
-.tilt-card{
-  position:relative;
-  height: 320px;
-  background:#0f0f0f url('assets/img/cards/starfield.jpg') center/cover no-repeat;
-  border-radius: 20px;
-  color: #fff;
-  transform-style: preserve-3d;
-  animation: cardFloat 2s ease-in-out infinite;
-  box-shadow: 0 0 50px 0 rgba(0,0,0,.6), inset 0 0 90px 0 rgba(31,31,31,1);
-  border:1px solid rgba(255,255,255,.08);
-  padding:18px;
-  display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-start;
-  overflow:hidden;
-  transition: box-shadow .35s ease, transform .2s ease, filter .35s ease;
-  backdrop-filter: blur(2px);
-  will-change: transform, filter;
-}
-.tilt-card::after{
-  content:"";
-  position:absolute; inset:-2px;
-  background: radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--c1) 45%, transparent) 0%, transparent 60%),
-              radial-gradient(120% 80% at 0% 100%, color-mix(in oklab, var(--c2) 45%, transparent) 0%, transparent 60%);
-  mix-blend-mode: screen;
-  opacity:.28; pointer-events:none;
-  transition: opacity .35s ease;
-}
-.tilt-card .kicker{
-  position:absolute; top:14px; left:16px; font-weight:800; letter-spacing:.02em;
-  text-shadow: 0 1px 0 rgba(0,0,0,.45);
-}
-.tilt-card .text{
-  opacity:.0; transition:.35s ease; transform: translateZ(30px);
-  text-shadow: 0 1px 0 rgba(0,0,0,.6);
-}
-.tilt-card .points{ font-size:14px; color:#eaeaff; opacity:.95; margin:8px 0 0 0; }
-.tilt-card .points i{ opacity:.6; margin: 0 6px; }
-
-.tilt-card:hover,.tilt-card:focus-within{
-  filter: brightness(1.04) saturate(1.08);
-  box-shadow: 0 0 36px 0 color-mix(in oklab, var(--c1) 35%, transparent),
-              0 0 72px 0 color-mix(in oklab, var(--c2) 28%, transparent),
-              inset 5px 5px 18px 0 rgba(31,31,31,1);
-}
-.tilt-card:hover .text,.tilt-card:focus-within .text{
-  opacity:.96; transform: translateZ(36px) scale(1.02);
-}
-.tilt-card:hover::after,.tilt-card:focus-within::after{ opacity:.48; }
-
-@keyframes cardFloat{
-  0%{ transform: rotateX(-12deg) translateY(0); }
-  50%{ transform: rotateX(-12deg) translateY(-8px); }
-  100%{ transform: rotateX(-12deg) translateY(0); }
-}
-@media (max-width: 900px){
-  .tilt-card{ height: 260px; padding:16px; }
-  .tilt-card .points{ font-size:13px; }
-}
-@media (max-width: 480px){
-  .tilt-card{ height: 230px; }
-  .tilt-card .kicker{ font-size:15px; }
-}
-@media (hover: none){
-  .tilt-card{ animation: none; }
-  .tilt-card .text{ opacity:.9; }
-  .tilt-card::after{ opacity:.35; }
-}
-
-.note{ margin-top: 14px; color:#bfc4ff; text-align:center; font-size: .95rem; opacity:.9; }
-
+    /* ======== Services – Cards 3D mejoradas (tu versión preferida) ======== */
+    .services h2{ text-align:center; margin-bottom: 28px; }
+    .cards{ display:grid; gap: clamp(18px, 2.4vw, 26px); grid-template-columns: repeat(4, 1fr); }
+    @media (max-width:1100px){ .cards{ grid-template-columns: repeat(2, 1fr);} }
+    @media (max-width:620px){ .cards{ grid-template-columns: 1fr;} }
+    .card--web { --c1:#7f5af0; --c2:#00e0ff; }
+    .card--seo { --c1:#21d07a; --c2:#00e0ff; }
+    .card--saas{ --c1:#ff8a00; --c2:#ffd400; }
+    .card--wa  { --c1:#25D366; --c2:#12b886; }
+    .tilt-card{
+      position:relative;
+      height: 320px;
+      background:#0f0f0f url('assets/img/cards/starfield.jpg') center/cover no-repeat;
+      border-radius: 20px;
+      color: #fff;
+      transform-style: preserve-3d;
+      animation: cardFloat 2s ease-in-out infinite;
+      box-shadow: 0 0 50px 0 rgba(0,0,0,.6), inset 0 0 90px 0 rgba(31,31,31,1);
+      border:1px solid rgba(255,255,255,.08);
+      padding:18px;
+      display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-start;
+      overflow:hidden;
+      transition: box-shadow .35s ease, transform .2s ease, filter .35s ease;
+      backdrop-filter: blur(2px);
+      will-change: transform, filter;
+    }
+    .tilt-card::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--c1) 45%, transparent) 0%, transparent 60%),
+                  radial-gradient(120% 80% at 0% 100%, color-mix(in oklab, var(--c2) 45%, transparent) 0%, transparent 60%);
+      mix-blend-mode: screen;
+      opacity:.28; pointer-events:none;
+      transition: opacity .35s ease;
+    }
+    .tilt-card .kicker{
+      position:absolute; top:14px; left:16px; font-weight:800; letter-spacing:.02em;
+      text-shadow: 0 1px 0 rgba(0,0,0,.45);
+    }
+    .tilt-card .text{ opacity:.0; transition:.35s ease; transform: translateZ(30px); text-shadow: 0 1px 0 rgba(0,0,0,.6); }
+    .tilt-card .points{ font-size:14px; color:#eaeaff; opacity:.95; margin:8px 0 0 0; }
+    .tilt-card .points i{ opacity:.6; margin: 0 6px; }
+    .tilt-card:hover,.tilt-card:focus-within{
+      filter: brightness(1.04) saturate(1.08);
+      box-shadow: 0 0 36px 0 color-mix(in oklab, var(--c1) 35%, transparent), 0 0 72px 0 color-mix(in oklab, var(--c2) 28%, transparent), inset 5px 5px 18px 0 rgba(31,31,31,1);
+    }
+    .tilt-card:hover .text,.tilt-card:focus-within .text{ opacity:.96; transform: translateZ(36px) scale(1.02); }
+    .tilt-card:hover::after,.tilt-card:focus-within::after{ opacity:.48; }
+    @keyframes cardFloat{ 0%{ transform: rotateX(-12deg) translateY(0); } 50%{ transform: rotateX(-12deg) translateY(-8px); } 100%{ transform: rotateX(-12deg) translateY(0); } }
+    @media (max-width: 900px){ .tilt-card{ height: 260px; padding:16px; } .tilt-card .points{ font-size:13px; } }
+    @media (max-width: 480px){ .tilt-card{ height: 230px; } .tilt-card .kicker{ font-size:15px; } }
+    @media (hover: none){ .tilt-card{ animation: none; } .tilt-card .text{ opacity:.9; } .tilt-card::after{ opacity:.35; } }
+    .note{ margin-top: 14px; color:#bfc4ff; text-align:center; font-size: .95rem; opacity:.9; }
 
     /* ======== CASOS DE ÉXITO ======== */
-  <section id="cases" class="cases section">
-  <div class="container">
-    <h2>Casos de Éxito</h2>
-    <p class="lead">Pequeños universos, grandes resultados.</p>
+    .success{ position:relative; }
+    .success h2{ text-align:center; margin: 0 0 12px 0; }
+    .success p.lead{ text-align:center; color:var(--muted); margin:0 0 28px 0; }
+    .success-grid{
+      display:grid; gap: clamp(18px, 2.4vw, 26px);
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 900px){ .success-grid{ grid-template-columns: 1fr; } }
 
-    <div class="cases-grid">
-      <!-- SEFA -->
-      <article class="case-card sefa">
-        <div class="case-body">
-          <div class="case-top">
-            <h3 class="case-title">SEFA — Ingeniería para el futuro</h3>
-            <span class="case-badge">Industria</span>
-          </div>
-          <div class="case-cols">
-            <div class="case-box">
-              <h4>Antes</h4>
-              <ul>
-                <li>WordPress sin estructura clara ni mobile.</li>
-                <li>Imagen de marca desactualizada.</li>
-              </ul>
-            </div>
-            <div class="case-box">
-              <h4>Después</h4>
-              <ul>
-                <li>Rediseño 360°: branding + web responsive.</li>
-                <li>Integración RRSS + WhatsApp.</li>
-                <li>SEO & Core Web Vitals optimizados.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="case-footer">
-            <div class="case-result">↑ Visitas orgánicas y consultas</div>
-            <a class="case-cta" href="https://www.sefa.com.ar" target="_blank" rel="noopener">Ver sitio →</a>
-          </div>
-        </div>
-      </article>
+    .success-card{
+      position:relative; overflow:hidden; border-radius: 18px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(12,12,12,.7);
+      display:grid; grid-template-columns: 1fr 1fr;
+      min-height: 280px;
+    }
+    @media (max-width: 720px){ .success-card{ grid-template-columns: 1fr; } }
 
-      <!-- El Ángel de la Ayahuasca -->
-      <article class="case-card angel">
-        <div class="case-body">
-          <div class="case-top">
-            <h3 class="case-title">El Ángel de la Ayahuasca — Medicina ancestral global</h3>
-            <span class="case-badge">Salud & Bienestar</span>
-          </div>
-          <div class="case-cols">
-            <div class="case-box">
-              <h4>Antes</h4>
-              <ul>
-                <li>Web incompleta y difícil de navegar.</li>
-                <li>Sin identidad visual ni foco internacional.</li>
-              </ul>
-            </div>
-            <div class="case-box">
-              <h4>Después</h4>
-              <ul>
-                <li>Sitio multilingüe (+7 idiomas) orientado a experiencias.</li>
-                <li>Forms + WhatsApp + contenidos educativos.</li>
-                <li>Diseño emocional, limpio y de conversión.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="case-footer">
-            <div class="case-result">↑ Visibilidad global y leads calificados</div>
-            <span class="case-cta" aria-disabled="true" style="opacity:.7;border-style:dashed;">Demo bajo reserva</span>
-          </div>
-        </div>
-      </article>
+    .success-card .media{
+      min-height: 280px; background: #0c0c0c center/cover no-repeat;
+      filter: saturate(1.1) contrast(1.05) brightness(.92);
+    }
+    .success-card[data-bg="sefa"] .media{
+      background-image: url('assets/img/success/sefa.jpg');
+    }
+    .success-card[data-bg="ayahuasca"] .media{
+      background-image: url('assets/img/success/ayahuasca.jpg');
+    }
+    .success-card[data-bg="vacunomovil"] .media{
+      background-image: url('assets/img/success/vacunomovil.jpg');
+    }
+    .success-card[data-bg="wip"] .media{
+      background-image: url('assets/img/success/wip.jpg');
+    }
 
-      <!-- Vacuno Móvil (nuevo) -->
-      <article class="case-card vacuno">
-        <div class="case-body">
-          <div class="case-top">
-            <h3 class="case-title">Vacuno Móvil — De la metalúrgica al universo digital</h3>
-            <span class="case-badge">Agro & Industria</span>
-          </div>
-          <div class="case-cols">
-            <div class="case-box">
-              <h4>Antes</h4>
-              <ul>
-                <li>Sin presencia web ni canales oficiales.</li>
-              </ul>
-            </div>
-            <div class="case-box">
-              <h4>Después</h4>
-              <ul>
-                <li>Sitio web + RRSS oficiales.</li>
-                <li>WhatsApp Business con catálogo.</li>
-                <li>Identidad digital unificada.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="case-footer">
-            <div class="case-result">↑ Tráfico calificado y consultas directas</div>
-            <a class="case-cta" href="https://vacunomovil.com.ar" target="_blank" rel="noopener">Ver sitio →</a>
-          </div>
-        </div>
-      </article>
+    .success-card .content{
+      padding: clamp(16px, 2vw, 24px);
+      display:flex; flex-direction:column; gap:10px; justify-content:center;
+      background:
+        radial-gradient(120% 80% at 100% 0%, rgba(127,90,240,.12), transparent 60%),
+        radial-gradient(120% 80% at 0% 100%, rgba(0,224,255,.08), transparent 60%);
+    }
+    .success-card h3{ margin:0; }
+    .success-card .before, .success-card .after{
+      font-size:.95rem; color:#eaeaff; opacity:.95; margin:0;
+    }
+    .success-card .chip{
+      display:inline-flex; align-items:center; gap:.5rem;
+      background: rgba(127,90,240,.15);
+      border:1px solid rgba(127,90,240,.35);
+      padding:.4rem .7rem; border-radius:999px; font-size:.85rem;
+    }
+    .success-card .cta{
+      margin-top:6px; display:flex; gap:.6rem; flex-wrap:wrap;
+    }
+    .btn--thin{ padding:.55rem .9rem; border:1px solid rgba(255,255,255,.2); border-radius:12px; text-decoration:none; color:#fff; }
+    .btn--thin:hover{ border-color:#fff; }
 
-      <!-- Universos en proceso -->
-      <article class="case-card proceso">
-        <div class="case-body">
-          <div class="case-top">
-            <h3 class="case-title">Universos en proceso…</h3>
-            <span class="case-badge">Roadmap</span>
-          </div>
-          <div class="case-cols">
-            <div class="case-box">
-              <h4>Ahora</h4>
-              <ul>
-                <li>Rebranding y e-commerce.</li>
-                <li>Funnels automatizados.</li>
-                <li>SEO técnico.</li>
-              </ul>
-            </div>
-            <div class="case-box">
-              <h4>Próximos hitos</h4>
-              <ul>
-                <li>Publicación de casos con métricas.</li>
-                <li>Dashboards de conversión.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="case-footer">
-            <div class="case-result">Pronto en el portfolio</div>
-            <span class="case-cta" aria-disabled="true" style="opacity:.7;border-style:dashed;">En desarrollo</span>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
+    /* ======== TESTIMONIOS (Glitch checkbox adaptado) ======== */
+    .testimonials h2{ text-align:center; margin:0 0 8px 0; }
+    .testimonials p.lead{ text-align:center; color:var(--muted); margin:0 0 22px 0; }
 
-
-    /* ======== TESTIMONIOS (checkbox glitch) ======== */
-    .testimonials .wrap{
+    .glitch-checkbox-wrapper {
       --primary-color: #00f2ea;
       --secondary-color: #a855f7;
       --text-color: #e5e5e5;
       --disabled-color: #555;
-      --font-family: "Fira Code", Consolas, "Courier New", Courier, monospace;
       --glitch-anim-duration: 0.3s;
+      display: grid; gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+      background-color: rgba(5,5,5,.4);
+      padding: 1.2rem;
+      border-radius: 1rem;
+      border:1px solid rgba(255,255,255,.06);
+    }
+    @media (max-width:900px){ .glitch-checkbox-wrapper{ grid-template-columns: 1fr 1fr; } }
+    @media (max-width:520px){ .glitch-checkbox-wrapper{ grid-template-columns: 1fr; } }
 
-      display:grid; gap:14px;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      background: rgba(0,0,0,.35);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius: 14px;
-      padding: 18px;
-      font-family: var(--font-family);
-    }
-    @media (max-width: 700px){ .testimonials .wrap{ grid-template-columns: 1fr; } }
-
-    .glitch-checkbox-container {
-      display: flex; align-items: center; gap: 0.75rem; cursor: pointer; user-select: none; position: relative;
-      background: rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 12px;
-    }
-    .glitch-checkbox-container input[type="checkbox"]{
-      position:absolute; opacity:0; width:0; height:0;
-    }
-    .checkbox-box {
-      width: 1.4em; height: 1.4em; border: 2px solid var(--primary-color); position: relative; transition: all 0.3s ease;
+    .glitch-checkbox-container { display:flex; align-items:center; gap:.75rem; cursor:pointer; user-select:none; position:relative; }
+    .glitch-checkbox-container input[type="checkbox"]{ position:absolute; opacity:0; width:0; height:0; }
+    .checkbox-box{
+      width: 1.4em; height: 1.4em; border: 2px solid var(--primary-color); position: relative; transition: all .3s ease;
       clip-path: polygon(15% 0,85% 0,100% 15%,100% 85%,85% 100%,15% 100%,0 85%,0 15%);
     }
-    .checkbox-mark {
-      position: absolute; top: 50%; left: 50%; width: 60%; height: 60%; background-color: var(--primary-color);
-      transform: translate(-50%, -50%) scale(0); opacity: 0; transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); clip-path: inherit;
+    .checkbox-mark{
+      position:absolute; top:50%; left:50%; width:60%; height:60%; background:var(--primary-color);
+      transform:translate(-50%,-50%) scale(0); opacity:0; transition: all .3s cubic-bezier(.18,.89,.32,1.28); clip-path: inherit;
     }
-    .checkbox-label {
-      color: var(--text-color); font-weight: 500; font-size: .95rem; letter-spacing: .02em; position: relative;
-      transition: color .3s ease, text-shadow .3s ease;
-    }
-    .glitch-checkbox-container input:checked + .checkbox-box .checkbox-mark {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1; animation: glitch-anim-checkbox var(--glitch-anim-duration) both;
-    }
-    .glitch-checkbox-container input:checked ~ .checkbox-label {
-      color: var(--primary-color); text-shadow: 0 0 8px rgba(0, 242, 234, 0.7);
-    }
-    .glitch-checkbox-container:hover .checkbox-box { box-shadow: 0 0 10px var(--primary-color); }
-    .glitch-checkbox-container:hover .checkbox-label::before,
-    .glitch-checkbox-container:hover .checkbox-label::after {
-      content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    }
-    .glitch-checkbox-container:hover .checkbox-label::before {
-      color: var(--secondary-color);
-      animation: glitch-anim-text var(--glitch-anim-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    }
-    .glitch-checkbox-container:hover .checkbox-label::after {
-      color: var(--primary-color);
-      animation: glitch-anim-text var(--glitch-anim-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both;
-    }
-    @keyframes glitch-anim-checkbox {
-      0% { transform: translate(-50%, -50%); clip-path: inset(0 0 0 0); }
-      20% { transform: translate(calc(-50% - 3px), calc(-50% + 2px)); clip-path: inset(50% 0 20% 0); }
-      40% { transform: translate(calc(-50% + 2px), calc(-50% - 1px)); clip-path: inset(20% 0 60% 0); }
-      60% { transform: translate(calc(-50% - 2px), calc(-50% + 1px)); clip-path: inset(80% 0 5% 0); }
-      80% { transform: translate(calc(-50% + 2px), calc(-50% - 2px)); clip-path: inset(30% 0 45% 0); }
-      100%{ transform: translate(-50%, -50%); clip-path: inset(0 0 0 0); }
-    }
-    @keyframes glitch-anim-text {
-      0% { transform: translate(0); clip-path: inset(0 0 0 0); }
-      20% { transform: translate(-3px, 2px); clip-path: inset(50% 0 20% 0); }
-      40% { transform: translate(2px, -1px); clip-path: inset(20% 0 60% 0); }
-      60% { transform: translate(-2px, 1px); clip-path: inset(80% 0 5% 0); }
-      80% { transform: translate(2px, -2px); clip-path: inset(30% 0 45% 0); }
-      100%{ transform: translate(0); clip-path: inset(0 0 0 0); }
-    }
+    .checkbox-label{ color:var(--text-color); font-weight:600; font-size:.95rem; letter-spacing:.03em; position:relative; }
+    .glitch-checkbox-container input:checked + .checkbox-box .checkbox-mark{ transform:translate(-50%,-50%) scale(1); opacity:1; }
+    .glitch-checkbox-container input:checked ~ .checkbox-label{ color:var(--primary-color); text-shadow:0 0 8px rgba(0,242,234,.7); }
+    .glitch-checkbox-container input:disabled + .checkbox-box{ border-color:var(--disabled-color); opacity:.5; }
+    .glitch-checkbox-container input:disabled ~ .checkbox-label{ color:var(--disabled-color); }
 
     /* ======== GAME ======== */
-    .game .game-canvas-wrap{
-      position: relative; border-radius: 16px; overflow:hidden;
-      border:1px solid rgba(255,255,255,.12); background:#0f0f12;
-      aspect-ratio: 16 / 9;
-    }
-    @media (max-width: 640px){ .game .game-canvas-wrap{ aspect-ratio: 9/16; } }
-    #planet-defense-canvas{
-      width:100%; height:100%; display:block;
+    .game__intro{ text-align:center; margin-bottom: 14px; }
+    .game-canvas-wrap{
+      position:relative; width:100%; aspect-ratio: 16/9; max-height: 75vh;
+      border-radius: 16px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.1);
       background: url('https://marclopezavila.github.io/planet-defense-game/img/space.jpg') center/cover no-repeat;
     }
-    #planet-defense-canvas.playing{
-      cursor: url('https://marclopezavila.github.io/planet-defense-game/img/aim_red.png') 17.5 17.5,auto !important;
-    }
-
-    /* ======== CONTACT + ASTRONAUTA ======== */
-    .contact__grid{
-      display:grid; gap: var(--gap);
-      grid-template-columns: 1.1fr .9fr;
-    }
-    @media (max-width: 900px){
-      .contact__grid{ grid-template-columns: 1fr; }
-    }
-    .contact__card{
-      background: var(--glass);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius);
-      padding: clamp(16px, 2vw, 24px);
-    }
-
-    .astro-card{
-      --unit: 10px;
-      background-color: #111111;
-      box-shadow: 0 0 var(--unit) #111111;
-      border: calc(var(--unit) / 2) solid #111111;
-      border-radius: var(--unit);
-      position: relative;
-      padding: var(--unit);
-      overflow: hidden;
-      display:flex; flex-direction:column; align-items:center; gap:10px;
-    }
-    .astro-card::before{
-      content:""; position:absolute; width:120%; height:20%; top:40%; left:-10%;
-      background: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-      animation: astro-light 2.5s infinite ease-in-out; filter: blur(20px);
-    }
-    .astro-card::after{
-      content:""; position:absolute; inset:0; background: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-      filter: blur(20px); pointer-events:none; animation: astro-intro 1s ease-in forwards;
-      opacity:0;
-    }
-    @keyframes astro-light{
-      0%{transform: rotate(-5deg) translateY(-5%); opacity:.5;}
-      50%{transform: rotate(5deg) translateY(5%); opacity:1;}
-      100%{transform: rotate(-5deg) translateY(-5%); opacity:.5;}
-    }
-    @keyframes astro-intro{ 100%{ opacity:0; } }
-    .astro-img{ width:200px; animation: astro-float 10s ease-in-out infinite; }
-    @keyframes astro-float{
-      0%{ transform: translate(-2%, 2%) scaleY(.95) rotate(-5deg); }
-      50%{ transform: translate( 2%,-2%) scaleY(1)   rotate( 5deg); }
-      100%{transform: translate(-2%, 2%) scaleY(.95) rotate(-5deg); }
-    }
-    .astro-title{ font-weight:600; font-size:.95rem; margin-top:-8px; color:#e8e8e8; text-align:center; }
-    .astro-icons{ display:flex; gap:8px; width:100%; }
-    .astro-icons a{
-      display:flex; flex:1; align-items:center; justify-content:center; background:#212121; color:#e8e8e8;
-      padding:6px; border-radius:8px; text-decoration:none;
-      border:1px solid rgba(255,255,255,.08);
-    }
-    .astro-icons a:hover{ background:#2c2c2c; }
+    #planet-defense-canvas{ width:100%; height:100%; display:block; }
 
     /* ======== FOOTER ======== */
     .site-footer{
@@ -516,14 +314,18 @@
     }
     .link{ color:#bfc4ff; text-decoration:none; }
 
-    /* ======== WHATSAPP FLOTANTE (NEÓN + TOOLTIP) ======== */
+    /* ======== WHATSAPP FLOTANTE + TOOLTIP NEON ======== */
     .wb-float{
       position:fixed; right:18px; bottom:18px; z-index:20;
       width:60px; height:60px; border-radius:50%;
       background: radial-gradient(ellipse at center, rgba(127,90,240,.35), rgba(0,0,0,.45));
       border:1px solid rgba(127,90,240,.8);
-      box-shadow: 0 0 12px rgba(127,90,240,.65), 0 0 32px rgba(0,224,255,.35), inset 0 0 18px rgba(127,90,240,.45);
-      display:grid; place-items:center; transition: transform .2s ease;
+      box-shadow:
+        0 0 12px rgba(127,90,240,.65),
+        0 0 32px rgba(0,224,255,.35),
+        inset 0 0 18px rgba(127,90,240,.45);
+      display:grid; place-items:center;
+      transition: transform .2s ease;
     }
     .wb-float:hover{ transform: translateY(-2px) scale(1.03); }
     .wb-float img{ width:28px; height:28px; filter: drop-shadow(0 0 6px rgba(0,224,255,.6)); }
@@ -532,32 +334,59 @@
       border:1px solid rgba(0,224,255,.45);
       animation: pulse 2.4s ease-out infinite;
     }
+    .wb-tooltip{
+      position:absolute; right:70px; bottom:50%;
+      transform: translateY(50%); white-space:nowrap;
+      padding:.45rem .7rem; border-radius:10px;
+      background: rgba(0,0,0,.8);
+      border:1px solid rgba(0,224,255,.35);
+      box-shadow: 0 0 18px rgba(0,224,255,.25), inset 0 0 12px rgba(127,90,240,.25);
+      font-size:.9rem; color:#eaffff; opacity:0; pointer-events:none; transition:.25s ease;
+    }
+    .wb-float:hover + .wb-tooltip, .wb-float:focus + .wb-tooltip{ opacity:1; }
     @keyframes pulse{
       0%{ transform: scale(0.9); opacity:.9; }
       70%{ transform: scale(1.15); opacity:.15; }
       100%{ transform: scale(1.25); opacity:0; }
     }
-    .wb-float::after{
-      content:"Escribinos por WhatsApp"; position:absolute; right:74px; bottom:50%;
-      transform: translateY(50%); white-space:nowrap; font-size:.85rem; color:#dff9ff;
-      background: rgba(0,0,0,.7); border:1px solid rgba(0,224,255,.4); padding:6px 10px; border-radius:8px;
-      box-shadow: 0 0 10px rgba(0,224,255,.35);
-      opacity:0; pointer-events:none; transition:.2s ease;
+
+    /* ======== SOCIAL/Astronaut card (en Contacto) ======== */
+    .astro-card{
+      --dark:#111; --semidark:#2c2c2c; --light:#e8e8e8;
+      background:#0c0c0c; border-radius:16px; border:1px solid rgba(255,255,255,.08);
+      display:flex; flex-direction:column; align-items:center; gap:10px; padding:16px;
+      position:relative; overflow:hidden;
     }
-    .wb-float:hover::after{ opacity:1; }
+    .astro-card::before{
+      content:""; position:absolute; width:120%; height:20%; top:40%; left:-10%;
+      background: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb); filter:blur(24px);
+      animation: floatLight 2.5s infinite ease-in-out;
+    }
+    @keyframes floatLight{
+      0%{ transform: rotate(-5deg) translateY(-5%); opacity:.5; }
+      50%{ transform: rotate(5deg) translateY(5%); opacity:1; }
+      100%{ transform: rotate(-5deg) translateY(-5%); opacity:.5; }
+    }
+    .astro-card img{ width:200px; animation: floatImg 10s ease-in-out infinite; }
+    @keyframes floatImg{
+      0%{ transform: translate(-2%,2%) scaleY(.95) rotate(-5deg); }
+      50%{ transform: translate(2%,-2%) scaleY(1) rotate(5deg); }
+      100%{ transform: translate(-2%,2%) scaleY(.95) rotate(-5deg); }
+    }
+    .astro-card .heading{ font-weight:700; margin-top:-10px; }
+    .astro-card .icons{ display:flex; gap:10px; width:100%; }
+    .astro-card .icons a{
+      flex:1; display:flex; justify-content:center; align-items:center;
+      background:#151515; border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:.5rem;
+      color:#e8e8e8; text-decoration:none;
+    }
+    .astro-card .icons a:hover{ background:#1e1e1e; }
   </style>
 </head>
 <body>
 
-  <!-- Video de galaxia a pantalla completa (fondo de TODA la web) -->
-  <video id="universe-bg"
-         class="universe-bg"
-         src="assets/video/Abraxas.mp4"
-         playsinline
-         autoplay
-         muted
-         loop
-         poster="assets/img/universe-poster.jpg"></video>
+  <!-- Fondo universo -->
+  <video id="universe-bg" class="universe-bg" src="assets/video/Abraxas.mp4" playsinline autoplay muted loop poster="assets/img/universe-poster.jpg"></video>
   <div class="universe-fade" aria-hidden="true"></div>
 
   <!-- HEADER -->
@@ -567,8 +396,7 @@
       <nav class="nav" id="nav">
         <a href="#about">Nosotros</a>
         <a href="#services">Servicios</a>
-        <a href="#success">Casos de éxito</a>
-        <a href="#testimonials">Testimonios</a>
+        <a href="#success">Casos</a>
         <a href="#game">Jugar</a>
         <a href="#contact" class="btn btn--primary">Contacto</a>
       </nav>
@@ -582,7 +410,7 @@
   <section class="hero">
     <div class="container hero__content">
       <h1><strong>ABRAXAS</strong> — <em>Creamos universos digitales</em></h1>
-      <p>Inspirados en Abraxas —dios de la dualidad— unimos estrategia y diseño, contenido y código, para construir sitios, e-commerce, SEO y automatizaciones con IA.</p>
+      <p>Unimos estrategia + diseño + código + IA para construir sitios, e-commerce, SEO y automatizaciones que venden. Majestuoso en desktop, perfecto en móvil.</p>
       <div class="hero__cta">
         <a href="#services" class="btn btn--primary">Ver servicios</a>
         <a href="#contact" class="btn btn--ghost">Hablemos</a>
@@ -610,159 +438,113 @@
     </div>
   </section>
 
+  <!-- SERVICES -->
   <section id="services" class="services section">
-  <div class="container">
-    <h2>Servicios</h2>
-    <p class="lead" style="text-align:center">Sitios & e-commerce, SEO, SaaS y WhatsApp oficial con automatizaciones.</p>
+    <div class="container">
+      <h2>Servicios</h2>
 
-    <div class="cards">
-      <!-- Web & eCommerce -->
-      <div class="tilt-card card--web" tabindex="0" aria-label="Sitios y eCommerce">
-        <div class="kicker">Sitios & eCommerce</div>
-        <div class="text">
-          <div class="points">Diseño pro<i>•</i>Performance<i>•</i>SEO técnico</div>
-          <div class="points">Stack: Next/React<i>•</i>Foco: Conversión</div>
-        </div>
+      <div class="cards">
+        <article class="tilt-card card--web" tabindex="0" aria-label="Sitios & eCommerce">
+          <span class="kicker">Sitios & eCommerce</span>
+          <div class="text">
+            <p class="points"><strong>Diseño pro</strong> <i>•</i> Performance <i>•</i> SEO técnico</p>
+            <p class="points"><strong>Stack:</strong> Next/React <i>•</i> Headless</p>
+          </div>
+        </article>
+
+        <article class="tilt-card card--seo" tabindex="0" aria-label="SEO & Contenido">
+          <span class="kicker">SEO & Contenido</span>
+          <div class="text">
+            <p class="points">On-page, técnico y pipeline con IA</p>
+            <p class="points">Auditoría CWV <i>•</i> Contenidos que posicionan</p>
+          </div>
+        </article>
+
+        <article class="tilt-card card--saas" tabindex="0" aria-label="SaaS a medida">
+          <span class="kicker">SaaS a medida</span>
+          <div class="text">
+            <p class="points">Dashboards, CRM, logística, suscripciones</p>
+            <p class="points">Node + Cloud <i>•</i> Multi-tenant</p>
+          </div>
+        </article>
+
+        <article class="tilt-card card--wa" tabindex="0" aria-label="Automatizaciones WhatsApp">
+          <span class="kicker">Automatizaciones WhatsApp</span>
+          <div class="text">
+            <p class="points">Bots, flujos, catálogos y campañas</p>
+            <p class="points">Meta API <i>•</i> Ventas 24/7</p>
+          </div>
+        </article>
       </div>
 
-      <!-- SEO & Contenido -->
-      <div class="tilt-card card--seo" tabindex="0" aria-label="SEO y Contenido">
-        <div class="kicker">SEO & Contenido</div>
-        <div class="text">
-          <div class="points">On-page<i>•</i>Técnico<i>•</i>Pipeline con IA</div>
-          <div class="points">Auditoría CWV<i>•</i>Tráfico orgánico</div>
-        </div>
-      </div>
-
-      <!-- SaaS a medida -->
-      <div class="tilt-card card--saas" tabindex="0" aria-label="SaaS a medida">
-        <div class="kicker">SaaS a medida</div>
-        <div class="text">
-          <div class="points">Dashboards<i>•</i>CRM<i>•</i>Logística<i>•</i>Suscripciones</div>
-          <div class="points">Tech: Node + Cloud<i>•</i>Multi-tenant</div>
-        </div>
-      </div>
-
-      <!-- WhatsApp Automatizaciones -->
-      <div class="tilt-card card--wa" tabindex="0" aria-label="Automatizaciones WhatsApp">
-        <div class="kicker">Automatizaciones WhatsApp</div>
-        <div class="text">
-          <div class="points">Bots<i>•</i>Flujos<i>•</i>Catálogos<i>•</i>Campañas</div>
-          <div class="points">Meta API oficial<i>•</i>Ventas 24/7</div>
-        </div>
-      </div>
+      <p class="note">Cada proyecto es un universo; por eso nos ajustamos a cada trabajo.</p>
     </div>
-
-    <p class="note">Cada proyecto es un universo; por eso nos ajustamos a cada trabajo.</p>
-  </div>
-</section>
-
+  </section>
 
   <!-- CASOS DE ÉXITO -->
   <section id="success" class="success section">
     <div class="container">
       <h2>Casos de éxito</h2>
-      <p class="lead">Resultados reales. Branding, sitios, automatización y crecimiento.</p>
+      <p class="lead">Resultados reales. Branding, sitios rápidos, funnels y automatización.</p>
 
-      <div class="grid">
+      <div class="success-grid">
+
         <!-- SEFA -->
-        <article class="success-card">
-          <div class="success-media" style="background-image:url('assets/img/success/sefa.jpg')"></div>
-          <div class="success-body">
-            <h3>Sefa — Ingeniería para el futuro</h3>
-            <p><span class="pill">Antes</span> Web en WordPress sin estructura ni optimización móvil. Marca desactualizada.</p>
-            <p><span class="pill">Después</span> Rediseño 360°, sitio responsive minimalista, foco en servicios y contacto. Integración con redes + WhatsApp. SEO & Core Web Vitals.</p>
-            <p><strong>Resultado:</strong> Aumento de visitas orgánicas y consultas vía formulario.</p>
-            <div class="success-actions">
-              <a class="btn btn--ghost" href="https://www.sefa.com.ar" target="_blank" rel="noopener">Ver sitio</a>
+        <article class="success-card" data-bg="sefa">
+          <div class="media" role="img" aria-label="SEFA — Ingeniería para el futuro"></div>
+          <div class="content">
+            <span class="chip">Industria • Ingeniería</span>
+            <h3>SEFA — Ingeniería para el futuro</h3>
+            <p class="before"><strong>Antes:</strong> Web en WordPress sin estructura ni optimización móvil. Marca desactualizada.</p>
+            <p class="after"><strong>Después:</strong> Rediseño 360° (branding + sitio). Responsive minimalista enfocado en servicios y contacto. Integraciones sociales + WhatsApp. SEO y Core Web Vitals.</p>
+            <div class="cta">
+              <a href="https://www.sefa.com.ar" class="btn--thin" target="_blank" rel="noopener">Ver sitio</a>
             </div>
           </div>
         </article>
 
-        <!-- ÁNGEL DE LA AYAHUASCA -->
-        <article class="success-card">
-          <div class="success-media" style="background-image:url('assets/img/success/ayahuasca.jpg')"></div>
-          <div class="success-body">
+        <!-- AYAHUASCA -->
+        <article class="success-card" data-bg="ayahuasca">
+          <div class="media" role="img" aria-label="El Ángel de la Ayahuasca — Medicina ancestral"></div>
+          <div class="content">
+            <span class="chip">Salud • Turismo de bienestar</span>
             <h3>El Ángel de la Ayahuasca — Medicina ancestral global</h3>
-            <p><span class="pill">Antes</span> Web incompleta, difícil de navegar, sin identidad ni foco internacional.</p>
-            <p><span class="pill">Después</span> Sitio multilingüe (+7 idiomas), formularios, WhatsApp y contenido educativo. Diseño emocional, limpio y orientado a la conversión.</p>
-            <p><strong>Resultado:</strong> Visibilidad internacional y leads de alta calidad.</p>
-            <div class="success-actions">
-              <span class="pill">🌍 Posicionamiento espiritual profesional</span>
+            <p class="before"><strong>Antes:</strong> Web incompleta, navegación confusa, sin identidad visual ni foco internacional.</p>
+            <p class="after"><strong>Después:</strong> Sitio multilingüe (+7 idiomas), experiencias transformadoras, formularios, WhatsApp y contenido educativo. Diseño emocional y limpio orientado a conversión para retiros LATAM.</p>
+            <div class="cta">
+              <a href="https://abraxasgroup.github.io/AyahuascaAngelVia" class="btn--thin" target="_blank" rel="noopener">Ver demo</a>
             </div>
           </div>
         </article>
 
-        <!-- VACUNO MÓVIL (NUEVO) -->
-        <article class="success-card">
-          <div class="success-media" style="background-image:url('assets/img/success/vacunomovil.jpg')"></div>
-          <div class="success-body">
-            <h3>Vacuno Móvil — Presencia digital completa</h3>
-            <p><span class="pill">Antes</span> Metalúrgica sin presencia web.</p>
-            <p><span class="pill">Después</span> Web + redes sociales oficiales + WhatsApp Empresa con catálogo.</p>
-            <div class="success-actions">
-              <a class="btn btn--ghost" href="https://vacunomovil.com.ar" target="_blank" rel="noopener">Ver sitio</a>
-              <span class="pill">🧱 Industria</span>
+        <!-- VACUNOMOVIL -->
+        <article class="success-card" data-bg="vacunomovil">
+          <div class="media" role="img" aria-label="Vacuno Móvil — Presencia digital"></div>
+          <div class="content">
+            <span class="chip">Agro • Industria metalúrgica</span>
+            <h3>Vacuno Móvil — De cero a presencia digital</h3>
+            <p class="before"><strong>Antes:</strong> Metalúrgica sin presencia web.</p>
+            <p class="after"><strong>Después:</strong> Página web con redes oficiales e implementación de WhatsApp Business con catálogo.</p>
+            <div class="cta">
+              <a href="https://vacunomovil.com.ar" class="btn--thin" target="_blank" rel="noopener">Ver sitio</a>
             </div>
           </div>
         </article>
 
-        <!-- EN PROCESO -->
-        <article class="success-card">
-          <div class="success-media" style="background-image:url('assets/img/success/wip.jpg')"></div>
-          <div class="success-body">
+        <!-- WIP -->
+        <article class="success-card" data-bg="wip">
+          <div class="media" role="img" aria-label="Universos en proceso"></div>
+          <div class="content">
+            <span class="chip">Rebranding • E-commerce • SEO</span>
             <h3>Universos en proceso…</h3>
-            <p>Rebranding, e-commerce, funnels automatizados y SEO técnico.</p>
-            <p><strong>Casos en desarrollo.</strong> Pronto disponibles.</p>
+            <p class="before"><strong>Ahora:</strong> Acompañamos a 3 marcas en transformación digital.</p>
+            <p class="after"><strong>En curso:</strong> Rebranding, e-commerce, funnels automatizados y SEO técnico. Casos en desarrollo.</p>
+            <div class="cta">
+              <a href="#contact" class="btn--thin">Quiero mi universo</a>
+            </div>
           </div>
         </article>
-      </div>
-    </div>
-  </section>
 
-  <!-- TESTIMONIOS CON CHECKBOX GLITCH -->
-  <section id="testimonials" class="testimonials section">
-    <div class="container">
-      <h2>Testimonios</h2>
-      <p class="lead">Clientes que habilitaron “modo Abraxas” y despegaron 🚀</p>
-
-      <div class="wrap">
-        <!-- 1 -->
-        <label class="glitch-checkbox-container">
-          <input type="checkbox" checked>
-          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
-          <span class="checkbox-label" data-text="AGUSTÍN — “Subimos consultas 3x en 30 días.”">AGUSTÍN — “Subimos consultas 3x en 30 días.”</span>
-        </label>
-        <!-- 2 -->
-        <label class="glitch-checkbox-container">
-          <input type="checkbox" checked>
-          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
-          <span class="checkbox-label" data-text="FABIÁN — “El SEO técnico nos cambió la película.”">FABIÁN — “El SEO técnico nos cambió la película.”</span>
-        </label>
-        <!-- 3 -->
-        <label class="glitch-checkbox-container">
-          <input type="checkbox" checked>
-          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
-          <span class="checkbox-label" data-text="TEO — “Whatsapp con catálogo = ventas 24/7.”">TEO — “Whatsapp con catálogo = ventas 24/7.”</span>
-        </label>
-        <!-- 4 -->
-        <label class="glitch-checkbox-container">
-          <input type="checkbox" checked>
-          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
-          <span class="checkbox-label" data-text="LEAN — “La web vuela en móvil. Aplausos.”">LEAN — “La web vuela en móvil. Aplausos.”</span>
-        </label>
-        <!-- 5 -->
-        <label class="glitch-checkbox-container">
-          <input type="checkbox" checked>
-          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
-          <span class="checkbox-label" data-text="ISABEL — “Branding emocional que convierte.”">ISABEL — “Branding emocional que convierte.”</span>
-        </label>
-        <!-- 6 -->
-        <label class="glitch-checkbox-container">
-          <input type="checkbox" checked>
-          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
-          <span class="checkbox-label" data-text="ROMA — “Automatizamos el funnel en una semana.”">ROMA — “Automatizamos el funnel en una semana.”</span>
-        </label>
       </div>
     </div>
   </section>
@@ -772,7 +554,7 @@
     <div class="container">
       <div class="game__intro">
         <h2>Planet Defense 🚀</h2>
-        <p>Tocá el planeta para empezar. Apuntá y defendé tu universo.</p>
+        <p>Tocá el planeta para empezar. Defendé tu universo con clicks/taps.</p>
       </div>
       <div class="game-canvas-wrap">
         <canvas id="planet-defense-canvas" aria-label="Abraxas Planet Defense"></canvas>
@@ -780,25 +562,65 @@
     </div>
   </section>
 
+  <!-- TESTIMONIOS -->
+  <section id="testimonials" class="testimonials section">
+    <div class="container">
+      <h2>Clientes que confían</h2>
+      <p class="lead">“Glitcheados” pero reales 😉</p>
+      <div class="glitch-checkbox-wrapper">
+        <label class="glitch-checkbox-container">
+          <input type="checkbox" checked>
+          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
+          <span class="checkbox-label" data-text="Agustín — ‘cumplieron y superaron’">Agustín — “cumplieron y superaron”</span>
+        </label>
+        <label class="glitch-checkbox-container">
+          <input type="checkbox" checked>
+          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
+          <span class="checkbox-label" data-text="Fabián — ‘rápidos y claros’">Fabián — “rápidos y claros”</span>
+        </label>
+        <label class="glitch-checkbox-container">
+          <input type="checkbox" checked>
+          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
+          <span class="checkbox-label" data-text="Teo — ‘SEO que se nota’">Teo — “SEO que se nota”</span>
+        </label>
+        <label class="glitch-checkbox-container">
+          <input type="checkbox" checked>
+          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
+          <span class="checkbox-label" data-text="Lean — ‘automatizamos ventas’">Lean — “automatizamos ventas”</span>
+        </label>
+        <label class="glitch-checkbox-container">
+          <input type="checkbox" checked>
+          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
+          <span class="checkbox-label" data-text="Isabel — ‘diseño impecable’">Isabel — “diseño impecable”</span>
+        </label>
+        <label class="glitch-checkbox-container">
+          <input type="checkbox" checked>
+          <div class="checkbox-box"><div class="checkbox-mark"></div></div>
+          <span class="checkbox-label" data-text="Roma — ‘escuchan y entregan’">Roma — “escuchan y entregan”</span>
+        </label>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact" class="contact section">
-    <div class="container contact__grid">
+    <div class="container contact__grid" style="display:grid;gap:var(--gap);grid-template-columns:1.1fr .9fr;">
       <div>
         <h2>Hablemos</h2>
         <p>LATAM & Europa — Multi-idioma — Powered by ABRAXAS.</p>
-        <div class="contact__cta">
+        <div class="contact__cta" style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:8px;">
           <a class="btn btn--primary" href="https://wa.me/541126693072" target="_blank" rel="noopener">WhatsApp</a>
           <a class="btn btn--ghost" href="mailto:o.chinchilla@abraxas-group.lat">o.chinchilla@abraxas-group.lat</a>
         </div>
       </div>
 
-      <!-- Astronauta social -->
+      <!-- Astronaut social card -->
       <div class="astro-card">
-        <img class="astro-img" alt="Astronauta" src="https://uiverse.io/astronaut.png"/>
-        <div class="astro-title">Seguinos en redes</div>
-        <div class="astro-icons">
+        <img class="image" alt="Astronauta" src="https://uiverse.io/astronaut.png"/>
+        <div class="heading">Estamos en redes</div>
+        <div class="icons">
           <a href="https://www.linkedin.com/company/abraxasgroup" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-          <a href="https://x.com/AbraxasGroupLat" target="_blank" rel="noopener" aria-label="X">X</a>
+          <a href="https://x.com/AbraxasGroupLat" target="_blank" rel="noopener" aria-label="X / Twitter">X</a>
           <a href="https://www.facebook.com/profile.php?id=61581446128697" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
         </div>
       </div>
@@ -813,22 +635,24 @@
     </div>
   </footer>
 
-  <!-- WhatsApp flotante NEÓN + tooltip -->
+  <!-- WhatsApp flotante + tooltip -->
   <a class="wb-float" href="https://wa.me/541126693072" target="_blank" rel="noopener" aria-label="WhatsApp">
     <span class="wb-pulse"></span>
     <img src="./assets/img/whatsapp-logo.png" alt="WhatsApp">
   </a>
+  <span class="wb-tooltip">WhatsApp directo</span>
 
-  <!-- SCRIPTS -->
+  <!-- ================== SCRIPTS ================== -->
   <script>
     // Toggle del menú mobile
     const navToggle = document.getElementById('navToggle');
     const nav = document.getElementById('nav');
     navToggle?.addEventListener('click', ()=> nav.classList.toggle('is-open'));
-    document.querySelectorAll('.nav a').forEach(a=> a.addEventListener('click', ()=> nav.classList.remove('is-open')));
+    [...document.querySelectorAll('.nav a')].forEach(a=> a.addEventListener('click', ()=> nav.classList.remove('is-open')));
   </script>
 
-  <!-- Juego Planet Defense JS adaptado a #planet-defense-canvas -->
+  <!-- Juego Planet Defense -->
   <script src="assets/js/planet-defense.js" defer></script>
+
 </body>
 </html>
