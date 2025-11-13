@@ -225,29 +225,138 @@
 
 
     /* ======== CASOS DE ÉXITO ======== */
-    .success .grid{
-      display:grid; gap: clamp(18px, 2.4vw, 26px);
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @media (max-width: 1100px){ .success .grid{ grid-template-columns: repeat(2, 1fr);} }
-    @media (max-width: 700px){ .success .grid{ grid-template-columns: 1fr; } }
+  <section id="cases" class="cases section">
+  <div class="container">
+    <h2>Casos de Éxito</h2>
+    <p class="lead">Pequeños universos, grandes resultados.</p>
 
-    .success-card{
-      position:relative; border-radius:16px; overflow:hidden;
-      background: var(--glass); border:1px solid rgba(255,255,255,.12);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      display:flex; flex-direction:column; min-height: 320px;
-    }
-    .success-media{ height: 160px; background:#111 center/cover no-repeat; }
-    .success-body{ padding: 16px 16px 18px 16px; display:flex; flex-direction:column; gap:10px; }
-    .success-body h3{ margin:0; font-size: clamp(18px, 2vw, 22px); }
-    .success-body p{ margin:0; color: var(--muted); }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.03); font-size:12px;
-    }
-    .success-actions{ margin-top:auto; display:flex; gap:10px; flex-wrap:wrap; }
-    .success-actions a{ text-decoration:none; }
+    <div class="cases-grid">
+      <!-- SEFA -->
+      <article class="case-card sefa" data-img>
+        <div class="case-body">
+          <div class="case-top">
+            <h3 class="case-title">SEFA — Ingeniería para el futuro</h3>
+            <span class="case-badge">Industria</span>
+          </div>
+          <div class="case-cols">
+            <div class="case-box">
+              <h4>Antes</h4>
+              <ul>
+                <li>WordPress sin estructura clara ni mobile.</li>
+                <li>Imagen de marca desactualizada.</li>
+              </ul>
+            </div>
+            <div class="case-box">
+              <h4>Después</h4>
+              <ul>
+                <li>Rediseño 360°: branding + web responsive.</li>
+                <li>Integración RRSS + WhatsApp.</li>
+                <li>SEO & Core Web Vitals optimizados.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="case-footer">
+            <div class="case-result">↑ Visitas orgánicas y consultas</div>
+            <a class="case-cta" href="https://www.sefa.com.ar" target="_blank" rel="noopener">Ver sitio →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- El Ángel de la Ayahuasca -->
+      <article class="case-card angel" data-img>
+        <div class="case-body">
+          <div class="case-top">
+            <h3 class="case-title">El Ángel de la Ayahuasca — Medicina ancestral global</h3>
+            <span class="case-badge">Salud & Bienestar</span>
+          </div>
+          <div class="case-cols">
+            <div class="case-box">
+              <h4>Antes</h4>
+              <ul>
+                <li>Web incompleta y difícil de navegar.</li>
+                <li>Sin identidad visual ni foco internacional.</li>
+              </ul>
+            </div>
+            <div class="case-box">
+              <h4>Después</h4>
+              <ul>
+                <li>Sitio multilingüe (+7 idiomas) orientado a experiencias.</li>
+                <li>Forms + WhatsApp + contenidos educativos.</li>
+                <li>Diseño emocional, limpio y de conversión.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="case-footer">
+            <div class="case-result">↑ Visibilidad global y leads calificados</div>
+            <span class="case-cta" aria-disabled="true" style="opacity:.7;border-style:dashed;">Demo bajo reserva</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Vacuno Móvil (nuevo) -->
+      <article class="case-card vacuno" data-img>
+        <div class="case-body">
+          <div class="case-top">
+            <h3 class="case-title">Vacuno Móvil — De la metalúrgica al universo digital</h3>
+            <span class="case-badge">Agro & Industria</span>
+          </div>
+          <div class="case-cols">
+            <div class="case-box">
+              <h4>Antes</h4>
+              <ul>
+                <li>Sin presencia web ni canales oficiales.</li>
+              </ul>
+            </div>
+            <div class="case-box">
+              <h4>Después</h4>
+              <ul>
+                <li>Sitio web + RRSS oficiales.</li>
+                <li>WhatsApp Business con catálogo.</li>
+                <li>Identidad digital unificada.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="case-footer">
+            <div class="case-result">↑ Tráfico calificado y consultas directas</div>
+            <a class="case-cta" href="https://vacunomovil.com.ar" target="_blank" rel="noopener">Ver sitio →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Universos en proceso -->
+      <article class="case-card proceso" data-img>
+        <div class="case-body">
+          <div class="case-top">
+            <h3 class="case-title">Universos en proceso…</h3>
+            <span class="case-badge">Roadmap</span>
+          </div>
+          <div class="case-cols">
+            <div class="case-box">
+              <h4>Ahora</h4>
+              <ul>
+                <li>Rebranding y e-commerce.</li>
+                <li>Funnels automatizados.</li>
+                <li>SEO técnico.</li>
+              </ul>
+            </div>
+            <div class="case-box">
+              <h4>Próximos hitos</h4>
+              <ul>
+                <li>Publicación de casos con métricas.</li>
+                <li>Dashboards de conversión.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="case-footer">
+            <div class="case-result">Pronto en el portfolio</div>
+            <span class="case-cta" aria-disabled="true" style="opacity:.7;border-style:dashed;">En desarrollo</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 
     /* ======== TESTIMONIOS (checkbox glitch) ======== */
     .testimonials .wrap{
