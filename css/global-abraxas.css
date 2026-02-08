@@ -333,27 +333,55 @@ body{
 .footer-inner{ display:flex; align-items:center; justify-content:space-between; }
 .link{ color:#cfe3ff; text-decoration:none; }
 
-/* ========= WhatsApp flotante (neón) ========= */
+/* ======== WhatsApp flotante ======== */
 .wb-float{
-  position:fixed;
-  right:18px; bottom:18px;
-  width:64px; height:64px;
-  border-radius:50%;
+  position:fixed; right:18px; bottom:18px; z-index:60;
+  width:62px; height:62px; border-radius:50%;
+  background:radial-gradient(ellipse at center, rgba(0,224,255,.22), rgba(0,0,0,.55));
+  border:1px solid rgba(0,224,255,.55);
+  box-shadow:0 0 14px rgba(0,224,255,.35), 0 0 34px rgba(127,90,240,.22), inset 0 0 18px rgba(0,224,255,.18);
   display:grid; place-items:center;
-  background: radial-gradient(60% 60% at 50% 40%, #1bd741, #0a8f31);
-  box-shadow: 0 0 25px rgba(27,215,65,.65), 0 0 8px rgba(27,215,65,.8) inset;
-  border:2px solid rgba(255,255,255,.25);
-  z-index:60;
-  transition:transform .15s ease, filter .15s ease;
+  transition:transform .2s ease;
+  text-decoration:none;
 }
-.wb-float:hover{ transform:translateY(-2px); filter:brightness(1.05); }
-.wb-float img{ width:34px; height:34px; filter:drop-shadow(0 0 6px rgba(255,255,255,.35)); }
+.wb-float:hover{transform:translateY(-2px) scale(1.03);}
+.wb-float img{
+  width:28px; height:28px;
+  display:block;
+  object-fit:contain;
+  filter:drop-shadow(0 0 8px rgba(0,224,255,.55));
+}
 .wb-pulse{
-  position:absolute; inset:0;
-  border-radius:inherit;
+  position:absolute; inset:-10px; border-radius:50%;
+  border:1px solid rgba(0,224,255,.35);
+  animation:pulse 2.4s ease-out infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(0.9); opacity:.9;}
+  70%{transform:scale(1.18); opacity:.18;}
+  100%{transform:scale(1.28); opacity:0;}
+}
+.wb-tip{
+  position:absolute;
+  right:74px;
+  bottom:50%;
+  transform:translateY(50%);
+  background:rgba(0,0,0,.72);
+  border:1px solid rgba(0,224,255,.35);
+  box-shadow:0 0 18px rgba(0,224,255,.18);
+  padding:.55rem .8rem;
+  border-radius:12px;
+  color:#e9f7ff;
+  font-weight:900;
+  white-space:nowrap;
+  opacity:0;
   pointer-events:none;
-  box-shadow:0 0 0 0 rgba(27,215,65,.45);
-  animation:pulse 2.2s infinite;
+  transition:opacity .2s ease, transform .2s ease;
+  backdrop-filter:blur(8px);
+}
+.wb-float:hover .wb-tip{
+  opacity:1;
+  transform:translateY(50%) translateX(-4px);
 }
 @keyframes pulse{
   0%{ box-shadow:0 0 0 0 rgba(27,215,65,.45); }
