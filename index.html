@@ -935,21 +935,83 @@
     </div>
   </footer>
 
- <!-- WhatsApp flotante (mensaje dinámico) -->
-<a class="wb-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <span class="wb-pulse" aria-hidden="true"></span>
-  <span class="wb-tip" data-i18n="wa_tip">Escribinos por WhatsApp</span>
+<style>
+/* ======== WhatsApp flotante (FORZADO) ======== */
+.wb-float{
+  position:fixed !important;
+  right:18px !important;
+  left:auto !important;
+  bottom:calc(18px + env(safe-area-inset-bottom)) !important;
+  z-index:9999 !important;
 
-  <img
-    src="/assets/img/whatsapp.svg?v=3"
-    alt="WhatsApp"
-    width="28"
-    height="28"
-    loading="lazy"
-    decoding="async"
-    onerror="this.onerror=null;this.src='/assets/img/whatsapp.png';"
-  />
-</a>
+  width:64px !important;
+  height:64px !important;
+  border-radius:50% !important;
+
+  display:grid !important;
+  place-items:center !important;
+
+  background:radial-gradient(ellipse at center, rgba(0,224,255,.22), rgba(0,0,0,.55)) !important;
+  border:1px solid rgba(0,224,255,.55) !important;
+  box-shadow:0 0 14px rgba(0,224,255,.35), 0 0 34px rgba(127,90,240,.22), inset 0 0 18px rgba(0,224,255,.18) !important;
+
+  text-decoration:none !important;
+  transition:transform .2s ease !important;
+  -webkit-transform:translateZ(0);
+}
+
+.wb-float:hover{ transform:translateY(-2px) scale(1.03) !important; }
+
+.wb-float img{
+  width:34px !important;
+  height:34px !important;
+  display:block !important;
+  object-fit:contain !important;
+  filter:drop-shadow(0 0 8px rgba(0,224,255,.55)) !important;
+}
+
+.wb-pulse{
+  position:absolute !important;
+  inset:-10px !important;
+  border-radius:50% !important;
+  border:1px solid rgba(0,224,255,.35) !important;
+  pointer-events:none !important;
+  animation:pulse 2.4s ease-out infinite !important;
+}
+
+@keyframes pulse{
+  0%{transform:scale(0.9); opacity:.9;}
+  70%{transform:scale(1.18); opacity:.18;}
+  100%{transform:scale(1.28); opacity:0;}
+}
+
+.wb-tip{
+  position:absolute !important;
+  right:74px !important;
+  bottom:50% !important;
+  transform:translateY(50%) !important;
+
+  background:rgba(0,0,0,.72) !important;
+  border:1px solid rgba(0,224,255,.35) !important;
+  box-shadow:0 0 18px rgba(0,224,255,.18) !important;
+  padding:.55rem .8rem !important;
+  border-radius:12px !important;
+
+  color:#e9f7ff !important;
+  font-weight:900 !important;
+  white-space:nowrap !important;
+
+  opacity:0 !important;
+  pointer-events:none !important;
+  transition:opacity .2s ease, transform .2s ease !important;
+  backdrop-filter:blur(8px) !important;
+}
+
+.wb-float:hover .wb-tip{
+  opacity:1 !important;
+  transform:translateY(50%) translateX(-4px) !important;
+}
+</style>
 
   <!-- SCRIPTS -->
   <script>
