@@ -493,23 +493,16 @@
     .link{color:#bfc4ff; text-decoration:none; font-weight:800;}
     .link:hover{text-decoration:underline;}
 
-    /* ======== WhatsApp flotante ======== */
-    .wb-float{
-      position:fixed; right:18px; bottom:18px; z-index:60;
-      width:62px; height:62px; border-radius:50%;
-      background:radial-gradient(ellipse at center, rgba(0,224,255,.22), rgba(0,0,0,.55));
-      border:1px solid rgba(0,224,255,.55);
-      box-shadow:0 0 14px rgba(0,224,255,.35), 0 0 34px rgba(127,90,240,.22), inset 0 0 18px rgba(0,224,255,.18);
-      display:grid; place-items:center;
-      transition:transform .2s ease;
-      text-decoration:none;
-    }
-    .wb-float:hover{transform:translateY(-2px) scale(1.03);}
-    .wb-float img{width:28px; height:28px; filter:drop-shadow(0 0 8px rgba(0,224,255,.55));}
-    .wb-pulse{
-      position:absolute; inset:-10px; border-radius:50%;
-      border:1px solid rgba(0,224,255,.35);
-      animation:pulse 2.4s ease-out infinite;
+ <!-- WhatsApp flotante (mensaje dinámico) -->
+<a class="wb-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <span class="wb-pulse"></span>
+  <span class="wb-tip" data-i18n="wa_tip">Escribinos por WhatsApp</span>
+
+  <picture>
+    <source srcset="assets/img/whatsapp.svg" type="image/svg+xml">
+    <img src="assets/img/whatsapp.png" alt="WhatsApp" width="28" height="28" />
+  </picture>
+</a>;
     }
     @keyframes pulse{
       0%{transform:scale(0.9); opacity:.9;}
