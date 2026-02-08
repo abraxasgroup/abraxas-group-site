@@ -345,16 +345,48 @@ body{
   text-decoration:none;
 }
 .wb-float:hover{transform:translateY(-2px) scale(1.03);}
+
 .wb-float img{
-  width:28px; height:28px;
+  width:28px;
+  height:28px;
   display:block;
   object-fit:contain;
   filter:drop-shadow(0 0 8px rgba(0,224,255,.55));
 }
+
 .wb-pulse{
   position:absolute; inset:-10px; border-radius:50%;
   border:1px solid rgba(0,224,255,.35);
   animation:pulse 2.4s ease-out infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(0.9); opacity:.9;}
+  70%{transform:scale(1.18); opacity:.18;}
+  100%{transform:scale(1.28); opacity:0;}
+}
+
+.wb-tip{
+  position:absolute;
+  right:74px;
+  bottom:50%;
+  transform:translateY(50%);
+  background:rgba(0,0,0,.72);
+  border:1px solid rgba(0,224,255,.35);
+  box-shadow:0 0 18px rgba(0,224,255,.18);
+  padding:.55rem .8rem;
+  border-radius:12px;
+  color:#e9f7ff;
+  font-weight:900;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease;
+  backdrop-filter:blur(8px);
+}
+.wb-float:hover .wb-tip{
+  opacity:1;
+  transform:translateY(50%) translateX(-4px);
 }
 @keyframes pulse{
   0%{transform:scale(0.9); opacity:.9;}
