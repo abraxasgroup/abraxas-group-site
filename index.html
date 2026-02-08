@@ -935,12 +935,21 @@
     </div>
   </footer>
 
-  <!-- WhatsApp flotante (mensaje dinámico) -->
-  <a class="wb-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <span class="wb-pulse"></span>
-    <span class="wb-tip" data-i18n="wa_tip">Escribinos por WhatsApp</span>
-    <img src="assets/img/whatsapp.png" alt="WhatsApp" />
-  </a>
+ <!-- WhatsApp flotante (mensaje dinámico) -->
+<a class="wb-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <span class="wb-pulse" aria-hidden="true"></span>
+  <span class="wb-tip" data-i18n="wa_tip">Escribinos por WhatsApp</span>
+
+  <img
+    src="/assets/img/whatsapp.svg?v=3"
+    alt="WhatsApp"
+    width="28"
+    height="28"
+    loading="lazy"
+    decoding="async"
+    onerror="this.onerror=null;this.src='/assets/img/whatsapp.png';"
+  />
+</a>
 
   <!-- SCRIPTS -->
   <script>
