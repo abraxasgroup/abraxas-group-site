@@ -1,4 +1,11 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Si existieran rutas internas/privadas, bloquéalas (ajustar según tu repo):
+Disallow: /admin/
+Disallow: /panel/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /api/
 
 Sitemap: https://www.abraxas-group.lat/sitemap.xml
