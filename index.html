@@ -2,12 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="dark" />
   <meta name="theme-color" content="#000000" />
 
   <title>Abraxas Group — Commodities, Industria y Logística</title>
   <meta name="description" content="Grupo regional de commodities alimenticios, producción industrial y logística multimodal (ferroviaria, marítima y terrestre) en Argentina, Paraguay, Bolivia y Perú." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://www.abraxas-group.lat/" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Abraxas Group — Commodities, Industria y Logística" />
@@ -15,6 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.abraxas-group.lat/" />
   <meta property="og:image" content="https://www.abraxas-group.lat/assets/og/cover.jpg" />
+  <meta property="og:image:alt" content="Abraxas Group — Commodities, Industria y Logística" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -22,23 +25,34 @@
   <meta name="twitter:description" content="Abastecimiento, producción y logística multimodal en LATAM." />
   <meta name="twitter:image" content="https://www.abraxas-group.lat/assets/og/cover.jpg" />
 
-  <!-- Preload poster (ayuda a que SIEMPRE se vea el fondo aunque el video tarde) -->
-  <link rel="preload" as="image" href="assets/img/hero-poster.jpg" />
+  <!-- Performance hints -->
+  <link rel="preload" as="image" href="assets/img/hero-poster.jpg" fetchpriority="high" />
+  <link rel="preload" as="video" href="assets/video/hero.mp4" type="video/mp4" />
 
   <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Abraxas Group",
-    "url":"https://www.abraxas-group.lat/",
-    "logo":"https://www.abraxas-group.lat/assets/logo.png",
-    "email":"o.chinchilla@abraxas-group.lat",
-    "telephone":"+54 341 740 0299",
-    "sameAs":[
-      "https://www.linkedin.com/company/abraxasgroup",
-      "https://www.facebook.com/profile.php?id=61581446128697",
-      "https://x.com/AbraxasGroupLat"
+    "@graph":[
+      {
+        "@type":"Organization",
+        "name":"Abraxas Group",
+        "url":"https://www.abraxas-group.lat/",
+        "logo":"https://www.abraxas-group.lat/assets/logo.png",
+        "email":"o.chinchilla@abraxas-group.lat",
+        "telephone":"+54 341 740 0299",
+        "sameAs":[
+          "https://www.linkedin.com/company/abraxasgroup",
+          "https://www.facebook.com/profile.php?id=61581446128697",
+          "https://x.com/AbraxasGroupLat"
+        ]
+      },
+      {
+        "@type":"WebSite",
+        "name":"Abraxas Group",
+        "url":"https://www.abraxas-group.lat/",
+        "inLanguage":["es","en","zh-Hans"]
+      }
     ]
   }
   </script>
@@ -56,6 +70,7 @@
       --gap:clamp(16px, 2.2vw, 28px);
       --border:rgba(255,255,255,.10);
       --shadow:0 12px 34px rgba(0,0,0,.28);
+      --focus:0 0 0 3px rgba(0,224,255,.35);
     }
 
     *{box-sizing:border-box}
@@ -67,12 +82,20 @@
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Ubuntu,Arial,sans-serif;
       line-height:1.5;
       overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
     img{max-width:100%;display:block}
     a{color:inherit}
     .container{width:min(100%, var(--container));margin-inline:auto;padding-inline:clamp(16px, 4vw, 40px);}
     .section{padding:clamp(68px, 7.5vw, 110px) 0;}
     .section--tight{padding:clamp(52px, 6vw, 86px) 0;}
+
+    :focus-visible{
+      outline:none;
+      box-shadow:var(--focus);
+      border-radius:10px;
+    }
 
     /* ======== FONDO ======== */
     .bg-wrap{position:fixed; inset:0; z-index:-2;}
@@ -143,6 +166,8 @@
       font-weight:800;
       border:1px solid transparent;
       cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color:transparent;
     }
     .btn--primary{
       background:linear-gradient(90deg,var(--brand),var(--brand2));
@@ -320,7 +345,7 @@
 
     .note{margin-top:14px; color:#bfc4ff; text-align:center; font-size:.95rem; opacity:.9;}
 
-    /* ======== OPERACIÓN (reemplaza Casos de éxito) ======== */
+    /* ======== OPERACIÓN ======== */
     .ops h2{text-align:center; margin-bottom:10px;}
     .ops .sub{text-align:center; color:var(--muted); max-width:85ch; margin:0 auto 28px auto;}
 
@@ -391,6 +416,7 @@
       gap:14px;
       width:max-content;
       animation:marquee 28s linear infinite;
+      will-change:transform;
     }
     @keyframes marquee{
       from{transform:translateX(0);}
@@ -502,6 +528,90 @@
       z-index:999;
     }
     .skip:focus{left:10px;}
+
+    /* ======== WhatsApp flotante ======== */
+    .wb-float{
+      position:fixed !important;
+      right:18px !important;
+      left:auto !important;
+      bottom:calc(18px + env(safe-area-inset-bottom)) !important;
+      z-index:9999 !important;
+
+      width:72px !important;
+      height:72px !important;
+      border-radius:50% !important;
+
+      display:grid !important;
+      place-items:center !important;
+
+      background:radial-gradient(ellipse at center, rgba(0,224,255,.22), rgba(0,0,0,.55)) !important;
+      border:1px solid rgba(0,224,255,.55) !important;
+      box-shadow:0 0 14px rgba(0,224,255,.35), 0 0 34px rgba(127,90,240,.22), inset 0 0 18px rgba(0,224,255,.18) !important;
+
+      text-decoration:none !important;
+      transition:transform .2s ease !important;
+      -webkit-transform:translateZ(0);
+      -webkit-tap-highlight-color:transparent;
+    }
+    .wb-float:hover{ transform:translateY(-2px) scale(1.03) !important; }
+
+    .wb-float img{
+      width:40px !important;
+      height:40px !important;
+      display:block !important;
+      object-fit:contain !important;
+      filter:drop-shadow(0 0 8px rgba(0,224,255,.55)) !important;
+    }
+
+    .wb-pulse{
+      position:absolute !important;
+      inset:-10px !important;
+      border-radius:50% !important;
+      border:1px solid rgba(0,224,255,.35) !important;
+      pointer-events:none !important;
+      animation:pulse 2.4s ease-out infinite !important;
+    }
+    @keyframes pulse{
+      0%{transform:scale(0.9); opacity:.9;}
+      70%{transform:scale(1.18); opacity:.18;}
+      100%{transform:scale(1.28); opacity:0;}
+    }
+
+    .wb-tip{
+      position:absolute !important;
+      right:82px !important;
+      bottom:50% !important;
+      transform:translateY(50%) !important;
+
+      background:rgba(0,0,0,.72) !important;
+      border:1px solid rgba(0,224,255,.35) !important;
+      box-shadow:0 0 18px rgba(0,224,255,.18) !important;
+      padding:.55rem .8rem !important;
+      border-radius:12px !important;
+
+      color:#e9f7ff !important;
+      font-weight:900 !important;
+      white-space:nowrap !important;
+
+      opacity:0 !important;
+      pointer-events:none !important;
+      transition:opacity .2s ease, transform .2s ease !important;
+      backdrop-filter:blur(8px) !important;
+    }
+    .wb-float:hover .wb-tip{
+      opacity:1 !important;
+      transform:translateY(50%) translateX(-4px) !important;
+    }
+    @media (hover:none){
+      .wb-tip{ display:none !important; }
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .track{animation:none !important;}
+      .wb-pulse{animation:none !important;}
+      *{scroll-behavior:auto !important;}
+    }
   </style>
 </head>
 
@@ -517,9 +627,10 @@
       autoplay
       muted
       loop
+      preload="auto"
       poster="assets/img/hero-poster.jpg"></video>
 
-    <img class="bg-fallback" src="assets/img/hero-poster.jpg" alt="" />
+    <img class="bg-fallback" src="assets/img/hero-poster.jpg" alt="" decoding="async" fetchpriority="high" />
   </div>
   <div class="bg-fade" aria-hidden="true"></div>
 
@@ -527,11 +638,11 @@
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="Abraxas Group">
-        <img src="assets/logo.png" alt="Abraxas Group" />
+        <img src="assets/logo.png" alt="Abraxas Group" width="28" height="28" decoding="async" />
         <span>ABRAXAS</span>
       </a>
 
-      <nav class="nav" id="nav">
+      <nav class="nav" id="nav" aria-label="Primary">
         <a href="#about" data-i18n="nav_about">Quiénes somos</a>
         <a href="#services" data-i18n="nav_units">Unidades</a>
         <a href="#ops" data-i18n="nav_ops">Operación</a>
@@ -546,7 +657,7 @@
           <option value="zh">中文</option>
         </select>
 
-        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-controls="nav" aria-expanded="false" type="button">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -699,7 +810,7 @@
       </div>
     </section>
 
-    <!-- OPERACIÓN (reemplaza Casos de éxito) -->
+    <!-- OPERACIÓN -->
     <section id="ops" class="ops section">
       <div class="container">
         <h2 data-i18n="ops_h2">Operación regional</h2>
@@ -759,7 +870,7 @@
               <strong>Partner</strong>
               <p data-i18n="t1">“Orden y continuidad: se nota estructura operativa real.”</p>
               <label class="glitch-check">
-                <input type="checkbox" checked>
+                <input type="checkbox" checked aria-label="Verified testimonial">
                 <span class="glitch-box"><span class="glitch-mark"></span></span>
                 <span class="glitch-label">Verified</span>
               </label>
@@ -768,7 +879,7 @@
               <strong>Cliente</strong>
               <p data-i18n="t2">“Claridad documental y coordinación prolija en cada paso.”</p>
               <label class="glitch-check">
-                <input type="checkbox" checked>
+                <input type="checkbox" checked aria-label="Verified testimonial">
                 <span class="glitch-box"><span class="glitch-mark"></span></span>
                 <span class="glitch-label">Verified</span>
               </label>
@@ -777,7 +888,7 @@
               <strong>Operación</strong>
               <p data-i18n="t3">“Buena ejecución: tiempos, seguimiento y entrega.”</p>
               <label class="glitch-check">
-                <input type="checkbox" checked>
+                <input type="checkbox" checked aria-label="Verified testimonial">
                 <span class="glitch-box"><span class="glitch-mark"></span></span>
                 <span class="glitch-label">Verified</span>
               </label>
@@ -788,7 +899,7 @@
               <strong>Partner</strong>
               <p data-i18n="t1">“Orden y continuidad: se nota estructura operativa real.”</p>
               <label class="glitch-check">
-                <input type="checkbox" checked>
+                <input type="checkbox" checked aria-label="Verified testimonial">
                 <span class="glitch-box"><span class="glitch-mark"></span></span>
                 <span class="glitch-label">Verified</span>
               </label>
@@ -797,7 +908,7 @@
               <strong>Cliente</strong>
               <p data-i18n="t2">“Claridad documental y coordinación prolija en cada paso.”</p>
               <label class="glitch-check">
-                <input type="checkbox" checked>
+                <input type="checkbox" checked aria-label="Verified testimonial">
                 <span class="glitch-box"><span class="glitch-mark"></span></span>
                 <span class="glitch-label">Verified</span>
               </label>
@@ -806,7 +917,7 @@
               <strong>Operación</strong>
               <p data-i18n="t3">“Buena ejecución: tiempos, seguimiento y entrega.”</p>
               <label class="glitch-check">
-                <input type="checkbox" checked>
+                <input type="checkbox" checked aria-label="Verified testimonial">
                 <span class="glitch-box"><span class="glitch-mark"></span></span>
                 <span class="glitch-label">Verified</span>
               </label>
@@ -826,7 +937,7 @@
             <strong>frecuencia</strong> y <strong>destino</strong>. Respondemos con propuesta.
           </p>
 
-          <form class="form" id="contactForm">
+          <form class="form" id="contactForm" novalidate>
             <div class="field">
               <label for="service" data-i18n="f_service">Servicio</label>
               <select id="service" name="service">
@@ -840,17 +951,17 @@
 
             <div class="field">
               <label for="product" data-i18n="f_product">Producto</label>
-              <input id="product" name="product" type="text" placeholder="Ej: aceite, panificados, insumos…" />
+              <input id="product" name="product" type="text" inputmode="text" autocomplete="off" placeholder="Ej: aceite, panificados, insumos…" />
             </div>
 
             <div class="field">
               <label for="volume" data-i18n="f_volume">Volumen</label>
-              <input id="volume" name="volume" type="text" placeholder="Ej: 25 tn / 2 camiones / mensual…" />
+              <input id="volume" name="volume" type="text" inputmode="text" autocomplete="off" placeholder="Ej: 25 tn / 2 camiones / mensual…" />
             </div>
 
             <div class="field">
               <label for="route" data-i18n="f_route">Ruta</label>
-              <input id="route" name="route" type="text" placeholder="Ej: Rosario → Asunción / Buenos Aires → La Paz…" />
+              <input id="route" name="route" type="text" inputmode="text" autocomplete="off" placeholder="Ej: Rosario → Asunción / Buenos Aires → La Paz…" />
             </div>
 
             <div class="field">
@@ -875,9 +986,9 @@
             Seguinos para novedades, operaciones y comunicación institucional.
           </p>
           <ul class="bullets">
-            <li><a class="link" href="https://www.linkedin.com/company/abraxasgroup" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a class="link" href="https://www.facebook.com/profile.php?id=61581446128697" target="_blank" rel="noopener">Facebook</a></li>
-            <li><a class="link" href="https://x.com/AbraxasGroupLat" target="_blank" rel="noopener">X</a></li>
+            <li><a class="link" href="https://www.linkedin.com/company/abraxasgroup" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a class="link" href="https://www.facebook.com/profile.php?id=61581446128697" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a class="link" href="https://x.com/AbraxasGroupLat" target="_blank" rel="noopener noreferrer">X</a></li>
           </ul>
 
           <p style="margin-top:14px; color:var(--muted);">
@@ -896,96 +1007,14 @@
     </div>
   </footer>
 
-  <!-- ✅ WhatsApp flotante (HTML) -->
+  <!-- WhatsApp flotante -->
   <a class="wb-float" id="waFloat"
      href="https://wa.me/5493417400299?text=Hola%20Abraxas%20Group"
-     target="_blank" rel="noopener" aria-label="WhatsApp">
+     target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
     <span class="wb-pulse"></span>
     <span class="wb-tip" data-i18n="wa_tip">Escribinos por WhatsApp</span>
-    <img src="/assets/img/whatsapp.svg" alt="WhatsApp" />
+    <img src="assets/img/whatsapp.svg" alt="WhatsApp" loading="eager" decoding="async" />
   </a>
-
-  <!-- ✅ WhatsApp flotante (CSS FORZADO) -->
-  <style>
-    .wb-float{
-      position:fixed !important;
-      right:18px !important;
-      left:auto !important;
-      bottom:calc(18px + env(safe-area-inset-bottom)) !important;
-      z-index:9999 !important;
-
-      width:72px !important;
-      height:72px !important;
-      border-radius:50% !important;
-
-      display:grid !important;
-      place-items:center !important;
-
-      background:radial-gradient(ellipse at center, rgba(0,224,255,.22), rgba(0,0,0,.55)) !important;
-      border:1px solid rgba(0,224,255,.55) !important;
-      box-shadow:0 0 14px rgba(0,224,255,.35), 0 0 34px rgba(127,90,240,.22), inset 0 0 18px rgba(0,224,255,.18) !important;
-
-      text-decoration:none !important;
-      transition:transform .2s ease !important;
-      -webkit-transform:translateZ(0);
-    }
-
-    .wb-float:hover{ transform:translateY(-2px) scale(1.03) !important; }
-
-    .wb-float img{
-      width:40px !important;
-      height:40px !important;
-      display:block !important;
-      object-fit:contain !important;
-      filter:drop-shadow(0 0 8px rgba(0,224,255,.55)) !important;
-    }
-
-    .wb-pulse{
-      position:absolute !important;
-      inset:-10px !important;
-      border-radius:50% !important;
-      border:1px solid rgba(0,224,255,.35) !important;
-      pointer-events:none !important;
-      animation:pulse 2.4s ease-out infinite !important;
-    }
-
-    @keyframes pulse{
-      0%{transform:scale(0.9); opacity:.9;}
-      70%{transform:scale(1.18); opacity:.18;}
-      100%{transform:scale(1.28); opacity:0;}
-    }
-
-    .wb-tip{
-      position:absolute !important;
-      right:82px !important;
-      bottom:50% !important;
-      transform:translateY(50%) !important;
-
-      background:rgba(0,0,0,.72) !important;
-      border:1px solid rgba(0,224,255,.35) !important;
-      box-shadow:0 0 18px rgba(0,224,255,.18) !important;
-      padding:.55rem .8rem !important;
-      border-radius:12px !important;
-
-      color:#e9f7ff !important;
-      font-weight:900 !important;
-      white-space:nowrap !important;
-
-      opacity:0 !important;
-      pointer-events:none !important;
-      transition:opacity .2s ease, transform .2s ease !important;
-      backdrop-filter:blur(8px) !important;
-    }
-
-    .wb-float:hover .wb-tip{
-      opacity:1 !important;
-      transform:translateY(50%) translateX(-4px) !important;
-    }
-
-    @media (hover:none){
-      .wb-tip{ display:none !important; }
-    }
-  </style>
 
   <!-- SCRIPTS -->
   <script>
@@ -1270,14 +1299,12 @@
         document.documentElement.lang = (lang === "zh") ? "zh-Hans" : lang;
         localStorage.setItem("abraxas_lang", lang);
 
-        // Actualiza textos
         document.querySelectorAll("[data-i18n]").forEach(el=>{
           const key = el.getAttribute("data-i18n");
           const val = i18n[lang][key];
           if(typeof val === "string") el.innerHTML = val;
         });
 
-        // Actualiza título/description
         const metaDesc = document.querySelector('meta[name="description"]');
         const titleMap = {
           es:"Abraxas Group — Commodities, Industria y Logística",
@@ -1294,11 +1321,9 @@
           metaDesc.setAttribute("content", descMap[lang] || descMap.es);
         }
 
-        // Select sync
         const sel = document.getElementById("langSelect");
         if(sel) sel.value = lang;
 
-        // Rebuild WhatsApp link with current lang
         updateWhatsAppLinks();
       }
 
@@ -1314,9 +1339,15 @@
 
       function buildMessage(lang, data){
         const svc = data.service ? serviceLabel(lang, data.service) : "";
+
+        // Protege contra mensajes vacíos: arma una línea base sí o sí
+        const baseES = "Hola! Vengo desde la web de Abraxas Group.";
+        const baseEN = "Hi! I’m contacting you from the Abraxas Group website.";
+        const baseZH = "你好！我从 Abraxas Group 网站联系你们。";
+
         if(lang === "en"){
           return [
-            "Hi! I’m contacting you from the Abraxas Group website.",
+            baseEN,
             svc ? `I’m interested in: ${svc}.` : "I’d like more information about your services.",
             data.product ? `Product: ${data.product}` : "",
             data.volume ? `Volume: ${data.volume}` : "",
@@ -1327,7 +1358,7 @@
         }
         if(lang === "zh"){
           return [
-            "你好！我从 Abraxas Group 网站联系你们。",
+            baseZH,
             svc ? `我对以下服务感兴趣：${svc}。` : "我想了解你们的服务信息。",
             data.product ? `产品：${data.product}` : "",
             data.volume ? `数量：${data.volume}` : "",
@@ -1336,9 +1367,8 @@
             "谢谢！"
           ].filter(Boolean).join("\n");
         }
-        // es
         return [
-          "Hola! Vengo desde la web de Abraxas Group.",
+          baseES,
           svc ? `Estoy interesado en: ${svc}.` : "Estoy interesado en sus servicios.",
           data.product ? `Producto: ${data.product}` : "",
           data.volume ? `Volumen: ${data.volume}` : "",
@@ -1390,24 +1420,29 @@
         const tryPlay = () => bgVideo.play().catch(()=> document.body.classList.add("no-video"));
         bgVideo.addEventListener("canplay", tryPlay, { once:true });
         bgVideo.addEventListener("error", ()=> document.body.classList.add("no-video"));
-        // intento rápido
         setTimeout(tryPlay, 250);
       } else {
         document.body.classList.add("no-video");
       }
 
       // =============================
-      // NAV MOBILE
+      // NAV MOBILE (con aria)
       // =============================
       const navToggle = document.getElementById("navToggle");
       const nav = document.getElementById("nav");
-      navToggle?.addEventListener("click", ()=> nav.classList.toggle("is-open"));
+      navToggle?.addEventListener("click", ()=>{
+        const open = nav.classList.toggle("is-open");
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
       document.querySelectorAll(".nav a").forEach(a=>{
-        a.addEventListener("click", ()=> nav.classList.remove("is-open"));
+        a.addEventListener("click", ()=>{
+          nav.classList.remove("is-open");
+          navToggle?.setAttribute("aria-expanded", "false");
+        });
       });
 
       // =============================
-      // LANGUAGE SWITCH
+      // LANGUAGE SWITCH (y URL)
       // =============================
       const langSelect = document.getElementById("langSelect");
       langSelect?.addEventListener("change", (e)=>{
@@ -1429,18 +1464,16 @@
         });
       });
 
-      // Select change
       const serviceSelect = document.getElementById("service");
       serviceSelect?.addEventListener("change", (e)=>{
         setSelectedService(e.target.value);
       });
 
-      // CTA sets generic selection
       const ctaProposal = document.getElementById("ctaProposal");
       ctaProposal?.addEventListener("click", ()=> updateWhatsAppLinks());
 
       // =============================
-      // FORM -> WhatsApp
+      // FORM -> WhatsApp (incluye campos)
       // =============================
       const form = document.getElementById("contactForm");
       form?.addEventListener("submit", (e)=>{
@@ -1470,8 +1503,8 @@
             const rect = card.getBoundingClientRect();
             const x = (ev.clientX - rect.left) / rect.width;
             const y = (ev.clientY - rect.top) / rect.height;
-            const rotY = (x - 0.5) * 10;   // -5..5
-            const rotX = (0.5 - y) * 10;   // -5..5
+            const rotY = (x - 0.5) * 10;
+            const rotX = (0.5 - y) * 10;
 
             cancelAnimationFrame(raf);
             raf = requestAnimationFrame(()=>{
@@ -1484,7 +1517,6 @@
           });
         });
       } else {
-        // Auto-highlight cards for touch devices
         const cards = Array.from(document.querySelectorAll(".tilt-card"));
         let idx = 0;
         if(cards.length){
@@ -1500,7 +1532,6 @@
       // INIT
       // =============================
       setLang(detectLang());
-      // Sync service to select
       const savedSvc = getSelectedService();
       if(savedSvc && serviceSelect) serviceSelect.value = savedSvc;
       updateWhatsAppLinks();
