@@ -3,20 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Oscar Chinchilla · B2B Closer. Escalé un negocio de $450K a +$2M USD en 36 meses. Entro en tu pipeline y cierro.">
-<title>Oscar Chinchilla · B2B Closer | Abraxas Group</title>
+<meta name="description" content="Oscar Chinchilla · B2B & B2C Closer. Escalé un negocio de $450K a +$2M USD. Equipo de closers, mentoría 1 a 1 y formación desde cero.">
+<title>Oscar Chinchilla · Closer B2B & B2C | Abraxas Group</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
-/* ════════════════════════════════════════
-   DESIGN TOKENS
-════════════════════════════════════════ */
 :root{
   --bg:#03080f;
   --bg2:#060d18;
   --card:#080f1e;
-  --card2:#0b1428;
   --border:rgba(255,255,255,.06);
   --bh:rgba(0,255,136,.3);
   --text:#ecf3ff;
@@ -25,342 +21,181 @@
   --g:#00ff88;
   --gg:rgba(0,255,136,.15);
   --gs:rgba(0,255,136,.08);
+  --gold:#f0b429;
+  --goldg:rgba(240,180,41,.12);
   --r:10px;
   --r2:18px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;font-size:16px;}
-body{
-  font-family:'Outfit',sans-serif;
-  background:var(--bg);color:var(--text);
-  overflow-x:hidden;
-}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
 
-/* ════════════════════════════════════════
-   CURSOR (desktop only)
-════════════════════════════════════════ */
-#cur,#cur-r{
-  position:fixed;border-radius:50%;pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);
-}
+/* ── CURSOR ── */
+#cur,#cur-r{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
 #cur{width:9px;height:9px;background:var(--g);mix-blend-mode:difference;}
-#cur-r{
-  width:34px;height:34px;
-  border:1.5px solid rgba(0,255,136,.45);
-  transition:width .3s ease,height .3s ease,border-color .2s;
-}
+#cur-r{width:34px;height:34px;border:1.5px solid rgba(0,255,136,.45);transition:width .3s,height .3s,border-color .2s;}
 @media(pointer:coarse){#cur,#cur-r{display:none;}body{cursor:auto;}}
 
-/* ════════════════════════════════════════
-   NOISE OVERLAY
-════════════════════════════════════════ */
+/* ── NOISE ── */
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
-  opacity:.55;
+  opacity:.5;
 }
 
-/* ════════════════════════════════════════
-   NAV
-════════════════════════════════════════ */
+/* ── NAV ── */
 nav{
-  position:fixed;top:0;inset-inline:0;z-index:400;
-  height:66px;padding:0 clamp(18px,5vw,56px);
+  position:fixed;top:0;inset-inline:0;z-index:400;height:66px;
+  padding:0 clamp(18px,5vw,56px);
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(3,8,15,.8);backdrop-filter:blur(22px);
-  border-bottom:1px solid var(--border);
-  transition:background .3s;
+  background:rgba(3,8,15,.82);backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--border);transition:background .3s;
 }
-nav.solid{background:rgba(3,8,15,.97);}
-.n-logo{
-  font-family:'Syne',sans-serif;font-size:17px;font-weight:800;
-  letter-spacing:.13em;text-transform:uppercase;
-}
+nav.solid{background:rgba(3,8,15,.98);}
+.n-logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;}
 .n-logo b{color:var(--g);}
 .n-r{display:flex;align-items:center;gap:8px;}
-.lang{
-  padding:5px 13px;border-radius:100px;
-  border:1px solid var(--border);background:transparent;
-  color:var(--muted);font-family:'Outfit',sans-serif;
-  font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
-  cursor:pointer;transition:all .2s;
-}
+.lang{padding:5px 13px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
 .lang:hover,.lang.on{border-color:var(--g);color:var(--g);}
-.n-btn{
-  padding:9px 20px;background:var(--g);color:#000;
-  font-family:'Outfit',sans-serif;font-weight:700;font-size:12px;
-  letter-spacing:.05em;text-transform:uppercase;
-  border:none;border-radius:var(--r);cursor:pointer;
-  box-shadow:0 0 22px var(--gg);transition:all .22s;
-}
+.n-btn{padding:9px 20px;background:var(--g);color:#000;font-family:'Outfit',sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;border:none;border-radius:var(--r);cursor:pointer;box-shadow:0 0 22px var(--gg);transition:all .22s;display:inline-block;}
 .n-btn:hover{transform:translateY(-2px);box-shadow:0 0 38px var(--gg);}
 
-/* ════════════════════════════════════════
-   HERO
-════════════════════════════════════════ */
-.hero{
-  position:relative;min-height:100svh;
-  display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  text-align:center;
-  padding:100px clamp(18px,5vw,60px) 80px;
-  overflow:hidden;
-}
-.hero video{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;z-index:0;opacity:.45;
-}
-.h-ov{
-  position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,
-    rgba(3,8,15,.5) 0%,
-    rgba(3,8,15,.78) 60%,
-    var(--bg) 100%);
-}
-.orb{
-  position:absolute;border-radius:50%;
-  pointer-events:none;z-index:1;filter:blur(90px);
-}
-.o1{
-  width:520px;height:520px;
-  background:radial-gradient(circle,rgba(0,255,136,.09),transparent 70%);
-  top:-15%;left:-12%;
-  animation:of 9s ease-in-out infinite;
-}
-.o2{
-  width:420px;height:420px;
-  background:radial-gradient(circle,rgba(30,80,255,.07),transparent 70%);
-  bottom:5%;right:-8%;
-  animation:of 9s ease-in-out infinite reverse;
-  animation-delay:-4s;
-}
+/* ── HERO ── */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:100px clamp(18px,5vw,60px) 80px;overflow:hidden;}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.42;}
+.h-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(3,8,15,.52) 0%,rgba(3,8,15,.8) 60%,var(--bg) 100%);}
+.orb{position:absolute;border-radius:50%;pointer-events:none;z-index:1;filter:blur(90px);}
+.o1{width:560px;height:560px;background:radial-gradient(circle,rgba(0,255,136,.09),transparent 70%);top:-15%;left:-12%;animation:of 9s ease-in-out infinite;}
+.o2{width:440px;height:440px;background:radial-gradient(circle,rgba(30,80,255,.07),transparent 70%);bottom:5%;right:-8%;animation:of 9s ease-in-out infinite reverse;animation-delay:-4s;}
 @keyframes of{0%,100%{transform:translate(0,0);}50%{transform:translate(18px,-28px);}}
-
-.h-box{position:relative;z-index:2;max-width:880px;}
-
-.pill{
-  display:inline-flex;align-items:center;gap:9px;
-  padding:6px 17px;border-radius:100px;
-  border:1px solid rgba(0,255,136,.22);background:rgba(0,255,136,.05);
-  font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--g);margin-bottom:26px;
-  animation:fu .7s ease both;
-}
-.dot{
-  width:7px;height:7px;border-radius:50%;background:var(--g);
-  animation:pulse 2.2s ease-in-out infinite;
-}
-@keyframes pulse{
-  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,255,136,.4);}
-  50%{opacity:.4;box-shadow:0 0 0 5px transparent;}
-}
-
-h1{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(54px,10vw,112px);
-  font-weight:800;line-height:.9;letter-spacing:-.015em;
-  color:#fff;margin-bottom:26px;
-  animation:fu .7s .14s ease both;
-}
-h1 i{
-  color:transparent;font-style:normal;
-  -webkit-text-stroke:1.5px var(--g);
-}
-.sub{
-  font-size:clamp(15px,2vw,18px);color:#4e6e88;
-  line-height:1.75;max-width:560px;margin:0 auto 36px;
-  animation:fu .7s .28s ease both;
-}
+.h-box{position:relative;z-index:2;max-width:900px;}
+.pill{display:inline-flex;align-items:center;gap:9px;padding:6px 17px;border-radius:100px;border:1px solid rgba(0,255,136,.22);background:rgba(0,255,136,.05);font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--g);margin-bottom:26px;animation:fu .7s ease both;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--g);animation:pulse 2.2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,255,136,.4);}50%{opacity:.4;box-shadow:0 0 0 6px transparent;}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(50px,9.5vw,108px);font-weight:800;line-height:.9;letter-spacing:-.015em;color:#fff;margin-bottom:26px;animation:fu .7s .14s ease both;}
+h1 i{color:transparent;font-style:normal;-webkit-text-stroke:1.5px var(--g);}
+.sub{font-size:clamp(15px,2vw,18px);color:#4e6e88;line-height:1.75;max-width:580px;margin:0 auto 36px;animation:fu .7s .28s ease both;}
 .sub strong{color:var(--text);font-weight:600;}
-
-.btns{
-  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
-  animation:fu .7s .42s ease both;
-}
-.bp{
-  padding:15px 36px;background:var(--g);color:#000;
-  font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;
-  letter-spacing:.05em;text-transform:uppercase;
-  border:none;border-radius:var(--r);cursor:pointer;
-  box-shadow:0 0 38px var(--gg);transition:all .22s;
-  display:inline-block;
-}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fu .7s .42s ease both;}
+.bp{padding:15px 36px;background:var(--g);color:#000;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;border:none;border-radius:var(--r);cursor:pointer;box-shadow:0 0 38px var(--gg);transition:all .22s;display:inline-block;}
 .bp:hover{transform:translateY(-3px);box-shadow:0 8px 56px var(--gg);}
-.bo{
-  padding:15px 36px;background:transparent;color:var(--text);
-  font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;
-  letter-spacing:.03em;border:1px solid var(--dim);
-  border-radius:var(--r);cursor:pointer;
-  transition:all .22s;display:inline-block;
-}
+.bo{padding:15px 36px;background:transparent;color:var(--text);font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;border:1px solid var(--dim);border-radius:var(--r);cursor:pointer;transition:all .22s;display:inline-block;}
 .bo:hover{border-color:var(--g);color:var(--g);}
+/* hero tags row */
+.hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:24px;animation:fu .7s .52s ease both;}
+.htag{padding:5px 14px;border-radius:100px;border:1px solid var(--border);font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;}
+.htag.g{border-color:rgba(0,255,136,.2);color:var(--g);background:var(--gs);}
+.scroll-h{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:7px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);animation:fu .7s .6s ease both;}
+.sl{width:1px;height:46px;background:linear-gradient(var(--g),transparent);animation:sl 2.1s ease-in-out infinite;}
+@keyframes sl{0%{transform:scaleY(0);transform-origin:top;}49%{transform:scaleY(1);transform-origin:top;}50%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+@keyframes fu{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
 
-.scroll-h{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-  z-index:2;display:flex;flex-direction:column;align-items:center;gap:7px;
-  font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
-  animation:fu .7s .56s ease both;
-}
-.sl{
-  width:1px;height:46px;
-  background:linear-gradient(var(--g),transparent);
-  animation:sl 2.1s ease-in-out infinite;
-}
-@keyframes sl{
-  0%{transform:scaleY(0);transform-origin:top;}
-  49%{transform:scaleY(1);transform-origin:top;}
-  50%{transform:scaleY(1);transform-origin:bottom;}
-  100%{transform:scaleY(0);transform-origin:bottom;}
-}
-@keyframes fu{
-  from{opacity:0;transform:translateY(26px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-/* ════════════════════════════════════════
-   TICKER
-════════════════════════════════════════ */
-.tk-w{
-  position:relative;z-index:2;overflow:hidden;
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:14px 0;background:var(--bg2);
-}
-.tk-w::before,.tk-w::after{
-  content:'';position:absolute;top:0;bottom:0;width:100px;z-index:3;
-}
+/* ── TICKER ── */
+.tk-w{position:relative;z-index:2;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;background:var(--bg2);}
+.tk-w::before,.tk-w::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:3;}
 .tk-w::before{left:0;background:linear-gradient(90deg,var(--bg2),transparent);}
 .tk-w::after{right:0;background:linear-gradient(-90deg,var(--bg2),transparent);}
-.tk{display:flex;animation:tk 28s linear infinite;width:max-content;}
+.tk{display:flex;animation:tk 30s linear infinite;width:max-content;}
 @keyframes tk{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.ti{
-  display:flex;align-items:center;gap:9px;padding:0 28px;
-  font-size:10px;font-weight:700;letter-spacing:.11em;
-  text-transform:uppercase;color:var(--muted);white-space:nowrap;
-}
+.ti{display:flex;align-items:center;gap:9px;padding:0 28px;font-size:10px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
 .ti s{color:var(--g);text-decoration:none;}
 .ti-sep{color:var(--dim);}
 
-/* ════════════════════════════════════════
-   SECTION
-════════════════════════════════════════ */
+/* ── BASE SECTION ── */
 .sec{position:relative;z-index:2;}
 .si{max-width:1060px;margin:0 auto;padding:clamp(64px,9vw,116px) clamp(18px,5vw,56px);}
-.tag{
-  display:inline-block;font-size:10px;font-weight:700;
-  letter-spacing:.15em;text-transform:uppercase;
-  color:var(--g);margin-bottom:12px;
-}
-h2{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(34px,5.5vw,62px);
-  font-weight:800;line-height:1;letter-spacing:-.01em;margin-bottom:16px;
-}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--g);margin-bottom:12px;}
+h2{font-family:'Syne',sans-serif;font-size:clamp(34px,5.5vw,62px);font-weight:800;line-height:1;letter-spacing:-.01em;margin-bottom:16px;}
 h2 i{color:var(--g);font-style:normal;}
-.stxt{
-  font-size:15px;color:var(--muted);line-height:1.8;
-  max-width:510px;margin-bottom:52px;
-}
+.stxt{font-size:15px;color:var(--muted);line-height:1.8;max-width:520px;margin-bottom:52px;}
 .alt{background:var(--bg2);}
 .dl{height:1px;background:var(--border);position:relative;z-index:2;}
 
-/* ════════════════════════════════════════
-   KPI CARDS
-════════════════════════════════════════ */
+/* ── KPIs ── */
 .kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:14px;margin-bottom:44px;}
-.kc{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r2);padding:26px 20px;
-  position:relative;overflow:hidden;
-  transition:border-color .3s,transform .3s,box-shadow .3s;
-  opacity:0;transform:translateY(28px);
-}
+.kc{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:26px 20px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;opacity:0;transform:translateY(28px);}
 .kc.on{opacity:1;transform:translateY(0);}
 .kc:hover{border-color:var(--bh);transform:translateY(-4px);box-shadow:0 18px 54px rgba(0,255,136,.06);}
-.kc::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
-  background:linear-gradient(90deg,var(--g),transparent);
-}
-.kn{
-  font-family:'Syne',sans-serif;font-size:44px;font-weight:800;
-  color:var(--g);line-height:1;letter-spacing:-.02em;
-}
+.kc::after{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--g),transparent);}
+.kn{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--g);line-height:1;letter-spacing:-.02em;}
 .kd{font-size:11px;color:var(--muted);margin-top:7px;font-weight:600;letter-spacing:.04em;}
 
-/* ════════════════════════════════════════
-   CHART BOX
-════════════════════════════════════════ */
-.cb{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r2);padding:30px 26px 22px;
-  opacity:0;transform:translateY(28px);
-  transition:opacity .6s .2s ease,transform .6s .2s ease;
-}
+/* ── CHART ── */
+.cb{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:30px 26px 22px;opacity:0;transform:translateY(28px);transition:opacity .6s .2s ease,transform .6s .2s ease;}
 .cb.on{opacity:1;transform:translateY(0);}
 .ct{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;flex-wrap:wrap;gap:10px;}
 .cl{font-size:13px;font-weight:700;}
-.cp{
-  background:var(--gs);border:1px solid rgba(0,255,136,.18);
-  border-radius:100px;padding:4px 13px;
-  font-size:10px;font-weight:700;color:var(--g);letter-spacing:.06em;
-}
+.cp{background:var(--gs);border:1px solid rgba(0,255,136,.18);border-radius:100px;padding:4px 13px;font-size:10px;font-weight:700;color:var(--g);letter-spacing:.06em;}
 .cn{font-size:10px;color:var(--muted);margin-top:14px;text-align:center;line-height:1.6;}
 
-/* ════════════════════════════════════════
-   SERVICE CARDS
-════════════════════════════════════════ */
-.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:18px;}
-.sc{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r2);padding:30px 26px;
-  transition:border-color .3s,transform .3s,box-shadow .3s;
-  opacity:0;transform:translateY(28px);
-}
+/* ── SERVICES (3 cols) ── */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:30px 26px;transition:border-color .3s,transform .3s,box-shadow .3s;opacity:0;transform:translateY(28px);}
 .sc.on{opacity:1;transform:translateY(0);}
-.sc:hover{border-color:var(--bh);transform:translateY(-4px);box-shadow:0 18px 52px rgba(0,255,136,.05);}
-.si2{
-  width:46px;height:46px;border-radius:11px;
-  background:var(--gs);border:1px solid rgba(0,255,136,.16);
-  display:flex;align-items:center;justify-content:center;
-  font-size:21px;margin-bottom:18px;
-}
+.sc:hover{border-color:var(--bh);transform:translateY(-4px);box-shadow:0 20px 52px rgba(0,255,136,.05);}
+.si2{width:46px;height:46px;border-radius:11px;background:var(--gs);border:1px solid rgba(0,255,136,.16);display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:18px;}
 .st{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px;}
 .sd{font-size:13px;color:var(--muted);line-height:1.8;}
+.sc-badge{display:inline-block;margin-top:14px;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.sc-badge.new{background:var(--gs);border:1px solid rgba(0,255,136,.2);color:var(--g);}
+.sc-badge.team{background:rgba(240,180,41,.08);border:1px solid rgba(240,180,41,.2);color:var(--gold);}
 
-/* ════════════════════════════════════════
-   FOR WHO LIST
-════════════════════════════════════════ */
+/* ── FOR WHO ── */
 .fl{display:flex;flex-direction:column;gap:12px;max-width:660px;}
-.fi{
-  display:flex;align-items:flex-start;gap:15px;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r2);padding:19px 22px;
-  font-size:13px;line-height:1.75;
-  transition:border-color .3s;
-  opacity:0;transform:translateX(-18px);
-}
+.fi{display:flex;align-items:flex-start;gap:15px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:19px 22px;font-size:13px;line-height:1.75;transition:border-color .3s;opacity:0;transform:translateX(-18px);}
 .fi.on{opacity:1;transform:translateX(0);}
 .fi:hover{border-color:var(--bh);}
-.fc{
-  width:26px;height:26px;flex-shrink:0;border-radius:7px;
-  background:var(--gs);border:1px solid rgba(0,255,136,.18);
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:800;color:var(--g);margin-top:1px;
-}
+.fc{width:26px;height:26px;flex-shrink:0;border-radius:7px;background:var(--gs);border:1px solid rgba(0,255,136,.18);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--g);margin-top:1px;}
 .fi strong{color:var(--text);font-weight:700;}
 .fi span{color:var(--muted);}
 
-/* ════════════════════════════════════════
-   TESTIMONIALS
-════════════════════════════════════════ */
+/* ── MENTORSHIP SECTION ── */
+.ment-lay{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.ment-steps{display:flex;flex-direction:column;gap:0;margin-top:8px;}
+.mstep{display:flex;gap:18px;position:relative;padding-bottom:28px;}
+.mstep:last-child{padding-bottom:0;}
+.mstep::before{content:'';position:absolute;left:17px;top:38px;bottom:0;width:1px;background:linear-gradient(var(--border),transparent);}
+.mstep:last-child::before{display:none;}
+.mnum{width:36px;height:36px;flex-shrink:0;border-radius:10px;background:var(--gs);border:1px solid rgba(0,255,136,.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--g);}
+.mtext strong{font-size:14px;font-weight:700;color:var(--text);display:block;margin-bottom:4px;}
+.mtext span{font-size:12px;color:var(--muted);line-height:1.7;}
+.ment-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:36px 30px;position:relative;overflow:hidden;opacity:0;transform:translateY(28px);transition:border-color .3s;}
+.ment-card.on{opacity:1;transform:translateY(0);}
+.ment-card:hover{border-color:var(--gold);}
+.ment-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);}
+.ment-card .price{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:var(--gold);line-height:1;margin:16px 0 4px;}
+.ment-card .price-sub{font-size:12px;color:var(--muted);margin-bottom:24px;}
+.ment-inc{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.ment-inc li{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);}
+.ment-inc li::before{content:'✓';color:var(--gold);font-weight:800;font-size:12px;background:rgba(240,180,41,.08);border:1px solid rgba(240,180,41,.2);border-radius:5px;width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.ment-inc strong{color:var(--text);}
+.ment-btn{width:100%;padding:14px;background:var(--gold);color:#000;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;border:none;border-radius:var(--r);cursor:pointer;box-shadow:0 0 30px var(--goldg);transition:all .22s;display:block;text-align:center;}
+.ment-btn:hover{transform:translateY(-2px);box-shadow:0 8px 40px var(--goldg);}
+
+/* ── TEAM SECTION ── */
+.team-lay{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.team-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px;}
+.tstat{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:22px 18px;position:relative;overflow:hidden;}
+.tstat::after{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--g),transparent);}
+.tstat-n{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;color:var(--g);line-height:1;}
+.tstat-d{font-size:11px;color:var(--muted);margin-top:5px;font-weight:600;}
+.team-img-wrap{position:relative;opacity:0;transform:translateX(28px);}
+.team-img-wrap.on{opacity:1;transform:translateX(0);transition:opacity .7s ease,transform .7s ease;}
+.team-visual{background:linear-gradient(135deg,var(--card) 0%,var(--bg2) 100%);border:1px solid var(--border);border-radius:var(--r2);padding:40px 32px;display:flex;flex-direction:column;gap:16px;}
+.agent{display:flex;align-items:center;gap:14px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 16px;transition:border-color .3s;}
+.agent:hover{border-color:var(--bh);}
+.agent-av{width:36px;height:36px;border-radius:50%;background:var(--gs);border:1px solid rgba(0,255,136,.2);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.agent-info{flex:1;}
+.agent-name{font-size:13px;font-weight:700;color:var(--text);}
+.agent-role{font-size:11px;color:var(--muted);margin-top:1px;}
+.agent-badge{padding:3px 9px;border-radius:100px;font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.ag-on{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);color:var(--g);}
+.ag-off{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);}
+
+/* ── TESTIMONIALS ── */
 .tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:18px;}
-.tc2{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r2);padding:26px;
-  transition:border-color .3s;
-  opacity:0;transform:translateY(28px);
-}
+.tc2{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:26px;transition:border-color .3s;opacity:0;transform:translateY(28px);}
 .tc2.on{opacity:1;transform:translateY(0);}
 .tc2:hover{border-color:var(--bh);}
 .sts{color:var(--g);font-size:11px;letter-spacing:3px;margin-bottom:12px;}
@@ -369,94 +204,48 @@ h2 i{color:var(--g);font-style:normal;}
 .tn{font-size:12px;font-weight:700;color:var(--text);}
 .tr{font-size:10px;color:var(--muted);margin-top:2px;}
 
-/* ════════════════════════════════════════
-   CALENDLY / BOOKING
-════════════════════════════════════════ */
-    .cal-s{
-      background:rgba(0,0,0,.24);
-      border-top:1px solid var(--border);
-      border-bottom:1px solid var(--border);
-    }
-    .cal-in{max-width:1060px;margin:0 auto;padding:clamp(64px,9vw,116px) clamp(18px,5vw,56px);}
-    .cal-lay{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start;}
-    .cp2{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:28px;padding-left:0;}
-    .cp2 li{display:flex;align-items:center;gap:11px;font-size:13px;color:var(--muted);}
-    .cp2 li::before{content:'→';color:var(--brand2);font-weight:800;font-size:14px;}
-    .cp2 strong{color:var(--txt);}
-    .cw{
-      background:rgba(0,0,0,.28);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      overflow:hidden;
-      min-height:580px;
-      transition:border-color .3s;
-    }
-    .cw:hover{border-color:rgba(0,224,255,.45);}
-    .cw iframe{width:100%;height:100%;min-height:580px;border:none;display:block;}
-    @media (max-width:980px){
-      .cal-lay{grid-template-columns:1fr;gap:24px;}
-      .cw,.cw iframe{min-height:640px;}
-    }
+/* ── BOOKING ── */
+.cal-s{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.cal-in{max-width:1060px;margin:0 auto;padding:clamp(64px,9vw,116px) clamp(18px,5vw,56px);}
+.cal-lay{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:start;}
+.cp2{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:28px;padding-left:0;}
+.cp2 li{display:flex;align-items:center;gap:11px;font-size:13px;color:var(--muted);}
+.cp2 li::before{content:'→';color:var(--g);font-weight:800;font-size:14px;}
+.cp2 strong{color:var(--text);}
+.cw{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;min-height:620px;transition:border-color .3s;}
+.cw:hover{border-color:var(--bh);}
+.cw iframe{width:100%;height:100%;min-height:620px;border:none;display:block;}
 
-
-/* ════════════════════════════════════════
-   CTA FINAL
-════════════════════════════════════════ */
+/* ── CTA ── */
 .cta-s{position:relative;overflow:hidden;}
-.cta-s::before{
-  content:'';position:absolute;inset:0;z-index:1;
-  background:radial-gradient(ellipse 65% 55% at 50% 100%,rgba(0,255,136,.07),transparent);
-}
-.cta-in{
-  max-width:720px;margin:0 auto;
-  padding:clamp(76px,11vw,136px) clamp(18px,5vw,56px);
-  text-align:center;position:relative;z-index:2;
-}
+.cta-s::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 65% 55% at 50% 100%,rgba(0,255,136,.07),transparent);}
+.cta-in{max-width:720px;margin:0 auto;padding:clamp(76px,11vw,136px) clamp(18px,5vw,56px);text-align:center;position:relative;z-index:2;}
 .cta-in h2{font-size:clamp(36px,7vw,76px);margin-bottom:18px;}
 .cta-in p{font-size:15px;color:var(--muted);margin-bottom:38px;line-height:1.8;}
 .cta-bs{display:flex;flex-direction:column;align-items:center;gap:14px;}
-.bwa{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:17px 46px;background:var(--g);color:#000;
-  font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;
-  letter-spacing:.04em;text-transform:uppercase;
-  border:none;border-radius:var(--r);cursor:pointer;
-  box-shadow:0 0 46px var(--gg);transition:all .22s;
-}
+.bwa{display:inline-flex;align-items:center;gap:10px;padding:17px 46px;background:var(--g);color:#000;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;border:none;border-radius:var(--r);cursor:pointer;box-shadow:0 0 46px var(--gg);transition:all .22s;}
 .bwa:hover{transform:translateY(-3px);box-shadow:0 10px 64px var(--gg);}
 .bem{font-size:12px;color:var(--muted);transition:color .2s;letter-spacing:.02em;}
 .bem:hover{color:var(--g);}
 
-/* ════════════════════════════════════════
-   FOOTER
-════════════════════════════════════════ */
-footer{
-  background:var(--bg);border-top:1px solid var(--border);
-  padding:26px clamp(18px,5vw,56px);
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:10px;position:relative;z-index:2;
-}
+/* ── FOOTER ── */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:26px clamp(18px,5vw,56px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:relative;z-index:2;}
 .fl2{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;letter-spacing:.12em;}
 .fl2 b{color:var(--g);}
 footer small{font-size:10px;color:var(--muted);}
 
-/* ════════════════════════════════════════
-   RESPONSIVE
-════════════════════════════════════════ */
-@media(max-width:760px){
-  .cal-lay{grid-template-columns:1fr;}
-  h1{line-height:.95;}
-  .n-r .lang{padding:4px 10px;font-size:10px;}
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .ment-lay,.team-lay,.cal-lay{grid-template-columns:1fr;gap:28px;}
+  .cw,.cw iframe{min-height:680px;}
+  .team-img-wrap{transform:none!important;opacity:1!important;}
 }
-@media(max-width:480px){
-  .kg{grid-template-columns:1fr 1fr;}
-  .n-logo{font-size:14px;}
-}
+@media(max-width:760px){h1{line-height:.95;}.n-r .lang{padding:4px 10px;font-size:10px;}}
+@media(max-width:480px){.kg{grid-template-columns:1fr 1fr;}.n-logo{font-size:14px;}.team-stats{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
 <div id="cur"></div>
 <div id="cur-r"></div>
 
@@ -466,14 +255,13 @@ footer small{font-size:10px;color:var(--muted);}
   <div class="n-r">
     <button class="lang on" id="bes" onclick="setLang('es')">ES</button>
     <button class="lang" id="ben" onclick="setLang('en')">EN</button>
-    <a href="#agenda" class="n-btn"
-      data-es="Agendar llamada" data-en="Book a call">Agendar llamada</a>
+    <a href="#agenda" class="n-btn" data-es="Agendar llamada" data-en="Book a call">Agendar llamada</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <video autoplay muted loop playsinline poster="">
+  <video autoplay muted loop playsinline>
     <source src="video.mp4" type="video/mp4">
   </video>
   <div class="h-ov"></div>
@@ -482,22 +270,28 @@ footer small{font-size:10px;color:var(--muted);}
   <div class="h-box">
     <div class="pill">
       <div class="dot"></div>
-      <span data-es="Closer B2B · Disponible ahora" data-en="B2B Closer · Available now">Closer B2B · Disponible ahora</span>
+      <span data-es="Closer B2B & B2C · Disponible ahora" data-en="B2B & B2C Closer · Available now">Closer B2B & B2C · Disponible ahora</span>
     </div>
-    <h1 data-es="ESTÁS<br>PERDIENDO<br><i>DINERO</i>" data-en="YOU'RE<br>LEAVING<br><i>MONEY</i>">
-      ESTÁS<br>PERDIENDO<br><i>DINERO</i>
+    <h1 data-es="CERRAMOS<br>CUANDO<br><i>OTROS NO</i>" data-en="WE CLOSE<br>WHEN<br><i>OTHERS DON'T</i>">
+      CERRAMOS<br>CUANDO<br><i>OTROS NO</i>
     </h1>
     <p class="sub"
-      data-es="Escalé un negocio de <strong>$450K a +$2M USD</strong> en 36 meses.<br>Entro en tu pipeline y convierto leads en clientes."
-      data-en="I scaled a business from <strong>$450K to +$2M USD</strong> in 36 months.<br>I enter your pipeline and turn leads into paying clients.">
+      data-es="Escalé un negocio de <strong>$450K a +$2M USD</strong> en 36 meses.<br>B2B industrial · Infoproductos · Equipo de closers · Mentoría 1 a 1."
+      data-en="I scaled a business from <strong>$450K to +$2M USD</strong> in 36 months.<br>Industrial B2B · Infoproducts · Closers team · 1-on-1 mentorship.">
       Escalé un negocio de <strong>$450K a +$2M USD</strong> en 36 meses.<br>
-      Entro en tu pipeline y convierto leads en clientes.
+      B2B industrial · Infoproductos · Equipo de closers · Mentoría 1 a 1.
     </p>
     <div class="btns">
-      <a href="#agenda" class="bp"
-        data-es="Agendar llamada gratis" data-en="Book a free call">Agendar llamada gratis</a>
-      <a href="#prueba" class="bo"
-        data-es="Ver caso real →" data-en="See proof →">Ver caso real →</a>
+      <a href="#agenda" class="bp" data-es="Agendar llamada gratis" data-en="Book a free call">Agendar llamada gratis</a>
+      <a href="#servicios" class="bo" data-es="Ver servicios →" data-en="See services →">Ver servicios →</a>
+    </div>
+    <div class="hero-tags">
+      <span class="htag g">B2B</span>
+      <span class="htag g">B2C</span>
+      <span class="htag g">Infoproductos</span>
+      <span class="htag">Equipo de Closers</span>
+      <span class="htag">Mentoría 1 a 1</span>
+      <span class="htag">8+ años</span>
     </div>
   </div>
   <div class="scroll-h">
@@ -509,7 +303,7 @@ footer small{font-size:10px;color:var(--muted);}
 <!-- TICKER -->
 <div class="tk-w"><div class="tk" id="tk"></div></div>
 
-<!-- ── PROOF ── -->
+<!-- PROOF -->
 <section class="sec" id="prueba">
   <div class="si">
     <div class="tag" data-es="Caso real" data-en="Real case">Caso real</div>
@@ -519,14 +313,12 @@ footer small{font-size:10px;color:var(--muted);}
       data-en="Real results managing the sales pipeline of an industrial B2B company for 36 consecutive months.">
       Resultados reales gestionando el pipeline de una empresa industrial B2B durante 36 meses consecutivos.
     </p>
-
     <div class="kg">
       <div class="kc"><div class="kn" data-t="450" data-s="K">0</div><div class="kd" data-es="Facturación inicial USD" data-en="Starting revenue USD">Facturación inicial USD</div></div>
       <div class="kc"><div class="kn" data-t="2.2" data-s="M">0</div><div class="kd" data-es="Pico de facturación anual" data-en="Peak annual revenue">Pico de facturación anual</div></div>
       <div class="kc"><div class="kn" data-t="151" data-s="%">0</div><div class="kd" data-es="Crecimiento año a año" data-en="Year-over-year growth">Crecimiento año a año</div></div>
       <div class="kc"><div class="kn" data-t="5" data-s="M+">0</div><div class="kd" data-es="Total generado en 3 años" data-en="Total generated in 3 years">Total generado en 3 años</div></div>
     </div>
-
     <div class="cb">
       <div class="ct">
         <div class="cl" data-es="Revenue anual — USD (millones)" data-en="Annual Revenue — USD (millions)">Revenue anual — USD (millones)</div>
@@ -543,38 +335,47 @@ footer small{font-size:10px;color:var(--muted);}
 </section>
 <div class="dl"></div>
 
-<!-- ── SERVICES ── -->
-<section class="sec alt">
+<!-- SERVICES -->
+<section class="sec alt" id="servicios">
   <div class="si">
     <div class="tag" data-es="Qué hago" data-en="What I do">Qué hago</div>
-    <h2 data-es="ENTRO Y <i>CIERRO</i>" data-en="I COME IN<br>AND <i>CLOSE</i>">ENTRO Y <i>CIERRO</i></h2>
+    <h2 data-es="TRES FORMAS DE<br><i>TRABAJAR</i> CONMIGO" data-en="THREE WAYS TO<br><i>WORK</i> WITH ME">TRES FORMAS DE<br><i>TRABAJAR</i> CONMIGO</h2>
     <p class="stxt"
-      data-es="No consultoría, no estrategia en papel. Ejecuto directamente en tu pipeline desde el día uno."
-      data-en="No consulting, no paper strategy. I execute directly in your pipeline from day one.">
-      No consultoría, no estrategia en papel. Ejecuto directamente en tu pipeline desde el día uno.
+      data-es="Desde cerrar tus ventas hasta formar tu propio equipo o tu carrera como closer."
+      data-en="From closing your sales to building your own team or your closer career.">
+      Desde cerrar tus ventas hasta formar tu propio equipo o tu carrera como closer.
     </p>
     <div class="sg">
+
+      <!-- Closer individual -->
       <div class="sc">
         <div class="si2">🎯</div>
-        <div class="st" data-es="Cierre de ventas B2B" data-en="B2B Sales Closing">Cierre de ventas B2B</div>
-        <div class="sd" data-es="Tomo tus leads calificados y los convierto en clientes. Manejo objeciones, negociación y cierre de contratos de alto valor." data-en="I take your qualified leads and convert them into clients. Objections, negotiation and high-value contract closing.">Tomo tus leads calificados y los convierto en clientes. Manejo objeciones, negociación y cierre de contratos de alto valor.</div>
+        <div class="st" data-es="Closer B2B & B2C" data-en="B2B & B2C Closer">Closer B2B & B2C</div>
+        <div class="sd" data-es="Cierro ventas en negocios industriales, SaaS, servicios y productos digitales (infoproductos, cursos, coaching). Me adapto a tu proceso, tu CRM y tu voz de marca." data-en="I close sales for industrial businesses, SaaS, services and digital products (infoproducts, courses, coaching). I adapt to your process, CRM and brand voice.">Cierro ventas en negocios industriales, SaaS, servicios y productos digitales (infoproductos, cursos, coaching). Me adapto a tu proceso, tu CRM y tu voz de marca.</div>
+        <div class="sc-badge new" data-es="B2B + Infoproductos" data-en="B2B + Infoproducts">B2B + Infoproductos</div>
       </div>
+
+      <!-- Equipo -->
+      <div class="sc">
+        <div class="si2">👥</div>
+        <div class="st" data-es="Equipo de Closers" data-en="Closers Team">Equipo de Closers</div>
+        <div class="sd" data-es="Si tu volumen de leads lo requiere, pongo a disposición un equipo de closers entrenados bajo mi metodología. Escalamos tu fuerza de ventas sin que tengas que contratar ni capacitar." data-en="If your lead volume requires it, I deploy a team of closers trained under my methodology. We scale your sales force without you needing to hire or train.">Si tu volumen de leads lo requiere, pongo a disposición un equipo de closers entrenados bajo mi metodología. Escalamos tu fuerza de ventas sin que tengas que contratar ni capacitar.</div>
+        <div class="sc-badge team" data-es="Equipo disponible" data-en="Team available">Equipo disponible</div>
+      </div>
+
+      <!-- Pipeline -->
       <div class="sc">
         <div class="si2">📊</div>
-        <div class="st" data-es="Gestión de pipeline" data-en="Pipeline Management">Gestión de pipeline</div>
-        <div class="sd" data-es="Implemento y optimizo tu CRM (Zoho, Bitrix24), tracking de KPIs y forecast de ventas para que no se escape ninguna oportunidad." data-en="I implement and optimize your CRM (Zoho, Bitrix24), KPI tracking and sales forecast so no opportunity slips through.">Implemento y optimizo tu CRM (Zoho, Bitrix24), tracking de KPIs y forecast de ventas para que no se escape ninguna oportunidad.</div>
+        <div class="st" data-es="Gestión de pipeline & CRM" data-en="Pipeline & CRM Management">Gestión de pipeline & CRM</div>
+        <div class="sd" data-es="Implemento y optimizo tu CRM (Zoho, Bitrix24), tracking de KPIs y forecast de ventas. Visibilidad total de cada oportunidad, sin que nada se pierda." data-en="I implement and optimize your CRM (Zoho, Bitrix24), KPI tracking and sales forecast. Full visibility on every opportunity, nothing gets lost.">Implemento y optimizo tu CRM (Zoho, Bitrix24), tracking de KPIs y forecast de ventas. Visibilidad total de cada oportunidad, sin que nada se pierda.</div>
       </div>
-      <div class="sc">
-        <div class="si2">⚡</div>
-        <div class="st" data-es="Desarrollo comercial" data-en="Business Development">Desarrollo comercial</div>
-        <div class="sd" data-es="Detecto oportunidades de expansión, diseño estrategias de pricing y negocio acuerdos con clientes y proveedores clave." data-en="I detect expansion opportunities, design pricing strategies and negotiate agreements with key clients and suppliers.">Detecto oportunidades de expansión, diseño estrategias de pricing y negocio acuerdos con clientes y proveedores clave.</div>
-      </div>
+
     </div>
   </div>
 </section>
 <div class="dl"></div>
 
-<!-- ── FOR WHO ── -->
+<!-- FOR WHO -->
 <section class="sec">
   <div class="si">
     <div class="tag" data-es="Para quién" data-en="Who it's for">Para quién</div>
@@ -585,32 +386,102 @@ footer small{font-size:10px;color:var(--muted);}
       Si reconocés alguna de estas señales, estás dejando dinero sobre la mesa.
     </p>
     <ul class="fl">
-      <li class="fi">
-        <div class="fc">✓</div>
-        <div><strong data-es="Tenés leads pero tu tasa de conversión es menor al 20%." data-en="You have leads but your conversion rate is below 20%.">Tenés leads pero tu tasa de conversión es menor al 20%.</strong>
-        <span data-es=" No sabés exactamente en qué punto se pierden." data-en=" You don't know exactly where they drop off."> No sabés exactamente en qué punto se pierden.</span></div>
-      </li>
-      <li class="fi">
-        <div class="fc">✓</div>
-        <div><strong data-es="No tenés CRM, no hay forecast, no hay KPIs claros." data-en="No CRM, no forecast, no clear KPIs.">No tenés CRM, no hay forecast, no hay KPIs claros.</strong>
-        <span data-es=" Todo vive en la cabeza de alguien." data-en=" Everything lives in someone's head."> Todo vive en la cabeza de alguien.</span></div>
-      </li>
-      <li class="fi">
-        <div class="fc">✓</div>
-        <div><strong data-es="Vendés B2B con ticket entre $5K y $500K USD." data-en="You sell B2B with tickets between $5K and $500K USD.">Vendés B2B con ticket entre $5K y $500K USD.</strong>
-        <span data-es=" Cada operación perdida duele de verdad." data-en=" Every lost deal really hurts."> Cada operación perdida duele de verdad.</span></div>
-      </li>
-      <li class="fi">
-        <div class="fc">✓</div>
-        <div><strong data-es="Querés escalar sin contratar un equipo comercial completo." data-en="You want to scale without hiring a full sales team.">Querés escalar sin contratar un equipo comercial completo.</strong>
-        <span data-es=" Necesitás resultados rápidos, no meses de onboarding." data-en=" You need fast results, not months of onboarding."> Necesitás resultados rápidos, no meses de onboarding.</span></div>
-      </li>
+      <li class="fi"><div class="fc">✓</div><div><strong data-es="Tenés leads pero tu conversión es menor al 20%." data-en="You have leads but your conversion is below 20%.">Tenés leads pero tu conversión es menor al 20%.</strong><span data-es=" No sabés en qué punto exacto se pierden." data-en=" You don't know exactly where they drop off."> No sabés en qué punto exacto se pierden.</span></div></li>
+      <li class="fi"><div class="fc">✓</div><div><strong data-es="Vendés infoproductos, cursos o coaching y no estás cerrando al ritmo que deberías." data-en="You sell infoproducts, courses or coaching and aren't closing at the pace you should.">Vendés infoproductos, cursos o coaching y no estás cerrando al ritmo que deberías.</strong><span data-es=" Tus llamadas de venta no convierten." data-en=" Your sales calls aren't converting."> Tus llamadas de venta no convierten.</span></div></li>
+      <li class="fi"><div class="fc">✓</div><div><strong data-es="Tu negocio creció y un solo closer ya no alcanza." data-en="Your business grew and one closer isn't enough anymore.">Tu negocio creció y un solo closer ya no alcanza.</strong><span data-es=" Necesitás un equipo, no contratar gente sin experiencia." data-en=" You need a team, not inexperienced hires."> Necesitás un equipo, no contratar gente sin experiencia.</span></div></li>
+      <li class="fi"><div class="fc">✓</div><div><strong data-es="Vendés B2B con ticket entre $5K y $500K USD." data-en="You sell B2B with tickets between $5K and $500K USD.">Vendés B2B con ticket entre $5K y $500K USD.</strong><span data-es=" Cada operación perdida duele de verdad." data-en=" Every lost deal really hurts."> Cada operación perdida duele de verdad.</span></div></li>
     </ul>
   </div>
 </section>
 <div class="dl"></div>
 
-<!-- ── TESTIMONIALS ── -->
+<!-- MENTORSHIP -->
+<section class="sec alt" id="mentoria">
+  <div class="si">
+    <div class="tag" data-es="Mentoría 1 a 1" data-en="1-on-1 Mentorship">Mentoría 1 a 1</div>
+    <div class="ment-lay">
+      <div>
+        <h2 data-es="FORMARTE<br>COMO <i>CLOSER</i><br>DESDE CERO" data-en="TRAIN AS A<br><i>CLOSER</i><br>FROM SCRATCH">FORMARTE<br>COMO <i>CLOSER</i><br>DESDE CERO</h2>
+        <p class="stxt" style="margin-bottom:32px"
+          data-es="Te enseño todo lo que sé en sesiones privadas. Desde la mentalidad hasta conseguir tu primer trabajo como closer."
+          data-en="I teach you everything I know in private sessions. From mindset to landing your first closer job.">
+          Te enseño todo lo que sé en sesiones privadas. Desde la mentalidad hasta conseguir tu primer trabajo como closer.
+        </p>
+        <div class="ment-steps">
+          <div class="mstep">
+            <div class="mnum">01</div>
+            <div class="mtext"><strong data-es="Fundamentos de ventas" data-en="Sales fundamentals">Fundamentos de ventas</strong><span data-es="Psicología del comprador, manejo de objeciones y scripts de cierre probados." data-en="Buyer psychology, objection handling and proven closing scripts.">Psicología del comprador, manejo de objeciones y scripts de cierre probados.</span></div>
+          </div>
+          <div class="mstep">
+            <div class="mnum">02</div>
+            <div class="mtext"><strong data-es="CRM & herramientas" data-en="CRM & tools">CRM & herramientas</strong><span data-es="Zoho, Bitrix24, seguimiento de pipeline y KPIs. Todo lo que usan las empresas reales." data-en="Zoho, Bitrix24, pipeline tracking and KPIs. Everything real companies use.">Zoho, Bitrix24, seguimiento de pipeline y KPIs. Todo lo que usan las empresas reales.</span></div>
+          </div>
+          <div class="mstep">
+            <div class="mnum">03</div>
+            <div class="mtext"><strong data-es="Role plays reales" data-en="Real role plays">Role plays reales</strong><span data-es="Practicamos juntos las llamadas de venta hasta que el cierre sea natural y consistente." data-en="We practice sales calls together until closing becomes natural and consistent.">Practicamos juntos las llamadas de venta hasta que el cierre sea natural y consistente.</span></div>
+          </div>
+          <div class="mstep">
+            <div class="mnum">04</div>
+            <div class="mtext"><strong data-es="Conseguir tu primer trabajo" data-en="Land your first job">Conseguir tu primer trabajo</strong><span data-es="CV, outreach, dónde buscar y cómo presentarte. Te acompaño hasta que estés facturando." data-en="CV, outreach, where to look and how to pitch yourself. I walk with you until you're earning.">CV, outreach, dónde buscar y cómo presentarte. Te acompaño hasta que estés facturando.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mentorship card -->
+      <div class="ment-card" id="ment-card-el">
+        <div class="tag" data-es="Programa completo" data-en="Full program">Programa completo</div>
+        <div class="price" data-es="MENTORÍA<br>1 a 1" data-en="1-on-1<br>MENTORSHIP">MENTORÍA<br>1 a 1</div>
+        <div class="price-sub" data-es="Sesiones privadas con Oscar Chinchilla" data-en="Private sessions with Oscar Chinchilla">Sesiones privadas con Oscar Chinchilla</div>
+        <ul class="ment-inc">
+          <li><strong data-es="Sesiones 1 a 1 personalizadas" data-en="Personalized 1-on-1 sessions">Sesiones 1 a 1 personalizadas</strong></li>
+          <li><strong data-es="De cero a primer trabajo" data-en="From zero to first job">De cero a primer trabajo</strong></li>
+          <li><strong data-es="Scripts y frameworks reales" data-en="Real scripts and frameworks">Scripts y frameworks reales</strong></li>
+          <li><strong data-es="Acceso directo por WhatsApp" data-en="Direct WhatsApp access">Acceso directo por WhatsApp</strong></li>
+          <li><strong data-es="Soporte hasta que consigas trabajo" data-en="Support until you get hired">Soporte hasta que consigas trabajo</strong></li>
+        </ul>
+        <a href="https://wa.me/5493417400299?text=Hola%20Oscar%2C%20quiero%20info%20sobre%20la%20mentor%C3%ADa%201%20a%201" class="ment-btn" target="_blank" rel="noopener"
+          data-es="Quiero información →" data-en="I want more info →">
+          Quiero información →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="dl"></div>
+
+<!-- TEAM -->
+<section class="sec" id="equipo">
+  <div class="si">
+    <div class="tag" data-es="Equipo de closers" data-en="Closers team">Equipo de closers</div>
+    <div class="team-lay">
+      <div>
+        <h2 data-es="UN EQUIPO<br><i>COMPLETO</i><br>A TU SERVICIO" data-en="A <i>COMPLETE</i><br>TEAM AT<br>YOUR SERVICE">UN EQUIPO<br><i>COMPLETO</i><br>A TU SERVICIO</h2>
+        <p class="stxt" style="margin-bottom:32px"
+          data-es="Cuando tu negocio escala, un solo closer no alcanza. Pongo a disposición closers entrenados bajo mi metodología, listos para integrarse a tu proceso."
+          data-en="When your business scales, one closer isn't enough. I provide closers trained under my methodology, ready to integrate into your process.">
+          Cuando tu negocio escala, un solo closer no alcanza. Pongo a disposición closers entrenados bajo mi metodología, listos para integrarse a tu proceso.
+        </p>
+        <div class="team-stats">
+          <div class="tstat"><div class="tstat-n" data-t="8" data-s="+">0</div><div class="tstat-d" data-es="Closers en equipo" data-en="Team closers">Closers en equipo</div></div>
+          <div class="tstat"><div class="tstat-n" data-t="3" data-s=" vert.">0</div><div class="tstat-d" data-es="Verticales cubiertas" data-en="Verticals covered">Verticales cubiertas</div></div>
+          <div class="tstat"><div class="tstat-n" data-t="48" data-s="hs">0</div><div class="tstat-d" data-es="Para estar operativo" data-en="To be operational">Para estar operativo</div></div>
+          <div class="tstat"><div class="tstat-n" data-t="0" data-s=" fijos">0</div><div class="tstat-d" data-es="Sueldos fijos para vos" data-en="Fixed salaries for you">Sueldos fijos para vos</div></div>
+        </div>
+      </div>
+      <div class="team-img-wrap" id="team-vis">
+        <div class="team-visual">
+          <div class="agent"><div class="agent-av">🎯</div><div class="agent-info"><div class="agent-name">Oscar Chinchilla</div><div class="agent-role" data-es="Lead Closer · B2B & B2C" data-en="Lead Closer · B2B & B2C">Lead Closer · B2B & B2C</div></div><span class="agent-badge ag-on" data-es="Disponible" data-en="Available">Disponible</span></div>
+          <div class="agent"><div class="agent-av">💼</div><div class="agent-info"><div class="agent-name" data-es="Equipo B2B Industrial" data-en="Industrial B2B Team">Equipo B2B Industrial</div><div class="agent-role" data-es="Constructoras · Metales · SaaS" data-en="Construction · Metals · SaaS">Constructoras · Metales · SaaS</div></div><span class="agent-badge ag-on" data-es="Activo" data-en="Active">Activo</span></div>
+          <div class="agent"><div class="agent-av">📱</div><div class="agent-info"><div class="agent-name" data-es="Equipo Infoproductos" data-en="Infoproducts Team">Equipo Infoproductos</div><div class="agent-role" data-es="Cursos · Coaching · Consultoría" data-en="Courses · Coaching · Consulting">Cursos · Coaching · Consultoría</div></div><span class="agent-badge ag-on" data-es="Activo" data-en="Active">Activo</span></div>
+          <div class="agent"><div class="agent-av">⚡</div><div class="agent-info"><div class="agent-name" data-es="Setters de apoyo" data-en="Support Setters">Setters de apoyo</div><div class="agent-role" data-es="Calificación y agenda de leads" data-en="Lead qualification & scheduling">Calificación y agenda de leads</div></div><span class="agent-badge ag-off" data-es="Bajo demanda" data-en="On demand">Bajo demanda</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="dl"></div>
+
+<!-- TESTIMONIALS -->
 <section class="sec alt">
   <div class="si">
     <div class="tag" data-es="Resultados" data-en="Results">Resultados</div>
@@ -618,22 +489,19 @@ footer small{font-size:10px;color:var(--muted);}
     <p class="stxt" data-es="Métricas reales. Sin promesas vacías." data-en="Real metrics. No empty promises.">Métricas reales. Sin promesas vacías.</p>
     <div class="tg">
       <div class="tc2">
-        <div class="sts">★★★★★</div>
-        <div class="tq">"</div>
-        <p class="tt" data-es="Pasamos de cerrar 2-3 operaciones por mes a 8-10. Oscar entiende el negocio industrial y habla el idioma del cliente." data-en="We went from closing 2-3 deals per month to 8-10. Oscar understands the industrial business and speaks the client's language.">Pasamos de cerrar 2-3 operaciones por mes a 8-10. Oscar entiende el negocio industrial y habla el idioma del cliente.</p>
+        <div class="sts">★★★★★</div><div class="tq">"</div>
+        <p class="tt" data-es="Pasamos de cerrar 2-3 operaciones por mes a 8-10. Oscar entiende el negocio industrial y habla el idioma del cliente." data-en="We went from closing 2-3 deals per month to 8-10. Oscar understands industrial business and speaks the client's language.">Pasamos de cerrar 2-3 operaciones por mes a 8-10. Oscar entiende el negocio industrial y habla el idioma del cliente.</p>
         <div class="tn" data-es="Director Comercial" data-en="Commercial Director">Director Comercial</div>
         <div class="tr" data-es="Empresa constructora · Buenos Aires" data-en="Construction company · Buenos Aires">Empresa constructora · Buenos Aires</div>
       </div>
       <div class="tc2">
-        <div class="sts">★★★★★</div>
-        <div class="tq">"</div>
+        <div class="sts">★★★★★</div><div class="tq">"</div>
         <p class="tt" data-es="Implementó el CRM, organizó el pipeline y en 90 días teníamos visibilidad total. Imprescindible." data-en="He implemented the CRM, organized the pipeline and within 90 days we had full visibility. Indispensable.">Implementó el CRM, organizó el pipeline y en 90 días teníamos visibilidad total. Imprescindible.</p>
         <div class="tn">CEO</div>
         <div class="tr" data-es="Distribuidora industrial · Rosario" data-en="Industrial distributor · Rosario">Distribuidora industrial · Rosario</div>
       </div>
       <div class="tc2">
-        <div class="sts">★★★★★</div>
-        <div class="tq">"</div>
+        <div class="sts">★★★★★</div><div class="tq">"</div>
         <p class="tt" data-es="El revenue de ese año fue un 151% mayor al anterior. Los números hablan solos." data-en="That year's revenue was 151% higher than the previous one. The numbers speak for themselves.">El revenue de ese año fue un 151% mayor al anterior. Los números hablan solos.</p>
         <div class="tn" data-es="Gerente General" data-en="General Manager">Gerente General</div>
         <div class="tr" data-es="Sector metalúrgico · Argentina" data-en="Metallurgical sector · Argentina">Sector metalúrgico · Argentina</div>
@@ -643,13 +511,13 @@ footer small{font-size:10px;color:var(--muted);}
 </section>
 <div class="dl"></div>
 
-<!-- ── BOOKING ── -->
+<!-- BOOKING -->
 <section class="cal-s" id="agenda">
   <div class="cal-in">
     <div class="cal-lay">
       <div>
         <div class="tag" data-es="Agendá ahora" data-en="Book now">Agendá ahora</div>
-        <h2 data-es="20 MIN QUE<br>PUEDEN <i>CAMBIAR</i><br>TU PIPELINE" data-en="20 MIN THAT<br>CAN <i>CHANGE</i><br>YOUR PIPELINE">20 MIN QUE<br>PUEDEN <i>CAMBIAR</i><br>TU PIPELINE</h2>
+        <h2 data-es="20 MIN QUE<br>PUEDEN <i>CAMBIAR</i><br>TU NEGOCIO" data-en="20 MIN THAT<br>CAN <i>CHANGE</i><br>YOUR BUSINESS">20 MIN QUE<br>PUEDEN <i>CAMBIAR</i><br>TU NEGOCIO</h2>
         <p class="stxt" style="margin-bottom:0"
           data-es="Llamada sin compromiso. Te digo exactamente qué está fallando en tu proceso de ventas."
           data-en="No-commitment call. I'll tell you exactly what's failing in your sales process.">
@@ -659,22 +527,23 @@ footer small{font-size:10px;color:var(--muted);}
           <li><strong data-es="Gratis, sin compromiso" data-en="Free, no strings attached">Gratis, sin compromiso</strong></li>
           <li><strong data-es="Diagnóstico de tu pipeline" data-en="Pipeline diagnosis">Diagnóstico de tu pipeline</strong></li>
           <li><strong data-es="Plan de acción concreto" data-en="Concrete action plan">Plan de acción concreto</strong></li>
-          <li><strong data-es="Respuesta en menos de 24hs" data-en="Response within 24h">Respuesta en menos de 24hs</strong></li>
+          <li><strong data-es="También para mentoría y equipo" data-en="Also for mentorship & team">También para mentoría y equipo</strong></li>
         </ul>
       </div>
       <div class="cw">
-        <!-- ZOHO BOOKINGS — ya integrado desde tu código -->
+        <!-- Google Calendar Appointment Scheduling -->
         <iframe
-          src="https://zcal.co/i/zz08011230e63ab5a00510cc1ee142357c802f7f5c047f41a6eef04fbec3db2110265d2716d391be83f192715b715199f069628b4c?embed=1&embedType=iframe"
-          title="Reservar llamada"
-          loading="lazy">
+          src="https://calendar.app.google/AX8NYSKEh3sD7hqw9"
+          title="Agendar llamada con Oscar Chinchilla"
+          loading="lazy"
+          allow="payment">
         </iframe>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CTA FINAL ── -->
+<!-- CTA FINAL -->
 <section class="cta-s">
   <div class="cta-in">
     <div class="tag" style="display:block;text-align:center;margin-bottom:12px;"
@@ -682,12 +551,13 @@ footer small{font-size:10px;color:var(--muted);}
     <h2 data-es="SI TENÉS LEADS Y<br>NO ESTÁS <i>CERRANDO…</i>" data-en="IF YOU HAVE LEADS<br>AND YOU'RE NOT <i>CLOSING…</i>">
       SI TENÉS LEADS Y<br>NO ESTÁS <i>CERRANDO…</i>
     </h2>
-    <p data-es="Cada día sin un proceso de ventas sólido es dinero que se va. Hablemos hoy." data-en="Every day without a solid sales process is money gone. Let's talk today.">
-      Cada día sin un proceso de ventas sólido es dinero que se va. Hablemos hoy.
+    <p data-es="Cada día sin un proceso de ventas sólido es dinero que se va.<br>Hablemos hoy — ventas, equipo o mentoría."
+       data-en="Every day without a solid sales process is money gone.<br>Let's talk today — sales, team or mentorship.">
+      Cada día sin un proceso de ventas sólido es dinero que se va.<br>Hablemos hoy — ventas, equipo o mentoría.
     </p>
     <div class="cta-bs">
       <a href="https://wa.me/5493417400299" class="bwa" target="_blank" rel="noopener">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         <span data-es="Hablar por WhatsApp" data-en="Chat on WhatsApp">Hablar por WhatsApp</span>
       </a>
       <a href="mailto:o.chinchilla@abraxas-group.lat" class="bem">o.chinchilla@abraxas-group.lat</a>
@@ -698,33 +568,20 @@ footer small{font-size:10px;color:var(--muted);}
 <!-- FOOTER -->
 <footer>
   <div class="fl2">ABRAXAS<b>.</b></div>
-  <small>Oscar Esteban Chinchilla · B2B Closer · Cañuelas, Buenos Aires</small>
+  <small data-es="Oscar Esteban Chinchilla · Closer B2B & B2C · Argentina, Buenos Aires" data-en="Oscar Esteban Chinchilla · B2B & B2C Closer · Argentina, Buenos Aires">Oscar Esteban Chinchilla · Closer B2B & B2C · Argentina, Buenos Aires</small>
   <small>© 2025 Abraxas Group · o.chinchilla@abraxas-group.lat</small>
 </footer>
 
-<!-- ════════════════════════════════════════
-     JAVASCRIPT — todo funcional
-════════════════════════════════════════ -->
 <script>
 'use strict';
 
 /* ── CURSOR ── */
 (function(){
-  const c=document.getElementById('cur');
-  const r=document.getElementById('cur-r');
+  const c=document.getElementById('cur'),r=document.getElementById('cur-r');
   if(!c||!r)return;
   let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX; my=e.clientY;
-    c.style.left=mx+'px'; c.style.top=my+'px';
-  });
-  (function loop(){
-    rx+=(mx-rx)*.11; ry+=(my-ry)*.11;
-    r.style.left=rx+'px'; r.style.top=ry+'px';
-    requestAnimationFrame(loop);
-  })();
-  document.addEventListener('mouseenter',()=>{c.style.opacity='1';r.style.opacity='1';});
-  document.addEventListener('mouseleave',()=>{c.style.opacity='0';r.style.opacity='0';});
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});
+  (function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop);})();
   document.querySelectorAll('a,button').forEach(el=>{
     el.addEventListener('mouseenter',()=>{r.style.width='52px';r.style.height='52px';r.style.borderColor='var(--g)';});
     el.addEventListener('mouseleave',()=>{r.style.width='34px';r.style.height='34px';r.style.borderColor='rgba(0,255,136,.45)';});
@@ -738,10 +595,8 @@ window.addEventListener('scroll',()=>{
 
 /* ── TICKER ── */
 const TK={
-  es:['+151% Crecimiento','$2M+ USD Gestionado','$172M Pico mensual','8+ años B2B',
-      'CRM Zoho · Bitrix24','36 meses resultados','Cierre B2B','Pipeline & Forecast'],
-  en:['+151% Growth','$2M+ USD Managed','$172M Monthly Peak','8+ Years B2B',
-      'CRM Zoho · Bitrix24','36 Months Results','B2B Closing','Pipeline & Forecast']
+  es:['+151% Crecimiento','$2M+ USD Gestionado','B2B & B2C','Infoproductos','Equipo de Closers','Mentoría 1 a 1','8+ años','Pipeline & CRM','Cierre de alto valor'],
+  en:['+151% Growth','$2M+ USD Managed','B2B & B2C','Infoproducts','Closers Team','1-on-1 Mentorship','8+ Years','Pipeline & CRM','High-ticket Closing']
 };
 function buildTicker(lang){
   const el=document.getElementById('tk');
@@ -751,11 +606,10 @@ function buildTicker(lang){
 buildTicker('es');
 
 /* ── CHART ── */
-const chartEl=document.getElementById('chart');
 let chartInst=null;
 function buildChart(){
   if(chartInst)chartInst.destroy();
-  chartInst=new Chart(chartEl,{
+  chartInst=new Chart(document.getElementById('chart'),{
     type:'bar',
     data:{
       labels:['2022','2023','2024*'],
@@ -763,7 +617,7 @@ function buildChart(){
         label:'Revenue USD',
         data:[0.45,1.12,1.86],
         backgroundColor:['rgba(30,80,180,.75)','rgba(37,99,235,.9)','rgba(0,255,136,.9)'],
-        borderColor:['rgba(30,80,180,0)','rgba(37,99,235,0)','rgba(0,255,136,.4)'],
+        borderColor:['transparent','transparent','rgba(0,255,136,.4)'],
         borderWidth:1,borderRadius:8,borderSkipped:false,
       }]
     },
@@ -771,13 +625,7 @@ function buildChart(){
       responsive:true,
       plugins:{
         legend:{display:false},
-        tooltip:{
-          backgroundColor:'#080f1e',
-          borderColor:'rgba(255,255,255,.08)',borderWidth:1,
-          titleColor:'#00ff88',bodyColor:'#ecf3ff',
-          padding:14,cornerRadius:10,
-          callbacks:{label:c=>` $${c.parsed.y.toFixed(2)}M USD`}
-        }
+        tooltip:{backgroundColor:'#080f1e',borderColor:'rgba(255,255,255,.08)',borderWidth:1,titleColor:'#00ff88',bodyColor:'#ecf3ff',padding:14,cornerRadius:10,callbacks:{label:c=>` $${c.parsed.y.toFixed(2)}M USD`}}
       },
       scales:{
         x:{ticks:{color:'#3d5870',font:{size:12,weight:'600',family:'Outfit'}},grid:{color:'#08111e'}},
@@ -789,32 +637,26 @@ function buildChart(){
 }
 buildChart();
 
-/* ── SCROLL REVEAL ── */
+/* ── SCROLL REVEAL + COUNT UP ── */
 const obs=new IntersectionObserver(entries=>{
-  entries.forEach((e,idx)=>{
+  entries.forEach((e,i)=>{
     if(e.isIntersecting){
       setTimeout(()=>{
         e.target.classList.add('on');
-        const kn=e.target.querySelector('.kn[data-t]');
-        if(kn)countUp(kn);
-      },idx*90);
+        e.target.querySelectorAll('.kn[data-t],.tstat-n[data-t]').forEach(n=>countUp(n));
+      },i*80);
       obs.unobserve(e.target);
     }
   });
-},{threshold:.14});
-document.querySelectorAll('.kc,.cb,.sc,.fi,.tc2').forEach(el=>obs.observe(el));
+},{threshold:.13});
+document.querySelectorAll('.kc,.cb,.sc,.fi,.tc2,.ment-card,.tstat,#team-vis').forEach(el=>obs.observe(el));
 
-/* ── COUNT UP ── */
 function countUp(el){
-  const target=parseFloat(el.dataset.t);
-  const suf=el.dataset.s||'';
+  const target=parseFloat(el.dataset.t),suf=el.dataset.s||'';
   const isFloat=String(target).includes('.');
-  const dur=1300;
-  const start=performance.now();
+  const dur=1300,start=performance.now();
   function step(now){
-    const p=Math.min((now-start)/dur,1);
-    const ease=1-Math.pow(1-p,3);
-    const v=target*ease;
+    const p=Math.min((now-start)/dur,1),ease=1-Math.pow(1-p,3),v=target*ease;
     el.textContent=(isFloat?v.toFixed(1):Math.round(v))+suf;
     if(p<1)requestAnimationFrame(step);
     else el.textContent=(isFloat?target.toFixed(1):target)+suf;
@@ -822,29 +664,20 @@ function countUp(el){
   requestAnimationFrame(step);
 }
 
-/* ── LANGUAGE SWITCH ── */
+/* ── LANGUAGE ── */
 let LANG='es';
 function setLang(lang){
   LANG=lang;
   document.documentElement.lang=lang;
   document.getElementById('bes').classList.toggle('on',lang==='es');
   document.getElementById('ben').classList.toggle('on',lang==='en');
-
   document.querySelectorAll('[data-es],[data-en]').forEach(el=>{
     const val=el.dataset[lang];
     if(val===undefined)return;
-    if(el.tagName==='INPUT'||el.tagName==='BUTTON'){
-      el.value=val;
-    } else {
-      el.innerHTML=val;
-    }
+    if(el.tagName==='INPUT'||el.tagName==='BUTTON')el.value=val;
+    else el.innerHTML=val;
   });
-
   buildTicker(lang);
-  // Re-observe staggered items that may have reset
-  document.querySelectorAll('.sc,.fi,.tc2').forEach(el=>{
-    if(!el.classList.contains('on'))obs.observe(el);
-  });
 }
 </script>
 </body>
