@@ -1,11 +1,33 @@
 User-agent: *
 Allow: /
 
-# Si existieran rutas internas/privadas, bloquéalas (ajustar según tu repo):
+# Bloqueo de rutas sensibles
 Disallow: /admin/
 Disallow: /panel/
 Disallow: /private/
 Disallow: /tmp/
 Disallow: /api/
 
+# Evitar indexación de parámetros innecesarios (tracking, filtros, etc.)
+Disallow: /*?*
+Disallow: /*&*
+
+# Permitir assets importantes (evita problemas de renderizado en Google)
+Allow: /assets/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /*.svg$
+Allow: /*.mp4$
+
+# Crawl delay (solo lo respeta Bing, no Google)
+Crawl-delay: 5
+
+# Sitemap principal
 Sitemap: https://www.abraxas-group.lat/sitemap.xml
+
+# Host preferido (relevante para algunos crawlers como Yandex)
+Host: https://www.abraxas-group.lat
