@@ -1,33 +1,41 @@
 User-agent: *
 Allow: /
 
-# Bloqueo de rutas sensibles
+# Bloqueo de rutas sensibles (panel de control, administración)
 Disallow: /admin/
 Disallow: /panel/
 Disallow: /private/
 Disallow: /tmp/
 Disallow: /api/
 
-# Evitar indexación de parámetros innecesarios (tracking, filtros, etc.)
-Disallow: /*?*
-Disallow: /*&*
+# Evitar indexación de parámetros de tracking (UTM, Facebook, Google Ads, etc.)
+# PERO PERMITIR EXPLÍCITAMENTE EL PARÁMETRO DE IDIOMA "?lang="
+Disallow: /*?utm_
+Disallow: /*?utm_*
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+Disallow: /*?ref=
+Disallow: /*?source=
+Disallow: /*?s=
+Disallow: /*?cmp=
+Disallow: /*?cid=
 
-# Permitir assets importantes (evita problemas de renderizado en Google)
+# Permitir archivos de estilo, scripts e imágenes para renderizado correcto
 Allow: /assets/
-Allow: /*.js$
-Allow: /*.css$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.webp$
-Allow: /*.svg$
-Allow: /*.mp4$
+Allow: /*.js
+Allow: /*.css
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.webp
+Allow: /*.svg
+Allow: /*.mp4
 
-# Crawl delay (solo lo respeta Bing, no Google)
+# Crawl-delay (respetado por Bing, Yahoo, etc.)
 Crawl-delay: 5
 
-# Sitemap principal
+# Sitemap multi-idioma
 Sitemap: https://www.abraxas-group.lat/sitemap.xml
 
-# Host preferido (relevante para algunos crawlers como Yandex)
+# Host preferido
 Host: https://www.abraxas-group.lat
